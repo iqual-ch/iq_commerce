@@ -1,0 +1,53 @@
+<?php
+
+/**
+ * Implements hook_preprocess_HOOK().
+ */
+function iq_commerce_preprocess_menu__main(&$variables) {
+  $cartProvider = \Drupal::service('commerce_cart.cart_provider');
+  $carts = $cartProvider->getCarts();
+  $carts = array_filter($carts, function ($cart) {
+    /** @var \Drupal\commerce_order\Entity\OrderInterface $cart */
+    // There is a chance the cart may have converted from a draft order, but
+    // is still in session. Such as just completing check out. So we verify
+    // that the cart is still a cart.
+    return $cart->hasItems() && $cart->cart->value;
+  });
+  $count = 0;
+  $cart_views = [];
+  if (!empty($carts)) {
+    foreach ($carts as $cart_id => $cart) {
+      foreach ($cart->getItems() as $order_item) {
+        $count += (int) $order_item->getQuantity();
+      }
+    }
+  }
+
+  foreach ($variables['items'] as $key => $item) {
+    if ($item['title'] == 'Cart') {
+      $item['title'] = 'Cart ('. $count . ')';
+      $variables['items'][$key] = $item;
+    }
+  }
+}
+
+/**
+ * Implements hook_mail().
+ */
+function iq_commerce_mail($key, &$message, $params) {
+  $message['headers']['Content-Type'] = 'text/html; charset=UTF-8; format=flowed';
+  \Drupal::logger('iq_commerce')->notice($key);
+  mb_internal_encoding("UTF-8");
+  $message['subject'] = mb_encode_mimeheader($message['subject'],'UTF-8','Q');
+}
+/**
+ * Implements hook_theme().
+ */
+function iq_commerce_theme($existing, $type, $theme, $path) {
+  return [
+    'commerce_order_receipt' => [
+      'template' => 'iq-commerce-order-receipt',
+      'base hook' => 'commerce_order_receipt',
+    ],
+  ];
+}

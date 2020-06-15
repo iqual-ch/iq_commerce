@@ -1,0 +1,17 @@
+# Schema for the configuration files of the captcha module.
+#wrong_response_counter
+
+iq_commerce.settings:
+  type: config_object
+  label: 'iQual Commerce'
+  mapping:
+    tax_rate_per_product:
+      type: mapping
+      label: 'Tax Rate per product type'
+      mapping:
+        product_type:
+          type: string
+          label: 'Product type'
+        tax_rate:
+          type: string
+          label: 'Tax Rate'

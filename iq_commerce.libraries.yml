@@ -1,0 +1,5 @@
+catalog-css:
+  version: 1.x
+  css:
+    theme:
+      css/catalog-css.css: {}
