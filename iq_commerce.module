@@ -51,3 +51,16 @@ function iq_commerce_theme($existing, $type, $theme, $path) {
     ],
   ];
 }
+
+/**
+ * Implements hook_views_data_alter().
+ */
+function iq_commerce_views_data_alter(array &$data) {
+  $data['views']['alter_cart_quantity_field'] = [
+    'title' => t('Quantity edit form'),
+    'help' => t('Form to alter the quantity of a cart item'),
+    'field' => [
+      'id' => 'alter_cart_quantity_field',
+    ],
+  ];
+}
