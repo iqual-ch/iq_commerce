@@ -1,13 +1,3 @@
-iq_commerce.settings:
-  path: '/admin/commerce/config/iq_commerce'
-  defaults:
-    _form: '\Drupal\iq_commerce\Form\IqCommerceSettingsForm'
-    _title: 'Iq Commerce Settings'
-  requirements:
-    _permission: 'administer iq_commerce settings'
-  options:
-    _admin_route: TRUE
-
 iq_commerce.orders:
   path: '/user/orders'
   defaults:
