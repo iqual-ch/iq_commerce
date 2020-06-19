@@ -3,36 +3,6 @@
 use Drupal\commerce_tax\Entity\TaxType;
 use Drupal\Core\Form\FormStateInterface;
 
-/**
- * Implements hook_preprocess_HOOK().
- */
-function iq_commerce_preprocess_menu__main(&$variables) {
-  $cartProvider = \Drupal::service('commerce_cart.cart_provider');
-  $carts = $cartProvider->getCarts();
-  $carts = array_filter($carts, function ($cart) {
-    /** @var \Drupal\commerce_order\Entity\OrderInterface $cart */
-    // There is a chance the cart may have converted from a draft order, but
-    // is still in session. Such as just completing check out. So we verify
-    // that the cart is still a cart.
-    return $cart->hasItems() && $cart->cart->value;
-  });
-  $count = 0;
-  $cart_views = [];
-  if (!empty($carts)) {
-    foreach ($carts as $cart_id => $cart) {
-      foreach ($cart->getItems() as $order_item) {
-        $count += (int) $order_item->getQuantity();
-      }
-    }
-  }
-
-  foreach ($variables['items'] as $key => $item) {
-    if ($item['title'] == 'Cart') {
-      $item['title'] = 'Cart ('. $count . ')';
-      $variables['items'][$key] = $item;
-    }
-  }
-}
 
 /**
  * Implements hook_mail().
