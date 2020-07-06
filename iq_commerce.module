@@ -49,6 +49,15 @@ function iq_commerce_theme($existing, $type, $theme, $path) {
       'template' => 'iq-commerce-order-receipt',
       'base hook' => 'commerce_order_receipt',
     ],
+    'dropdown_cart_block' => [
+      'variables' => [
+        'count_text' => NULL,
+        'url' => NULL,
+        'count' => NULL,
+        'content' => NULL,
+        'links' => NULL
+      ]
+    ]
   ];
 }
 
