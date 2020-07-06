@@ -1,0 +1,52 @@
+msgid "Remove"
+msgstr "Entfernen"
+
+msgid "Title"
+msgstr "Titel"
+
+msgid "Tooltip remove button"
+msgstr "Tooltip-Schaltfläche zum Entfernen"
+
+msgid "Quantity edit form"
+msgstr "Mengenbearbeitungsformular"
+
+msgid "Form to alter the quantity of a cart item"
+msgstr "Formular zum Ändern der Menge eines Warenkorbartikels"
+
+msgid "Tax Rate"
+msgstr "Steuersatz"
+
+msgid "Category"
+msgstr "Kategorie"
+
+msgid "Tags"
+msgstr "Tags"
+
+msgid "Catalog"
+msgstr "Katalog"
+
+msgid "Product variation title"
+msgstr "Titel der Produktvariante"
+
+msgid "Product Title"
+msgstr "Artikelname"
+
+msgid "Product variants"
+msgstr "Produktvarianten"
+
+msgid "Product image"
+msgstr "Produktbild"
+
+msgid "Product link"
+msgstr "Produktlink"
+
+msgid "In the cart"
+msgstr "In den Warenkorb"
+
+msgid "Shopping cart"
+msgstr "Warenkorb"
+
+msgid "Cart"
+msgstr "Warenkorb"
+
+msgid "Add to cart destination"

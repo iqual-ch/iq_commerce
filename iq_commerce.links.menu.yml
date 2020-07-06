@@ -1,5 +1,0 @@
-iq_commerce.settings:
-  title: 'IQ Commerce settings'
-  route_name: 'iq_commerce.settings'
-  parent: 'commerce_product.configuration'
-  description: 'Set up configuration for IQual commerce.'

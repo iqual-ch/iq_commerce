@@ -1,0 +1,8 @@
+uuid: 9061d9e6-8293-47f9-9d50-1111e7bd825f
+langcode: de
+status: true
+dependencies: {  }
+name: Category
+vid: iq_commerce_category
+description: ''
+weight: 0
