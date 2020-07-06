@@ -59,6 +59,7 @@ function iq_commerce_form_alter(&$form, \Drupal\Core\Form\FormStateInterface $fo
       $default_tax_rate = $product_type_entity->getThirdPartySetting('iq_commerce', 'tax_rate');
       $form['tax_rate'] = [
         '#type' => 'select',
+        '#title' => t('Tax Rate'),
         '#options' => $rate_labels,
         '#default_value' => $default_tax_rate
       ];
