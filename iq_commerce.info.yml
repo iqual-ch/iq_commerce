@@ -15,3 +15,4 @@ dependencies:
   - hierarchical_taxonomy_menu:hierarchical_taxonomy_menu
   - pagedesigner_block_adaptable:pagedesigner_block_adaptable
   - ui_patterns_views:ui_patterns_views
+  - term_reference_tree:term_reference_tree

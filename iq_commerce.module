@@ -99,7 +99,8 @@ function iq_commerce_views_pre_render(\Drupal\views\ViewExecutable $view) {
     $i = 0;
     // Check each node of the result array on it's nid.
     foreach ($view->result as $row) {
-      $variation_id = $row->commerce_product_variation_field_data_commerce_product__vari_2;
+
+      $variation_id = $row->commerce_product_variation_field_data_commerce_product__vari_1;
       // If this node isn't a duplicate.
       if (!in_array($variation_id, $variation_ids)) {
         $row->index = $i;

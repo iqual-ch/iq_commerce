@@ -16,6 +16,7 @@
     "drupal/commerce_variation_cart_form": "*",
     "drupal/commerce_shipping": "*",
     "drupal/commerce_postfinance": "*",
-    "iqual/pagedesigner_block_adaptable": "*"
+    "iqual/pagedesigner_block_adaptable": "*",
+    "drupal/term_reference_tree": "*"
   }
 }
