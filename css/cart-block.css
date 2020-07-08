@@ -1,0 +1,16 @@
+.block-iq-commerce-cart {
+  display: inline-block;
+  position: relative;
+}
+
+.block-iq-commerce-cart .cart-block--contents {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  background: white;
+  display: none;
+}
+
+.block-iq-commerce-cart:hover .cart-block--contents {
+  display: block;
+}

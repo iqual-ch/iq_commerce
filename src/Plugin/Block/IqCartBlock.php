@@ -35,10 +35,27 @@ class IqCartBlock extends CartBlock {
    */
   public function build() {
     $render = parent::build();
+    // $render['#count_text'] = $this->t($this->configuration['cart_title'], [
+    //   '%count' => $render['#count'],
+    // ]);
+    // return $render;
+
+    $render['#theme'] = 'dropdown_cart_block';
+    $render['#cache'] = [
+      'max-age' => 0,
+    ];
     $render['#count_text'] = $this->t($this->configuration['cart_title'], [
       '%count' => $render['#count'],
     ]);
+
+    $render['#attached'] = [
+      'library' => [
+        'iq_commerce/dropdown_cart_block',
+      ]
+    ];
+
     return $render;
+
   }
 
   /**
@@ -48,6 +65,5 @@ class IqCartBlock extends CartBlock {
     parent::blockSubmit($form, $form_state);
     $this->configuration['cart_title'] = $form_state->getValue('cart_title');
   }
-
 
 }
