@@ -5,7 +5,6 @@ dependencies:
   config:
     - commerce_product.commerce_product_variation_type.default
     - entity_browser.browser.media_entity_browser
-    - field.field.commerce_product_variation.default.field_images
     - field.field.commerce_product_variation.default.field_iq_commerce_images
   module:
     - commerce_price
@@ -67,5 +66,4 @@ content:
     region: content
 hidden:
   created: true
-  field_images: true
   uid: true

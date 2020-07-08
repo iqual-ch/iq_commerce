@@ -4,7 +4,6 @@ status: true
 dependencies:
   config:
     - field.storage.commerce_product.field_iq_commerce_lead
-    - field.storage.commerce_product_variation.field_images
     - field.storage.media.field_media_image
     - system.menu.main
     - taxonomy.vocabulary.iq_commerce_category
@@ -282,7 +281,7 @@ display:
           exclude: false
           alter:
             alter_text: false
-            text: "{{ field_jahrgang }}<br/>\r\n{{ field_iq_commerce_lead|raw }} \r\nabc"
+            text: "{{ field_iq_commerce_lead|raw }} \r\nabc"
             make_link: false
             path: ''
             absolute: false
@@ -983,29 +982,6 @@ display:
       tags:
         - 'config:field.storage.commerce_product.field_iq_commerce_lead'
         - 'config:field.storage.media.field_media_image'
-  adaptable_block_1:
-    display_plugin: adaptable_block
-    id: adaptable_block_1
-    display_title: 'Duplicate (Old block)'
-    position: 3
-    display_options:
-      display_extenders: {  }
-      css_class: 'row iq-row iq-catalog'
-      defaults:
-        css_class: false
-      block_description: 'Duplicate (Old block)'
-      display_description: ''
-    cache_metadata:
-      max-age: -1
-      contexts:
-        - 'languages:language_content'
-        - 'languages:language_interface'
-        - url
-        - user
-        - user.permissions
-      tags:
-        - 'config:field.storage.commerce_product.field_iq_commerce_lead'
-        - 'config:field.storage.media.field_media_image'
   adaptable_block_3:
     display_plugin: adaptable_block
     id: adaptable_block_3
@@ -1108,7 +1084,6 @@ display:
             title_1: 0
             title: 0
             field_iq_commerce_lead: 0
-            field_images: 0
             variations_target_id: 0
             nothing: 0
             view_commerce_product_variation: 0
@@ -1410,10 +1385,6 @@ display:
             show_price: 1
             show_currency: 1
             price_format: '2'
-            attributes:
-              color: color
-              jahrgang: jahrgang
-              size: size
           group_column: target_id
           group_columns: {  }
           group_rows: 1
@@ -2242,7 +2213,6 @@ display:
           summary: ''
           description: ''
           columns:
-            field_images: field_images
             body: body
             variations_target_id: variations_target_id
             title: title
@@ -2257,11 +2227,6 @@ display:
             price__number: price__number
             nothing_4: nothing_4
           info:
-            field_images:
-              align: ''
-              separator: ''
-              empty_column: false
-              responsive: ''
             body:
               sortable: false
               default_sort_order: asc
@@ -2361,7 +2326,6 @@ display:
         options:
           default_field_elements: 0
           inline:
-            field_images: 0
             body: 0
             variations_target_id: 0
             title: 0

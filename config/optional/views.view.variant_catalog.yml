@@ -5,7 +5,6 @@ dependencies:
   config:
     - core.entity_view_mode.commerce_product_variation.catalog_item
     - field.storage.commerce_product.field_iq_commerce_lead
-    - field.storage.commerce_product_variation.field_images
     - field.storage.media.field_media_image
     - system.menu.main
     - taxonomy.vocabulary.iq_commerce_category
@@ -91,8 +90,6 @@ display:
             price__currency_code: 0
             nothing_4: 0
             nothing_5: 0
-            attribute_color: 0
-            attribute_size: 0
             rendered_entity: 0
             field_iq_commerce_lead: 0
             price__number: 0
@@ -342,9 +339,6 @@ display:
             show_price: true
             show_currency: true
             price_format: 2
-            attributes:
-              color: color
-              size: size
           group_column: target_id
           group_columns: {  }
           group_rows: true
@@ -1032,132 +1026,6 @@ display:
           empty_zero: false
           hide_alter_empty: false
           plugin_id: custom
-        attribute_color:
-          id: attribute_color
-          table: commerce_product_variation__attribute_color
-          field: attribute_color
-          relationship: variations_target_id
-          group_type: group
-          admin_label: ''
-          label: ''
-          exclude: false
-          alter:
-            alter_text: false
-            text: ''
-            make_link: false
-            path: ''
-            absolute: false
-            external: false
-            replace_spaces: false
-            path_case: none
-            trim_whitespace: false
-            alt: ''
-            rel: ''
-            link_class: ''
-            prefix: ''
-            suffix: ''
-            target: ''
-            nl2br: false
-            max_length: 0
-            word_boundary: true
-            ellipsis: true
-            more_link: false
-            more_link_text: ''
-            more_link_path: ''
-            strip_tags: false
-            trim: false
-            preserve_tags: ''
-            html: false
-          element_type: ''
-          element_class: ''
-          element_label_type: ''
-          element_label_class: ''
-          element_label_colon: false
-          element_wrapper_type: ''
-          element_wrapper_class: ''
-          element_default_classes: true
-          empty: ''
-          hide_empty: false
-          empty_zero: false
-          hide_alter_empty: true
-          click_sort_column: target_id
-          type: entity_reference_label
-          settings:
-            link: true
-          group_column: target_id
-          group_columns: {  }
-          group_rows: true
-          delta_limit: 0
-          delta_offset: 0
-          delta_reversed: false
-          delta_first_last: false
-          multi_type: separator
-          separator: ', '
-          field_api_classes: false
-          plugin_id: field
-        attribute_size:
-          id: attribute_size
-          table: commerce_product_variation__attribute_size
-          field: attribute_size
-          relationship: variations_target_id
-          group_type: group
-          admin_label: ''
-          label: ''
-          exclude: false
-          alter:
-            alter_text: false
-            text: ''
-            make_link: false
-            path: ''
-            absolute: false
-            external: false
-            replace_spaces: false
-            path_case: none
-            trim_whitespace: false
-            alt: ''
-            rel: ''
-            link_class: ''
-            prefix: ''
-            suffix: ''
-            target: ''
-            nl2br: false
-            max_length: 0
-            word_boundary: true
-            ellipsis: true
-            more_link: false
-            more_link_text: ''
-            more_link_path: ''
-            strip_tags: false
-            trim: false
-            preserve_tags: ''
-            html: false
-          element_type: ''
-          element_class: ''
-          element_label_type: ''
-          element_label_class: ''
-          element_label_colon: false
-          element_wrapper_type: ''
-          element_wrapper_class: ''
-          element_default_classes: true
-          empty: ''
-          hide_empty: false
-          empty_zero: false
-          hide_alter_empty: true
-          click_sort_column: target_id
-          type: entity_reference_label
-          settings:
-            link: true
-          group_column: target_id
-          group_columns: {  }
-          group_rows: true
-          delta_limit: 0
-          delta_offset: 0
-          delta_reversed: false
-          delta_first_last: false
-          multi_type: separator
-          separator: ', '
-          field_api_classes: false
-          plugin_id: field
         rendered_entity:
           id: rendered_entity
           table: commerce_product_variation
@@ -1220,7 +1088,7 @@ display:
           exclude: false
           alter:
             alter_text: true
-            text: "{{ attribute_color }} {{ attribute_jahrgang }} {{ attribute_size }} <br/>\r\n{{ field_iq_commerce_lead }}"
+            text: "{{ field_iq_commerce_lead }}"
             make_link: false
             path: ''
             absolute: false
@@ -1649,7 +1517,6 @@ display:
             title_1: 0
             title: 0
             field_iq_commerce_lead: 0
-            field_images: 0
             variations_target_id: 0
             nothing: 0
             view_commerce_product_variation: 0
@@ -1662,9 +1529,6 @@ display:
             price__number: 0
             nothing_4: 0
             nothing_5: 0
-            attribute_color: 0
-            attribute_size: 0
-            attribute_jahrgang: 0
           separator: ''
           hide_empty: 0
           pattern: catalog_item
@@ -1911,10 +1775,6 @@ display:
             show_price: 1
             show_currency: 1
             price_format: '2'
-            attributes:
-              color: color
-              jahrgang: jahrgang
-              size: size
           group_column: target_id
           group_columns: {  }
           group_rows: 1
@@ -2646,195 +2506,6 @@ display:
           empty_zero: false
           hide_alter_empty: false
           plugin_id: custom
-        attribute_color:
-          id: attribute_color
-          table: commerce_product_variation__attribute_color
-          field: attribute_color
-          relationship: variations_target_id
-          group_type: group
-          admin_label: ''
-          label: ''
-          exclude: 0
-          alter:
-            alter_text: 0
-            text: ''
-            make_link: 0
-            path: ''
-            absolute: 0
-            external: 0
-            replace_spaces: 0
-            path_case: none
-            trim_whitespace: 0
-            alt: ''
-            rel: ''
-            link_class: ''
-            prefix: ''
-            suffix: ''
-            target: ''
-            nl2br: 0
-            max_length: '0'
-            word_boundary: 1
-            ellipsis: 1
-            more_link: 0
-            more_link_text: ''
-            more_link_path: ''
-            strip_tags: 0
-            trim: 0
-            preserve_tags: ''
-            html: 0
-          element_type: ''
-          element_class: ''
-          element_label_type: ''
-          element_label_class: ''
-          element_label_colon: false
-          element_wrapper_type: ''
-          element_wrapper_class: ''
-          element_default_classes: 1
-          empty: ''
-          hide_empty: 0
-          empty_zero: 0
-          hide_alter_empty: 1
-          click_sort_column: target_id
-          type: entity_reference_label
-          settings:
-            link: 1
-          group_column: target_id
-          group_columns: {  }
-          group_rows: true
-          delta_limit: 0
-          delta_offset: 0
-          delta_reversed: false
-          delta_first_last: false
-          multi_type: separator
-          separator: ', '
-          field_api_classes: 0
-          plugin_id: field
-        attribute_size:
-          id: attribute_size
-          table: commerce_product_variation__attribute_size
-          field: attribute_size
-          relationship: variations_target_id
-          group_type: group
-          admin_label: ''
-          label: ''
-          exclude: 0
-          alter:
-            alter_text: 0
-            text: ''
-            make_link: 0
-            path: ''
-            absolute: 0
-            external: 0
-            replace_spaces: 0
-            path_case: none
-            trim_whitespace: 0
-            alt: ''
-            rel: ''
-            link_class: ''
-            prefix: ''
-            suffix: ''
-            target: ''
-            nl2br: 0
-            max_length: '0'
-            word_boundary: 1
-            ellipsis: 1
-            more_link: 0
-            more_link_text: ''
-            more_link_path: ''
-            strip_tags: 0
-            trim: 0
-            preserve_tags: ''
-            html: 0
-          element_type: ''
-          element_class: ''
-          element_label_type: ''
-          element_label_class: ''
-          element_label_colon: false
-          element_wrapper_type: ''
-          element_wrapper_class: ''
-          element_default_classes: 1
-          empty: ''
-          hide_empty: 0
-          empty_zero: 0
-          hide_alter_empty: 1
-          click_sort_column: target_id
-          type: entity_reference_label
-          settings:
-            link: 1
-          group_column: target_id
-          group_columns: {  }
-          group_rows: true
-          delta_limit: 0
-          delta_offset: 0
-          delta_reversed: false
-          delta_first_last: false
-          multi_type: separator
-          separator: ', '
-          field_api_classes: 0
-          plugin_id: field
-        attribute_jahrgang:
-          id: attribute_jahrgang
-          table: commerce_product_variation__attribute_jahrgang
-          field: attribute_jahrgang
-          relationship: variations_target_id
-          group_type: group
-          admin_label: ''
-          label: ''
-          exclude: 0
-          alter:
-            alter_text: 0
-            text: ''
-            make_link: 0
-            path: ''
-            absolute: 0
-            external: 0
-            replace_spaces: 0
-            path_case: none
-            trim_whitespace: 0
-            alt: ''
-            rel: ''
-            link_class: ''
-            prefix: ''
-            suffix: ''
-            target: ''
-            nl2br: 0
-            max_length: '0'
-            word_boundary: 1
-            ellipsis: 1
-            more_link: 0
-            more_link_text: ''
-            more_link_path: ''
-            strip_tags: 0
-            trim: 0
-            preserve_tags: ''
-            html: 0
-          element_type: ''
-          element_class: ''
-          element_label_type: ''
-          element_label_class: ''
-          element_label_colon: false
-          element_wrapper_type: ''
-          element_wrapper_class: ''
-          element_default_classes: 1
-          empty: ''
-          hide_empty: 0
-          empty_zero: 0
-          hide_alter_empty: 1
-          click_sort_column: target_id
-          type: entity_reference_label
-          settings:
-            link: 1
-          group_column: target_id
-          group_columns: {  }
-          group_rows: true
-          delta_limit: 0
-          delta_offset: 0
-          delta_reversed: false
-          delta_first_last: false
-          multi_type: separator
-          separator: ', '
-          field_api_classes: 0
-          plugin_id: field
         field_iq_commerce_lead:
           id: field_iq_commerce_lead
           table: commerce_product__field_iq_commerce_lead
@@ -2846,7 +2517,7 @@ display:
           exclude: 0
           alter:
             alter_text: 1
-            text: "{{ attribute_color }} {{ attribute_jahrgang }} {{ attribute_size }} <br/>\r\n{{ field_iq_commerce_lead }}"
+            text: "{{ field_iq_commerce_lead }}"
             make_link: 0
             path: ''
             absolute: 0
@@ -2979,7 +2650,6 @@ display:
           summary: ''
           description: ''
           columns:
-            field_images: field_images
             body: body
             variations_target_id: variations_target_id
             title: title
@@ -2994,11 +2664,6 @@ display:
             price__number: price__number
             nothing_4: nothing_4
           info:
-            field_images:
-              align: ''
-              separator: ''
-              empty_column: false
-              responsive: ''
             body:
               sortable: false
               default_sort_order: asc
@@ -3098,7 +2763,6 @@ display:
         options:
           default_field_elements: 0
           inline:
-            field_images: 0
             body: 0
             variations_target_id: 0
             title: 0

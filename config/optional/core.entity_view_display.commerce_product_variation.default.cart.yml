@@ -5,7 +5,6 @@ dependencies:
   config:
     - commerce_product.commerce_product_variation_type.default
     - core.entity_view_mode.commerce_product_variation.cart
-    - field.field.commerce_product_variation.default.field_images
     - field.field.commerce_product_variation.default.field_iq_commerce_images
     - image.style.medium
   enforced:
@@ -21,15 +20,6 @@ targetEntityType: commerce_product_variation
 bundle: default
 mode: cart
 content:
-  field_images:
-    type: image
-    weight: 0
-    region: content
-    label: hidden
-    settings:
-      image_style: medium
-      image_link: ''
-    third_party_settings: {  }
   product_id:
     type: entity_reference_label
     weight: 1

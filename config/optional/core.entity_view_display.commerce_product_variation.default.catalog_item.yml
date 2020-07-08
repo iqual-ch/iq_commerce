@@ -5,7 +5,6 @@ dependencies:
   config:
     - commerce_product.commerce_product_variation_type.default
     - core.entity_view_mode.commerce_product_variation.catalog_item
-    - field.field.commerce_product_variation.default.field_images
     - field.field.commerce_product_variation.default.field_iq_commerce_images
 id: commerce_product_variation.default.catalog_item
 targetEntityType: commerce_product_variation
@@ -13,7 +12,6 @@ bundle: default
 mode: catalog_item
 content: {  }
 hidden:
-  field_images: true
   field_iq_commerce_images: true
   langcode: true
   list_price: true
