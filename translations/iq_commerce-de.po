@@ -48,5 +48,3 @@ msgstr "Warenkorb"
 
 msgid "Cart"
 msgstr "Warenkorb"
-
-msgid "Add to cart destination"

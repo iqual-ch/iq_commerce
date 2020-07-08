@@ -75,3 +75,42 @@ function iq_commerce_product_type_form_submit(&$form, \Drupal\Core\Form\FormStat
   $product_type_entity->setThirdPartySetting('iq_commerce',  'tax_rate', $form_state->getValue('tax_rate'));
   $product_type_entity->save();
 }
+
+/**
+ * Implements hook_views_pre_render().
+ */
+function iq_commerce_views_pre_render(\Drupal\views\ViewExecutable $view) {
+  if ($view->id() == 'variant_catalog') {
+    \Drupal::logger('iq_commerce')->notice('STIGNAVME VO HOOKOT');
+
+    // Array of nodes to prevent duplicates.
+    $variation_ids = [];
+    // Manipulated results.
+    $resultNoDoubleNodes = [];
+    $i = 0;
+    // Check each node of the result array on it's nid.
+    foreach ($view->result as $row) {
+      $variation_id = $row->commerce_product_variation_field_data_commerce_product__vari_2;
+      // If this node isn't a duplicate.
+      if (!in_array($variation_id, $variation_ids)) {
+        $row->index = $i;
+        $i++;
+        // Add it to the manipulated results.
+        $resultNoDoubleNodes[] = $row;
+        // Mark this nid as in results to prevent duplicates from now on.
+        $variation_ids[] = $variation_id;
+      }
+    }
+    // Replace the old results with the results without duplicates.
+    $view->result = $resultNoDoubleNodes;
+
+  }
+}
+/**
+ * Implements hook_views_query_alter().
+ */
+function iq_commerce_views_query_alter(\Drupal\views\ViewExecutable $view, \Drupal\views\Plugin\views\query\QueryPluginBase $query) {
+  if ($view->id() == 'variant_catalog') {
+
+  }
+}

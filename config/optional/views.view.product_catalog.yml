@@ -3,13 +3,12 @@ langcode: de
 status: true
 dependencies:
   config:
-    - field.storage.commerce_product.field_iq_commerce_images
     - field.storage.commerce_product.field_iq_commerce_lead
     - field.storage.commerce_product_variation.attribute_color
     - field.storage.commerce_product_variation.attribute_jahrgang
     - field.storage.commerce_product_variation.attribute_size
     - field.storage.commerce_product_variation.field_images
-    - image.style.medium
+    - field.storage.media.field_media_image
     - system.menu.main
     - taxonomy.vocabulary.iq_commerce_category
     - taxonomy.vocabulary.iq_commerce_tags
@@ -18,6 +17,7 @@ dependencies:
     - commerce_product
     - commerce_variation_add_to_cart
     - image
+    - media
     - pagedesigner_block_adaptable
     - taxonomy
     - text
@@ -79,7 +79,6 @@ display:
           default_field_elements: 0
           inline:
             title_1: 0
-            field_iq_commerce_images: 0
             product_id: 0
             field_iq_commerce_lead: 0
             price__number: 0
@@ -89,6 +88,8 @@ display:
             nothing_1: 0
             nothing_2: 0
             nothing_3: 0
+            field_media_image: 0
+            nothing_4: 0
           separator: ''
           hide_empty: 0
           pattern: catalog_item
@@ -98,31 +99,31 @@ display:
               weight: 0
               plugin: views_row
               source: nothing
+            'views_row:nothing_4':
+              destination: product_img
+              weight: 1
+              plugin: views_row
+              source: nothing_4
             'views_row:nothing_3':
               destination: variation_additional_price_text
-              weight: 1
+              weight: 2
               plugin: views_row
               source: nothing_3
             'views_row:nothing_2':
               destination: add_to_cart_icon
-              weight: 2
+              weight: 3
               plugin: views_row
               source: nothing_2
             'views_row:nothing_1':
               destination: add_to_cart_title
-              weight: 3
+              weight: 4
               plugin: views_row
               source: nothing_1
             'views_row:field_iq_commerce_lead':
               destination: product_description
-              weight: 4
-              plugin: views_row
-              source: field_iq_commerce_lead
-            'views_row:field_iq_commerce_images':
-              destination: product_img
               weight: 5
               plugin: views_row
-              source: field_iq_commerce_images
+              source: field_iq_commerce_lead
             'views_row:view_commerce_product':
               destination: product_link
               weight: 6
@@ -208,69 +209,6 @@ display:
           field_api_classes: false
           entity_type: commerce_product
           entity_field: title
-          plugin_id: field
-        field_iq_commerce_images:
-          id: field_iq_commerce_images
-          table: commerce_product__field_iq_commerce_images
-          field: field_iq_commerce_images
-          relationship: none
-          group_type: group
-          admin_label: ''
-          label: ''
-          exclude: false
-          alter:
-            alter_text: false
-            text: ''
-            make_link: false
-            path: ''
-            absolute: false
-            external: false
-            replace_spaces: false
-            path_case: none
-            trim_whitespace: false
-            alt: ''
-            rel: ''
-            link_class: ''
-            prefix: ''
-            suffix: ''
-            target: ''
-            nl2br: false
-            max_length: 0
-            word_boundary: true
-            ellipsis: true
-            more_link: false
-            more_link_text: ''
-            more_link_path: ''
-            strip_tags: false
-            trim: false
-            preserve_tags: ''
-            html: false
-          element_type: ''
-          element_class: ''
-          element_label_type: ''
-          element_label_class: ''
-          element_label_colon: false
-          element_wrapper_type: ''
-          element_wrapper_class: ''
-          element_default_classes: true
-          empty: ''
-          hide_empty: false
-          empty_zero: false
-          hide_alter_empty: true
-          click_sort_column: target_id
-          type: image_url
-          settings:
-            image_style: medium
-          group_column: entity_id
-          group_columns: {  }
-          group_rows: true
-          delta_limit: 0
-          delta_offset: 0
-          delta_reversed: false
-          delta_first_last: false
-          multi_type: separator
-          separator: ', '
-          field_api_classes: false
           plugin_id: field
         product_id:
           id: product_id
@@ -779,6 +717,118 @@ display:
           empty_zero: false
           hide_alter_empty: false
           plugin_id: custom
+        field_media_image:
+          id: field_media_image
+          table: media__field_media_image
+          field: field_media_image
+          relationship: field_iq_commerce_images
+          group_type: group
+          admin_label: ''
+          label: ''
+          exclude: false
+          alter:
+            alter_text: false
+            text: ''
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: false
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
+          click_sort_column: target_id
+          type: image_url
+          settings:
+            image_style: ''
+          group_column: target_id
+          group_columns: {  }
+          group_rows: true
+          delta_limit: 0
+          delta_offset: 0
+          delta_reversed: false
+          delta_first_last: false
+          multi_type: separator
+          separator: ', '
+          field_api_classes: false
+          plugin_id: field
+        nothing_4:
+          id: nothing_4
+          table: views
+          field: nothing
+          relationship: none
+          group_type: group
+          admin_label: ''
+          label: 'Product image'
+          exclude: false
+          alter:
+            alter_text: true
+            text: "{% if field_media_image %}\r\n{{ field_media_image }}{% endif %}"
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: false
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: false
+          plugin_id: custom
       filters:
         status:
           value: '1'
@@ -908,6 +958,15 @@ display:
           entity_type: commerce_product
           entity_field: variations
           plugin_id: standard
+        field_iq_commerce_images:
+          id: field_iq_commerce_images
+          table: commerce_product__field_iq_commerce_images
+          field: field_iq_commerce_images
+          relationship: none
+          group_type: group
+          admin_label: 'field_iq_commerce_images: Media'
+          required: false
+          plugin_id: standard
       arguments: {  }
       display_extenders: {  }
       group_by: true
@@ -925,8 +984,8 @@ display:
         - user
         - user.permissions
       tags:
-        - 'config:field.storage.commerce_product.field_iq_commerce_images'
         - 'config:field.storage.commerce_product.field_iq_commerce_lead'
+        - 'config:field.storage.media.field_media_image'
   adaptable_block_1:
     display_plugin: adaptable_block
     id: adaptable_block_1
@@ -948,8 +1007,8 @@ display:
         - user
         - user.permissions
       tags:
-        - 'config:field.storage.commerce_product.field_iq_commerce_images'
         - 'config:field.storage.commerce_product.field_iq_commerce_lead'
+        - 'config:field.storage.media.field_media_image'
   adaptable_block_2:
     display_plugin: adaptable_block
     id: adaptable_block_2
@@ -2331,6 +2390,7 @@ display:
         pager: false
         fields: false
         relationships: false
+        group_by: false
       filters:
         status:
           value: '1'
@@ -2659,69 +2719,6 @@ display:
           separator: ', '
           field_api_classes: false
           plugin_id: field
-        field_images:
-          id: field_images
-          table: commerce_product_variation__field_images
-          field: field_images
-          relationship: variations_target_id
-          group_type: group
-          admin_label: ''
-          label: ''
-          exclude: true
-          alter:
-            alter_text: false
-            text: ''
-            make_link: false
-            path: ''
-            absolute: false
-            external: false
-            replace_spaces: false
-            path_case: none
-            trim_whitespace: false
-            alt: ''
-            rel: ''
-            link_class: ''
-            prefix: ''
-            suffix: ''
-            target: ''
-            nl2br: false
-            max_length: 0
-            word_boundary: true
-            ellipsis: true
-            more_link: false
-            more_link_text: ''
-            more_link_path: ''
-            strip_tags: false
-            trim: false
-            preserve_tags: ''
-            html: false
-          element_type: ''
-          element_class: ''
-          element_label_type: ''
-          element_label_class: ''
-          element_label_colon: false
-          element_wrapper_type: ''
-          element_wrapper_class: ''
-          element_default_classes: true
-          empty: ''
-          hide_empty: false
-          empty_zero: false
-          hide_alter_empty: true
-          click_sort_column: target_id
-          type: image_url
-          settings:
-            image_style: ''
-          group_column: ''
-          group_columns: {  }
-          group_rows: true
-          delta_limit: 0
-          delta_offset: 0
-          delta_reversed: false
-          delta_first_last: false
-          multi_type: separator
-          separator: ''
-          field_api_classes: false
-          plugin_id: field
         variations_target_id:
           id: variations_target_id
           table: commerce_product__variations
@@ -2795,6 +2792,69 @@ display:
           entity_type: commerce_product
           entity_field: variations
           plugin_id: field
+        field_media_image:
+          id: field_media_image
+          table: media__field_media_image
+          field: field_media_image
+          relationship: field_iq_commerce_images
+          group_type: group
+          admin_label: ''
+          label: ''
+          exclude: 0
+          alter:
+            alter_text: 0
+            text: ''
+            make_link: 0
+            path: ''
+            absolute: 0
+            external: 0
+            replace_spaces: 0
+            path_case: none
+            trim_whitespace: 0
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: 0
+            max_length: '0'
+            word_boundary: 1
+            ellipsis: 1
+            more_link: 0
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: 0
+            trim: 0
+            preserve_tags: ''
+            html: 0
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: false
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: 1
+          empty: ''
+          hide_empty: 0
+          empty_zero: 0
+          hide_alter_empty: 1
+          click_sort_column: target_id
+          type: image_url
+          settings:
+            image_style: ''
+          group_column: target_id
+          group_columns: {  }
+          group_rows: true
+          delta_limit: 0
+          delta_offset: 0
+          delta_reversed: false
+          delta_first_last: false
+          multi_type: separator
+          separator: ', '
+          field_api_classes: 0
+          plugin_id: field
         nothing:
           id: nothing
           table: views
@@ -2803,46 +2863,46 @@ display:
           group_type: group
           admin_label: ''
           label: 'Product image'
-          exclude: false
+          exclude: 0
           alter:
             alter_text: true
-            text: '{{ field_images }}'
-            make_link: false
+            text: '{{ field_media_image }}'
+            make_link: 0
             path: ''
-            absolute: false
-            external: false
-            replace_spaces: false
+            absolute: 0
+            external: 0
+            replace_spaces: 0
             path_case: none
-            trim_whitespace: false
+            trim_whitespace: 0
             alt: ''
             rel: ''
             link_class: ''
             prefix: ''
             suffix: ''
             target: ''
-            nl2br: false
-            max_length: 0
-            word_boundary: true
-            ellipsis: true
-            more_link: false
+            nl2br: 0
+            max_length: '0'
+            word_boundary: 1
+            ellipsis: 1
+            more_link: 0
             more_link_text: ''
             more_link_path: ''
-            strip_tags: false
-            trim: false
+            strip_tags: 0
+            trim: 0
             preserve_tags: ''
-            html: false
+            html: 0
           element_type: ''
           element_class: ''
           element_label_type: ''
           element_label_class: ''
-          element_label_colon: true
+          element_label_colon: 1
           element_wrapper_type: ''
           element_wrapper_class: ''
-          element_default_classes: true
+          element_default_classes: 1
           empty: ''
-          hide_empty: false
-          empty_zero: false
-          hide_alter_empty: false
+          hide_empty: 0
+          empty_zero: 0
+          hide_alter_empty: 0
           plugin_id: custom
         view_commerce_product_variation:
           id: view_commerce_product_variation
@@ -3228,7 +3288,7 @@ display:
           table: commerce_product_variation_field_data
           field: price__number
           relationship: variations_target_id
-          group_type: group
+          group_type: min
           admin_label: ''
           label: 'Product price'
           exclude: false
@@ -3276,7 +3336,7 @@ display:
           settings:
             strip_trailing_zeroes: false
             currency_display: none
-          group_column: ''
+          group_column: entity_id
           group_columns: {  }
           group_rows: true
           delta_limit: 0
@@ -3464,6 +3524,17 @@ display:
           entity_type: commerce_product
           entity_field: variations
           plugin_id: standard
+        field_iq_commerce_images:
+          id: field_iq_commerce_images
+          table: commerce_product__field_iq_commerce_images
+          field: field_iq_commerce_images
+          relationship: none
+          group_type: group
+          admin_label: 'field_iq_commerce_images: Media'
+          required: 0
+          plugin_id: standard
+      block_description: 'Single product: Teaser large'
+      group_by: 0
     cache_metadata:
       max-age: -1
       contexts:
@@ -3473,7 +3544,7 @@ display:
         - user.permissions
       tags:
         - 'config:field.storage.commerce_product.field_iq_commerce_lead'
-        - 'config:field.storage.commerce_product_variation.field_images'
+        - 'config:field.storage.media.field_media_image'
   adaptable_block_4:
     display_plugin: adaptable_block
     id: adaptable_block_4
@@ -3495,8 +3566,8 @@ display:
         - user
         - user.permissions
       tags:
-        - 'config:field.storage.commerce_product.field_iq_commerce_images'
         - 'config:field.storage.commerce_product.field_iq_commerce_lead'
+        - 'config:field.storage.media.field_media_image'
   block_1:
     display_plugin: block
     id: block_1
@@ -3514,8 +3585,8 @@ display:
         - user
         - user.permissions
       tags:
-        - 'config:field.storage.commerce_product.field_iq_commerce_images'
         - 'config:field.storage.commerce_product.field_iq_commerce_lead'
+        - 'config:field.storage.media.field_media_image'
   block_2:
     display_plugin: block
     id: block_2
@@ -3737,8 +3808,8 @@ display:
         - user
         - user.permissions
       tags:
-        - 'config:field.storage.commerce_product.field_iq_commerce_images'
         - 'config:field.storage.commerce_product.field_iq_commerce_lead'
+        - 'config:field.storage.media.field_media_image'
   block_3:
     display_plugin: block
     id: block_3
@@ -4753,5 +4824,5 @@ display:
         - user
         - user.permissions
       tags:
-        - 'config:field.storage.commerce_product.field_iq_commerce_images'
         - 'config:field.storage.commerce_product.field_iq_commerce_lead'
+        - 'config:field.storage.media.field_media_image'
