@@ -1,0 +1,14 @@
+uuid: bc75178c-12b8-475a-958a-f94b0f35ac85
+langcode: en
+status: true
+dependencies: {  }
+id: swiss_post_2kg
+label: 'Swiss Post 2kg'
+dimensions:
+  length: '50'
+  width: '50'
+  height: '50'
+  unit: cm
+weight:
+  number: '2'
+  unit: kg

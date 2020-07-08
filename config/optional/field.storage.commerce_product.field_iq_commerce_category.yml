@@ -1,0 +1,20 @@
+uuid: fa7cb07e-a939-4600-8a9b-6076cfb25cf6
+langcode: de
+status: true
+dependencies:
+  module:
+    - commerce_product
+    - taxonomy
+id: commerce_product.field_iq_commerce_category
+field_name: field_iq_commerce_category
+entity_type: commerce_product
+type: entity_reference
+settings:
+  target_type: taxonomy_term
+module: core
+locked: false
+cardinality: -1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

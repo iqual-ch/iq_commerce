@@ -1,0 +1,41 @@
+uuid: cf9d1500-f74d-4ed0-b3f4-143fcd721484
+langcode: de
+status: true
+dependencies:
+  module:
+    - advanced_menu_condition
+    - iq_commerce
+    - pagedesigner_block
+  theme:
+    - iq_custom
+id: dropdowncart
+theme: iq_custom
+region: pagedesigner
+weight: -11
+provider: null
+plugin: iq_commerce_cart
+settings:
+  id: iq_commerce_cart
+  label: 'Dropdown Cart'
+  provider: iq_commerce
+  label_display: '0'
+  dropdown: '1'
+  cart_title: 'Warenkorb (%count)'
+visibility:
+  advanced_menu_position:
+    id: advanced_menu_position
+    menu_position:
+      '': ''
+    negate: null
+    context_mapping: {  }
+  advanced_menu_position_not:
+    id: advanced_menu_position_not
+    not_menu_position:
+      '': ''
+    negate: null
+    context_mapping: {  }
+  pagedesigner_condition:
+    id: pagedesigner_condition
+    pagedesigner_condition: 0
+    negate: null
+    context_mapping: {  }

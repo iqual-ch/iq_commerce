@@ -1,0 +1,50 @@
+uuid: 071ed7c3-f835-4bc3-bc32-1fb31547508d
+langcode: de
+status: true
+dependencies:
+  config:
+    - views.view.variant_catalog
+  module:
+    - advanced_menu_condition
+    - pagedesigner_block
+    - system
+    - views
+  theme:
+    - iq_custom
+id: views_block__variant_catalog_block_4
+theme: iq_custom
+region: content
+weight: 0
+provider: null
+plugin: 'views_block:variant_catalog-block_4'
+settings:
+  id: 'views_block:variant_catalog-block_4'
+  label: ''
+  provider: views
+  label_display: visible
+  views_label: ''
+  items_per_page: none
+  context_mapping: {  }
+visibility:
+  advanced_menu_position:
+    id: advanced_menu_position
+    menu_position:
+      '': ''
+    negate: null
+    context_mapping: {  }
+  advanced_menu_position_not:
+    id: advanced_menu_position_not
+    not_menu_position:
+      '': ''
+    negate: null
+    context_mapping: {  }
+  pagedesigner_condition:
+    id: pagedesigner_condition
+    pagedesigner_condition: 0
+    negate: null
+    context_mapping: {  }
+  request_path:
+    id: request_path
+    pages: '/shop/*'
+    negate: false
+    context_mapping: {  }

@@ -1,0 +1,8 @@
+uuid: bed04f21-76b6-475d-b862-ebda2b0e73c0
+langcode: en
+status: true
+dependencies: {  }
+id: swiss_
+label: 'Swiss Post Standard'
+profileType: customer
+traits: {  }

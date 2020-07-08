@@ -1,0 +1,19 @@
+uuid: 6c8c23ad-5ec5-4e93-9021-3ddff9404c16
+langcode: de
+status: true
+dependencies:
+  module:
+    - commerce_product
+    - text
+id: commerce_product.field_iq_commerce_lead
+field_name: field_iq_commerce_lead
+entity_type: commerce_product
+type: text_long
+settings: {  }
+module: text
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

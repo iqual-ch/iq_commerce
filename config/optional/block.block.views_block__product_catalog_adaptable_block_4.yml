@@ -1,0 +1,43 @@
+uuid: f7477090-35a1-4715-86b3-50c58590f91c
+langcode: de
+status: true
+dependencies:
+  config:
+    - views.view.product_catalog
+  module:
+    - advanced_menu_condition
+    - pagedesigner_block
+    - pagedesigner_block_adaptable
+  theme:
+    - iq_custom
+id: views_block__product_catalog_adaptable_block_4
+theme: iq_custom
+region: pagedesigner
+weight: 0
+provider: null
+plugin: 'adaptable_views_block:product_catalog-adaptable_block_4'
+settings:
+  id: 'adaptable_views_block:product_catalog-adaptable_block_4'
+  label: 'Product catalog by Category'
+  provider: pagedesigner_block_adaptable
+  label_display: '0'
+  views_label: 'Product catalog by Category'
+  items_per_page: none
+visibility:
+  advanced_menu_position:
+    id: advanced_menu_position
+    menu_position:
+      '': ''
+    negate: null
+    context_mapping: {  }
+  advanced_menu_position_not:
+    id: advanced_menu_position_not
+    not_menu_position:
+      '': ''
+    negate: null
+    context_mapping: {  }
+  pagedesigner_condition:
+    id: pagedesigner_condition
+    pagedesigner_condition: 0
+    negate: null
+    context_mapping: {  }

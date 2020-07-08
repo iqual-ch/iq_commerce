@@ -1,0 +1,23 @@
+uuid: 01d37f4b-72e4-4ad3-9d03-61619730286c
+langcode: de
+status: true
+dependencies:
+  module:
+    - ctools
+    - taxonomy
+id: iq_commerce_shop_categories
+label: 'Shop categories'
+type: 'canonical_entities:taxonomy_term'
+pattern: 'shop/[term:root:parents:join-path]/[term:name]'
+selection_criteria:
+  feb67ee6-99c3-4017-87a9-b84f8b6fede5:
+    id: 'entity_bundle:taxonomy_term'
+    bundles:
+      iq_commerce_category: iq_commerce_category
+    negate: false
+    context_mapping:
+      taxonomy_term: taxonomy_term
+    uuid: feb67ee6-99c3-4017-87a9-b84f8b6fede5
+selection_logic: and
+weight: -5
+relationships: {  }

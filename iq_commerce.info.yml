@@ -4,6 +4,14 @@ package: Custom
 type: module
 core: 8.x
 dependencies:
-  - commerce:commerce
-  - commerce:commerce_tax
-  - commerce:commerce_cart
+  - commerce:commerce_tax (price,order)
+  - commerce:commerce_checkout
+  - commerce:commerce_payment
+  - commerce_postfinance:commerce_postfinance
+  - commerce_shipping:commerce_shipping
+  - commerce_variation_cart_form:commerce_variation_cart_form
+  - commerce_variation_add_to_cart:commerce_variation_add_to_cart
+  - media_entity_browser:media_entity_browser
+  - hierarchical_taxonomy_menu:hierarchical_taxonomy_menu
+  - pagedesigner_block_adaptable:pagedesigner_block_adaptable
+  - ui_patterns_views:ui_patterns_views

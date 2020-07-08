@@ -1,0 +1,21 @@
+{
+  "name": "iqual/iq_commerce",
+  "description": "Provides additional functionality for the Drupal Commerce",
+  "type": "drupal-custom-module",
+  "repositories": [
+    {
+      "type": "composer",
+      "url": "https://github.com/iqual-ch/iq_commerce"
+    }
+  ],
+  "require": {
+    "drupal/commerce": "*",
+    "drupal/hierarchical_taxonomy_menu": "*",
+    "drupal/media_entity_browser": "^2.0",
+    "drupal/commerce_variation_add_to_cart": "*",
+    "drupal/commerce_variation_cart_form": "*",
+    "drupal/commerce_shipping": "*",
+    "drupal/commerce_postfinance": "*",
+    "iqual/pagedesigner_block_adaptable": "*"
+  }
+}

@@ -1,0 +1,29 @@
+uuid: c4bec131-ded7-4c0c-8bbc-6faaf9106d7c
+langcode: de
+status: true
+dependencies:
+  config:
+    - commerce_product.commerce_product_type.default
+    - field.storage.commerce_product.field_iq_commerce_tags
+    - taxonomy.vocabulary.iq_commerce_tags
+id: commerce_product.default.field_iq_commerce_tags
+field_name: field_iq_commerce_tags
+entity_type: commerce_product
+bundle: default
+label: Tags
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      iq_commerce_tags: iq_commerce_tags
+    sort:
+      field: name
+      direction: asc
+    auto_create: true
+    auto_create_bundle: ''
+field_type: entity_reference
