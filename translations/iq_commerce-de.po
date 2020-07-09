@@ -48,3 +48,6 @@ msgstr "Warenkorb"
 
 msgid "Cart"
 msgstr "Warenkorb"
+
+msgid "@entity added to <a href=\":url\">your cart</a>."
+msgstr "@entity wurde zum <a href=\":url\">Warenkorb</a> hinzugefügt."
