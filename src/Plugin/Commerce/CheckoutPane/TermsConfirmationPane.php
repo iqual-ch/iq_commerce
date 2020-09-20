@@ -9,21 +9,22 @@ use Drupal\Core\Form\FormStateInterface;
  * Provides a checkout message pane.
  *
  * @CommerceCheckoutPane(
- *   id = "iq_commerce_pane_age_confirmation",
- *   label = @Translation("Age confirmation"),
+ *   id = "iq_commerce_pane_terms_confirmation",
+ *   label = @Translation("Terms confirmation"),
  * )
  */
-class AgeConfirmationPane extends CheckoutPaneBase {
+class TermsConfirmationPane extends CheckoutPaneBase {
 
   /**
    * {@inheritdoc}
    */
   public function buildPaneForm(array $pane_form, FormStateInterface $form_state, array &$complete_form) {
-    $pane_form['age_confirmation'] = [
+    $pane_form['term_confirmation'] = [
       '#type' => 'checkbox',
       '#required' => TRUE,
-      '#title' => $this->t('I confirm that I am over 18 years old.'),
+      '#title' => $this->t('I accept the <a href="node/95">terms and condiditons</a>.'),
     ];
     return $pane_form;
   }
+
 }
