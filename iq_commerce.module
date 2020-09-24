@@ -90,7 +90,6 @@ function iq_commerce_product_type_form_submit(&$form, \Drupal\Core\Form\FormStat
  */
 function iq_commerce_views_pre_render(\Drupal\views\ViewExecutable $view) {
   if ($view->id() == 'variant_catalog') {
-    \Drupal::logger('iq_commerce')->notice('STIGNAVME VO HOOKOT');
 
     // Array of nodes to prevent duplicates.
     $variation_ids = [];
@@ -113,6 +112,5 @@ function iq_commerce_views_pre_render(\Drupal\views\ViewExecutable $view) {
     }
     // Replace the old results with the results without duplicates.
     $view->result = $resultNoDoubleNodes;
-
   }
 }
