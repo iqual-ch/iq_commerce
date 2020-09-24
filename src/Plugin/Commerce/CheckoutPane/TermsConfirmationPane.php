@@ -22,9 +22,67 @@ class TermsConfirmationPane extends CheckoutPaneBase {
     $pane_form['term_confirmation'] = [
       '#type' => 'checkbox',
       '#required' => TRUE,
-      '#title' => $this->t('I accept the <a href="node/95">terms and condiditons</a>.'),
+      '#title' => $this->t($this->configuration['terms_label'], [
+        '@terms_link' => $this->configuration['terms_link'],
+      ]),
     ];
     return $pane_form;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function defaultConfiguration() {
+    return [
+      'terms_label' => 'I accept the <a href="@terms_link">terms and condiditons</a>.',
+      'terms_link' => '#',
+    ] + parent::defaultConfiguration();
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function buildConfigurationSummary() {
+    return $this->t('Terms label: @terms_label <br/>Terms link: @terms_link', [
+      '@terms_label' => $this->configuration['terms_label'],
+      '@terms_link' => $this->configuration['terms_link'],
+    ]);
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function buildConfigurationForm(array $form, FormStateInterface $form_state) {
+    $form = parent::buildConfigurationForm($form, $form_state);
+    $form['terms_label'] = [
+      '#type' => 'textfield',
+      '#title' => $this->t('Terms label'),
+      '#default_value' => $this->configuration['terms_label'],
+    ];
+
+    $form['terms_link'] = [
+      '#type' => 'linkit',
+      '#title' => $this->t('Terms link'),
+      '#autocomplete_route_name' => 'linkit.autocomplete',
+      '#autocomplete_route_parameters' => [
+        'linkit_profile_id' => 'default_linkit',
+      ],
+      '#default_value' => isset($this->configuration['terms_link']) ? $this->configuration['terms_link'] : '',
+    ];
+
+    return $form;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function submitConfigurationForm(array &$form, FormStateInterface $form_state) {
+    parent::submitConfigurationForm($form, $form_state);
+    if (!$form_state->getErrors()) {
+      $values = $form_state->getValue($form['#parents']);
+      $this->configuration['terms_label'] = $values['terms_label'];
+      $this->configuration['terms_link'] = $values['terms_link'];
+    }
   }
 
 }
