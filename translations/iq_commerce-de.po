@@ -51,3 +51,15 @@ msgstr "Warenkorb"
 
 msgid "@entity added to <a href=\":url\">your cart</a>."
 msgstr "@entity wurde zum <a href=\":url\">Warenkorb</a> hinzugefügt."
+
+msgid "Street Address"
+msgstr "Strasse und Hausnummer"
+
+msgid "Street address"
+msgstr "Strasse und Hausnummer"
+
+msgid "Street address line 2"
+msgstr "Strasse (2. Zeile)"
+
+msgid "Pay and complete purchase"
+msgstr "Bezahlen und Kauf abschliessen"
