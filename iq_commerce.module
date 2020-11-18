@@ -124,3 +124,13 @@ function iq_commerce_views_pre_render(\Drupal\views\ViewExecutable $view) {
     $view->result = $resultNoDoubleNodes;
   }
 }
+
+/**
+ * Implements hook_preprocess_HOOK().
+ */
+function iq_commerce_preprocess_commerce_order_receipt(&$variables) {
+  $iq_commerce_settings = \Drupal\iq_commerce\Form\IqCommerceSettingsForm::getIqCommerceSettings();
+  $variables['iq_commerce_footer'] =  $iq_commerce_settings['footer']['value'];
+  $variables['iq_commerce_header'] =  $iq_commerce_settings['header']['value'];
+  $variables['iq_commerce_homepage'] = \Drupal\Core\Url::fromRoute('<front>');
+}

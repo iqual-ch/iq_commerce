@@ -1,0 +1,3 @@
+administer iq_commerce settings:
+  title: 'Administer IQ Commerce Settings'
+  restrict access: true

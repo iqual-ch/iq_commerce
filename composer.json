@@ -18,6 +18,7 @@
     "drupal/commerce_postfinance": "*",
     "iqual/pagedesigner_block_adaptable": "*",
     "drupal/term_reference_tree": "*",
-    "drupal/twig_tweak": "*"
+    "drupal/twig_tweak": "*",
+    "drupal/swiftmailer": "*"
   }
 }

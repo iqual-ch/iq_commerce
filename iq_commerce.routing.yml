@@ -5,3 +5,13 @@ iq_commerce.orders:
     _title: 'My orders'
   requirements:
     _role: 'authenticated'
+
+iq_commerce.iq_commerce_settings:
+  path: '/admin/config/system/iq_commerce_settings'
+  defaults:
+    _form: '\Drupal\iq_commerce\Form\IqCommerceSettingsForm'
+    _title: 'Iq Group Settings'
+  requirements:
+    _permission: 'administer iq_commerce settings'
+  options:
+    _admin_route: TRUE
