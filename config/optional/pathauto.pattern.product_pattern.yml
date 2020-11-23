@@ -1,0 +1,34 @@
+uuid: 6f4c25b2-cbf4-4777-8800-ab25fa34e958
+langcode: de
+status: true
+dependencies:
+  module:
+    - commerce_product
+    - ctools
+    - language
+id: product_pattern
+label: 'Product pattern'
+type: 'canonical_entities:commerce_product'
+pattern: '/produkt/[commerce_product:title]'
+selection_criteria:
+  e1ca727e-d64a-4c49-a6b2-4048ec712b77:
+    id: 'entity_bundle:commerce_product'
+    bundles:
+      default: default
+    negate: false
+    context_mapping:
+      commerce_product: commerce_product
+    uuid: e1ca727e-d64a-4c49-a6b2-4048ec712b77
+  428fd1c8-b73c-4555-8b08-8963aea89b0e:
+    id: language
+    langcodes:
+      de: de
+    negate: false
+    context_mapping:
+      language: 'commerce_product:langcode:language'
+    uuid: 428fd1c8-b73c-4555-8b08-8963aea89b0e
+selection_logic: and
+weight: -8
+relationships:
+  'commerce_product:langcode:language':
+    label: Language
