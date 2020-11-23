@@ -1,0 +1,19 @@
+uuid: 3f9e2159-26d4-4e0b-8771-50328d142bf2
+langcode: de
+status: true
+dependencies:
+  module:
+    - commerce_product
+    - yoast_seo
+id: commerce_product.field_yoast_seo
+field_name: field_yoast_seo
+entity_type: commerce_product
+type: yoast_seo
+settings: {  }
+module: yoast_seo
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false
