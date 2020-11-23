@@ -46,6 +46,14 @@ msgstr "In den Warenkorb"
 msgid "Shopping cart"
 msgstr "Warenkorb"
 
+msgctxt "Address label"
+msgid "Street address"
+msgstr "Strasse und Hausnummer"
+
+msgctxt "Address label"
+msgid "Street address line 2"
+msgstr "Strasse und Hausnummer (2. Zeile)"
+
 msgid "Cart"
 msgstr "Warenkorb"
 
