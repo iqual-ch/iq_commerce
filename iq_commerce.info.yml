@@ -18,3 +18,4 @@ dependencies:
   - term_reference_tree:term_reference_tree
   - twig_tweak:twig_tweak
   - drupal:swiftmailer
+  - commerce_cart_api:commerce_cart_api

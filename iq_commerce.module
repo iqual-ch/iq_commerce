@@ -134,3 +134,10 @@ function iq_commerce_preprocess_commerce_order_receipt(&$variables) {
   $variables['iq_commerce_header'] =  $iq_commerce_settings['header']['value'];
   $variables['iq_commerce_homepage'] = \Drupal\Core\Url::fromRoute('<front>');
 }
+
+/**
+ * Implements hook_page_attachments().
+ */
+function iq_commerce_page_attachments(array &$attachments) {
+  $attachments['#attached']['library'][] = 'iq_commerce/ajax-cart';
+}

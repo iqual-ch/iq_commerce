@@ -14,3 +14,12 @@ dropdown_cart_block:
   dependencies:
     - core/jquery
     - core/drupal
+
+ajax-cart:
+  version: VERSION
+  js:
+    js/ajax-cart.js:  {}
+  dependencies:
+    - core/jquery
+    - core/drupal
+    - core/drupal.ajax
