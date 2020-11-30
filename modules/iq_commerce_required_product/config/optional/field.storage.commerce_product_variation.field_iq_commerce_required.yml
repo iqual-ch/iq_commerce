@@ -1,0 +1,19 @@
+uuid: 08026e14-9b68-43c1-b866-2949942d518f
+langcode: de
+status: true
+dependencies:
+  module:
+    - commerce_product
+id: commerce_product_variation.field_iq_commerce_required
+field_name: field_iq_commerce_required
+entity_type: commerce_product_variation
+type: entity_reference
+settings:
+  target_type: commerce_product_variation
+module: core
+locked: false
+cardinality: -1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

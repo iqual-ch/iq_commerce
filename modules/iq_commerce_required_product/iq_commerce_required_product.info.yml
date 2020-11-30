@@ -1,0 +1,7 @@
+name: iqual Commerce Required Product
+description: Provides additional functionality for the required products on Commerce for iQual.
+package: Custom
+type: module
+core: 8.x
+dependencies:
+  - iq_commerce:iq_commerce

@@ -1,0 +1,19 @@
+uuid: 71fab4f9-bfe1-4ada-a41e-63ac574f903f
+langcode: de
+status: true
+dependencies:
+  module:
+    - commerce_product
+id: commerce_product_variation.field_iq_commerce_related
+field_name: field_iq_commerce_related
+entity_type: commerce_product_variation
+type: entity_reference
+settings:
+  target_type: commerce_product_variation
+module: core
+locked: false
+cardinality: -1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

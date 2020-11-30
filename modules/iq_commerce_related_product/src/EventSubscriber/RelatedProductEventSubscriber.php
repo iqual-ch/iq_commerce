@@ -2,9 +2,9 @@
 
 namespace Drupal\iq_commerce_related_product\EventSubscriber;
 
-use Drupal\iq_commerce\Event\IqCommerceBeforeCartAddEvent;
 use Drupal\iq_commerce\Event\IqCommerceCartEvents;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
+use Drupal\iq_commerce\Event\IqCommerceAfterCartAddEvent;
 
 class RelatedProductEventSubscriber implements EventSubscriberInterface {
 
@@ -13,22 +13,23 @@ class RelatedProductEventSubscriber implements EventSubscriberInterface {
    */
   public static function getSubscribedEvents() {
     $events = [
-      IqCommerceCartEvents::BEFORE_CART_ENTITY_ADD => 'addRequiredProducts',
+      IqCommerceCartEvents::AFTER_CART_ENTITY_ADD => 'suggestRelatedProducts'
     ];
     return $events;
   }
 
   /**
-   * Adds order items to the cart which are required.
+   * Suggests order items to be added to the cart.
    *
-   * @param \Drupal\iq_commerce\Event\IqCommerceBeforeCartAddEvent $event
-   *   The before add to cart event.
+   * @param \Drupal\iq_commerce\Event\IqCommerceAfterCartAddEvent $event
+   *   The after add to cart event.
    */
-  public function addRequiredProducts(IqCommerceBeforeCartAddEvent $event) {
+  public function suggestRelatedProducts(IqCommerceAfterCartAddEvent $event) {
 
-    \Drupal::logger('iq_commerce')->notice('Products added in before');
-    // Use $event->getBody() or $event->setBody() accordingly for altering.
+    \Drupal::logger('iq_commerce')->notice('Products related after');
+    // add to the payload -> related and required that were added
 
   }
+
 
 }

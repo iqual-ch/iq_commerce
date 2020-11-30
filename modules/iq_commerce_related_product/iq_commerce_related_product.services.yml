@@ -1,6 +1,5 @@
 services:
   iq_commerce_related_product.related_product_subscriber:
     class: Drupal\iq_commerce_related_product\EventSubscriber\RelatedProductEventSubscriber
-    arguments: []
     tags:
       - { name: event_subscriber }

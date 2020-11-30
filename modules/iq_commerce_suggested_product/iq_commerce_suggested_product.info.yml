@@ -1,7 +1,0 @@
-name: iqual Commerce Suggested Product
-description: Provides additional functionality for the suggested products on Commerce for iQual.
-package: Custom
-type: module
-core: 8.x
-dependencies:
-  - iq_commerce:iq_commerce
