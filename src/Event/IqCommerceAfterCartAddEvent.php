@@ -6,7 +6,7 @@ use Drupal\rest\ModifiedResourceResponse;
 use Symfony\Component\EventDispatcher\Event;
 
 /**
- * Defines the cart empty event.
+ * Defines the cart after add event.
  *
  * @see \Drupal\iq_commerce\Event\CartEvents
  */

@@ -5,7 +5,7 @@ namespace Drupal\iq_commerce\Event;
 use Symfony\Component\EventDispatcher\Event;
 
 /**
- * Defines the cart empty event.
+ * Defines the before cart add event.
  *
  * @see \Drupal\iq_commerce\Event\CartEvents
  */
