@@ -40,8 +40,9 @@
     },
     updateCart: function () {
       // Adjust this to our cart block
-      var $cartCount = $('.store-action--cart .store-action__link__count');
-      if ($cartCount.length) {
+
+      // var $cartCount = $('.store-action--cart .store-action__link__count');
+      // if ($cartCount.length) {
         $.ajax({
           url: Drupal.url('cart?_format=json'),
           method: 'GET',
@@ -49,14 +50,12 @@
             'Content-Type': 'application/json',
           },
           success: function (data) {
-            var cart = data[0];
-            var count = cart.order_items.reduce(function (previousValue, currentValue) {
-              return previousValue + parseInt(currentValue.quantity);
-            }, 0);
-            $cartCount.text(count);
+        console.log(data);
+            const domContainer = document.querySelector('[data-mini-cart-content]');
+            ReactDOM.render(e(MiniCart), domContainer);
           }
         });
-      }
+      // }
     },
     attach: function (context, settings) {
       $(context).find('.add-to-cart-link').once('add-to-cart-link-init').each(function () {

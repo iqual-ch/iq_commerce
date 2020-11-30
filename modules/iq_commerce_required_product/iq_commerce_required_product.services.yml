@@ -1,6 +1,6 @@
 services:
   iq_commerce_required_product.required_product_subscriber:
     class: Drupal\iq_commerce_required_product\EventSubscriber\RequiredProductEventSubscriber
-    arguments: [ '@commerce_cart.cart_provider', '@entity_type.manager', '@commerce_order.chain_order_type_resolver', '@commerce_store.current_store', '@current_user', '@entity.repository' ]
+    arguments: [ '@entity_type.manager', '@entity.repository' ]
     tags:
       - { name: event_subscriber }

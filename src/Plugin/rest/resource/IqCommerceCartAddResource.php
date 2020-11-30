@@ -27,7 +27,7 @@ use Symfony\Component\EventDispatcher\EventDispatcherInterface;
  *
  * @RestResource(
  *   id = "iq_commerce_cart_add",
- *   label = @Translation("Cart add"),
+ *   label = @Translation("Iq Commerce Cart add"),
  *   uri_paths = {
  *     "create" = "/cart/add"
  *   }
@@ -128,9 +128,6 @@ class IqCommerceCartAddResource extends CartAddResource {
       }
     }
 
-
-
-
     /** @var \Drupal\iq_commerce\Event\IqCommerceBeforeCartAddEvent $before_event */
     $before_event = new IqCommerceBeforeCartAddEvent($body);
     $this->eventDispatcher->dispatch(IqCommerceCartEvents::BEFORE_CART_ENTITY_ADD, $before_event);
@@ -139,6 +136,13 @@ class IqCommerceCartAddResource extends CartAddResource {
     /** @var \Drupal\iq_commerce\Event\IqCommerceAfterCartAddEvent $before_event */
     $after_event = new IqCommerceAfterCartAddEvent($response);
     $this->eventDispatcher->dispatch(IqCommerceCartEvents::AFTER_CART_ENTITY_ADD, $after_event);
+    $response = $after_event->getResponseWithAdditionalData();
+    foreach ($response->getResponseData() as $key => $value) {
+      foreach ($value as $item) {
+        \Drupal::logger('iq_commerce')->notice('keys yo ' . json_encode($item->id()));
+      }
+    }
+
     return $response;
   }
 
