@@ -1,20 +1,29 @@
 <div{{ attributes}}>
-  <div class="cart-block--summary">
-    <a class="cart-block--link__expand" href="{{ url }}" title="{{ count_text|striptags }}">
-      <span class="cart-block--summary__icon"><i class="fas fa-shopping-cart"></i></span>
-      <span class="cart-block--summary__count">{{ count }}</span>
-    </a>
-  </div>
-  {% if content %}
-  <div class="cart-block--contents">
-    <div class="cart-block--contents__inner">
-      <div class="cart-block--contents__items">
-        {{ content }}
-      </div>
-      <div class="cart-block--contents__links">
-        {{ links }}
-      </div>
+  <div class="iq-commerce-mini-cart">
+    <div class="iq-commerce-mini-cart-toggle">
+
+      <a class="button" href="{{ url }}" title="{{ count_text|striptags }}">
+        <span class="icon"><i class="fas fa-shopping-cart"></i></span>
+        <span class="count">{{ count }}</span>
+      </a>
+
     </div>
+    {% if content %}
+      <div class="iq-commerce-mini-cart-content">
+        <div class="iq-commerce-mini-cart-header">
+          <span class="title">{{label}}</span>
+        </div>
+        <div class="iq-commerce-mini-cart-body" data-mini-cart-content></div>
+        <div class="iq-commerce-mini-cart-footer" >
+
+          <div class="iq-button iq-text" data-align="left" data-icon-position="right">
+            <a href="{{ url }}" title="{{ link_title }}" >
+              {{ link_title }}
+              <i class="fas fa-shopping-cart"></i>
+            </a>
+        </div>
+        </div>
+      </div>
+    {% endif %}
   </div>
-  {% endif %}
 </div>

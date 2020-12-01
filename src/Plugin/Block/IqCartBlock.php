@@ -27,6 +27,12 @@ class IqCartBlock extends CartBlock {
       '#default_value' => isset($this->configuration['cart_title']) ? $this->configuration['cart_title'] : 'Cart (%count)',
     ];
 
+    $form['link_title'] = [
+      '#type' => 'textfield',
+      '#title' => $this->t('Link Title'),
+      '#default_value' => isset($this->configuration['link_title']) ? $this->configuration['link_title'] : 'Cart',
+    ];
+
     return $form;
   }
 
@@ -35,11 +41,6 @@ class IqCartBlock extends CartBlock {
    */
   public function build() {
     $render = parent::build();
-    // $render['#count_text'] = $this->t($this->configuration['cart_title'], [
-    //   '%count' => $render['#count'],
-    // ]);
-    // return $render;
-
     $render['#theme'] = 'dropdown_cart_block';
     $render['#cache'] = [
       'max-age' => 0,
@@ -48,9 +49,13 @@ class IqCartBlock extends CartBlock {
       '%count' => $render['#count'],
     ]);
 
+    $render['#label'] = $this->label();
+    $render['#link_title'] = $this->configuration['link_title'];
+
     $render['#attached'] = [
       'library' => [
         'iq_commerce/dropdown_cart_block',
+        'ui_patterns/button.button',
       ]
     ];
 
@@ -64,6 +69,7 @@ class IqCartBlock extends CartBlock {
   public function blockSubmit($form, FormStateInterface $form_state) {
     parent::blockSubmit($form, $form_state);
     $this->configuration['cart_title'] = $form_state->getValue('cart_title');
+    $this->configuration['link_title'] = $form_state->getValue('link_title');
   }
 
 }
