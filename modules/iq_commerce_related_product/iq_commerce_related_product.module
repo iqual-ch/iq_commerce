@@ -1,0 +1,8 @@
+<?php
+
+/**
+ * Implements hook_page_attachments().
+ */
+function iq_commerce_related_product_page_attachments(array &$attachments) {
+  $attachments['#attached']['library'][] = 'iq_commerce_related_product/related-prodcuts';
+}

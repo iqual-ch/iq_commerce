@@ -1,0 +1,12 @@
+related-prodcuts:
+  version: VERSION
+  js:
+    js/init.js:  {}
+    js/related-products.js: {attributes: {type: text/babel}}
+  css:
+    theme:
+      css/related-products.css: {}
+  dependencies:
+    - core/jquery
+    - core/drupal
+    - core/drupal.ajax
