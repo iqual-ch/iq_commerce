@@ -10,7 +10,8 @@
   display: block;
 }
 
-.iq-commerce-mini-cart-toggle a{
+.iq-commerce-mini-cart-toggle a,
+.iq-commerce-mini-cart-toggle a:hover{
   text-decoration: none;
 }
 

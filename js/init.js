@@ -3,7 +3,7 @@
   $(document).on("iq-commerce-cart-init", function (e) {
 
     // load cart on page load
-    Drupal.behaviors.iq_commerce_ajax_cart.updateCart('[data-mini-cart-content]', {
+    Drupal.behaviors.iq_commerce_ajax_cart.refreshCart('[data-mini-cart-content]', {
       showCart: false,
     });
 
@@ -26,35 +26,56 @@
   });
 
   $(document).on("iq-commerce-cart-add-before", function (e, orderData) {
-    console.log(orderData);
+
   });
 
   $(document).on("iq-commerce-cart-add-after", function (e, orderData) {
-    console.log(orderData);
-    Drupal.behaviors.iq_commerce_ajax_cart.updateCart('[data-mini-cart-content]', {
+    Drupal.behaviors.iq_commerce_ajax_cart.refreshCart('[data-mini-cart-content]', {
       showCart: true,
     });
   });
 
-  $(document).on("iq-commerce-cart-update-after", function (e, updateData) {
+  $(document).on("iq-commerce-cart-refresh-after", function (e, updateData) {
     if (updateData.additionalData.showCart) {
       $('.iq-commerce-mini-cart').addClass('show')
     }
 
-    let totalQuantity =  updateData.cartData[0].order_items.map(function(item){
-      return Math.round(item.quantity)
-    }).reduce(function(a,b){
+    let totalQuantity = 0
+
+    if (updateData.cartData[0].order_items.length) {
+      totalQuantity = updateData.cartData[0].order_items.map(function (item) {
+        return Math.round(item.quantity)
+      }).reduce(function (a, b) {
         return a + b;
-    });
+      });
+    }
 
     $('.iq-commerce-mini-cart .count').text(totalQuantity);
 
   });
 
-  $('.iq-commerce-mini-cart').mouseout(function(){
+  $(document).on("iq-commerce-cart-remove-after", function (e, orderData) {
+    Drupal.behaviors.iq_commerce_ajax_cart.refreshCart('[data-mini-cart-content]', {
+      showCart: true,
+    });
+  });
+
+  $(document).on("iq-commerce-cart-update-after", function (e, orderData) {
+    Drupal.behaviors.iq_commerce_ajax_cart.refreshCart('[data-mini-cart-content]', {
+      showCart: true,
+    });
+  });
+
+
+  $('.iq-commerce-mini-cart').mouseout(function () {
     $(this).removeClass('show')
   })
 
+  $(document).on("iq-commerce-cart-update-after", function (e, orderData) {
+    Drupal.behaviors.iq_commerce_ajax_cart.refreshCart('[data-mini-cart-content]', {
+      showCart: true,
+    });
+  });
 
 
 

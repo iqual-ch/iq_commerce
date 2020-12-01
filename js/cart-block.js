@@ -5,18 +5,13 @@ const e = React.createElement;
 class MiniCart extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { liked: false };
   }
 
-
-  updateItem(e) {
-    console.log(e.target.value);
+  removeItem(itemData) {
+    Drupal.behaviors.iq_commerce_ajax_cart.getCsrfToken(function (csrfToken) {
+      Drupal.behaviors.iq_commerce_ajax_cart.removeFromCart(csrfToken, itemData['commerce_order'], itemData['commerce_order_item']);
+    });
   }
-
-  // <li key={key}
-  // data-product-id={item.purchased_entity.product_id}
-  // data-variation-id={item.purchased_entity.variation_id}> - {item.title} - </li>
-
 
   render() {
     return (
@@ -29,43 +24,80 @@ class MiniCart extends React.Component {
           <div>
             <div className="item-header">
               <a href="/product/{item.purchased_entity.product_id}" >{item.title}</a>
-              <button aria-label="Artikel löschen" type="button" className="remove-all"><i className="fas fa-trash-alt"></i></button>
+              <button aria-label="Artikel löschen" type="button" className="remove-all" onClick={() => {this.removeItem({
+                commerce_order: item.order_id,
+                commerce_order_item: item.order_item_id
+              })}}>
+                <i className="fas fa-trash-alt"></i>
+              </button>
             </div>
 
             <div className="item-body">
               <div className="item-update">
-                <div>
-                  <button className="add-one" aria-label="Anzahl -1" disabled="" type="button"><i className="fas fa-minus"></i></button>
-                  <input name="quantity" type="number" min="0" aria-label="Eingabe der Menge" value={Math.round(item.quantity)} onChance={updateItem} />
-                  <button className="remove-one" aria-label="Anzahl +1" type="button" ><i className="fas fa-plus"></i></button>
-                </div>
+                <MiniCartCounter value={Math.round(item.quantity)} commerce_order={item.order_id} commerce_order_item={item.order_item_id}/>
               </div>
               <strong className="item-price">{item.total_price.formatted}</strong>
             </div>
           </div>
         </li>
-
       })}
-
-
     </ul>
     );
   }
-
-  // render() {
-  //   if (this.state.liked) {
-  //     return 'You liked this.';
-  //   }
-
-  //   // return e(
-  //   //   'button',
-  //   //   { onClick: () => this.setState({ liked: true }) },
-  //   //   'Like'
-  //   // );
-  // }
 }
 
+class MiniCartCounter extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      quantity: this.props.value
+    }
+  }
 
-function updateItem(e){
-  console.log(e.target.value);
+  updateItemQuantity(e) {
+    this.setState({quantity: Math.max(1, e.target.value)}, () => this.updateCartItem());
+  }
+
+
+  increaseItemQuantity(val){
+    this.setState({quantity: Math.max(1, this.state.quantity + val)}, () => this.updateCartItem());
+  }
+
+	updateCartItem(){
+    let self = this;
+    Drupal.behaviors.iq_commerce_ajax_cart.getCsrfToken(function (csrfToken) {
+      Drupal.behaviors.iq_commerce_ajax_cart.updateItem(csrfToken, self.props.commerce_order, self.props.commerce_order_item, self.state.quantity );
+    });
+  }
+
+  render(e) {
+    return (
+      <div>
+        <button className="remove-one" onClick={e => {this.increaseItemQuantity(-1)}} aria-label="Anzahl -1" type="button" ><i className="fas fa-minus"></i></button>
+        <input name="quantity" type="number" min="0" aria-label="Eingabe der Menge" value={this.state.quantity} onChange={e => {this.updateItemQuantity(e)}} />
+        <button className="add-one" onClick={e => {this.increaseItemQuantity(1)}} aria-label="Anzahl +1" type="button" ><i className="fas fa-plus"></i></button>
+      </div>
+    );
+  }
 }
+
+// class MiniCartCounterInput extends React.Component {
+//   constructor(props) {
+//     super(props);
+//     this.state = {
+//       count: this.props.value
+//     }
+//   }
+
+//   updateElement(e) {
+//     this.setState({count: e.target.value})
+//   }
+
+//   render() {
+//     return (
+//       <input name="quantity" type="number" min="0" aria-label="Eingabe der Menge" value={this.state.count} onChange={e => {this.updateElement(e)}} />
+//     );
+//   }
+// }
+
+
