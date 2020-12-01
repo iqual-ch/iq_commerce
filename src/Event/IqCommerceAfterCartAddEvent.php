@@ -51,10 +51,7 @@ class IqCommerceAfterCartAddEvent extends Event {
    */
   public function getResponseWithAdditionalData() {
     $order_items = $this->response->getResponseData();
-    \Drupal::logger('iq_commerce')->notice(json_encode($this->additionalData));
     $data = array_merge(['order_items' => array_values($order_items)], $this->additionalData);
-    \Drupal::logger('iq_commerce')->notice(json_encode(array_keys($data)));
-
     $response = new ModifiedResourceResponse($data, 200);
     return $response;
   }

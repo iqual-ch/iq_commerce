@@ -5,11 +5,11 @@ namespace Drupal\iq_commerce\Event;
 use Symfony\Component\EventDispatcher\Event;
 
 /**
- * Defines the before cart remove item event.
+ * Defines the before cart update item event.
  *
  * @see \Drupal\iq_commerce\Event\CartEvents
  */
-class IqCommerceBeforeCartRemoveItemEvent extends Event {
+class IqCommerceBeforeCartUpdateItemEvent extends Event {
 
   /**
    * The order that is being edited.
@@ -17,22 +17,29 @@ class IqCommerceBeforeCartRemoveItemEvent extends Event {
   protected $commerceOrder;
 
   /**
-   * The ordered item that is being removed from the cart.
+   * The ordered item that is being updated from the cart.
    */
   protected $commerceOrderItem;
 
   /**
-   * Constructs a new BeforeCartRemoveItemEvent.
+   * @var    $unserialized
+   *   The unserialized data from the request body.
+   */
+  protected $unserialized;
+
+  /**
+   * Constructs a new BeforeCartUpdateItemEvent.
    *
    * @param $commerce_order
    *   The order that is being edited.
    * @param $commerce_order_item
-   *   The order item that is being removed.
+   *   The order item that is being updated.
    */
-  public function __construct($commerce_order, $commerce_order_item) {
+  public function __construct($commerce_order, $commerce_order_item, $unserialized) {
     $this->commerceOrder = $commerce_order;
     $this->commerceOrderItem = $commerce_order_item;
-    \Drupal::logger('iq_commerce')->notice('before cart removed created event');
+    $this->unserialized = $unserialized;
+    \Drupal::logger('iq_commerce')->notice('before cart updated created event');
 
   }
 
@@ -49,5 +56,12 @@ class IqCommerceBeforeCartRemoveItemEvent extends Event {
    */
   public function getOrderItem() {
     return $this->commerceOrderItem;
+  }
+
+  /**
+   * Gets the unseralized data.
+   */
+  public function getUnserialized() {
+    return $this->unserialized;
   }
 }

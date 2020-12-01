@@ -43,4 +43,23 @@ final class IqCommerceCartEvents {
    */
   const AFTER_CART_ENTITY_REMOVE_ITEM = 'iq_commerce.after_cart_remove_item';
 
+
+  /**
+   * Name of the event fired before updating the order item from the cart.
+   *
+   * Fired before the item is updated from the cart.
+   *
+   * @Event
+   */
+  const BEFORE_CART_ENTITY_UPDATE_ITEM = 'iq_commerce.before_cart_update_item';
+
+  /**
+   * Name of the event fired after updating the item from the cart.
+   *
+   * Fired after the item has been updated from the cart.
+   *
+   * @Event
+   */
+  const AFTER_CART_ENTITY_UPDATE_ITEM = 'iq_commerce.after_cart_update_item';
+
 }
