@@ -1,0 +1,6 @@
+iq_commerce.iq_commerce_settings:
+  title: 'Iq Commerce Settings'
+  description: 'Set the receipt information.'
+  route_name: iq_commerce.iq_commerce_settings
+  parent: system.admin_config_system
+  weight: 10

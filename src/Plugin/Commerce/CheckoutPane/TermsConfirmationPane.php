@@ -34,7 +34,7 @@ class TermsConfirmationPane extends CheckoutPaneBase {
    */
   public function defaultConfiguration() {
     return [
-      'terms_label' => 'I accept the <a href="@terms_link">terms and condiditons</a>.',
+      'terms_label' => $this->t('I accept the <a href="@terms_link">terms and conditions</a>.'),
       'terms_link' => '#',
     ] + parent::defaultConfiguration();
   }

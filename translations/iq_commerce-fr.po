@@ -1,0 +1,2 @@
+msgid '@entity added to <a href=":url">your cart</a>.'
+msgstr '@entity a été ajoutée à <a href=":url"> votre panier </a>.'

@@ -78,6 +78,16 @@ function iq_commerce_form_alter(&$form, \Drupal\Core\Form\FormStateInterface $fo
 
     $form['actions']['submit']['#submit'][] = 'iq_commerce_product_type_form_submit';
   }
+  $url = \Drupal\Core\Url::fromRoute('<current>');
+
+  if ($form_id == 'commerce_checkout_flow_multistep_default' && substr_count($url->getInternalPath(),'order_information') > 0) {
+    // Unset the "Go back" link and create a custom one.
+    unset($form['actions']['next']['#suffix']);
+    $form['back_to_cart'] = [
+      '#type' => 'markup',
+      '#markup' => '<a class="iqbm-button iqbm-text btn btn-cta" href="/cart">' . t('Back to Cart') . '</a>'
+    ];
+  }
 }
 
 function iq_commerce_product_type_form_submit(&$form, \Drupal\Core\Form\FormStateInterface $form_state) {
@@ -115,4 +125,21 @@ function iq_commerce_views_pre_render(\Drupal\views\ViewExecutable $view) {
     // Replace the old results with the results without duplicates.
     $view->result = $resultNoDoubleNodes;
   }
+}
+
+/**
+ * Implements hook_preprocess_HOOK().
+ */
+function iq_commerce_preprocess_commerce_order_receipt(&$variables) {
+  $iq_commerce_settings = \Drupal\iq_commerce\Form\IqCommerceSettingsForm::getIqCommerceSettings();
+  $variables['iq_commerce_footer'] =  $iq_commerce_settings['footer']['value'];
+  $variables['iq_commerce_header'] =  $iq_commerce_settings['header']['value'];
+  $variables['iq_commerce_homepage'] = \Drupal\Core\Url::fromRoute('<front>');
+}
+
+/**
+ * Implements hook_page_attachments().
+ */
+function iq_commerce_page_attachments(array &$attachments) {
+  $attachments['#attached']['library'][] = 'iq_commerce/ajax-cart';
 }

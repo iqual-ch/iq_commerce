@@ -46,8 +46,79 @@ msgstr "In den Warenkorb"
 msgid "Shopping cart"
 msgstr "Warenkorb"
 
+msgctxt "Address label"
+msgid "Street address"
+msgstr "Strasse und Hausnummer"
+
+msgctxt "Address label"
+msgid "Street address line 2"
+msgstr "Strasse und Hausnummer (2. Zeile)"
+
 msgid "Cart"
 msgstr "Warenkorb"
 
 msgid "@entity added to <a href=\":url\">your cart</a>."
 msgstr "@entity wurde zum <a href=\":url\">Warenkorb</a> hinzugefügt."
+
+msgid "Street Address"
+msgstr "Strasse und Hausnummer"
+
+msgid "Street address"
+msgstr "Strasse und Hausnummer"
+
+msgid "Street address line 2"
+msgstr "Strasse (2. Zeile)"
+
+msgid "Pay and complete purchase"
+msgstr "Bezahlen und Kauf abschliessen"
+
+msgid '@entity added to <a href=":url">your cart</a>.'
+msgstr '@entity wurde zu <a href=":url"> Ihrem Warenkorb </a> hinzugefügt.'
+
+msgid 'I accept the <a href="@terms_link">terms and condiditons</a>.'
+msgstr 'Ich akzeptiere die <a href="@terms_link"> AGBs</a>.'
+
+msgid 'Recalculate shipping'
+msgstr 'Versand neu berechnen'
+
+msgid 'Back to Cart'
+msgstr 'Zurück zum Warenkorb'
+
+msgid 'Proceed to @gateway'
+msgstr 'Weiter zu @gateway'
+
+msgid 'Proceed to checkout. You can optionally create an account at the end.'
+msgstr 'Weiter zur Kasse. Optional können Sie am Ende ein Konto erstellen.'
+
+msgid 'Thank you for your order. You will receive the item(s) in 3 - 7 days.'
+msgstr 'Vielen Dank für Ihre Bestellung. Sofern Sie die Option «Lieferung» gewählt haben, wird Ihnen der Produkt(en) in den nächsten 3 – 7 Tagen zugestellt.'
+
+msgid '<h1>Thank you for your order.</h1>The order number is : @order_number<br/>'
+msgstr '<h1> Vielen Dank für Ihre Bestellung. </h1> Die Bestellnummer lautet: @order_number <br/>'
+
+msgid "You can view your orders <a href='/user/orders'>here</a><br/>"
+msgstr "Sie können Ihre Bestellungen <a href='/user/orders'> hier </a> <br/> anzeigen"
+
+msgid "You can see your order when you are logged in.<br/>Continue to <a href='/user/login'>login</a><br/>"
+msgstr "Sie können Ihre Bestellung sehen, wenn Sie angemeldet sind. <br/> Weiter zu <a href='/user/login'> Login </a> <br/>"
+
+msgid "Continue to <a href='/de'>homepage</a><br/>If you have any questions, you can reach us at <a href='/contact'>Contact</a>"
+msgstr "Weiter zur <a href='/de'> Homepage </a> <br/> Wenn Sie Fragen haben, können Sie uns unter <a href='/contact'> Contact </a> erreichen"
+
+msgid "Returning Customer"
+msgstr "Bestehender Kunde"
+
+msgid "Create account and continue"
+msgstr "Konto erstellen und fortfahren"
+
+msgid "Continue as Guest"
+msgstr "Weiter als Gast"
+
+msgid "Guest Checkout"
+msgstr "Als Gast einkaufen"
+
+msgid "Your order number is @number."
+msgstr "Ihre Bestellnummer lautet @number."
+
+msgid "You can view your order on your account page when logged in."
+msgstr "Sie können Ihre Bestellung auf Ihrer Kontoseite anzeigen, wenn Sie angemeldet sind."

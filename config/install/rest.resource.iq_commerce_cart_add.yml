@@ -1,0 +1,18 @@
+uuid: 34b4ea77-ffef-4b9e-9c79-2defdb8e8250
+langcode: de
+status: true
+dependencies:
+  module:
+    - commerce_cart_api
+    - serialization
+    - user
+id: iq_commerce_cart_add
+plugin_id: iq_commerce_cart_add
+granularity: resource
+configuration:
+  methods:
+    - POST
+  formats:
+    - json
+  authentication:
+    - cookie
