@@ -137,11 +137,6 @@ class IqCommerceCartAddResource extends CartAddResource {
     $after_event = new IqCommerceAfterCartAddEvent($response);
     $this->eventDispatcher->dispatch(IqCommerceCartEvents::AFTER_CART_ENTITY_ADD, $after_event);
     $response = $after_event->getResponseWithAdditionalData();
-    foreach ($response->getResponseData() as $key => $value) {
-      foreach ($value as $item) {
-        \Drupal::logger('iq_commerce')->notice('keys yo ' . json_encode($item->id()));
-      }
-    }
 
     return $response;
   }

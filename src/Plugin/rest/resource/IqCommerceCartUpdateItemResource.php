@@ -4,32 +4,35 @@ namespace Drupal\iq_commerce\Plugin\rest\resource;
 
 use Drupal\commerce_cart\CartManagerInterface;
 use Drupal\commerce_cart\CartProviderInterface;
-use Drupal\commerce_cart_api\Plugin\rest\resource\CartRemoveItemResource;
+use Drupal\commerce_cart_api\Plugin\rest\resource\CartUpdateItemResource;
 use Drupal\commerce_order\Entity\OrderInterface;
 use Drupal\commerce_order\Entity\OrderItemInterface;
+use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\iq_commerce\Event\AfterCartAddEvent;
 use Drupal\iq_commerce\Event\BeforeCartAddEvent;
-use Drupal\iq_commerce\Event\IqCommerceAfterCartRemoveItemEvent;
-use Drupal\iq_commerce\Event\IqCommerceBeforeCartRemoveItemEvent;
+use Drupal\iq_commerce\Event\IqCommerceAfterCartUpdateItemEvent;
+use Drupal\iq_commerce\Event\IqCommerceBeforeCartUpdateItemEvent;
 use Drupal\iq_commerce\Event\IqCommerceCartEvents;
+use Drupal\rest\ModifiedResourceResponse;
 use Psr\Log\LoggerInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\Exception\UnprocessableEntityHttpException;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
+use Symfony\Component\Serializer\SerializerInterface;
 
 /**
- * Provides a cart collection resource for current session.
+ * Provides a a resource for updating the quantity of a cart's single order item.
  *
  * @RestResource(
- *   id = "iq_commerce_cart_remove_item",
- *   label = @Translation("Iq Commerce Cart remove item"),
+ *   id = "iq_commerce_cart_update_item",
+ *   label = @Translation("Iq Commerce Cart item update"),
  *   uri_paths = {
  *     "canonical" = "/cart/{commerce_order}/items/{commerce_order_item}"
  *   }
  * )
  */
-class IqCommerceCartRemoveResource extends CartRemoveItemResource {
+class IqCommerceCartUpdateItemResource extends CartUpdateItemResource {
 
   /**
    * The entity repository.
@@ -57,8 +60,8 @@ class IqCommerceCartRemoveResource extends CartRemoveItemResource {
    *   The cart manager.
    *
    */
-  public function __construct(array $configuration, $plugin_id, $plugin_definition, array $serializer_formats, LoggerInterface $logger, CartProviderInterface $cart_provider, CartManagerInterface $cart_manager, EventDispatcherInterface $event_dispatcher) {
-    parent::__construct($configuration, $plugin_id, $plugin_definition, $serializer_formats, $logger, $cart_provider, $cart_manager);
+  public function __construct(array $configuration, $plugin_id, $plugin_definition, array $serializer_formats, LoggerInterface $logger, CartProviderInterface $cart_provider, CartManagerInterface $cart_manager, SerializerInterface $serializer, EntityTypeManagerInterface $entity_type_manager, EventDispatcherInterface $event_dispatcher) {
+    parent::__construct($configuration, $plugin_id, $plugin_definition, $serializer_formats, $logger, $cart_provider, $cart_manager, $serializer, $entity_type_manager);
     $this->eventDispatcher = $event_dispatcher;
   }
 
@@ -74,37 +77,43 @@ class IqCommerceCartRemoveResource extends CartRemoveItemResource {
       $container->get('logger.factory')->get('rest'),
       $container->get('commerce_cart.cart_provider'),
       $container->get('commerce_cart.cart_manager'),
+      $container->get('serializer'),
+      $container->get('entity_type.manager'),
       $container->get('event_dispatcher')
     );
   }
 
+
   /**
-   * DELETE an order item from a cart.
-   *
-   * The ResourceResponseSubscriber provided by rest.module gets weird when
-   * going through the serialization process. The method is not cacheable and
-   * it does not have a body format, causing it to be considered invalid.
-   *
-   * @todo Investigate if we can return updated order as response.
-   *
-   * @see \Drupal\rest\EventSubscriber\ResourceResponseSubscriber::getResponseFormat
+   * PATCH to update order items.
    *
    * @param \Drupal\commerce_order\Entity\OrderInterface $commerce_order
    *   The order.
    * @param \Drupal\commerce_order\Entity\OrderItemInterface $commerce_order_item
    *   The order item.
+   * @param array $unserialized
+   *   The request body.
    *
    * @return \Drupal\rest\ModifiedResourceResponse
    *   The response.
+   *
+   * @throws \Drupal\Core\Entity\EntityStorageException
    */
-  public function delete(OrderInterface $commerce_order, OrderItemInterface $commerce_order_item) {
-    /** @var \Drupal\iq_commerce\Event\IqCommerceBeforeCartRemoveItemEvent $before_event */
-    $before_event = new IqCommerceBeforeCartRemoveItemEvent($commerce_order, $commerce_order_item);
-    $this->eventDispatcher->dispatch(IqCommerceCartEvents::BEFORE_CART_ENTITY_REMOVE_ITEM, $before_event);
-    $response = parent::delete($commerce_order, $commerce_order_item);
-    /** @var \Drupal\iq_commerce\Event\IqCommerceAfterCartRemoveItemEvent $before_event */
-    $after_event = new IqCommerceAfterCartRemoveItemEvent($response);
-    $this->eventDispatcher->dispatch(IqCommerceCartEvents::AFTER_CART_ENTITY_REMOVE_ITEM, $after_event);
+  public function patch(OrderInterface $commerce_order, OrderItemInterface $commerce_order_item, array $unserialized) {
+    if (count($unserialized) > 1 || empty($unserialized['quantity'])) {
+      throw new UnprocessableEntityHttpException('You only have access to update the quantity');
+    }
+    if ($unserialized['quantity'] < 1) {
+      throw new UnprocessableEntityHttpException('Quantity must be positive value');
+    }
+
+    /** @var \Drupal\iq_commerce\Event\IqCommerceBeforeCartUpdateItemEvent $before_event */
+    $before_event = new IqCommerceBeforeCartUpdateItemEvent($commerce_order, $commerce_order_item, $unserialized);
+    $this->eventDispatcher->dispatch(IqCommerceCartEvents::BEFORE_CART_ENTITY_UPDATE_ITEM, $before_event);
+    $response = parent::patch($commerce_order, $commerce_order_item, $unserialized);
+    /** @var \Drupal\iq_commerce\Event\IqCommerceAfterCartUpdateItemEvent $before_event */
+    $after_event = new IqCommerceAfterCartUpdateItemEvent($response);
+    $this->eventDispatcher->dispatch(IqCommerceCartEvents::AFTER_CART_ENTITY_UPDATE_ITEM, $after_event);
     $response = $after_event->getResponse();
     return $response;
   }
