@@ -80,24 +80,3 @@ class MiniCartCounter extends React.Component {
     );
   }
 }
-
-// class MiniCartCounterInput extends React.Component {
-//   constructor(props) {
-//     super(props);
-//     this.state = {
-//       count: this.props.value
-//     }
-//   }
-
-//   updateElement(e) {
-//     this.setState({count: e.target.value})
-//   }
-
-//   render() {
-//     return (
-//       <input name="quantity" type="number" min="0" aria-label="Eingabe der Menge" value={this.state.count} onChange={e => {this.updateElement(e)}} />
-//     );
-//   }
-// }
-
-

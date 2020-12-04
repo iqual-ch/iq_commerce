@@ -1,0 +1,20 @@
+.related-products-overlay{
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.8);
+  left: 0;
+  top: 0;
+}
+
+.related-products-overlay .related-products-content{
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.related-products-overlay .related-products-content > .iq-row{
+  background: white;
+  width: 100%;
+}
