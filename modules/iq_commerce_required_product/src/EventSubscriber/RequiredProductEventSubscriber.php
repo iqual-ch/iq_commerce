@@ -4,10 +4,12 @@ namespace Drupal\iq_commerce_required_product\EventSubscriber;
 
 use Drupal\commerce\PurchasableEntityInterface;
 use Drupal\commerce_product\Entity\ProductVariation;
+use Drupal\Component\Serialization\Yaml;
 use Drupal\Core\Entity\EntityRepositoryInterface;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\iq_commerce\Event\IqCommerceBeforeCartAddEvent;
 use Drupal\iq_commerce\Event\IqCommerceCartEvents;
+use Drupal\iq_commerce\Form\IqCommerceProductSettingsForm;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
 class RequiredProductEventSubscriber implements EventSubscriberInterface {
@@ -59,7 +61,7 @@ class RequiredProductEventSubscriber implements EventSubscriberInterface {
   public function addRequiredProducts(IqCommerceBeforeCartAddEvent $event) {
 
     $body = $event->getBody();
-    $added_products = 0;
+    $added_products = [];
 
     foreach ($body as $order_item_data) {
       $storage = $this->entityTypeManager->getStorage($order_item_data['purchased_entity_type']);
@@ -71,25 +73,45 @@ class RequiredProductEventSubscriber implements EventSubscriberInterface {
       /** @var \Drupal\commerce_product\Entity\Product $purchased_entity */
       $purchased_entity = $this->entityRepository->getTranslationFromContext($purchased_entity);
 
-      // If the required product is not in the cart, add it to the body.
-      if ($purchased_entity->hasField('field_iq_commerce_required')) {
-        $required_products = $purchased_entity->get('field_iq_commerce_required')->getValue();
-        foreach ($required_products as $required_product) {
-          if ($required_product['target_id']) {
-            $required_product = ProductVariation::load($required_product['target_id']);
-            $added_products++;
-            $body[] = [
-              'purchased_entity_type' => 'commerce_product_variation',
-              'purchased_entity_id' => $required_product->id(),
-              'quantity' => (!empty($order_item_data['quantity'])) ? $order_item_data['quantity'] : 1,
-            ];
+      // Get all required field references in the product from the settings.
+      $iqCommerceProductSettingsConfig = IqCommerceProductSettingsForm::getIqCommerceProductSettings();
+      $required_field_names = $iqCommerceProductSettingsConfig['required'];
+      /** If the required product is not in the cart, add it to the body. */
+      foreach ($required_field_names as $required_field_name => $field_settings) {
+        if ($purchased_entity->hasField($required_field_name)) {
+          $required_products = $purchased_entity->get($required_field_name)->getValue();
+          foreach ($required_products as $required_product) {
+            if ($required_product['target_id']) {
+              $required_product = ProductVariation::load($required_product['target_id']);
+              $added_products[] = $required_product;
+              if ($field_settings['sync_quantities']) {
+                $quantity =  (!empty($order_item_data['quantity'])) ? $order_item_data['quantity'] : 1;
+              }
+              else {
+                /*
+                 * @TODO Get the cart and iterate through the items to check
+                 * whether the required product is already there and skip to
+                 * next item if it is.
+                */
+                $quantity = 1;
+              }
+
+
+              $body[] = [
+                'purchased_entity_type' => 'commerce_product_variation',
+                'purchased_entity_id' => $required_product->id(),
+                'quantity' => $quantity,
+              ];
+            }
           }
+
         }
       }
     }
     // If there were any required products that were added, add them to the
     // event's body, so they can be sent to the cart API.
-    if ($added_products > 0) {
+    if (count($added_products) > 0) {
+      $event->setAdditionalData(['required_products' => array_values($added_products)]);
       $event->setBody($body);
     }
   }

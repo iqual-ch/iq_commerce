@@ -1,0 +1,9 @@
+iq_commerce.iq_commerce_settings:
+  route_name: iq_commerce.iq_commerce_settings
+  title: 'Settings'
+  base_route: iq_commerce.iq_commerce_settings
+iq_commerce.iq_commerce_product_settings:
+  route_name: iq_commerce.iq_commerce_product_settings
+  title: 'Product Settings'
+  weight: 100
+  base_route: iq_commerce.iq_commerce_settings

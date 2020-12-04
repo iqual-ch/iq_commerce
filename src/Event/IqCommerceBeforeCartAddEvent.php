@@ -19,6 +19,11 @@ class IqCommerceBeforeCartAddEvent extends Event {
   protected $body;
 
   /**
+   * The additional data that was added (usually required products).
+   */
+  protected $additionalData;
+
+  /**
    * Constructs a new BeforeCartAddEvent.
    *
    * @param $body
@@ -26,6 +31,7 @@ class IqCommerceBeforeCartAddEvent extends Event {
    */
   public function __construct($body) {
     $this->body = $body;
+    $this->additionalData = [];
   }
 
   /**
@@ -33,6 +39,20 @@ class IqCommerceBeforeCartAddEvent extends Event {
    */
   public function setBody($body) {
     return $this->body = $body;
+  }
+
+  /**
+   * Sets the additional data.
+   */
+  public function setAdditionalData($data) {
+    $this->additionalData = $data;
+  }
+
+  /**
+   * Gets the additional data.
+   */
+  public function getAdditionalData() {
+    return $this->additionalData;
   }
 
   /**
