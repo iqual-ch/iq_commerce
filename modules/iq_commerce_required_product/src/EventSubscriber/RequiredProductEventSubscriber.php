@@ -104,7 +104,6 @@ class RequiredProductEventSubscriber implements EventSubscriberInterface {
               ];
             }
           }
-
         }
       }
     }

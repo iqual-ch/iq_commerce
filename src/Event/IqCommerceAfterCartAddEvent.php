@@ -2,7 +2,6 @@
 
 namespace Drupal\iq_commerce\Event;
 
-use Drupal\commerce_product\Entity\ProductVariation;
 use Drupal\rest\ModifiedResourceResponse;
 use Symfony\Component\EventDispatcher\Event;
 
@@ -32,11 +31,6 @@ class IqCommerceAfterCartAddEvent extends Event {
   public function __construct($response, $additionalData) {
     $this->response = $response;
     $this->additionalData = $additionalData;
-    /** @var \Drupal\commerce_product\Entity\ProductVariation $prod */
-    /*$prod = reset($this->additionalData);
-    $title = reset($prod);
-    \Drupal::logger('iq_commerce')->notice('the title is ' . json_encode($title->getTitle()));
-    \Drupal::logger('iq_commerce')->notice(json_encode($this->additionalData));*/
   }
 
   /**

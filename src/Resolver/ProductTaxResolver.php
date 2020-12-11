@@ -2,9 +2,7 @@
 
 namespace Drupal\iq_commerce\Resolver;
 
-use Drupal\commerce_product\Entity\ProductInterface;
 use Drupal\commerce_product\Entity\ProductType;
-use Drupal\commerce_product\Entity\ProductVariationInterface;
 use Drupal\commerce_order\Entity\OrderItemInterface;
 use Drupal\commerce_tax\Resolver\TaxRateResolverInterface;
 use Drupal\commerce_tax\TaxZone;
