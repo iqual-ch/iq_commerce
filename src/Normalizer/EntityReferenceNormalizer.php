@@ -15,8 +15,6 @@ class EntityReferenceNormalizer extends \Drupal\commerce_cart_api\Normalizer\Ent
     $commerce_cart_api['normalized_entity_references'][] = 'product_id';
     $commerce_cart_api['normalized_entity_references'][] = 'field_iq_commerce_images';
     $commerce_cart_api['normalized_entity_references'][] = 'field_media_image';
-    $commerce_cart_api['normalized_entity_references'][] = 'field_filename';
-    $commerce_cart_api['normalized_entity_references'][] = 'fid';
     parent::__construct($entity_repository, $route_match, $commerce_cart_api);
   }
 
