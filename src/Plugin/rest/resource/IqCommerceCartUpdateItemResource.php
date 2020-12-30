@@ -13,7 +13,6 @@ use Drupal\iq_commerce\Event\BeforeCartAddEvent;
 use Drupal\iq_commerce\Event\IqCommerceAfterCartUpdateItemEvent;
 use Drupal\iq_commerce\Event\IqCommerceBeforeCartUpdateItemEvent;
 use Drupal\iq_commerce\Event\IqCommerceCartEvents;
-use Drupal\rest\ModifiedResourceResponse;
 use Psr\Log\LoggerInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\HttpFoundation\Request;
@@ -35,7 +34,7 @@ use Symfony\Component\Serializer\SerializerInterface;
 class IqCommerceCartUpdateItemResource extends CartUpdateItemResource {
 
   /**
-   * The entity repository.
+   * The event dispatcher.
    *
    * @var EventDispatcherInterface
    */

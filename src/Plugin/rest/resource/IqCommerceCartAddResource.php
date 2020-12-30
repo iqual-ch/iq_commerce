@@ -101,6 +101,7 @@ class IqCommerceCartAddResource extends CartAddResource {
       $container->get('event_dispatcher')
     );
   }
+
   /**
    * Add order items to the session's carts.
    *
@@ -133,8 +134,9 @@ class IqCommerceCartAddResource extends CartAddResource {
     $this->eventDispatcher->dispatch(IqCommerceCartEvents::BEFORE_CART_ENTITY_ADD, $before_event);
     $body = $before_event->getBody();
     $response = parent::post($body, $request);
+    $additional_data = $before_event->getAdditionalData();
     /** @var \Drupal\iq_commerce\Event\IqCommerceAfterCartAddEvent $before_event */
-    $after_event = new IqCommerceAfterCartAddEvent($response);
+    $after_event = new IqCommerceAfterCartAddEvent($response, $additional_data);
     $this->eventDispatcher->dispatch(IqCommerceCartEvents::AFTER_CART_ENTITY_ADD, $after_event);
     $response = $after_event->getResponseWithAdditionalData();
 

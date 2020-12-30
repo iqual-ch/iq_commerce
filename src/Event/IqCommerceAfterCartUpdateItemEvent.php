@@ -2,7 +2,6 @@
 
 namespace Drupal\iq_commerce\Event;
 
-use Drupal\rest\ModifiedResourceResponse;
 use Symfony\Component\EventDispatcher\Event;
 
 /**

@@ -28,9 +28,9 @@ class IqCommerceAfterCartAddEvent extends Event {
    * @param $response
    *   The response after the order item(s) is added to the cart.
    */
-  public function __construct($response) {
+  public function __construct($response, $additionalData) {
     $this->response = $response;
-    $this->additionalData = [];
+    $this->additionalData = $additionalData;
   }
 
   /**

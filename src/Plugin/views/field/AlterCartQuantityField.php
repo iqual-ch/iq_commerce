@@ -3,7 +3,6 @@
 namespace Drupal\iq_commerce\Plugin\views\field;
 
 use Drupal\Core\Form\FormStateInterface;
-use Drupal\node\Entity\NodeType;
 use Drupal\views\Plugin\views\field\FieldPluginBase;
 use Drupal\views\ResultRow;
 
