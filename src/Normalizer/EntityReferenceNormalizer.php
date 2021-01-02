@@ -20,7 +20,7 @@ class EntityReferenceNormalizer extends \Drupal\commerce_cart_api\Normalizer\Ent
 
   public function normalize($field_item, $format = NULL, array $context = []) {
     $normalized =  parent::normalize($field_item, $format, $context);
-    if (!empty($normalized['product_id'])) {
+    if (!empty($normalized['product_id']) && !empty($normalized['product_id']['product_id']) ) {
       $normalized['product_entity'] = $normalized['product_id'];
       unset($normalized['product_id']);
     }

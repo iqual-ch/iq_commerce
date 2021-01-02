@@ -1,0 +1,126 @@
+.iq-commerce-mini-cart{
+  position: relative;
+}
+
+.iq-commerce-mini-cart:hover .iq-commerce-mini-cart-content{
+  display: block;
+}
+
+.iq-commerce-mini-cart.show .iq-commerce-mini-cart-content{
+  display: block;
+}
+
+.iq-commerce-mini-cart-toggle a,
+.iq-commerce-mini-cart-toggle a:hover{
+  text-decoration: none;
+}
+
+.iq-commerce-mini-cart-toggle .count{
+    width: 1.5rem;
+    display: inline-block;
+    height: 1.5rem;
+    line-height: 1.5rem;
+    margin-top: -1rem;
+    text-align: center;
+    border-radius: 50%;
+    font-size: 0.75rem;
+    background: #f9f9f9;
+}
+
+.iq-commerce-mini-cart-content {
+  display: none;
+  position: absolute;
+  z-index: 10;
+  top: 100%;
+  padding: 15px;
+  right: 0;
+  background: #f9f9f9;
+  max-width: 280px;
+}
+
+.iq-commerce-mini-cart-content .iq-commerce-mini-cart-body{
+  max-height: 300px;
+  overflow: auto;
+}
+
+.iq-commerce-mini-cart-content .items{
+  list-style-type: none;
+  margin: 0 0 15px 0;
+  padding: 0;
+}
+
+.iq-commerce-mini-cart-content .item{
+  padding: 15px 0;
+  border-bottom: 1px solid #ddd;
+}
+
+.iq-commerce-mini-cart-content .item .item-header{
+  display: flex;
+  justify-content: space-between;
+  padding-bottom: 15px;
+}
+
+.iq-commerce-mini-cart-content .item .item-header .title{
+  font-weight: 700;
+}
+
+.iq-commerce-mini-cart-content .item .item-header a{
+  text-decoration: none;
+  padding-right: 15px;
+  line-height: 1.2;
+}
+
+.iq-commerce-mini-cart-content .item .item-header button{
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.iq-commerce-mini-cart-content .item .item-header button i{
+  color: #ccc;
+}
+
+.iq-commerce-mini-cart-content .item .item-body{
+  display: flex;
+  justify-content: space-between;
+}
+
+.iq-commerce-mini-cart-content .item .item-update{
+  display: flex;
+  justify-content: space-between;
+  padding-right: 15px;
+}
+
+.iq-commerce-mini-cart-content .item .item-update > div{
+  display: flex;
+}
+
+.iq-commerce-mini-cart-content .item .item-update input{
+  width: 50px;
+  font-size: 12px;
+  padding: 0;
+  border: 1px solid #ddd;
+  margin: 0 5px;
+  text-align: center;
+}
+
+.iq-commerce-mini-cart-content .item .item-update button{
+  font-size: 10px;
+  border: 1px solid #ddd;
+  background-color: #f6f6f6;
+  line-height: 20px;
+  height: 24px;
+  width: 24px;
+  text-align: center;
+  cursor: pointer;
+}
+
+.iq-commerce-mini-cart-content .iq-commerce-mini-cart-header .title{
+  font-weight: 700;
+}
+
+.iq-commerce-mini-cart-content .iq-commerce-mini-cart-footer .iq-button a{
+  margin: 0;
+  white-space: nowrap;
+  width: 100%;
+}

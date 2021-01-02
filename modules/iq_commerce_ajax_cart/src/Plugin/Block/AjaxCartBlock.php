@@ -1,26 +1,26 @@
 <?php
 
-namespace Drupal\iq_commerce\Plugin\Block;
+namespace Drupal\iq_commerce_ajax_cart\Plugin\Block;
 
-use Drupal\commerce_cart\Plugin\Block\CartBlock;
 use Drupal\Core\Form\FormStateInterface;
+use Drupal\iq_progressive_decoupler\Plugin\Block\DecoupledBlockBase;
 
 /**
- * Extendeds CartBlock with a configurable title.
+ * Base block for decoupling.
  *
  * @Block(
- *   id = "iq_commerce_cart",
- *   admin_label = @Translation("Dropdown Cart"),
- *   category = @Translation("Commerce")
+ *   id = "iq_commerce_ajax_cart_block",
+ *   admin_label = @Translation("AJAX Cart Block"),
  * )
  */
-class IqCartBlock extends CartBlock {
+class AjaxCartBlock extends DecoupledBlockBase {
 
   /**
    * {@inheritdoc}
    */
   public function blockForm($form, FormStateInterface $form_state) {
     $form = parent::blockForm($form, $form_state);
+
     $form['cart_title'] = [
       '#type' => 'textfield',
       '#title' => $this->t('Title'),
@@ -33,6 +33,12 @@ class IqCartBlock extends CartBlock {
       '#default_value' => isset($this->configuration['link_title']) ? $this->configuration['link_title'] : 'Cart',
     ];
 
+    $form['button_title'] = [
+      '#type' => 'textfield',
+      '#title' => $this->t('Button Title'),
+      '#default_value' => isset($this->configuration['button_title']) ? $this->configuration['button_title'] : 'Go to cart',
+    ];
+
     return $form;
   }
 
@@ -40,27 +46,22 @@ class IqCartBlock extends CartBlock {
    * {@inheritdoc}
    */
   public function build() {
-    $render = parent::build();
-    $render['#theme'] = 'dropdown_cart_block';
-    $render['#cache'] = [
+    $build = parent::build();
+    $build['#theme'] = 'iq_commerce_ajax_cart_block';
+    $build['#attached']['library'][] = 'iq_commerce_ajax_cart/ajax-cart';
+
+    $build['#cache'] = [
       'max-age' => 0,
     ];
-    $render['#count_text'] = $this->t($this->configuration['cart_title'], [
-      '%count' => $render['#count'],
+
+    $build['#count_text'] = $this->t($this->configuration['cart_title'], [
+      '%count' => 5,
     ]);
 
-    $render['#label'] = $this->label();
-    $render['#link_title'] = $this->configuration['link_title'];
+    $build['#label'] = $this->label();
+    $build['#link_title'] = $this->configuration['link_title'];
 
-    $render['#attached'] = [
-      'library' => [
-        'iq_commerce/dropdown_cart_block',
-        'ui_patterns/button.button',
-      ]
-    ];
-
-    return $render;
-
+    return $build;
   }
 
   /**
@@ -70,6 +71,7 @@ class IqCartBlock extends CartBlock {
     parent::blockSubmit($form, $form_state);
     $this->configuration['cart_title'] = $form_state->getValue('cart_title');
     $this->configuration['link_title'] = $form_state->getValue('link_title');
+    $this->configuration['button_title'] = $form_state->getValue('button_title');
   }
 
 }

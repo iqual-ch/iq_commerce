@@ -1,29 +1,19 @@
-catalog-css:
+catalog:
   version: 1.x
   css:
     theme:
-      css/catalog-css.css: {}
-
-dropdown_cart_block:
-  version: VERSION
-  css:
-    theme:
-      css/cart-block.css: {}
+      css/catalog.css: {}
   js:
-    //unpkg.com/react@17/umd/react.development.js: {}
-    //unpkg.com/react-dom@17/umd/react-dom.development.js: {}
-    //unpkg.com/babel-standalone@6/babel.min.js: {}
-    js/ajax-cart.js: {}
-    js/cart-block.js: {attributes: {type: text/babel}}
-    js/init.js: {}
-  dependencies:
-    - core/jquery
-    - core/drupal
+    js/catalog.js:  {}
 
 ajax-cart:
   version: VERSION
+  css:
+    theme:
+      css/ajax-block.css: {}
   js:
     js/ajax-cart.js:  {}
+    js/init-ajax-cart.js: {}
   dependencies:
     - core/jquery
     - core/drupal
