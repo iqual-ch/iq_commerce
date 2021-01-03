@@ -21,7 +21,10 @@ function iq_commerce_theme($existing, $type, $theme, $path) {
     'commerce_order_receipt' => [
       'template' => 'iq-commerce-order-receipt',
       'base hook' => 'commerce_order_receipt',
-    ]
+    ],
+    'commerce_product' => [
+      'render element' => 'elements',
+    ],
   ];
 }
 
@@ -130,5 +133,8 @@ function iq_commerce_preprocess_commerce_order_receipt(&$variables) {
  * Implements hook_page_attachments().
  */
 function iq_commerce_page_attachments(array &$attachments) {
-  $attachments['#attached']['library'][] = 'iq_commerce/ajax-cart';
+  $attachments['#attached']['library'][] = 'iq_commerce/catalog';
+  $attachments['#attached']['library'][] = 'iq_commerce/categories';
+  $attachments['#attached']['library'][] = 'iq_commerce/checkout';
+  $attachments['#attached']['library'][] = 'iq_commerce/customer';
 }

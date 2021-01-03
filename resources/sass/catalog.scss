@@ -1,0 +1,11 @@
+@import 'definitions';
+
+// catalog
+.iq-catalog{
+  &.iq-row{
+    padding: 0 15px;
+  }
+  > .view-content.row{
+    width: 100%;
+  }
+}

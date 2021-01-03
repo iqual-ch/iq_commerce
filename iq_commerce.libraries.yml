@@ -1,20 +1,28 @@
 catalog:
-  version: 1.x
   css:
     theme:
-      css/catalog.css: {}
-  js:
-    js/catalog.js:  {}
+      resources/css/catalog.css: {}
 
-ajax-cart:
-  version: VERSION
+product:
   css:
     theme:
-      css/ajax-block.css: {}
+      resources/css/product.css: {}
+      https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css: { minified: true, type: external }
   js:
-    js/ajax-cart.js:  {}
-    js/init-ajax-cart.js: {}
-  dependencies:
-    - core/jquery
-    - core/drupal
-    - core/drupal.ajax
+    resources/js/product.js:  {}
+    //cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js: { minified: true, type: external }
+
+categories:
+  css:
+    theme:
+      resources/css/categories.css: {}
+
+checkout:
+  css:
+    theme:
+      resources/css/checkout.css: {}
+
+customer:
+  css:
+    theme:
+      resources/css/customer.css: {}

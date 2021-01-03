@@ -1,0 +1,48 @@
+@import 'definitions';
+
+// categories
+.view-shop-categories{
+  > .view-content{
+    margin: 0;
+    padding: 0 15px;
+  }
+}
+
+.path-shop,
+.page-vocabulary-iq-commerce-category{
+  .layout-main-wrapper{
+    .container-fluid{
+      max-width: 1170px;
+      display: flex;
+
+      .sidebar.col-md-2{
+        -ms-flex: 0 0 25%;
+        flex: 0 0 25%;
+        max-width: 25%;
+      }
+    }
+  }
+}
+
+.block-hierarchical-taxonomy-menu{
+  ul{
+    padding: 0;
+    list-style-type: none;
+    font-size: $font-size-standard;
+    li{
+      margin-bottom: 10px;
+      ul{
+        padding-left: 15px;
+      }
+    }
+    a{
+      text-decoration: none;
+      &:hover{
+        text-decoration: none;
+      }
+      &.active{
+        color: $color-primary
+      }
+    }
+  }
+}
