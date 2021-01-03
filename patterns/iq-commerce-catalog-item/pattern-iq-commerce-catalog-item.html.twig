@@ -1,0 +1,36 @@
+<div class="iq-catalog-item">
+  <a href="{{product_link}}">
+    <div class="img-holder"><img src="{{product_img}}" title="{{product_title}}"
+        alt="{{product_title}}" /></div>
+    <div class="info-holder">
+      <span class="title">{{product_title}}</span>
+
+      <span class="price">
+        {% if variation_additional_price_text %}
+        <span class="additional-text">{{variation_additional_price_text}}</span>
+        {% endif %}
+        <span class="currency">{{variation_currency}}</span>
+        <span class="value">{{variation_price}}</span>
+      </span>
+    </div>
+    {% if product_description|render is not empty %}
+    <span class="descpription">
+      {{ product_description|raw }}
+    </span>
+    {% endif %}
+  </a>
+
+
+  {% if variation_id is not empty %}
+  <form method="post" data-ajax-cart-form action="{{ url('commerce_variation_add_to_cart.variation_cart') }}" accept-charset="UTF-8" class="commerce-variation-add-to-cart-form" id="commerce-variation-add-to-cart-form-{{ variation_id }}">
+    <input type="number" name="quantity" min="1" max="100" step="1" value="1" class="quantity form-text" />
+    <input type="hidden" name="variation_type" value="{{ variation_type }}" />
+    <input type="hidden" name="product_id" value="{{ product_id }}" />
+    <input type="hidden" name="variation_id" value="{{ variation_id }}" />
+    <input type="hidden" name="destination" value="{{ add_to_cart_destination }}" />
+    <button title="{{add_to_cart_title}}" data-drupal-selector="add-to-cart"><i class="{{add_to_cart_icon}}"></i></button>
+  </form>
+  {% else %}
+    {% if add_to_cart_title is not empty %}<a href="{{ product_link }}" class="btn-more">{{add_to_cart_title}}<i class="{{add_to_cart_icon}}"></i></a>{% endif %}
+  {% endif %}
+</div>

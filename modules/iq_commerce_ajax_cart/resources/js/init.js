@@ -25,6 +25,27 @@
     });
   });
 
+    // bind cart update to forms - product
+    $('form.commerce-order-item-add-to-cart-form').once('add-to-cart-form-init').each(function () {
+      $(this).on('click', '.form-submit', function (e) {
+        $(this).parents('form').data('button-clicked', 'cart');
+      });
+      $(this).on('submit', function (e) {
+        e.preventDefault();
+
+        var orderProductData = {
+          'variation_type' : 'commerce_product_variation',
+          'variation_id' : $(this).attr('action').split('v=')[1],
+          'quantity' : $(this).find('input[name*="quantity"]').val()
+        }
+
+        Drupal.behaviors.iq_commerce_ajax_cart.getCsrfToken(function (csrfToken) {
+          Drupal.behaviors.iq_commerce_ajax_cart.addToCart(csrfToken, orderProductData['variation_type'], parseInt(orderProductData['variation_id']), parseInt(orderProductData['quantity']));
+        });
+      });
+    });
+
+
   $(document).on("iq-commerce-cart-add-before", function (e, orderData) {
 
   });

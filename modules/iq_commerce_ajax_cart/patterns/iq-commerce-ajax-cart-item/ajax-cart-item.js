@@ -1,5 +1,5 @@
 (function ($) {
-  $(document).on("ajax-cart-after-item-rendered[ajax-cart-item]", function (e, args) {
+  $(document).on("ajax-cart-after-item-rendered[iq-commerce-ajax-cart-item]", function (e, args) {
 
     // delete item from cart
     args.item.find('[data-remove-item]').click(function(){

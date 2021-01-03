@@ -87,7 +87,7 @@ display:
             nothing_4: 0
           separator: ''
           hide_empty: 0
-          pattern: catalog_item
+          pattern: iq-commerce-catalog-item
           pattern_mapping:
             'views_row:nothing':
               destination: product_title
@@ -1098,7 +1098,7 @@ display:
             title_2: 0
           separator: ''
           hide_empty: 0
-          pattern: product_teaser
+          pattern: iq-commerce-product-teaser
           pattern_mapping:
             'views_row:title':
               destination: product_title
@@ -2340,7 +2340,7 @@ display:
             nothing_4: 0
           separator: ''
           hide_empty: 0
-          pattern: catalog_item
+          pattern: iq-commerce-catalog-item
           pattern_mapping:
             'views_row:title':
               destination: product_title
