@@ -21,22 +21,16 @@ class AjaxCartBlock extends DecoupledBlockBase {
   public function blockForm($form, FormStateInterface $form_state) {
     $form = parent::blockForm($form, $form_state);
 
-    $form['cart_title'] = [
+    $form['link'] = [
       '#type' => 'textfield',
-      '#title' => $this->t('Title'),
-      '#default_value' => isset($this->configuration['cart_title']) ? $this->configuration['cart_title'] : 'Cart (%count)',
+      '#title' => $this->t('Link Cart'),
+      '#default_value' => isset($this->configuration['link']) ? $this->configuration['link'] : '/cart',
     ];
 
     $form['link_title'] = [
       '#type' => 'textfield',
       '#title' => $this->t('Link Title'),
       '#default_value' => isset($this->configuration['link_title']) ? $this->configuration['link_title'] : 'Cart',
-    ];
-
-    $form['button_title'] = [
-      '#type' => 'textfield',
-      '#title' => $this->t('Button Title'),
-      '#default_value' => isset($this->configuration['button_title']) ? $this->configuration['button_title'] : 'Go to cart',
     ];
 
     return $form;
@@ -54,12 +48,14 @@ class AjaxCartBlock extends DecoupledBlockBase {
       'max-age' => 0,
     ];
 
-    $build['#count_text'] = $this->t($this->configuration['cart_title'], [
-      '%count' => 5,
-    ]);
-
     $build['#label'] = $this->label();
-    $build['#link_title'] = $this->configuration['link_title'];
+    if (isset($this->configuration['link'])) {
+      $build['#link'] = $this->configuration['link'];
+    }
+
+    if (isset($this->configuration['link_title'])) {
+      $build['#link_title'] = $this->configuration['link_title'];
+    }
 
     return $build;
   }
@@ -69,9 +65,8 @@ class AjaxCartBlock extends DecoupledBlockBase {
    */
   public function blockSubmit($form, FormStateInterface $form_state) {
     parent::blockSubmit($form, $form_state);
-    $this->configuration['cart_title'] = $form_state->getValue('cart_title');
+    $this->configuration['link'] = $form_state->getValue('link');
     $this->configuration['link_title'] = $form_state->getValue('link_title');
-    $this->configuration['button_title'] = $form_state->getValue('button_title');
   }
 
 }

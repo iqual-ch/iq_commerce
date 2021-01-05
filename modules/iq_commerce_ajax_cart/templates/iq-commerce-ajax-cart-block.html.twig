@@ -1,6 +1,6 @@
 <div class="iq-commerce-mini-cart">
   <div class="iq-commerce-mini-cart-toggle">
-    <a class="button" href="{{ url }}" title="{{ count_text|striptags }}">
+    <a class="button" href="{{ link }}" title="{{ label }}">
       <span class="icon"><i class="fas fa-shopping-cart"></i></span>
       <span class="count">{{ count }}</span>
     </a>
@@ -11,12 +11,13 @@
     </div>
     <div class="iq-commerce-mini-cart-body" data-mini-cart-content></div>
     <div class="iq-commerce-mini-cart-footer" >
-      <div class="iq-button iq-text" data-align="left" data-icon-position="right">
-        <a href="{{ url }}" title="{{ link_title }}" >
-          {{ link_title }}
-          <i class="fas fa-shopping-cart"></i>
-        </a>
-    </div>
+      {{ pattern('button', {
+        href: link,
+        title: link_title,
+        text: link_title,
+        alignment: "left",
+        button_icon: "fas fa-shopping-cart"
+      }) }}
     </div>
   </div>
 </div>

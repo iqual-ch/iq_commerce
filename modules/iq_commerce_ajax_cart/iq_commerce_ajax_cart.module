@@ -12,9 +12,9 @@ function iq_commerce_ajax_cart_theme($existing, $type, $theme, $path) {
   return [
     'iq_commerce_ajax_cart_block' => [
       'variables' => [
-        'cart_title' => NULL,
+        'label' => NULL,
+        'link' => NULL,
         'link_title' => NULL,
-        'button_title' => NULL,
       ],
     ],
   ];
