@@ -1,0 +1,94 @@
+@import '../../../../resources/sass/definitions';
+
+.related-product-item{
+
+  padding: 15px;
+  background: $color-grey5;
+  margin-bottom: 15px;
+
+  .title{
+    font-size: $font-size-h5;
+    line-height: $line-height-h5;
+    font-weight: $font-weight-h5;
+    font-style: $font-style-h5;
+    font-family: $font-family-h5;
+    color: $color-h5;
+    margin-bottom: $margin-bottom-h5;
+    @include fluid-type(320px, 991px, $font-size-min-h5, $font-size-h5);
+  }
+
+  .variations{
+    form{
+      display: flex;
+      margin-bottom: 7.5px;
+      margin-top: 7.5px;
+      select{
+        flex-basis: 100%;
+      }
+      .variation-price{
+        padding: 0 30px;
+        flex-basis: 200px;
+        line-height: 30px;
+        text-align: right;
+      }
+      button{
+        display: inline-block;
+        padding: $padding-buttons;
+        font-size: $font-size-buttons;
+        font-weight: $font-weight-buttons;
+        font-style: $font-style-buttons;
+        font-family: $font-family-buttons;
+        line-height: $line-height-buttons;
+        color: $font-color-buttons;
+        text-align: center;
+        text-decoration: none;
+        border-color: $border-color-buttons;
+        border-style: solid;
+        border-width: $border-width-buttons;
+        border-radius: $border-radius-buttons;
+        background: $background-color-buttons;
+        transition: $transition-default;
+        white-space: nowrap;
+        cursor: pointer;
+        &:hover,
+        &:focus  {
+          background-color: $background-color-hover-buttons;
+          color: $font-color-hover-buttons;
+          border-color: $border-color-hover-buttons;
+          transition: $transition-default;
+          text-decoration: none;
+          i{
+            color: $font-color-hover-buttons;
+            transition: $transition-default;
+          }
+        }
+        &:active{
+          background-color: $background-color-active-buttons;
+          color: $font-color-active-buttons;
+          border-color: $border-color-active-buttons;
+          transition: $transition-default;
+          text-decoration: none;
+          i{
+            color: $font-color-active-buttons;
+          }
+        }
+        &:disabled{
+          background-color: $color-grey4;
+          border-color: $color-grey4;
+          color: $color-grey5;
+          i{
+            color: $color-grey5;
+          }
+        }
+      }
+    }
+
+    .add-variation{
+      cursor: pointer;
+      &::before{
+        content: '+';
+        margin-right: 5px;
+      }
+    }
+  }
+}
