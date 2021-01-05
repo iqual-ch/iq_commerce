@@ -19,29 +19,24 @@
  * @ingroup themeable
  */
 #}
-{{ attach_library('iq_commerce/product') }}
 {{ attach_library('ui_patterns/img.img') }}
 {{ attach_library('ui_patterns/text.text') }}
 <article{{ attributes.addClass('pd-live') }}>
   <div class="row iq-row">
     <div class="col-xs-12 col-sm-6 iq-column product-image">
-      <div class="iq-image-slider" data-speed="1" data-arrow-left="fas fa-chevron-left" data-arrow-right="fas fa-chevron-right" data-navigation="fas fa-circle" >
-        {% if product.variation_field_iq_commerce_images %}
-          {% set images = product.variation_field_iq_commerce_images %}
-        {% else %}
-          {% set images = product_entity.field_iq_commerce_images %}
-        {% endif %}
-
+      <div class="hidden" data-img-src>
+        {% set images = product_entity.field_iq_commerce_images %}
+        {{ product.variation_field_iq_commerce_images }}
         {% for media in images %}
-        {{ pattern('img', {
-          image_img: file_url(media.entity.field_media_image.entity.uri.value),
-          image_title: media.entity.name.value,
-          image_alt: media.entity.field_media_image.entity.alt,
-          lightbox: 'lightbox'
-        }) }}
+          {{ pattern('img', {
+            image_img: media.entity.field_media_image.entity.uri.value|image_style('product_large') ,
+            image_title: media.entity.name.value,
+            image_alt: media.entity.field_media_image.entity.alt,
+            lightbox: 'lightbox'
+          }) }}
         {% endfor %}
-
       </div>
+      <div class="iq-image-slider" data-speed="1" data-arrow-left="fas fa-chevron-left" data-arrow-right="fas fa-chevron-right" data-navigation="fas fa-circle" ></div>
     </div>
     <div class="col-xs-12 col-sm-6 iq-column product-information">
       <div class="iq-text">
@@ -52,8 +47,8 @@
           {{product_entity.field_iq_commerce_lead.value|raw}}
         </div>
       </div>
-      {{- product|without('variation_attributes', 'field_iq_commerce_lead', 'variation_price', 'variation_sku', 'variation_field_images') -}}
+      {{- product|without('variation_attributes', 'field_iq_commerce_lead', 'variation_price', 'variation_sku', 'variation_field_iq_commerce_images') -}}
     </div>
   </div>
   {{ product_entity.field_pagedesigner_content|view({label: 'hidden', type: 'pagedesigner_formatter', settings: {}})}}
-  </article>
+</article>
