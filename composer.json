@@ -20,6 +20,7 @@
     "iqual/iq_progressive_decoupler": "*",
     "drupal/term_reference_tree": "*",
     "drupal/twig_tweak": "*",
-    "drupal/swiftmailer": "*"
+    "drupal/swiftmailer": "*",
+    "drupal/commerce_cart_api": "*"
   }
 }

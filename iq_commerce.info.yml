@@ -19,3 +19,4 @@ dependencies:
   - twig_tweak:twig_tweak
   - drupal:swiftmailer
   - commerce_cart_api:commerce_cart_api
+  - iq_progressive_decoupler:iq_progressive_decoupler
