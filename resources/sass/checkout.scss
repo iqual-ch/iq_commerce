@@ -150,6 +150,9 @@
 
       .order-total-line{
         padding: 0 15px;
+        .order-total-line-value{
+          width: 140px;
+        }
       }
 
       .form-actions{
@@ -195,7 +198,33 @@
   margin-left: auto;
   margin-right: auto;
   padding: 0 15px;
+
+  .checkout-pane-login{
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0 -15px;
+    .form-wrapper__login-option{
+      padding: 0 15px;
+      @media only screen and (min-width: 768px) {
+        flex-basis: 50%;
+      }
+    }
+  }
+
   .layout-checkout-form{
+
+    .checkout-pane-order-summary{
+      position: sticky;
+      top: 30px;
+
+      .order-total-line{
+        padding-right: 0;
+        .order-total-line-value{
+          width: 140px;
+        }
+      }
+    }
+
     .fieldset-legend{
       display: block;
       font-size: $font-size-h3;
@@ -312,10 +341,6 @@
           text-align: right;
         }
       }
-    }
-
-    .order-total-line{
-      padding-right: 0;
     }
 
     a[href*="cart"]{
