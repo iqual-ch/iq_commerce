@@ -6,7 +6,7 @@ use Drupal\Core\Form\FormStateInterface;
 use Drupal\iq_progressive_decoupler\Plugin\Block\DecoupledBlockBase;
 
 /**
- * Base block for decoupling.
+ * AJAX Cart Block.
  *
  * @Block(
  *   id = "iq_commerce_ajax_cart_block",

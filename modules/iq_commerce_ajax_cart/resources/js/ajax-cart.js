@@ -79,27 +79,31 @@
           'Content-Type': 'application/json',
         },
         success: function (cartData) {
-          var $target = $('[data-mini-cart-content]').html('');
-          var template = Twig.twig({data: drupalSettings.progressive_decoupler['block-ajaxcartblock'].template});
-          var pattern = drupalSettings.progressive_decoupler['block-ajaxcartblock'].ui_pattern;
-          cartData[0].order_items.forEach(function(item){
-            var $item = $(template.render({
-              title: item.title,
-              product_id: item.purchased_entity.product_entity.product_id,
-              variation_id: item.purchased_entity.variation_id,
-              quantity: parseInt(item.quantity),
-              price: item.total_price.formatted
-            }));
-            $(document).trigger('ajax-cart-after-item-rendered[' + pattern + ']', {
-              item: $item,
-              order: {
-                order_id: item.order_id,
-                order_item_id: item.order_item_id,
-              },
+          Object.keys(drupalSettings.progressive_decoupler).filter(function(key){
+            return drupalSettings.progressive_decoupler[key].type == 'iq_commerce_ajax_cart_block'
+          }).forEach(function(blockID){
+            let $blockElement = $('#' + blockID);
+            let blockData = drupalSettings.progressive_decoupler[blockID];
+            let $target = $blockElement.find('[data-mini-cart-content]').html('');
+            let template = Twig.twig({data: blockData.template});
+            let pattern = blockData.ui_pattern;
+
+            cartData[0].order_items.forEach(function(item){
+
+              let fieldMapper = new iq_progessive_decoupler_FieldMapper(item, blockData.field_mapping);
+              let $item = $(template.render(fieldMapper.applyMappging()));
+
+              $(document).trigger('ajax-cart-after-item-rendered[' + pattern + ']', {
+                item: $item,
+                order: {
+                  order_id: item.order_id,
+                  order_item_id: item.order_item_id,
+                },
+              });
+              $target.append($item);
             });
-            $target.append($item);
+            $(document).trigger('ajax-cart-after-block-rendered[' + pattern + ']', $target);
           });
-          $(document).trigger('ajax-cart-after-block-rendered[' + pattern + ']', $target);
 
           // add additionalData to eventTrigger
           var updateData = {
