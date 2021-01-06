@@ -11,7 +11,7 @@
       <div class="item-update">
         <div>
           <button class="remove-one" data-increase-item-quantity="-1" aria-label="{{ label_remove_one }}"><i class="fas fa-minus"></i></button>
-          <input name="quantity" type="number" min="0" aria-label="{{ label_quantity }}" value="{{ quantity }}" data-item-quantity />
+          <input name="quantity" type="number" min="0" aria-label="{{ label_quantity }}" value="{{ quantity|number_format(0) }}" data-item-quantity />
           <button class="add-one" data-increase-item-quantity="1" aria-label="{{ label_add_one }}" type="button" ><i class="fas fa-plus"></i></button>
         </div>
       </div>

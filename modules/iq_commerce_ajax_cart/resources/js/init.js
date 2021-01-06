@@ -19,7 +19,7 @@
           return obj;
         }, {});
         Drupal.behaviors.iq_commerce_ajax_cart.getCsrfToken(function (csrfToken) {
-          Drupal.behaviors.iq_commerce_ajax_cart.addToCart(csrfToken, orderProductData['variation_type'], parseInt(orderProductData['variation_id']), parseInt(orderProductData['quantity']));
+          Drupal.behaviors.iq_commerce_ajax_cart.addToCart(csrfToken, 'commerce_product_variation', parseInt(orderProductData['variation_id']), parseInt(orderProductData['quantity']));
         });
       });
     });
@@ -34,13 +34,12 @@
         e.preventDefault();
 
         var orderProductData = {
-          'variation_type' : 'commerce_product_variation',
           'variation_id' : $(this).attr('action').split('v=')[1],
           'quantity' : $(this).find('input[name*="quantity"]').val()
         }
 
         Drupal.behaviors.iq_commerce_ajax_cart.getCsrfToken(function (csrfToken) {
-          Drupal.behaviors.iq_commerce_ajax_cart.addToCart(csrfToken, orderProductData['variation_type'], parseInt(orderProductData['variation_id']), parseInt(orderProductData['quantity']));
+          Drupal.behaviors.iq_commerce_ajax_cart.addToCart(csrfToken, 'commerce_product_variation', parseInt(orderProductData['variation_id']), parseInt(orderProductData['quantity']));
         });
       });
     });
