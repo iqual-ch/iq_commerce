@@ -31,7 +31,7 @@ class IqCommerceProductSettingsForm extends ConfigFormBase
    */
   public function buildForm(array $form, FormStateInterface $form_state)
   {
-    $iqCommerceProductSettingsConfig = \Drupal::config('iq_commerce_product.settings');
+    $iqCommerceProductSettingsConfig = \Drupal::config('iq_commerce.product.settings');
     $form['general'] = [
       '#type' => 'textarea',
       '#title' => $this->t('IQ Commerce Product settings'),
@@ -69,7 +69,7 @@ class IqCommerceProductSettingsForm extends ConfigFormBase
    */
   public function submitForm(array &$form, FormStateInterface $form_state)
   {
-    $this->config('iq_commerce_product.settings')
+    $this->config('iq_commerce.product.settings')
       ->set('general', Yaml::encode($form_state->getValue('general')))
       ->save();
 
@@ -83,14 +83,14 @@ class IqCommerceProductSettingsForm extends ConfigFormBase
    */
   protected function getEditableConfigNames()
   {
-    return ['iq_commerce_product.settings'];
+    return ['iq_commerce.product.settings'];
   }
 
   /**
    * Helper function to return the yml product settings parsed in array.
    */
   public static function getIqCommerceProductSettings() {
-    $iqCommerceProductSettingsConfig = \Drupal::config('iq_commerce_product.settings');
+    $iqCommerceProductSettingsConfig = \Drupal::config('iq_commerce.product.settings');
     return YamlParser::parse(YamlSerializer::decode($iqCommerceProductSettingsConfig->get('general')));
   }
 

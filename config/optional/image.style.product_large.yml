@@ -1,0 +1,15 @@
+uuid: e1cd5ed8-9a72-484b-ab16-b7429036804f
+langcode: de
+status: true
+dependencies: {  }
+name: product_large
+label: 'Produkt gross'
+effects:
+  61c71295-9aab-4799-b75a-f1acfd945860:
+    uuid: 61c71295-9aab-4799-b75a-f1acfd945860
+    id: image_scale
+    weight: 1
+    data:
+      width: 800
+      height: 800
+      upscale: false
