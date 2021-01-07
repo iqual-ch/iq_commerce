@@ -21,6 +21,8 @@ checkout:
   css:
     theme:
       resources/css/checkout.css: {}
+  js:
+    resources/js/checkout.js:  {}
 
 customer:
   css:

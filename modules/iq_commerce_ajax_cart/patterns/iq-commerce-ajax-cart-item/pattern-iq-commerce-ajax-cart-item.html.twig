@@ -2,7 +2,7 @@
   <div>
     <div class="item-header">
       <a href="/product/{{ product_id }}" >{{ title }}</a>
-      <button aria-label="{{ label_delete }}" type="button" class="remove-all" data-remove-item>
+      <button aria-label="{{ label_delete }}" title="{{ label_delete }}" class="remove-all" data-remove-item>
         <i class="fas fa-trash-alt"></i>
       </button>
     </div>
@@ -10,9 +10,9 @@
     <div class="item-body">
       <div class="item-update">
         <div>
-          <button class="remove-one" data-increase-item-quantity="-1" aria-label="{{ label_remove_one }}"><i class="fas fa-minus"></i></button>
+          <button class="remove-one" data-increase-item-quantity="-1" aria-label="{{ label_remove_one }}" title="{{ label_remove_one }}"><i class="fas fa-minus"></i></button>
           <input name="quantity" type="number" min="0" aria-label="{{ label_quantity }}" value="{{ quantity|number_format(0) }}" data-item-quantity />
-          <button class="add-one" data-increase-item-quantity="1" aria-label="{{ label_add_one }}" type="button" ><i class="fas fa-plus"></i></button>
+          <button class="add-one" data-increase-item-quantity="1" aria-label="{{ label_add_one }}" title="{{ label_add_one }}"><i class="fas fa-plus"></i></button>
         </div>
       </div>
       <strong class="item-price">{{ price }}</strong>

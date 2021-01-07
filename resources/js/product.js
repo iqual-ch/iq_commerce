@@ -1,13 +1,11 @@
 (function ($, Drupal) {
 
-
-
   'use strict';
 
   /**
    * Behaviors.
    */
-  Drupal.behaviors.iq_commerce_shop = {
+  Drupal.behaviors.iq_commerce_product_detail = {
     attach: function (context, settings) {
 
       $('.iq-image-slider').each(function () {
