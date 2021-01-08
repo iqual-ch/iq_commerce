@@ -1,6 +1,6 @@
 (function ($) {
   $(document).on("iq-commerce-cart-add-after", function (e, orderData) {
-    if (orderData.related_products.length) {
+    if (orderData.related_products && orderData.related_products.length) {
       Object.keys(drupalSettings.progressive_decoupler).filter(function(key){
         return drupalSettings.progressive_decoupler[key].type == 'iq_commerce_related_product_block'
       }).forEach(function(blockID){
