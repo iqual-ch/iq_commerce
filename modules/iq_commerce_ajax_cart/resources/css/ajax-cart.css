@@ -6,8 +6,9 @@
   display: block;
 }
 
-.iq-commerce-mini-cart.show .iq-commerce-mini-cart-content{
-  display: block;
+.iq-commerce-mini-cart-content.loading .iq-commerce-mini-cart-header,
+.iq-commerce-mini-cart-content.loading .iq-commerce-mini-cart-footer{
+  display: none;
 }
 
 .iq-commerce-mini-cart-toggle a,
@@ -25,6 +26,10 @@
     border-radius: 50%;
     font-size: 0.75rem;
     background: #f9f9f9;
+}
+
+.iq-commerce-mini-cart-toggle .count:empty{
+  display: none;
 }
 
 .iq-commerce-mini-cart-content {
@@ -117,6 +122,17 @@
 
 .iq-commerce-mini-cart-content .iq-commerce-mini-cart-header .title{
   font-weight: 700;
+}
+
+.iq-commerce-mini-cart-content .iq-commerce-mini-cart-footer .total{
+  display: flex;
+  font-weight: 700;
+  justify-content: space-between;
+  padding: 15px 0;
+}
+
+.iq-commerce-mini-cart-content .iq-commerce-mini-cart-footer .total .total-value{
+  text-align: right;
 }
 
 .iq-commerce-mini-cart-content .iq-commerce-mini-cart-footer .iq-button a{

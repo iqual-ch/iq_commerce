@@ -88,21 +88,28 @@
             let template = Twig.twig({data: blockData.template});
             let pattern = blockData.ui_pattern;
 
-            cartData[0].order_items.forEach(function(item){
+            if (cartData && cartData[0] && cartData[0].order_items.length) {
+              cartData[0].order_items.forEach(function(item){
 
-              let fieldMapper = new iq_progessive_decoupler_FieldMapper(item, blockData.field_mapping);
-              let $item = $(template.render(fieldMapper.applyMappging()));
+                let fieldMapper = new iq_progessive_decoupler_FieldMapper(item, blockData.field_mapping);
+                let $item = $(template.render(fieldMapper.applyMappging()));
 
-              $(document).trigger('ajax-cart-after-item-rendered[' + pattern + ']', {
-                item: $item,
-                order: {
-                  order_id: item.order_id,
-                  order_item_id: item.order_item_id,
-                },
+                $(document).trigger('ajax-cart-after-item-rendered[' + pattern + ']', {
+                  item: $item,
+                  order: {
+                    order_id: item.order_id,
+                    order_item_id: item.order_item_id,
+                  },
+                });
+                $target.append($item);
               });
-              $target.append($item);
-            });
-            $(document).trigger('ajax-cart-after-block-rendered[' + pattern + ']', $target);
+
+              $blockElement.find('[data-total-value]').text(cartData[0].total_price.formatted);
+              $blockElement.find('[data-cart-content-holder]').removeClass('loading');
+              $(document).trigger('ajax-cart-after-block-rendered[' + pattern + ']', $target);
+            }
+
+
           });
 
           // add additionalData to eventTrigger

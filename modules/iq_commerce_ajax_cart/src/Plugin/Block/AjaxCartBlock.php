@@ -33,6 +33,17 @@ class AjaxCartBlock extends DecoupledBlockBase {
       '#default_value' => isset($this->configuration['link_title']) ? $this->configuration['link_title'] : 'Cart',
     ];
 
+    $form['label_total'] = [
+      '#type' => 'textfield',
+      '#title' => $this->t('Label Total'),
+      '#default_value' => isset($this->configuration['label_total']) ? $this->configuration['label_total'] : 'Total',
+    ];
+
+    $form['label_cart_empty'] = [
+      '#type' => 'textfield',
+      '#title' => $this->t('Label Cart empty'),
+      '#default_value' => isset($this->configuration['label_cart_empty']) ? $this->configuration['label_cart_empty'] : 'Empty',
+    ];
     return $form;
   }
 
@@ -57,6 +68,14 @@ class AjaxCartBlock extends DecoupledBlockBase {
       $build['#link_title'] = $this->configuration['link_title'];
     }
 
+    if (isset($this->configuration['label_cart_empty'])) {
+      $build['#label_cart_empty'] = $this->configuration['label_cart_empty'];
+    }
+
+    if (isset($this->configuration['label_total'])) {
+      $build['#label_total'] = $this->configuration['label_total'];
+    }
+
     return $build;
   }
 
@@ -67,6 +86,8 @@ class AjaxCartBlock extends DecoupledBlockBase {
     parent::blockSubmit($form, $form_state);
     $this->configuration['link'] = $form_state->getValue('link');
     $this->configuration['link_title'] = $form_state->getValue('link_title');
+    $this->configuration['label_total'] = $form_state->getValue('label_total');
+    $this->configuration['label_cart_empty'] = $form_state->getValue('label_cart_empty');
   }
 
 }

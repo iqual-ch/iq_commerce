@@ -33,13 +33,33 @@
       $(this).on('submit', function (e) {
         e.preventDefault();
 
-        var orderProductData = {
-          'variation_id' : $(this).attr('action').split('v=')[1],
-          'quantity' : $(this).find('input[name*="quantity"]').val()
+        let variationId = $(this).attr('action').split('v=')[1];
+        let quantity  = parseInt($(this).find('input[name*="quantity"]').val());
+        if (!variationId) {
+          let attributes = $(this).serializeArray().reduce(function(accumulator, item){
+            if (/purchased_entity\[0\]\[(.*)\]\[(.*)\]/g.exec(item.name) && /purchased_entity\[0\]\[(.*)\]\[(.*)\]/g.exec(item.name)[1] == "attributes") {
+              accumulator[/purchased_entity\[0\]\[attributes]\[(.*)\]/g.exec(item.name)[1]] = item.value
+            }
+            return accumulator;
+          }, []);
+
+          let mapping = drupalSettings.add_to_ajax_cart.mapping_varation_attributes;
+
+          variationId = parseInt(Object.keys(mapping).filter(function(key){
+            let found = true;
+            Object.keys(attributes).forEach(function(attribute){
+              if (mapping[key][attribute] != attributes[attribute]) {
+                found = false;
+              }
+            })
+            return found;
+          })[0]);
         }
 
+        variationId = parseInt(variationId);
+
         Drupal.behaviors.iq_commerce_ajax_cart.getCsrfToken(function (csrfToken) {
-          Drupal.behaviors.iq_commerce_ajax_cart.addToCart(csrfToken, 'commerce_product_variation', parseInt(orderProductData['variation_id']), parseInt(orderProductData['quantity']));
+          Drupal.behaviors.iq_commerce_ajax_cart.addToCart(csrfToken, 'commerce_product_variation', variationId, quantity);
         });
       });
     });
@@ -62,7 +82,7 @@
 
     let totalQuantity = 0
 
-    if (updateData.cartData[0].order_items.length) {
+    if (updateData.cartData[0] && updateData.cartData[0].order_items && updateData.cartData[0].order_items.length) {
       totalQuantity = updateData.cartData[0].order_items.map(function (item) {
         return Math.round(item.quantity)
       }).reduce(function (a, b) {
@@ -70,8 +90,9 @@
       });
     }
 
-    $('.iq-commerce-mini-cart .count').text(totalQuantity);
-
+    if (totalQuantity) {
+      $('.iq-commerce-mini-cart .count').text(totalQuantity);
+    }
   });
 
   $(document).on("iq-commerce-cart-remove-after", function (e, orderData) {
