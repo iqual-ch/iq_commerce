@@ -24,7 +24,7 @@ settings:
   cart_title: null
   link_title: 'Go to cart'
   button_title: null
-  field_mapping: '"title:\r\n  value: item.title\r\nproduct_id:\r\n  value: item.purchased_entity.product_entity.product_id\r\nvariation_id:\r\n  value: item.purchased_entity.variation_id\r\nquantity:\r\n  value: item.quantity\r\nprice:\r\n  value: item.total_price.formatted\r\nlabel_quantity:\r\n  type: static\r\n  value: Anzahl Artikel\r\nlabel_remove_one:\r\n  type: static\r\n  value: Anzahl -1\r\nlabel_add_one:\r\n  type: static\r\n  value: Anzahl +1\r\nlabel_delete:\r\n  type: static\r\n  value: Artikel entfernen"'
+  field_mapping: '"title:\r\n  value: item.title\r\nproduct_id:\r\n  value: item.purchased_entity.product_id\r\nvariation_id:\r\n  value: item.purchased_entity.variation_id\r\nquantity:\r\n  value: item.quantity\r\nprice:\r\n  value: item.total_price.formatted\r\nlabel_quantity:\r\n  type: static\r\n  value: Anzahl Artikel\r\nlabel_remove_one:\r\n  type: static\r\n  value: Anzahl -1\r\nlabel_add_one:\r\n  type: static\r\n  value: Anzahl +1\r\nlabel_delete:\r\n  type: static\r\n  value: Artikel entfernen"'
   link: /de/cart
 visibility:
   advanced_menu_position:

@@ -91,7 +91,7 @@
             if (cartData && cartData[0] && cartData[0].order_items.length) {
               cartData[0].order_items.forEach(function(item){
 
-                let fieldMapper = new iq_progessive_decoupler_FieldMapper(item, blockData.field_mapping);
+                let fieldMapper = new iq_progressive_decoupler_FieldMapper(item, blockData.field_mapping);
                 let $item = $(template.render(fieldMapper.applyMappging()));
 
                 $(document).trigger('ajax-cart-after-item-rendered[' + pattern + ']', {

@@ -25,7 +25,7 @@
           });
 
           Object.keys(products).forEach(function(product_id){
-            let fieldMapper = new iq_progessive_decoupler_FieldMapper(products[product_id], blockData.field_mapping);
+            let fieldMapper = new iq_progressive_decoupler_FieldMapper(products[product_id], blockData.field_mapping);
             let $item = $(template.render(fieldMapper.applyMappging()));
             $(document).trigger('related-product-item-rendered[' + pattern + ']', {
               item: $item
