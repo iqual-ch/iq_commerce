@@ -21,6 +21,7 @@
     "drupal/term_reference_tree": "*",
     "drupal/twig_tweak": "*",
     "drupal/swiftmailer": "*",
-    "drupal/commerce_cart_api": "*"
+    "drupal/commerce_cart_api": "*",
+    "drupal/iq_entity_browsers": "*"
   }
 }

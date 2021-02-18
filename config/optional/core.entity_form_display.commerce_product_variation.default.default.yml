@@ -3,11 +3,14 @@ status: true
 dependencies:
   config:
     - commerce_product.commerce_product_variation_type.default
-    - entity_browser.browser.media_entity_browser
+    - entity_browser.browser.iq_image_browser
+    - field.field.commerce_product_variation.default.attribute_color
     - field.field.commerce_product_variation.default.field_iq_commerce_images
+    - field.field.commerce_product_variation.default.weight
   module:
     - commerce_price
     - entity_browser
+    - physical
 _core:
   default_config_hash: dDLA40Axom_QFA79EWUpe_bWXWE8I_7MijzPkslbVfA
 id: commerce_product_variation.default.default
@@ -20,14 +23,15 @@ content:
     weight: 5
     region: content
     settings:
-      entity_browser: media_entity_browser
-      field_widget_display: label
-      field_widget_edit: true
+      entity_browser: iq_image_browser
+      field_widget_display: rendered_entity
+      field_widget_display_settings:
+        view_mode: default
       field_widget_remove: true
+      field_widget_replace: true
+      open: true
       selection_mode: selection_append
-      field_widget_replace: false
-      open: false
-      field_widget_display_settings: {  }
+      field_widget_edit: false
     third_party_settings: {  }
   langcode:
     type: language_select
@@ -61,6 +65,22 @@ content:
     weight: 4
     settings:
       display_label: true
+    third_party_settings: {  }
+    region: content
+  title:
+    type: string_textfield
+    weight: -5
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  weight:
+    type: physical_measurement_default
+    weight: 91
+    settings:
+      default_unit: ''
+      allow_unit_change: true
     third_party_settings: {  }
     region: content
 hidden:
