@@ -222,7 +222,7 @@
 
         <tr>
       <![endif]-->
-              {% if (billing_information or shipping_information) %}
+              {% if (billing_information or shipping_information or order_entity.field_iq_commerce_comment.value) %}
               {% if billing_information %}
               <!--[if mso | IE]>
             <td
@@ -262,6 +262,26 @@
               <!--[if mso | IE]>
             </td>
           <![endif]-->
+              {% endif %}
+              {% if order_entity.field_iq_commerce_comment.value %}
+                <!--[if mso | IE]>
+                <td
+                    class="" style="vertical-align:top;width:300px;"
+                >
+                <![endif]-->
+                <div class="mj-column-per-50 mj-outlook-group-fix" style="font-size:0px;text-align:left;direction:ltr;display:inline-block;vertical-align:top;width:100%;">
+                  <table border="0" cellpadding="0" cellspacing="0" role="presentation" style="vertical-align:top;" width="100%">
+                    <tr>
+                      <td align="left" style="font-size:0px;padding:10px 25px;word-break:break-word;">
+                        <div style="font-family:'Open Sans', Helvetica, Arial, sans-serif;font-size:16px;line-height:1.2;text-align:left;color:#000000;">
+                          <p><strong>{{ 'Notes'|t }}</strong></p> {% block order_entity.field_iq_commerce_comment.value %} {{ order_entity.field_iq_commerce_comment.value }} {% endblock %}</div>
+                      </td>
+                    </tr>
+                  </table>
+                </div>
+                <!--[if mso | IE]>
+                </td>
+                <![endif]-->
               {% endif %}
               {% endif %}
               <!--[if mso | IE]>

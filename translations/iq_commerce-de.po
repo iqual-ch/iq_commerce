@@ -122,3 +122,12 @@ msgstr "Ihre Bestellnummer lautet @number."
 
 msgid "You can view your order on your account page when logged in."
 msgstr "Sie können Ihre Bestellung auf Ihrer Kontoseite anzeigen, wenn Sie angemeldet sind."
+
+msgid "Additional Information"
+msgstr "Zusätzliche Information"
+
+msgid "Order notes"
+msgstr "Bestellhinweise"
+
+msgid "Back to Cart"
+msgstr "Zurück zum Warenkorb"

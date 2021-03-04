@@ -22,8 +22,10 @@ class EntityReferenceNormalizer extends EntityReferenceNormalizerBase {
    */
   public function __construct(EntityRepositoryInterface $entity_repository, RouteMatchInterface $route_match, array $commerce_cart_api) {
     $config = IqCommerceProductSettingsForm::getIqCommerceProductSettings();
-    foreach ($config['normalize_fields'] as $field) {
-      $commerce_cart_api['normalized_entity_references'][] = $field;
+    if (!empty($config['normalize_fields'])) {
+      foreach ($config['normalize_fields'] as $field) {
+        $commerce_cart_api['normalized_entity_references'][] = $field;
+      }
     }
     parent::__construct($entity_repository, $route_match, $commerce_cart_api);
   }
