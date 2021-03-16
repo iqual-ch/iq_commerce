@@ -2,25 +2,27 @@
 
 use Drupal\commerce_product\Entity\ProductVariation;
 
-die();
-$products_to_be_published = \Drupal::entityQuery('commerce_product_variation')->condition('field_iq_commerce_publish_on', NULL, 'IS NOT NULL')
-  ->condition('status', 0)->execute();
-foreach ($products_to_be_published as $key => $value) {
-  $product = ProductVariation::load($value);
-  $publish_date = $product->field_iq_commerce_publish_on->value;
+$now = time();
 
-  if ($publish_date < time()) {
-    $product->set('status', 1);
-    $product->save();
+$products_to_be_published = ProductVariation::loadMultiple();
+foreach ($products_to_be_published as $key => $product) {
+  if ($product->hasField('field_iq_commerce_unpublish_on')) {
+    $unpublish_date = $product->field_iq_commerce_unpublish_on->value;
+  }
+  if ($product->hasField('field_iq_commerce_publish_on'))
+  {
+    $publish_date = $product->field_iq_commerce_publish_on->value;
+  }
+  if (!empty($publish_date) && $product->status->value == 0) {
+    if ($publish_date < $now && (empty($unpublish_date) || $unpublish_date > $now)) {
+      $product->setPublished(TRUE);
+      $product->save();
+    }
+  }
+  if (!empty($unpublish_date) && $product->status->value == 1) {
+    if ($unpublish_date < $now) {
+      $product->setPublished(FALSE);
+      $product->save();
+    }
   }
 }
-die();
-/** @var \Drupal\commerce_product\Entity\ProductVariation $product */
-$product = ProductVariation::load(852);
-$cart_expiration = $product->getThirdPartySetting('iq_commerce_scheduler', 'publish_on');
-var_dump($cart_expiration);
-$timestamp = time();
-$product->setThirdPartySetting('iq_commerce_scheduler','publish_on', $timestamp);
-$product->save();
-$cart_expiration = $product->getThirdPartySetting('iq_commerce_scheduler', 'publish_on');
-var_dump($cart_expiration);

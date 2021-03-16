@@ -4,6 +4,8 @@ dependencies:
   config:
     - commerce_product.commerce_product_variation_type.default
     - field.storage.commerce_product_variation.field_iq_commerce_publish_on
+  module:
+    - datetime
 id: commerce_product_variation.default.field_iq_commerce_publish_on
 field_name: field_iq_commerce_publish_on
 entity_type: commerce_product_variation
@@ -12,9 +14,7 @@ label: 'Publish on'
 description: ''
 required: false
 translatable: false
-default_value:
-  -
-    value: 1615905712
+default_value: {  }
 default_value_callback: ''
 settings: {  }
-field_type: timestamp
+field_type: datetime
