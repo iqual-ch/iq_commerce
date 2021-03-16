@@ -117,7 +117,9 @@ class AlterQuantity extends EditQuantity {
     $quantities = $form_state->getValue($this->options['id'], []);
     $save_cart = FALSE;
     foreach ($quantities as $row_index => $quantity) {
-      $quantity = $quantity['quantity-edit'];
+      if (!empty($quantity['quantity-edit'])) {
+        $quantity = $quantity['quantity-edit'];
+      }
       if (!is_numeric($quantity) || $quantity < 0) {
         // The input might be invalid if the #required or #min attributes
         // were removed by an alter hook.

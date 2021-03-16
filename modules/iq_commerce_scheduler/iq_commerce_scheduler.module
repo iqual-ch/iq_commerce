@@ -1,0 +1,42 @@
+<?php
+
+use Drupal\commerce_product\Entity\Product;
+
+/**
+ * Implements hook_cron().
+ */
+function iq_commerce_scheduler_cron()
+{
+
+  $product_query = \Drupal::entityQuery('commerce_product');
+  $now = time();
+  /*$or = $product_query->orConditionGroup();
+  $or->condition('field_iq_commerce_unpublish_on', $now, '<')
+    ->condition('field_iq_commerce_unpublish_on', NULL, 'IS NULL');*/
+
+  $products_to_be_published = $product_query
+    ->condition('status', 0)
+    ->execute();
+  $products_to_be_published = Product::loadMultiple();
+  foreach ($products_to_be_published as $key => $product) {
+    if ($product->hasField('field_iq_commerce_unpublish_on')) {
+      $unpublish_date = $product->field_iq_commerce_unpublish_on->value;
+    }
+    if ($product->hasField('field_iq_commerce_publish_on'))
+    {
+      $publish_date = $product->field_iq_commerce_publish_on->value;
+    }
+    if (!empty($publish_date) && $product->status->value == 0) {
+      if ($publish_date < $now && (empty($unpublish_date) || $unpublish_date > $now)) {
+        $product->setPublished(TRUE);
+        $product->save();
+      }
+    }
+    if (!empty($unpublish_date) && $product->status->value == 1) {
+      if ($unpublish_date < $now) {
+        $product->setPublished(FALSE);
+        $product->save();
+      }
+    }
+  }
+}
