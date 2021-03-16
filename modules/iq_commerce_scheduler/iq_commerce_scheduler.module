@@ -7,7 +7,7 @@ use Drupal\commerce_product\Entity\ProductVariation;
  */
 function iq_commerce_scheduler_cron()
 {
-  $now = time();
+  $now = date("Y-m-d",time());
   $products_to_be_published = ProductVariation::loadMultiple();
   foreach ($products_to_be_published as $key => $product) {
     if ($product->hasField('field_iq_commerce_unpublish_on')) {
@@ -18,13 +18,13 @@ function iq_commerce_scheduler_cron()
       $publish_date = $product->field_iq_commerce_publish_on->value;
     }
     if (!empty($publish_date) && $product->status->value == 0) {
-      if ($publish_date < $now && (empty($unpublish_date) || $unpublish_date > $now)) {
+      if ($publish_date <= $now && (empty($unpublish_date) || $unpublish_date > $now)) {
         $product->setPublished(TRUE);
         $product->save();
       }
     }
     if (!empty($unpublish_date) && $product->status->value == 1) {
-      if ($unpublish_date < $now) {
+      if ($unpublish_date <= $now) {
         $product->setPublished(FALSE);
         $product->save();
       }
