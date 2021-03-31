@@ -21,6 +21,8 @@
     &:active,
     &:focus{
       text-decoration: none;
+
+
     }
   }
 
@@ -45,6 +47,9 @@
     display: flex;
     flex-wrap: nowrap;
     margin-bottom: 15px;
+    * {
+      color: $color-standard;
+    }
     .title{
       flex-grow: 1;
       padding-right: 30px;
@@ -65,12 +70,14 @@
       .currency{
         padding-right: 5px;
         font-size: $font-size-small;
+        color: $color-small;
         padding-top: 0.3rem;
         line-height: 1;
       }
       .additional-text{
         padding-right: 5px;
         font-size: $font-size-small;
+        color: $color-small;
         padding-top: 0.3rem;
         line-height: 1;
       }
@@ -87,6 +94,12 @@
     margin-bottom: 15px;
     line-height: 1.2;
     display: block;
+    font-size: $font-size-standard;
+    color: $color-standard;
+    * {
+      font-size: $font-size-standard;
+      color: $color-standard;
+    }
   }
 
   .commerce-variation-add-to-cart-form{
@@ -100,30 +113,36 @@
       text-align: center;
       border-radius: $border-radius-buttons 0 0 $border-radius-buttons;
       max-width: 70px;
+      font-size: $font-size-standard;
+      color: $color-standard;
     }
     button{
       cursor: pointer;
       border: none;
       padding: 0 15px;
       background: $background-color-buttons;
-      // font-weight: 900;
-      // font-family: "Font Awesome 5 Free";
-      // -moz-osx-font-smoothing: grayscale;
-      // -webkit-font-smoothing: antialiased;
-      // display: inline-block;
-      // font-style: normal;
-      // font-variant: normal;
-      // text-rendering: auto;
-      // line-height: 1;
       font-size: $font-size-small;
-
-
       font-weight: $font-weight-buttons;
       font-style: $font-style-buttons;
       font-family: $font-family-buttons;
       color: $font-color-buttons;
-
       border-radius: 0 $border-radius-buttons $border-radius-buttons 0;
+      border-color: $border-color-buttons;
+      border-style: solid;
+      border-width: $border-width-buttons;
+      &:hover,
+      &:active,
+      &:focus{
+        background-color: $background-color-hover-buttons;
+        color: $font-color-hover-buttons;
+        border-color: $border-color-hover-buttons;
+        transition: $transition-default;
+        text-decoration: none;
+        i{
+          color: $font-color-hover-buttons;
+          transition: $transition-default;
+        }
+      }
       i{
         color: $color-white;
       }
@@ -150,6 +169,19 @@
     transition: $transition-default;
     margin-right: auto;
     margin-top: auto;
+    &:hover,
+    &:active,
+    &:focus{
+      background-color: $background-color-hover-buttons;
+      color: $font-color-hover-buttons;
+      border-color: $border-color-hover-buttons;
+      transition: $transition-default;
+      text-decoration: none;
+      i{
+        color: $font-color-hover-buttons;
+        transition: $transition-default;
+      }
+    }
     i{
       color: $font-color-buttons;
       transition: $transition-default;

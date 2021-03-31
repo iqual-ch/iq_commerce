@@ -75,6 +75,9 @@
     padding: 30px 30px 0 30px;
     flex-basis: 66.6666%;
     margin-bottom: 15px;
+    * {
+      color: $color-standard;
+    }
     .title{
       display: block;
       font-size: $font-size-h3;
@@ -92,12 +95,21 @@
     margin-bottom: 15px;
     line-height: 1.2;
     display: block;
+    font-size: $font-size-standard;
+    color: $color-standard;
+    * {
+      font-size: $font-size-standard;
+      color: $color-standard;
+    }
   }
 
   .variants{
     display: flex;
     flex-direction: column;
     margin-bottom: 15px;
+    * {
+      color: $color-standard;
+    }
     .commerce-variation-add-to-cart{
       padding: 5px 0;
       display: flex;
