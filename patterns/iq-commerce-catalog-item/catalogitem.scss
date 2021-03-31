@@ -21,8 +21,6 @@
     &:active,
     &:focus{
       text-decoration: none;
-
-
     }
   }
 
@@ -143,6 +141,24 @@
           transition: $transition-default;
         }
       }
+      &.loading{
+        i{
+          animation-name: spin;
+          animation-duration: 2000ms;
+          animation-iteration-count: infinite;
+          animation-timing-function: linear;
+          &::before{
+            content: "\f110"
+          }
+        }
+      }
+      &.success{
+        i{
+          &::before{
+            content: "\f00c";
+          }
+        }
+      }
       i{
         color: $color-white;
       }
@@ -189,4 +205,14 @@
     }
   }
 
+}
+
+
+@keyframes spin {
+  from {
+      transform:rotate(0deg);
+  }
+  to {
+      transform:rotate(360deg);
+  }
 }
