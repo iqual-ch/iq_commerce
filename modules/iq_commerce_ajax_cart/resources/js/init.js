@@ -1,5 +1,55 @@
 (function ($) {
 
+  Drupal.behaviors.iq_commerce_ajax_cart_init_forms = {
+    attach: function (context, settings) {
+
+      // bind cart update to forms - product
+      $('form.commerce-order-item-add-to-cart-form, context').once('add-to-cart-form-init').each(function () {
+        $(this).on('click', '.form-submit', function (e) {
+          $(this).parents('form').data('button-clicked', 'cart');
+        });
+        $(this).on('submit', function (e) {
+          e.preventDefault();
+
+          let variationId = $(this).attr('action').split('v=')[1];
+          let quantity = parseInt($(this).find('input[name*="quantity"]').val());
+          if (!variationId) {
+            let attributes = $(this).serializeArray().reduce(function (accumulator, item) {
+              if (/purchased_entity\[0\]\[(.*)\]\[(.*)\]/g.exec(item.name) && /purchased_entity\[0\]\[(.*)\]\[(.*)\]/g.exec(item.name)[1] == "attributes") {
+                accumulator[/purchased_entity\[0\]\[attributes]\[(.*)\]/g.exec(item.name)[1]] = item.value
+              }
+              return accumulator;
+            }, []);
+
+            let mapping = drupalSettings.add_to_ajax_cart.mapping_varation_attributes;
+
+            variationId = parseInt(Object.keys(mapping).filter(function (key) {
+              let found = true;
+              Object.keys(attributes).forEach(function (attribute) {
+                if (mapping[key][attribute] != attributes[attribute]) {
+                  found = false;
+                }
+              })
+              return found;
+            })[0]);
+          }
+
+          variationId = parseInt(variationId);
+
+          Drupal.behaviors.iq_commerce_ajax_cart.getCsrfToken(function (csrfToken) {
+            Drupal.behaviors.iq_commerce_ajax_cart.addToCart(csrfToken, 'commerce_product_variation', variationId, quantity);
+          });
+        });
+      });
+
+
+
+    }
+  };
+
+
+
+
   $(document).on("iq-commerce-cart-init", function (e) {
 
     // load cart on page load
@@ -13,63 +63,33 @@
         $(this).parents('form').data('button-clicked', 'cart');
       });
       $(this).on('submit', function (e) {
+        let trigger = $(this).find('button')[0];
         e.preventDefault();
         var orderProductData = $(this).serializeArray().reduce(function (obj, item) {
           obj[item.name] = item.value;
           return obj;
         }, {});
         Drupal.behaviors.iq_commerce_ajax_cart.getCsrfToken(function (csrfToken) {
-          Drupal.behaviors.iq_commerce_ajax_cart.addToCart(csrfToken, 'commerce_product_variation', parseInt(orderProductData['variation_id']), parseInt(orderProductData['quantity']));
+          Drupal.behaviors.iq_commerce_ajax_cart.addToCart(csrfToken, 'commerce_product_variation', parseInt(orderProductData['variation_id']), parseInt(orderProductData['quantity']), trigger);
         });
       });
     });
   });
 
-    // bind cart update to forms - product
-    $('form.commerce-order-item-add-to-cart-form').once('add-to-cart-form-init').each(function () {
-      $(this).on('click', '.form-submit', function (e) {
-        $(this).parents('form').data('button-clicked', 'cart');
-      });
-      $(this).on('submit', function (e) {
-        e.preventDefault();
-
-        let variationId = $(this).attr('action').split('v=')[1];
-        let quantity  = parseInt($(this).find('input[name*="quantity"]').val());
-        if (!variationId) {
-          let attributes = $(this).serializeArray().reduce(function(accumulator, item){
-            if (/purchased_entity\[0\]\[(.*)\]\[(.*)\]/g.exec(item.name) && /purchased_entity\[0\]\[(.*)\]\[(.*)\]/g.exec(item.name)[1] == "attributes") {
-              accumulator[/purchased_entity\[0\]\[attributes]\[(.*)\]/g.exec(item.name)[1]] = item.value
-            }
-            return accumulator;
-          }, []);
-
-          let mapping = drupalSettings.add_to_ajax_cart.mapping_varation_attributes;
-
-          variationId = parseInt(Object.keys(mapping).filter(function(key){
-            let found = true;
-            Object.keys(attributes).forEach(function(attribute){
-              if (mapping[key][attribute] != attributes[attribute]) {
-                found = false;
-              }
-            })
-            return found;
-          })[0]);
-        }
-
-        variationId = parseInt(variationId);
-
-        Drupal.behaviors.iq_commerce_ajax_cart.getCsrfToken(function (csrfToken) {
-          Drupal.behaviors.iq_commerce_ajax_cart.addToCart(csrfToken, 'commerce_product_variation', variationId, quantity);
-        });
-      });
-    });
-
-
   $(document).on("iq-commerce-cart-add-before", function (e, orderData) {
-
+    if (orderData.trigger) {
+      $(orderData.trigger).addClass('laoding');
+    }
   });
 
   $(document).on("iq-commerce-cart-add-after", function (e, orderData) {
+    if (orderData.trigger) {
+      $(orderData.trigger).removeClass('laoding');
+      $(orderData.trigger).addClass('success');
+      setTimeout(function(){
+        $(orderData.trigger).removeClass('success');
+      }, 5000);
+    }
     Drupal.behaviors.iq_commerce_ajax_cart.refreshCart('[data-mini-cart-content]', {
       showCart: true,
     });
@@ -92,6 +112,8 @@
 
     if (totalQuantity) {
       $('.iq-commerce-mini-cart .count').text(totalQuantity);
+    }else{
+      $('.iq-commerce-mini-cart .count').text('');
     }
   });
 

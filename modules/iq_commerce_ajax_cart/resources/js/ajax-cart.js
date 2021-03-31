@@ -12,11 +12,12 @@
           callback(data);
         });
     },
-    addToCart: function (csrfToken, purchasedEntityType, purchasedEntityId, quantity) {
+    addToCart: function (csrfToken, purchasedEntityType, purchasedEntityId, quantity, trigger = null) {
       var orderData = {
         purchased_entity_type: purchasedEntityType,
         purchased_entity_id: purchasedEntityId,
-        quantity: quantity
+        quantity: quantity,
+        trigger: trigger
       };
       $(document).trigger("iq-commerce-cart-add-before", [orderData]);
       $.ajax({
@@ -28,6 +29,9 @@
         },
         data: JSON.stringify([orderData]),
         success: function (orderData) {
+          if (trigger) {
+            orderData.trigger = trigger
+          }
           $(document).trigger("iq-commerce-cart-add-after", [orderData]);
         }
       });
@@ -84,11 +88,11 @@
           }).forEach(function(blockID){
             let $blockElement = $('#' + blockID);
             let blockData = drupalSettings.progressive_decoupler[blockID];
-            let $target = $blockElement.find('[data-mini-cart-content]').html('');
             let template = Twig.twig({data: blockData.template});
             let pattern = blockData.ui_pattern;
 
             if (cartData && cartData[0] && cartData[0].order_items.length) {
+              let $target = $blockElement.find(targetSelector).html('');
               cartData[0].order_items.forEach(function(item){
 
                 let fieldMapper = new iq_progressive_decoupler_FieldMapper(item, blockData.field_mapping);
@@ -107,6 +111,11 @@
               $blockElement.find('[data-total-value]').text(cartData[0].total_price.formatted);
               $blockElement.find('[data-cart-content-holder]').removeClass('loading');
               $(document).trigger('ajax-cart-after-block-rendered[' + pattern + ']', $target);
+            }
+            else{
+              $blockElement.find('[data-total-value]').text('');
+              $blockElement.find('[data-cart-content-holder]').addClass('loading');
+              $blockElement.find(targetSelector).html('<p class="empty">' + $blockElement.find(targetSelector).data('label-empty') + '</p>');
             }
 
 
