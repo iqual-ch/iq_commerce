@@ -1,11 +1,10 @@
-langcode: de
+langcode: en
 status: true
 dependencies: {  }
 name: product_large
 label: 'Produkt gross'
 effects:
   61c71295-9aab-4799-b75a-f1acfd945860:
-    uuid: 61c71295-9aab-4799-b75a-f1acfd945860
     id: image_scale
     weight: 1
     data:

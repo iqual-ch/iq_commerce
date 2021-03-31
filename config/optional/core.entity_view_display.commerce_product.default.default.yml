@@ -1,4 +1,4 @@
-langcode: de
+langcode: en
 status: true
 dependencies:
   config:
@@ -10,8 +10,6 @@ dependencies:
   module:
     - commerce_product
     - text
-_core:
-  default_config_hash: 10qgl6V_HwkrJufzsNCV75OpqOeMzzKDJb3BhaogmzQ
 id: commerce_product.default.default
 targetEntityType: commerce_product
 bundle: default

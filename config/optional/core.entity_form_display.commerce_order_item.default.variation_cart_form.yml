@@ -1,4 +1,4 @@
-langcode: de
+langcode: en
 status: true
 dependencies:
   config:
@@ -9,8 +9,6 @@ dependencies:
       - commerce_cart
       - commerce_product
       - commerce_variation_cart_form
-_core:
-  default_config_hash: ckTrNmHo6qD3KP5GGTjzA4UhBNN9vhLXRJqwMlT__E4
 id: commerce_order_item.default.variation_cart_form
 targetEntityType: commerce_order_item
 bundle: default

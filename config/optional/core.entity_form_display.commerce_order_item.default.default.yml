@@ -1,4 +1,4 @@
-langcode: de
+langcode: en
 status: true
 dependencies:
   config:
@@ -8,8 +8,6 @@ dependencies:
       - commerce_product
   module:
     - commerce_order
-_core:
-  default_config_hash: OLyelsZyDDqQPIGVz4oz8VpJvddm6C0heZtFpIHjEcI
 id: commerce_order_item.default.default
 targetEntityType: commerce_order_item
 bundle: default

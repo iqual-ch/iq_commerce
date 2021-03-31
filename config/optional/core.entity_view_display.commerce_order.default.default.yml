@@ -1,4 +1,4 @@
-langcode: de
+langcode: en
 status: true
 dependencies:
   config:
@@ -9,8 +9,6 @@ dependencies:
     - commerce_order
     - state_machine
     - user
-_core:
-  default_config_hash: evnV-nUZotGAM4kgVWKzCtGRJQMstQX5RxlGG7kx3fg
 id: commerce_order.default.default
 targetEntityType: commerce_order
 bundle: default
