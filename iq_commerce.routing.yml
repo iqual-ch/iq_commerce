@@ -6,18 +6,18 @@ iq_commerce.orders:
   requirements:
     _role: 'authenticated'
 
-iq_commerce.iq_commerce_settings:
-  path: '/admin/config/system/iq_commerce_settings'
+iq_commerce.email_settings:
+  path: '/admin/config/system/iq-commerce/email-settings'
   defaults:
     _form: '\Drupal\iq_commerce\Form\IqCommerceSettingsForm'
-    _title: 'Iq Commerce Settings'
+    _title: 'Iq Commerce E-Mail Settings'
   requirements:
     _permission: 'administer iq_commerce settings'
   options:
     _admin_route: TRUE
 
-iq_commerce.iq_commerce_product_settings:
-  path: '/admin/config/system/iq_commerce_product_settings'
+iq_commerce.product_settings:
+  path: '/admin/config/system/iq-commerce/product-settings'
   defaults:
     _form: '\Drupal\iq_commerce\Form\IqCommerceProductSettingsForm'
     _title: 'Iq Commerce Product Settings'

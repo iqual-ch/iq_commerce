@@ -10,6 +10,7 @@ use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\iq_commerce\Event\IqCommerceBeforeCartAddEvent;
 use Drupal\iq_commerce\Event\IqCommerceCartEvents;
 use Drupal\iq_commerce\Form\IqCommerceProductSettingsForm;
+use Drupal\iq_commerce_required_product\Form\RequiredProductSettingsForm;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
 class RequiredProductEventSubscriber implements EventSubscriberInterface {
@@ -73,9 +74,10 @@ class RequiredProductEventSubscriber implements EventSubscriberInterface {
       /** @var \Drupal\commerce_product\Entity\Product $purchased_entity */
       $purchased_entity = $this->entityRepository->getTranslationFromContext($purchased_entity);
 
-      // Get all required field references in the product from the settings.
-      $iqCommerceProductSettingsConfig = IqCommerceProductSettingsForm::getIqCommerceProductSettings();
-      $required_field_names = $iqCommerceProductSettingsConfig['required'];
+    // Get all required field references in the product from the settings.
+    $iqCommerceProductSettingsConfig = RequiredProductSettingsForm::getSettings();
+    $required_field_names = $iqCommerceProductSettingsConfig['required_product_fields'];
+
       /** If the required product is not in the cart, add it to the body. */
       foreach ($required_field_names as $required_field_name => $field_settings) {
         if ($purchased_entity->hasField($required_field_name)) {

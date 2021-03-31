@@ -1,0 +1,9 @@
+iq_commerce_required_product.required_product_settings:
+  path: '/admin/config/system/iq-commerce-settings/required-product'
+  defaults:
+    _form: '\Drupal\iq_commerce_required_product\Form\RequiredProductSettingsForm'
+    _title: 'Required Product Settings'
+  requirements:
+    _permission: 'administer iq_commerce settings'
+  options:
+    _admin_route: TRUE

@@ -1,0 +1,5 @@
+iq_commerce_related_product.related_product_settings:
+  route_name: iq_commerce_related_product.related_product_settings
+  title: 'Related product Settings'
+  weight: 100
+  base_route: iq_commerce.email_settings

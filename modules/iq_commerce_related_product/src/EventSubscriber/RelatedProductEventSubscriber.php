@@ -8,6 +8,7 @@ use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\iq_commerce\Event\IqCommerceCartEvents;
 use Drupal\iq_commerce\Form\IqCommerceProductSettingsForm;
 use Drupal\rest\ModifiedResourceResponse;
+use Drupal\iq_commerce_related_product\Form\RelatedProductSettingsForm;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Drupal\iq_commerce\Event\IqCommerceAfterCartAddEvent;
 
@@ -61,9 +62,10 @@ class RelatedProductEventSubscriber implements EventSubscriberInterface {
     $suggested_products = [];
     $response = $event->getResponse();
     $order_items = $response->getResponseData();
+
     // Get all related field references in the product from the settings.
-    $iqCommerceProductSettingsConfig = IqCommerceProductSettingsForm::getIqCommerceProductSettings();
-    $related_field_names = $iqCommerceProductSettingsConfig['related'];
+    $iqCommerceProductSettingsConfig = RelatedProductSettingsForm::getSettings();
+    $related_field_names = $iqCommerceProductSettingsConfig['related_product_fields'];
 
     /** @var \Drupal\commerce_order\Entity\OrderItem $order_item */
     foreach ($order_items as $order_item) {
