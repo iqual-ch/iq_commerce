@@ -19,7 +19,11 @@ function iq_commerce_scheduler_cron()
     }
     if (!empty($publish_date) && $product->status->value == 0) {
       if ($publish_date <= $now && (empty($unpublish_date) || $unpublish_date > $now)) {
+        // Publish the variation.
         $product->setPublished(TRUE);
+        $product->save();
+        // Publish the product as well just in case.
+        $product->getProduct()->setPublished(TRUE);
         $product->save();
       }
     }
