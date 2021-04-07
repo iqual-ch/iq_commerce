@@ -1084,6 +1084,7 @@ display:
             title: 0
             field_iq_commerce_lead: 0
             variations_target_id: 0
+            field_media_image: 0
             nothing: 0
             view_commerce_product_variation: 0
             nothing_1: 0
@@ -1384,6 +1385,8 @@ display:
             show_price: 1
             show_currency: 1
             price_format: '2'
+            attributes:
+              color: color
           group_column: target_id
           group_columns: {  }
           group_rows: 1
@@ -2160,8 +2163,171 @@ display:
       css_class: 'row iq-row iq-catalog'
       defaults:
         css_class: false
+        arguments: false
+        filters: false
+        filter_groups: false
       block_description: 'Product catalog by Category'
       display_description: ''
+      arguments: {  }
+      filters:
+        status:
+          value: '1'
+          table: commerce_product_field_data
+          field: status
+          plugin_id: boolean
+          entity_type: commerce_product
+          entity_field: status
+          id: status
+          expose:
+            operator: ''
+            operator_limit_selection: false
+            operator_list: {  }
+          group: 1
+        field_iq_commerce_category_target_id:
+          id: field_iq_commerce_category_target_id
+          table: commerce_product__field_iq_commerce_category
+          field: field_iq_commerce_category_target_id
+          relationship: none
+          group_type: group
+          admin_label: ''
+          operator: or
+          value: {  }
+          group: 2
+          exposed: true
+          expose:
+            operator_id: field_iq_commerce_category_target_id_op
+            label: Category
+            description: ''
+            use_operator: false
+            operator: field_iq_commerce_category_target_id_op
+            operator_limit_selection: false
+            operator_list: {  }
+            identifier: field_iq_commerce_category_target_id
+            required: false
+            remember: false
+            multiple: false
+            remember_roles:
+              authenticated: authenticated
+              author: '0'
+              editor: '0'
+              designer: '0'
+              anonymous: '0'
+            reduce: false
+          is_grouped: false
+          group_info:
+            label: ''
+            description: ''
+            identifier: ''
+            optional: true
+            widget: select
+            multiple: false
+            remember: false
+            default_group: All
+            default_group_multiple: {  }
+            group_items: {  }
+          reduce_duplicates: false
+          type: select
+          limit: true
+          vid: iq_commerce_category
+          hierarchy: true
+          error_message: true
+          plugin_id: taxonomy_index_tid
+        field_iq_commerce_tags_target_id:
+          id: field_iq_commerce_tags_target_id
+          table: commerce_product__field_iq_commerce_tags
+          field: field_iq_commerce_tags_target_id
+          relationship: none
+          group_type: group
+          admin_label: ''
+          operator: or
+          value: {  }
+          group: 2
+          exposed: true
+          expose:
+            operator_id: field_iq_commerce_tags_target_id_op
+            label: Tags
+            description: ''
+            use_operator: false
+            operator: field_iq_commerce_tags_target_id_op
+            operator_limit_selection: false
+            operator_list: {  }
+            identifier: field_iq_commerce_tags_target_id
+            required: false
+            remember: false
+            multiple: false
+            remember_roles:
+              authenticated: authenticated
+              author: '0'
+              editor: '0'
+              designer: '0'
+              anonymous: '0'
+            reduce: false
+          is_grouped: false
+          group_info:
+            label: ''
+            description: ''
+            identifier: ''
+            optional: true
+            widget: select
+            multiple: false
+            remember: false
+            default_group: All
+            default_group_multiple: {  }
+            group_items: {  }
+          reduce_duplicates: false
+          type: textfield
+          limit: true
+          vid: iq_commerce_tags
+          hierarchy: false
+          error_message: true
+          plugin_id: taxonomy_index_tid
+        langcode:
+          id: langcode
+          table: commerce_product
+          field: langcode
+          relationship: none
+          group_type: group
+          admin_label: ''
+          operator: in
+          value:
+            '***LANGUAGE_site_default***': '***LANGUAGE_site_default***'
+          group: '1'
+          exposed: false
+          expose:
+            operator_id: langcode_op
+            label: Originalsprache
+            description: null
+            use_operator: false
+            operator: langcode_op
+            operator_limit_selection: false
+            operator_list: {  }
+            identifier: langcode
+            required: false
+            remember: false
+            multiple: false
+            remember_roles:
+              authenticated: authenticated
+            reduce: false
+          is_grouped: false
+          group_info:
+            label: ''
+            description: ''
+            identifier: ''
+            optional: true
+            widget: select
+            multiple: false
+            remember: 0
+            default_group: All
+            default_group_multiple: {  }
+            group_items: {  }
+          entity_type: commerce_product
+          entity_field: langcode
+          plugin_id: language
+      filter_groups:
+        operator: AND
+        groups:
+          1: AND
+          2: OR
     cache_metadata:
       max-age: -1
       contexts:
@@ -2408,33 +2574,212 @@ display:
       tags:
         - 'config:field.storage.commerce_product.field_iq_commerce_lead'
         - 'config:field.storage.media.field_media_image'
-  page_1:
-    display_plugin: page
-    id: page_1
-    display_title: Page
+  block_3:
+    display_plugin: block
+    id: block_3
+    display_title: 'Product Catalog by Category (Exposed Filters)'
     position: 3
     display_options:
       display_extenders: {  }
-      path: product_catalog
       css_class: 'row iq-row iq-catalog'
       defaults:
         css_class: false
-      menu:
-        type: normal
-        title: 'Product Catalog'
-        description: ''
-        expanded: false
-        parent: ''
-        weight: 5
-        context: '0'
-        menu_name: main
-      enabled: false
+        arguments: false
+        filters: false
+        filter_groups: false
+        use_ajax: false
+        pager: false
+      block_description: 'Product catalog by Category (Exposed filters)'
+      display_description: ''
+      arguments: {  }
+      filters:
+        status:
+          value: '1'
+          table: commerce_product_field_data
+          field: status
+          plugin_id: boolean
+          entity_type: commerce_product
+          entity_field: status
+          id: status
+          expose:
+            operator: ''
+            operator_limit_selection: false
+            operator_list: {  }
+          group: 1
+        field_iq_commerce_category_target_id:
+          id: field_iq_commerce_category_target_id
+          table: commerce_product__field_iq_commerce_category
+          field: field_iq_commerce_category_target_id
+          relationship: none
+          group_type: group
+          admin_label: ''
+          operator: or
+          value: {  }
+          group: 2
+          exposed: true
+          expose:
+            operator_id: field_iq_commerce_category_target_id_op
+            label: Category
+            description: ''
+            use_operator: false
+            operator: field_iq_commerce_category_target_id_op
+            operator_limit_selection: false
+            operator_list: {  }
+            identifier: field_iq_commerce_category_target_id
+            required: false
+            remember: false
+            multiple: false
+            remember_roles:
+              authenticated: authenticated
+              author: '0'
+              editor: '0'
+              designer: '0'
+              anonymous: '0'
+            reduce: false
+          is_grouped: false
+          group_info:
+            label: ''
+            description: ''
+            identifier: ''
+            optional: true
+            widget: select
+            multiple: false
+            remember: false
+            default_group: All
+            default_group_multiple: {  }
+            group_items: {  }
+          reduce_duplicates: false
+          type: select
+          limit: true
+          vid: iq_commerce_category
+          hierarchy: true
+          error_message: true
+          plugin_id: taxonomy_index_tid
+        field_iq_commerce_tags_target_id:
+          id: field_iq_commerce_tags_target_id
+          table: commerce_product__field_iq_commerce_tags
+          field: field_iq_commerce_tags_target_id
+          relationship: none
+          group_type: group
+          admin_label: ''
+          operator: or
+          value: {  }
+          group: 2
+          exposed: true
+          expose:
+            operator_id: field_iq_commerce_tags_target_id_op
+            label: Tags
+            description: ''
+            use_operator: false
+            operator: field_iq_commerce_tags_target_id_op
+            operator_limit_selection: false
+            operator_list: {  }
+            identifier: field_iq_commerce_tags_target_id
+            required: false
+            remember: false
+            multiple: false
+            remember_roles:
+              authenticated: authenticated
+              author: '0'
+              editor: '0'
+              designer: '0'
+              anonymous: '0'
+            reduce: false
+          is_grouped: false
+          group_info:
+            label: ''
+            description: ''
+            identifier: ''
+            optional: true
+            widget: select
+            multiple: false
+            remember: false
+            default_group: All
+            default_group_multiple: {  }
+            group_items: {  }
+          reduce_duplicates: false
+          type: textfield
+          limit: true
+          vid: iq_commerce_tags
+          hierarchy: false
+          error_message: true
+          plugin_id: taxonomy_index_tid
+        langcode:
+          id: langcode
+          table: commerce_product
+          field: langcode
+          relationship: none
+          group_type: group
+          admin_label: ''
+          operator: in
+          value:
+            '***LANGUAGE_site_default***': '***LANGUAGE_site_default***'
+          group: 1
+          exposed: false
+          expose:
+            operator_id: langcode_op
+            label: Originalsprache
+            description: null
+            use_operator: false
+            operator: langcode_op
+            operator_limit_selection: false
+            operator_list: {  }
+            identifier: langcode
+            required: false
+            remember: false
+            multiple: false
+            remember_roles:
+              authenticated: authenticated
+            reduce: false
+          is_grouped: false
+          group_info:
+            label: ''
+            description: ''
+            identifier: ''
+            optional: true
+            widget: select
+            multiple: false
+            remember: false
+            default_group: All
+            default_group_multiple: {  }
+            group_items: {  }
+          entity_type: commerce_product
+          entity_field: langcode
+          plugin_id: language
+      filter_groups:
+        operator: AND
+        groups:
+          1: AND
+          2: OR
+      use_ajax: true
+      pager:
+        type: full
+        options:
+          items_per_page: 12
+          offset: 0
+          id: 0
+          total_pages: null
+          tags:
+            previous: '‹ Vorherige Seite'
+            next: 'Nächste Seite ›'
+            first: '« Erste Seite'
+            last: 'Letzte Seite »'
+          expose:
+            items_per_page: false
+            items_per_page_label: 'Items per page'
+            items_per_page_options: '5, 10, 25, 50'
+            items_per_page_options_all: false
+            items_per_page_options_all_label: '- All -'
+            offset: false
+            offset_label: Offset
+          quantity: 9
     cache_metadata:
       max-age: -1
       contexts:
         - 'languages:language_content'
         - 'languages:language_interface'
         - url
+        - url.query_args
         - user
         - user.permissions
       tags:

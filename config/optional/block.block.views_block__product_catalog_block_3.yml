@@ -6,21 +6,21 @@ dependencies:
   module:
     - advanced_menu_condition
     - pagedesigner_block
-    - pagedesigner_block_adaptable
+    - views
   theme:
     - iq_custom
-id: views_block__product_catalog_adaptable_block_4
+id: views_block__product_catalog_block_3
 theme: iq_custom
 region: pagedesigner
 weight: 0
 provider: null
-plugin: 'adaptable_views_block:product_catalog-adaptable_block_4'
+plugin: 'views_block:product_catalog-block_3'
 settings:
-  id: 'adaptable_views_block:product_catalog-adaptable_block_4'
-  label: 'Product catalog by Category'
-  provider: pagedesigner_block_adaptable
+  id: 'views_block:product_catalog-block_3'
+  label: ''
+  provider: views
   label_display: '0'
-  views_label: 'Product catalog by Category'
+  views_label: ''
   items_per_page: none
 visibility:
   advanced_menu_position:
