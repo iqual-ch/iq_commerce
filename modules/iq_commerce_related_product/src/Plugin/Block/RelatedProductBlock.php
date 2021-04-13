@@ -4,6 +4,9 @@ namespace Drupal\iq_commerce_related_product\Plugin\Block;
 
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\iq_progressive_decoupler\Plugin\Block\DecoupledBlockBase;
+use Drupal\Component\Serialization\Yaml;
+use Symfony\Component\Yaml\Yaml as YamlParser;
+use Drupal\Component\Serialization\Yaml as YamlSerializer;
 
 /**
  * Related product block.
@@ -51,6 +54,21 @@ class RelatedProductBlock extends DecoupledBlockBase {
       '#default_value' => isset($this->configuration['oververlay_link_cart']) ? $this->configuration['oververlay_link_cart'] : '/cart',
     ];
 
+    $form['ui_pattern_purchased_item'] = [
+      '#type' => 'select',
+      '#empty_value' => '_none',
+      '#title' => $this->t('Added product: Pattern'),
+      '#options' => $this->patternsManager->getPatternsOptions(),
+      '#default_value' => isset($this->configuration['ui_pattern_purchased_item']) ? $this->configuration['ui_pattern_purchased_item'] : NULL,
+      '#required' => TRUE,
+    ];
+
+    $form['field_mapping_purchased_item'] = [
+      '#type' => 'textarea',
+      '#title' => $this->t('Added product: Field mapping'),
+      '#default_value' => isset($this->configuration['field_mapping_purchased_item']) ? Yaml::decode($this->configuration['field_mapping_purchased_item']) : NULL,
+    ];
+
     return $form;
   }
 
@@ -65,6 +83,19 @@ class RelatedProductBlock extends DecoupledBlockBase {
     $build['#oververlay_label_close'] = $this->configuration['oververlay_label_close'];
     $build['#oververlay_label_cart'] = $this->configuration['oververlay_label_cart'];
     $build['#oververlay_link_cart'] = $this->configuration['oververlay_link_cart'];
+
+    $pattern = $this->patternsManager->getDefinitions()[$this->configuration['ui_pattern_purchased_item']];
+    foreach ($pattern->getLibrariesNames() as $library) {
+      $build['#attached']['library'][] = $library;
+    }
+
+    $build['#attached']['drupalSettings']['progressive_decoupler'][$this->configuration['block_id']]['template_purchased_item'] = \file_get_contents($pattern['base path'] . '/' . $pattern['template'] . '.html.twig');
+    $build['#attached']['drupalSettings']['progressive_decoupler'][$this->configuration['block_id']]['ui_pattern_purchased_item'] = $this->configuration['ui_pattern_purchased_item'];
+
+    if (isset($this->configuration['field_mapping_purchased_item'])) {
+      $build['#attached']['drupalSettings']['progressive_decoupler'][$this->configuration['block_id']]['field_mapping_purchased_item'] = YamlParser::parse(YamlSerializer::decode($this->configuration['field_mapping_purchased_item']));
+    }
+
     return $build;
   }
 
@@ -77,6 +108,8 @@ class RelatedProductBlock extends DecoupledBlockBase {
     $this->configuration['oververlay_label_close'] = $form_state->getValue('oververlay_label_close');
     $this->configuration['oververlay_label_cart'] = $form_state->getValue('oververlay_label_cart');
     $this->configuration['oververlay_link_cart'] = $form_state->getValue('oververlay_link_cart');
+    $this->configuration['ui_pattern_purchased_item'] = $form_state->getValue('ui_pattern_purchased_item');
+    $this->configuration['field_mapping_purchased_item'] = Yaml::encode($form_state->getValue('field_mapping_purchased_item'));
   }
 
 }

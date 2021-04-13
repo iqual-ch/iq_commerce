@@ -5,6 +5,12 @@
   padding: 15px;
   background: $color-grey5;
   margin-bottom: 15px;
+  display: flex;
+
+  .img-holder{
+    flex-basis: 100px;
+    margin-right: 15px;
+  }
 
   .title{
     font-size: $font-size-h5;
@@ -16,6 +22,35 @@
     margin-bottom: $margin-bottom-h5;
     @include fluid-type(320px, 991px, $font-size-min-h5, $font-size-h5);
   }
+
+  .description{
+    &.active{
+      .descpription-content{
+        display: block;
+      }
+      .descpription-toggler{
+        i{
+          font-size: 80%;
+          margin-left: 15px;
+          transform: rotate(180deg);
+        }
+      }
+    }
+    .descpription-content{
+      display: none;
+    }
+
+    .descpription-toggler{
+      cursor: pointer;
+      i{
+        font-size: 80%;
+        margin-left: 15px;
+        transform: rotate(0);
+        transition: $transition-default;
+      }
+    }
+  }
+
 
   .variations{
     form{

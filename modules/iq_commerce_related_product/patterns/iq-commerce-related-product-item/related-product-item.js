@@ -1,6 +1,11 @@
 (function ($) {
   $(document).on("related-product-item-rendered[iq-commerce-related-product-item]", function (e, args) {
 
+    args.item.find('[data-toggle]').click(function () {
+      $(this).parent().toggleClass('active')
+    });
+
+
     // Update variation price
     args.item.find('select').change(function () {
       $(this).siblings('[data-variation-price-target]').text($(this).find(":selected").data('variation-price'))

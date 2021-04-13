@@ -1,0 +1,35 @@
+@import '../../../../resources/sass/definitions';
+
+.purchased-product-item{
+
+  margin-bottom: 15px;
+  display: flex;
+  flex-wrap: wrap;
+  .img-holder{
+    flex-basis: 100px;
+    margin-right: 15px;
+  }
+
+  .title{
+    font-size: $font-size-h5;
+    line-height: $line-height-h5;
+    font-weight: $font-weight-h5;
+    font-style: $font-style-h5;
+    font-family: $font-family-h5;
+    color: $color-h5;
+    margin-bottom: $margin-bottom-h5;
+    @include fluid-type(320px, 991px, $font-size-min-h5, $font-size-h5);
+  }
+
+  .title-related-products{
+    flex-basis: 100%;
+    font-size: $font-size-h6;
+    line-height: $line-height-h6;
+    font-weight: $font-weight-h6;
+    font-style: $font-style-h6;
+    font-family: $font-family-h6;
+    color: $color-h6;
+    margin-top: 45px;
+    @include fluid-type(320px, 991px, $font-size-min-h6, $font-size-h6);
+  }
+}

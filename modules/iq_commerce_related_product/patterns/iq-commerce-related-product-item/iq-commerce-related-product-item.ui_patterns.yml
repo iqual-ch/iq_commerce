@@ -15,6 +15,9 @@ iq-commerce-related-product-item:
       type: text
       label: Product ID
       description: Product ID of the item
+    image_img:
+      type: image
+      label: Product image
     variations:
       type: text
       label: Variations
@@ -39,7 +42,14 @@ iq-commerce-related-product-item:
       type: text
       label: Label choose variation
       description: Label choose variation
-
+    label_choose_variation:
+      type: text
+      label: Label choose variation
+      description: Label choose variation
+    label_toggle_description:
+      type: text
+      label: Label toggle description
+      description: Label toggle description
   libraries:
     - related-product-item:
         js:
