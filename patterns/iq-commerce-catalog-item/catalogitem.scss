@@ -208,6 +208,11 @@
 }
 
 
+
+.iq-catalog-item[data-gjs-type]{
+  height: auto !important;
+}
+
 @keyframes spin {
   from {
       transform:rotate(0deg);
