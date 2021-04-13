@@ -15,16 +15,18 @@ provider: null
 plugin: iq_commerce_ajax_cart_block
 settings:
   id: iq_commerce_ajax_cart_block
-  label: Cart
+  label: Warenkorb
   provider: iq_commerce_ajax_cart
   label_display: '0'
   ui_pattern: iq-commerce-ajax-cart-item
   block_id: block-ajaxcartblock
   cart_title: null
-  link_title: 'Go to cart'
+  link_title: 'Zum Warenkorb'
   button_title: null
-  field_mapping: '"title:\r\n  value: item.title\r\nproduct_id:\r\n  value: item.purchased_entity.product_id\r\nvariation_id:\r\n  value: item.purchased_entity.variation_id\r\nquantity:\r\n  value: item.quantity\r\nprice:\r\n  value: item.total_price.formatted\r\nlabel_quantity:\r\n  type: static\r\n  value: Anzahl Artikel\r\nlabel_remove_one:\r\n  type: static\r\n  value: Anzahl -1\r\nlabel_add_one:\r\n  type: static\r\n  value: Anzahl +1\r\nlabel_delete:\r\n  type: static\r\n  value: Artikel entfernen"'
+  field_mapping: '"title:\r\n  value: title\r\nproduct_id:\r\n  value: purchased_entity.product_entity.product_id\r\nvariation_id:\r\n  value: purchased_entity.variation_id\r\nquantity:\r\n  value: quantity\r\nprice:\r\n  value: total_price.formatted\r\nimage_img:\r\n  value: purchased_entity.field_iq_commerce_images[0].field_media_image.url\r\n  fallback: purchased_entity.product_entity.field_iq_commerce_images[0].field_media_image.url\r\nlabel_quantity:\r\n  type: static\r\n  value: Anzahl Artikel\r\nlabel_remove_one:\r\n  type: static\r\n  value: Anzahl -1\r\nlabel_add_one:\r\n  type: static\r\n  value: Anzahl +1\r\nlabel_delete:\r\n  type: static\r\n  value: Artikel entfernen\r\n"'
   link: /de/cart
+  label_total: Total
+  label_cart_empty: 'Der Warenkorb ist leer.'
 visibility:
   advanced_menu_position:
     id: advanced_menu_position

@@ -42,7 +42,8 @@
     padding: 15px;
     right: 0;
     background: $color-grey5;
-    max-width: 280px;
+    max-width: 500px;
+    min-width: 300px;
 
     &.loading {
       .iq-commerce-mini-cart-header,
@@ -91,6 +92,9 @@
                 width: 100%;
               }
             }
+            .title-holder{
+              flex: 1;
+            }
           }
 
           button {
@@ -125,6 +129,15 @@
             border: 1px solid $color-grey4;
             margin: 0 5px;
             text-align: center;
+            &::-webkit-outer-spin-button,
+            &::-webkit-inner-spin-button {
+              -webkit-appearance: none;
+              margin: 0;
+            }
+
+            &[type=number] {
+              -moz-appearance: textfield;
+            }
           }
 
           button {

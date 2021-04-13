@@ -34,7 +34,7 @@
           @media only screen and (max-width: 767px) {
             display: grid;
             grid-template-rows: auto auto;
-            grid-template-columns: 70px auto auto;
+            grid-template-columns: 80px auto auto;
             padding: 0;
             border-bottom: 1px solid $border-color-base;
           }
@@ -55,83 +55,98 @@
           }
 
           .views-field-unit-price__number{
+            padding-left: 15px;
+            padding-right: 15px;
+            line-height: 35px;
             @media only screen and (max-width: 767px) {
               display: none;
             }
           }
 
-          .views-field-purchased-entity{
-            @media only screen and (max-width: 767px) {
-              grid-column-start: 1;
-              grid-column-end: span 3;
-            }
-
-            > div{
-
-              display: grid;
-              grid-template-columns: 100px 20px auto;
-              grid-template-rows: auto auto;
-
-              .field--name-field-images,
-              .field--name-field-iq-commerce-images{
-                grid-column-start: 1;
-                grid-row-start: 1;
-                grid-row-end: none;
-                margin: 0;
-                .field__item{
-                  img{
-                    margin: 0;
-                    max-width: 100%;
-                    height: auto;
-                  }
-                }
-              }
-              .field--name-product-id{
-                grid-column-start: 3;
-                margin: 0;
-              }
-              .field--name-sku{
-                grid-column-start: 3;
-                grid-row-start: 2;
-                font-size: 0.875rem;
-                .field__label{
-                  &::after{
-                    content: ': ';
-                  }
-                }
-              }
+          .views-field-nothing{
+            padding-right: 10px;
+            img{
+              max-width: 100%;
+              height: auto;
             }
           }
 
-          .views-field-total-price__number{
-            text-align: right;
+          .views-field-purchased-entity{
+            grid-column-end: 4;
+            grid-column-start: 2;
+            .field--type-entity-reference{
+              margin: 0
+            }
           }
 
           .views-field-edit-quantity{
             grid-row-start: 2;
             grid-column-start: 1;
+            grid-column-end: 4;
+            width: 185px;
+            .form-number{
+              width: 100%;
+            }
 
             .item-update{
               display: flex;
+              @media only screen and (max-width: 767px) {
+                justify-content: space-between;
+              }
               button{
-                background: $border-color-base;
-                border: none;
+                background: $color-grey5;
+                border: 1px solid $color-grey4;
                 width: 35px;
                 padding: 0;
+                text-align: center;
+                line-height: 33px;
+                font-size: $font-size-small;
+                color: $color-grey3;
+                cursor: pointer;
+              }
+
+              .delete-order-item{
+                background: none;
                 border: none;
+                width: 25px;
+                padding: 0;
                 text-align: center;
                 line-height: 35px;
                 font-size: $font-size-small;
                 color: $color-grey3;
                 cursor: pointer;
-                &.remove-all{
+                font-family: "Font Awesome 5 Free";
+                font-weight: 900;
+                -moz-osx-font-smoothing: grayscale;
+                -webkit-font-smoothing: antialiased;
+                display: inline-block;
+                font-style: normal;
+                font-variant: normal;
+                text-rendering: auto;
+                line-height: 1;
+                margin-left: auto;
+                text-indent: 100px;
+                background-image: url("data:image/svg+xml,%3C%3Fxml version='1.0' encoding='utf-8'%3F%3E%3Csvg version='1.1' focusable='false' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' x='0px' y='0px' viewBox='0 0 416 700' style='enable-background:new 0 0 416 700;' xml:space='preserve'%3E%3Cpath class='st0' fill='%23999999' d='M248.9,498.6h22.3c6.2,0,11.1-5,11.1-11.1V286.9c0-6.2-5-11.1-11.1-11.1h-22.3c-6.2,0-11.1,5-11.1,11.1v200.6 C237.7,493.6,242.7,498.6,248.9,498.6z M401.1,186.6h-76.5L293,133.9c-8.1-13.4-22.6-21.6-38.2-21.6h-93.6 c-15.7,0-30.2,8.2-38.2,21.6l-31.6,52.6H14.9c-8.2,0-14.9,6.7-14.9,14.9v14.9c0,8.2,6.7,14.9,14.9,14.9h14.9v312 c0,24.6,20,44.6,44.6,44.6l0,0h267.4c24.6,0,44.6-20,44.6-44.6l0,0v-312h14.9c8.2,0,14.9-6.7,14.9-14.9v-14.9 C416,193.2,409.3,186.6,401.1,186.6z M159.6,159.6c1-1.7,2.8-2.7,4.8-2.7h87.3c2,0,3.8,1,4.8,2.7l16.2,27H143.4L159.6,159.6z M341.7,543.1H74.3v-312h267.4V543.1z M144.9,498.6h22.3c6.2,0,11.1-5,11.1-11.1V286.9c0-6.2-5-11.1-11.1-11.1h-22.3 c-6.2,0-11.1,5-11.1,11.1v200.6C133.7,493.6,138.7,498.6,144.9,498.6z'/%3E%3C/svg%3E%0A");
+                background-size: contain;
+                background-position: center;
+                background-repeat: no-repeat;
+                @media only screen and (min-width: 768px) {
                   margin-left: 15px;
                 }
+                @media only screen and (min-width: 1200px) {
+                  margin-left: 45px;
+                }
+              }
+
+
+              fieldset{
+                padding: 0 5px;
               }
 
               input{
                 text-align: center;
                 -moz-appearance: textfield;
+                border: 1px solid $color-grey4;
                 &::-webkit-outer-spin-button,
                 &::-webkit-inner-spin-button {
                   -webkit-appearance: none;
@@ -148,9 +163,17 @@
           }
 
           .views-field-total-price__number{
-            grid-row-start: 2;
-            grid-column-start: 3;
+            grid-row-start: 3;
+            grid-column-start: 1;
+            grid-column-end: 4;
             line-height: 35px;
+            text-align: right;
+            @media only screen and (min-width: 768px) {
+              width: 120px;
+            }
+            @media only screen and (min-width: 1200px) {
+              width: 140px;
+            }
           }
 
           .form-group{
@@ -173,6 +196,7 @@
             border: $border-width-base solid $border-color-base;
             font-weight: normal;
             font-size: 0.875rem;
+            line-height: 1.5;
           }
         }
 
@@ -181,7 +205,10 @@
       .order-total-line{
         padding: 0 15px;
         .order-total-line-value{
-          width: 140px;
+          width: 120px;
+          @media only screen and (min-width: 1200px) {
+            width: 140px;
+          }
         }
       }
 
