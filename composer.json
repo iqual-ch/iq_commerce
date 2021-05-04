@@ -16,7 +16,7 @@
     "drupal/commerce_variation_cart_form": "*",
     "drupal/commerce_shipping": "*",
     "drupal/commerce_postfinance": "*",
-    "iqual/pagedesigner_block_adaptable": "dev-filter_plugin_system",
+    "iqual/pagedesigner_block_adaptable": "^0.5",
     "iqual/iq_progressive_decoupler": "*",
     "drupal/term_reference_tree": "*",
     "drupal/twig_tweak": "*",
