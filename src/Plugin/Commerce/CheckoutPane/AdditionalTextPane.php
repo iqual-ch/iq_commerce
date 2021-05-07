@@ -48,7 +48,7 @@ class AdditionalTextPane extends CheckoutPaneBase {
       '#type' => 'textfield',
       '#title' => $this->t('Title'),
       '#description' => $this->t('The title will be displayed in a header.'),
-      '#default_value' => !empty($this->configuration['header_text']) ? $this->configuration['header_text'] : $this->t('Cart'),
+      '#default_value' => !empty($this->configuration['header_text']) ? $this->configuration['header_text'] : "",
     ];
     $form['header_size'] = [
       '#type' => 'radios',
@@ -68,7 +68,7 @@ class AdditionalTextPane extends CheckoutPaneBase {
       '#type' => 'textfield',
       '#title' => $this->t('Additional text'),
       '#description' => $this->t('The additional text will be displayed below the header.'),
-      '#default_value' => !empty($this->configuration['additional_text']) ? $this->configuration['additional_text'] : $this->t('Your cart is ready for checkout.'),
+      '#default_value' => !empty($this->configuration['additional_text']) ? $this->configuration['additional_text'] : "",
     ];
 
     return $form;
@@ -89,11 +89,17 @@ class AdditionalTextPane extends CheckoutPaneBase {
       if ($values['header_text']) {
         $this->configuration['header_text'] = $values['header_text'];
       }
+      else {
+        $this->configuration['header_text'] = "";
+      }
       if ($values['header_size']) {
         $this->configuration['header_size'] = $values['header_size'];
       }
       if ($values['additional_text']) {
         $this->configuration['additional_text'] = $values['additional_text'];
+      }
+      else {
+        $this->configuration['additional_text'] = "";
       }
     }
   }
