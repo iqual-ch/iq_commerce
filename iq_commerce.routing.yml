@@ -25,3 +25,13 @@ iq_commerce.product_settings:
     _permission: 'administer iq_commerce settings'
   options:
     _admin_route: TRUE
+
+iq_commerce.additional_settings:
+  path: '/admin/config/system/iq-commerce/additional_settings'
+  defaults:
+    _form: '\Drupal\iq_commerce\Form\IqCommerceAdditionalSettingsForm'
+    _title: 'Iq Commerce Settings'
+  requirements:
+    _permission: 'administer iq_commerce settings'
+  options:
+    _admin_route: TRUE

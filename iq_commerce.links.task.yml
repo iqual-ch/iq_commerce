@@ -3,6 +3,11 @@ iq_commerce.email_settings:
   title: 'E-Mail Settings'
   base_route: iq_commerce.email_settings
 
+iq_commerce.additional_settings:
+  route_name: iq_commerce.additional_settings
+  title: 'Additional Settings'
+  base_route: iq_commerce.email_settings
+
 iq_commerce.product_settings:
   route_name: iq_commerce.product_settings
   title: 'Product Settings'
