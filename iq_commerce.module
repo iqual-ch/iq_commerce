@@ -47,14 +47,13 @@ function iq_commerce_form_alter(&$form, \Drupal\Core\Form\FormStateInterface $fo
   if (substr($form_id, 0, strlen('views_form_commerce_cart_form_default')) == 'views_form_commerce_cart_form_default') {
     $iq_commerce_additional_settings = \Drupal\iq_commerce\Form\IqCommerceAdditionalSettingsForm::getIqCommerceAdditionalSettings();
     // Check for the additional settings (cart header and size).
-    if (!empty($iq_commerce_additional_settings['cart_header']) && !empty($iq_commerce_additional_settings['cart_header_size'])) {
+    if (!empty($iq_commerce_additional_settings['cart_header'])) {
       $cart_header = $iq_commerce_additional_settings['cart_header'];
-      $cart_header_size = $iq_commerce_additional_settings['cart_header_size'];
 
       // Show the cart header accordingly.
       $form['cart_header'] = [
         '#type' => 'markup',
-        '#markup' => '<h' . $cart_header_size . '>' . t($cart_header) . '</h' . $cart_header_size . '>',
+        '#markup' => $cart_header,
         '#weight' => -1
       ];
     }

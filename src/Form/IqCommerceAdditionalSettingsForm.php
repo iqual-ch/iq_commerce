@@ -29,24 +29,11 @@ class IqCommerceAdditionalSettingsForm extends ConfigFormBase
   {
     $iqCommerceSettings = $this->getIqCommerceAdditionalSettings();
     $form['cart_header'] = [
-      '#type'       => 'textfield',
+      '#type'       => 'text_format',
+      '#format' => 'pagedesigner',
       '#title' => $this->t('Cart Header'),
       '#description' => $this->t('Add a header for the cart view, leave empty so it will NOT be shown.'),
-      '#default_value' => !empty($iqCommerceSettings['cart_header']) ? $iqCommerceSettings['cart_header'] : "",
-    ];
-
-    $form['cart_header_size'] = [
-      '#type' => 'radios',
-      '#title' => t('Cart Header Size'),
-      '#default_value' => !empty($iqCommerceSettings['cart_header_size']) ? $iqCommerceSettings['cart_header_size'] : 1,
-      '#options' => [
-        1 => t('Header 1'),
-        2 => t('Header 2'),
-        3 => t('Header 3'),
-        4 => t('Header 4'),
-        5 => t('Header 5'),
-        6 => t('Header 6')
-      ],
+      '#default_value' => !empty($this->configuration['header']['value']) ? $this->configuration['header']['value'] : ""
     ];
 
     $form['actions']['#type'] = 'actions';
@@ -65,8 +52,7 @@ class IqCommerceAdditionalSettingsForm extends ConfigFormBase
   public function submitForm(array &$form, FormStateInterface $form_state)
   {
     $this->config('iq_commerce.settings')
-      ->set('cart_header', $form_state->getValue('cart_header'))
-      ->set('cart_header_size', $form_state->getValue('cart_header_size'))
+      ->set('cart_header', $form_state->getValue('cart_header')['value'])
       ->save();
 
     parent::submitForm($form, $form_state);
@@ -89,7 +75,6 @@ class IqCommerceAdditionalSettingsForm extends ConfigFormBase
     $iqCommerceSettingsConfig = \Drupal::config('iq_commerce.settings');
     return [
       'cart_header' => $iqCommerceSettingsConfig->get('cart_header') != NULL ? $iqCommerceSettingsConfig->get('cart_header') : "",
-      'cart_header_size' => $iqCommerceSettingsConfig->get('cart_header_size') != NULL ? $iqCommerceSettingsConfig->get('cart_header_size') : 1,
     ];
   }
 

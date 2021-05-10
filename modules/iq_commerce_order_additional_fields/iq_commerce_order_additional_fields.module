@@ -1,0 +1,27 @@
+<?php
+
+/**
+ * Implements hook_form_alter().
+ */
+function iq_commerce_order_additional_fields_form_alter(&$form, \Drupal\Core\Form\FormStateInterface $form_state, $form_id)
+{
+  // Only show collection date if the customer has selected
+  // the option to pick up product(s) from store.
+  if ($form_id == 'commerce_checkout_flow_multistep_default') {
+/*    var_dump($form['shipping_information']['shipments'][0]['shipping_method']['widget'][0]['#options']);
+    $option = reset($form['shipping_information']['shipments'][0]['shipping_method']['widget'][0]['#options']);
+    $option_new = ['new_key' => reset($option)];
+    $form['shipping_information']['shipments'][0]['shipping_method']['widget'][0]['#options'][] = $option_new;*/
+    /*
+     * '#states' => [
+          'visible' => [
+            ':input[name="scheduler_publish_touch"]' => ['checked' => FALSE],
+            ':input[name="shipping_method"]' => ['value' => '1--default'],
+          ],
+        ],
+    var_dump($form['shipping_information']['shipments'][0]['shipping_method']['widget'][0]);
+     */
+    /*var_dump(array_keys($form['collection_date_pane']['collection_date']['#states']['visible']));
+    die();*/
+  }
+}

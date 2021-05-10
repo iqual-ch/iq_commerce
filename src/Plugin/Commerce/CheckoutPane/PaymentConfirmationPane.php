@@ -12,11 +12,12 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
  * Provides a checkout message pane.
  *
  * @CommerceCheckoutPane(
- *   id = "iq_commerce_pane_checkout_message",
- *   label = @Translation("Checkout message"),
+ *   id = "iq_commerce_pane_payment_confirmation",
+ *   label = @Translation("Payment Confirmation"),
  * )
  */
-class CheckoutMessagePane extends CheckoutPaneBase {
+class PaymentConfirmationPane extends CheckoutPaneBase {
+
 
   /**
    * The token service.
