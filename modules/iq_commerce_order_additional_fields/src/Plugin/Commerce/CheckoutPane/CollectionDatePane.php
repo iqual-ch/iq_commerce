@@ -35,7 +35,8 @@ class CollectionDatePane extends CheckoutPaneBase implements CheckoutPaneInterfa
         '#required' => FALSE,
         '#attributes' => [
           'min' =>  \Drupal::service('date.formatter')->format(\Drupal::time()->getRequestTime(), 'custom', 'Y-m-d'),
-          'type' => 'date'
+          'type' => 'date',
+          'max' => \Drupal::service('date.formatter')->format(strtotime('+90 days'), 'custom', 'Y-m-d'),
         ],
       ];
     }
