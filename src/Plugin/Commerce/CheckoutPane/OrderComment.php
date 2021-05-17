@@ -22,12 +22,14 @@ class OrderComment extends CheckoutPaneBase implements CheckoutPaneInterface {
    * {@inheritdoc}
    */
   public function buildPaneForm(array $pane_form, FormStateInterface $form_state, array &$complete_form) {
-    $pane_form['customer_comments'] = [
-      '#type' => 'textarea',
-      '#title' => $this->t('Order notes'),
-      '#default_value' => $this->order->get('field_iq_commerce_comment')->getString(),
-      '#required' => FALSE,
-    ];
+    if ($this->order->hasField('field_iq_commerce_comment ')) {
+      $pane_form['customer_comments'] = [
+        '#type' => 'textarea',
+        '#title' => $this->t('Order notes'),
+        '#default_value' => $this->order->get('field_iq_commerce_comment')->getString(),
+        '#required' => FALSE,
+      ];
+    }
     return $pane_form;
   }
 
@@ -36,13 +38,20 @@ class OrderComment extends CheckoutPaneBase implements CheckoutPaneInterface {
    */
   public function submitPaneForm(array &$pane_form, FormStateInterface $form_state, array &$complete_form) {
     $value = $form_state->getValue($pane_form['#parents']);
-    $this->order->set('field_iq_commerce_comment', $value['customer_comments']);
+    if (!empty($value) && isset($value['customer_comments'])) {
+      $this->order->set('field_iq_commerce_comment', $value['customer_comments']);
+    }
   }
 
   /**
    * {@inheritdoc}
    */
   public function buildPaneSummary() {
-    return ['#markup' => $this->order->get('field_iq_commerce_comment')->getString()];
+    if ($this->order->hasField('field_iq_commerce_comment')) {
+      return ['#markup' => $this->order->get('field_iq_commerce_comment')->getString()];
+    }
+    else {
+      return ['#markup' => ''];
+    }
   }
 }
