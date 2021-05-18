@@ -86,7 +86,7 @@
           Object.keys(drupalSettings.progressive_decoupler).filter(function(key){
             return drupalSettings.progressive_decoupler[key].type == 'iq_commerce_ajax_cart_block'
           }).forEach(function(blockID){
-            let $blockElement = $('#' + blockID);
+            let $blockElement = $('[id^="' + blockID + '"]');
             let blockData = drupalSettings.progressive_decoupler[blockID];
             let template = Twig.twig({data: blockData.template});
             let pattern = blockData.ui_pattern;
