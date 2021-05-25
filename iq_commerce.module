@@ -43,6 +43,29 @@ function iq_commerce_views_data_alter(array &$data) {
  * Implements hook_form_alter().
  */
 function iq_commerce_form_alter(&$form, \Drupal\Core\Form\FormStateInterface $form_state, $form_id) {
+  // If it is a commerce product variation edit form.
+  if (substr($form_id,0,strlen('commerce_product_variation')) == 'commerce_product_variation' && substr($form_id,0-(strlen('_edit_form')), strlen('_edit_form')) == '_edit_form') {
+    foreach(array_keys($form) as $form_array_key) {
+      // If there is an attribute field, sort the options by the weight.
+      if (substr($form_array_key, 0, strlen('attribute_')) == 'attribute_') {
+        usort($form[$form_array_key]['widget']['#options'], function($a,$b) use ($form_array_key) {
+          $attribute_id = substr($form_array_key, strlen('attribute_'));
+          $attribute_a_value = Drupal::entityTypeManager()->getStorage('commerce_product_attribute_value')->loadByProperties(['attribute'=> $attribute_id,'name'=> $a->__toString()]);
+          $attribute_a_value = reset($attribute_a_value);
+          $attribute_a_weight = $attribute_a_value->getWeight();
+          $attribute_b_value = Drupal::entityTypeManager()->getStorage('commerce_product_attribute_value')->loadByProperties(['attribute'=> $attribute_id,'name'=> $b->__toString()]);
+          $attribute_b_value = reset($attribute_b_value);
+          $attribute_b_weight = $attribute_b_value->getWeight();
+          if (isset($attribute_a_weight) && isset($attribute_b_weight)) {
+            return $attribute_a_weight - $attribute_b_weight;
+          }
+          else {
+            return 0;
+          }
+        });
+      }
+    }
+  }
   // Override the cart view.
   if (substr($form_id, 0, strlen('views_form_commerce_cart_form_default')) == 'views_form_commerce_cart_form_default') {
     $iq_commerce_additional_settings = \Drupal\iq_commerce\Form\IqCommerceAdditionalSettingsForm::getIqCommerceAdditionalSettings();
