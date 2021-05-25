@@ -49,7 +49,7 @@ function iq_commerce_form_alter(&$form, \Drupal\Core\Form\FormStateInterface $fo
     foreach(array_keys($form) as $form_array_key) {
       // If there is an attribute field, sort the options by the weight.
       if (substr($form_array_key, 0, strlen('attribute_')) == 'attribute_') {
-        usort($form[$form_array_key]['widget']['#options'], function($a,$b) use ($form_array_key) {
+        uasort($form[$form_array_key]['widget']['#options'], function($a,$b) use ($form_array_key) {
           $attribute_id = substr($form_array_key, strlen('attribute_'));
           if (!is_string($a)) {
             $a = $a->__toString();
