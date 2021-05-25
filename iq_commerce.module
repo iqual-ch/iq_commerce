@@ -1,5 +1,6 @@
 <?php
 
+use Drupal\commerce_product\Entity\ProductAttributeValue;
 use Drupal\commerce_tax\Entity\TaxType;
 use Drupal\Core\Form\FormStateInterface;
 
@@ -50,12 +51,22 @@ function iq_commerce_form_alter(&$form, \Drupal\Core\Form\FormStateInterface $fo
       if (substr($form_array_key, 0, strlen('attribute_')) == 'attribute_') {
         usort($form[$form_array_key]['widget']['#options'], function($a,$b) use ($form_array_key) {
           $attribute_id = substr($form_array_key, strlen('attribute_'));
-          $attribute_a_value = Drupal::entityTypeManager()->getStorage('commerce_product_attribute_value')->loadByProperties(['attribute'=> $attribute_id,'name'=> $a->__toString()]);
+          if (!is_string($a)) {
+            $a = $a->__toString();
+          }
+          $attribute_a_value = Drupal::entityTypeManager()->getStorage('commerce_product_attribute_value')->loadByProperties(['attribute'=> $attribute_id,'name'=> $a]);
           $attribute_a_value = reset($attribute_a_value);
-          $attribute_a_weight = $attribute_a_value->getWeight();
-          $attribute_b_value = Drupal::entityTypeManager()->getStorage('commerce_product_attribute_value')->loadByProperties(['attribute'=> $attribute_id,'name'=> $b->__toString()]);
+          if ($attribute_a_value instanceof ProductAttributeValue) {
+            $attribute_a_weight = $attribute_a_value->getWeight();
+          }
+          if (!is_string($b)) {
+            $b = $b->__toString();
+          }
+          $attribute_b_value = Drupal::entityTypeManager()->getStorage('commerce_product_attribute_value')->loadByProperties(['attribute'=> $attribute_id,'name'=> $b]);
           $attribute_b_value = reset($attribute_b_value);
-          $attribute_b_weight = $attribute_b_value->getWeight();
+          if ($attribute_b_value instanceof ProductAttributeValue) {
+            $attribute_b_weight = $attribute_b_value->getWeight();
+          }
           if (isset($attribute_a_weight) && isset($attribute_b_weight)) {
             return $attribute_a_weight - $attribute_b_weight;
           }
