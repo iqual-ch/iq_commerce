@@ -1,5 +1,7 @@
 <?php
 
+namespace Drupal\iq_commerce\Form;
+
 use Drupal\Core\Form\FormBase;
 use Drupal\user\Entity\User;
 use Symfony\Component\HttpFoundation\RedirectResponse;
