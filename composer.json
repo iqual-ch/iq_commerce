@@ -23,6 +23,8 @@
     "drupal/swiftmailer": "*",
     "drupal/commerce_cart_api": "*",
     "drupal/iq_entity_browsers": "*",
-    "drupal/commerce_combine_carts": "*"
+    "drupal/commerce_combine_carts": "*",
+    "drupal/login_emailusername": "*",
+    "drupal/redirect_after_login": "*"
   }
 }
