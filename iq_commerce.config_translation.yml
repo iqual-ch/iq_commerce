@@ -1,0 +1,5 @@
+iq_commerce.settings:
+  title: 'IQ Commerce settings'
+  base_route_name: iq_commerce.email_settings
+  names:
+    - iq_commerce.settings
