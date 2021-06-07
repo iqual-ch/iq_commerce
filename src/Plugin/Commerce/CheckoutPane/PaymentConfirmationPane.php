@@ -99,7 +99,12 @@ class PaymentConfirmationPane extends CheckoutPaneBase {
       '#format' => 'pagedesigner',
       '#title' => $this->t('Header'),
       '#description' => $this->t('Add a header message for the receipt.'),
-      '#default_value' => !empty($this->configuration['header']['value']) ? $this->configuration['header']['value'] : $default_message
+      '#default_value' => !empty($this->configuration['header']['value']) ? $this->configuration['header']['value'] : $default_message,
+      '#token_types' => ['commerce_order', 'commerce_payment'],
+    ];
+    $form['token_help'] = [
+      '#theme' => 'token_tree_link',
+      '#token_types' => ['commerce_order', 'commerce_payment'],
     ];
 
     return $form;

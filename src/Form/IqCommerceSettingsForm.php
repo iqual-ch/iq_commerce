@@ -34,6 +34,7 @@ class IqCommerceSettingsForm extends ConfigFormBase
       '#title' => $this->t('Header'),
       '#description' => $this->t('Add a header message for the receipt.'),
       '#default_value' => $iqCommerceSettings['header']['value'],
+      '#token_types' => ['commerce_order', 'commerce_payment'],
     ];
 
     $form['footer'] = [
@@ -42,6 +43,11 @@ class IqCommerceSettingsForm extends ConfigFormBase
       '#title' => $this->t('Footer'),
       '#description' => $this->t('Add a footer message for the receipt.'),
       '#default_value' => $iqCommerceSettings['footer']['value'],
+      '#token_types' => ['commerce_order', 'commerce_payment'],
+    ];
+    $form['token_help'] = [
+      '#theme' => 'token_tree_link',
+      '#token_types' => ['commerce_order', 'commerce_payment'],
     ];
 
     $form['actions']['#type'] = 'actions';

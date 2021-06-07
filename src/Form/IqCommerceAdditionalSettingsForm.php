@@ -33,7 +33,12 @@ class IqCommerceAdditionalSettingsForm extends ConfigFormBase
       '#format' => 'pagedesigner',
       '#title' => $this->t('Cart Header'),
       '#description' => $this->t('Add a header for the cart view, leave empty so it will NOT be shown.'),
-      '#default_value' => !empty($iqCommerceSettings['cart_header']) ? $iqCommerceSettings['cart_header'] : ""
+      '#default_value' => !empty($iqCommerceSettings['cart_header']) ? $iqCommerceSettings['cart_header'] : "",
+      '#token_types' => ['commerce_order', 'commerce_payment'],
+    ];
+    $form['token_help'] = [
+      '#theme' => 'token_tree_link',
+      '#token_types' => ['commerce_order', 'commerce_payment'],
     ];
 
     $form['actions']['#type'] = 'actions';
