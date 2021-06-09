@@ -12,12 +12,13 @@
           callback(data);
         });
     },
-    addToCart: function (csrfToken, purchasedEntityType, purchasedEntityId, quantity, trigger = null) {
+    addToCart: function (csrfToken, purchasedEntityType, purchasedEntityId, quantity, trigger = null, formData = null) {
       var orderData = {
         purchased_entity_type: purchasedEntityType,
         purchased_entity_id: purchasedEntityId,
         quantity: quantity,
-        trigger: trigger
+        trigger: trigger,
+        form_data: formData
       };
       $(document).trigger("iq-commerce-cart-add-before", [orderData]);
       $.ajax({

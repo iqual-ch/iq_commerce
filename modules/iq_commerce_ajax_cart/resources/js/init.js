@@ -36,8 +36,14 @@
 
           variationId = parseInt(variationId);
 
+          var formData = {};
+          $(this).serializeArray().forEach(function(field){
+            if (field.name.startsWith('field_')) {
+              formData[field.name] = field.value
+            }
+          });
           Drupal.behaviors.iq_commerce_ajax_cart.getCsrfToken(function (csrfToken) {
-            Drupal.behaviors.iq_commerce_ajax_cart.addToCart(csrfToken, 'commerce_product_variation', variationId, quantity);
+            Drupal.behaviors.iq_commerce_ajax_cart.addToCart(csrfToken, 'commerce_product_variation', variationId, quantity, null, formData);
           });
         });
       });
@@ -69,8 +75,14 @@
           obj[item.name] = item.value;
           return obj;
         }, {});
+        var formData = {};
+        $(this).serializeArray().forEach(function(field){
+          if (field.name.startsWith('field_')) {
+            formData[field.name] = field.value
+          }
+        });
         Drupal.behaviors.iq_commerce_ajax_cart.getCsrfToken(function (csrfToken) {
-          Drupal.behaviors.iq_commerce_ajax_cart.addToCart(csrfToken, 'commerce_product_variation', parseInt(orderProductData['variation_id']), parseInt(orderProductData['quantity']), trigger);
+          Drupal.behaviors.iq_commerce_ajax_cart.addToCart(csrfToken, 'commerce_product_variation', parseInt(orderProductData['variation_id']), parseInt(orderProductData['quantity']), trigger, formData);
         });
       });
     });
