@@ -85,7 +85,7 @@ class AlterQuantity extends EditQuantity {
         if ($this->options['add_remove_button']) {
           $form['edit_quantity'][$key]['remove-item'] = [
             '#type' => 'inline_template',
-            '#template' => '<input class="delete-order-item button js-form-submit form-submit btn btn-primary form-control" data-drupal-selector="edit-remove-button-{{ key }}" type="submit" id="edit-remove-button-{{ key }}" name="delete-order-item-{{ key }}" title="{{ label }}" value="Entfernen">',
+            '#template' => '<input class="delete-order-item button js-form-submit form-submit btn btn-primary form-control" data-drupal-selector="edit-remove-button-{{ key }}" type="submit" id="edit-remove-button-{{ key }}" name="delete-order-item-{{ key }}" value="Remove">',
             '#context'  => [
               'label' => $this->t("Remove item"),
               'key'   => $key
