@@ -1,0 +1,31 @@
+# Schema for the configuration files of the iq_commerce module.
+iq_commerce.settings:
+  type: config_object
+  label: 'iQual Commerce settings'
+  mapping:
+    header:
+      type: mapping
+      label: 'Header'
+      mapping:
+        value:
+          type: string
+          label: 'Value'
+        format:
+          type: string
+          label: 'Format'
+    footer:
+      type: mapping
+      label: 'Footer'
+      mapping:
+        value:
+          type: string
+          label: 'Value'
+        format:
+          type: string
+          label: 'Format'
+    cart_header:
+      type: string
+      label: 'Cart Header'
+    cart_header_size:
+      type: string
+      label: 'Cart Header Size'
