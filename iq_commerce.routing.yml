@@ -1,11 +1,3 @@
-iq_commerce.orders:
-  path: '/user/orders'
-  defaults:
-    _controller: '\Drupal\iq_commerce\Controller\OrderController:orderPage'
-    _title: 'My orders'
-  requirements:
-    _role: 'authenticated'
-
 iq_commerce.email_settings:
   path: '/admin/config/system/iq-commerce/email-settings'
   defaults:
@@ -42,4 +34,4 @@ iq_commerce.user_orders:
     _form: '\Drupal\iq_commerce\Form\IqCommerceUserOrdersForm'
     _title: 'Orders'
   requirements:
-    _role: 'authenticated'
+    _access: 'TRUE'
