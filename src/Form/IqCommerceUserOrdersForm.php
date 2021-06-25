@@ -24,6 +24,10 @@ class IqCommerceUserOrdersForm extends FormBase {
       $response = new RedirectResponse($resetURL, 302);
       $response->send();
     }
+    else {
+      $response = new RedirectResponse('/user/login');
+      $response->send();
+    }
     return;
   }
 
