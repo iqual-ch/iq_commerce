@@ -50,55 +50,53 @@ class AlterQuantity extends EditQuantity {
     parent::viewsForm($form, $form_state);
 
     if ($this->options['add_quantity_button'] || $this->options['add_remove_button']) {
-      foreach ($form['edit_quantity'] as $key => $input) {
+      if (!empty($form['edit_quantity'])) {
+        foreach ($form['edit_quantity'] as $key => $input) {
 
-        $form['edit_quantity'][$key] = [
-          '#type' => 'container',
-          '#attributes' => [
-            'class' => ['item-update'],
-            'data-alter-quantity' => '',
-          ]
-        ];
-
-        if ($this->options['add_quantity_button']) {
-          $form['edit_quantity'][$key]['quantity-decrease'] = [
-            '#type' => 'inline_template',
-            '#template' => '<button title="{{ label }}" aria-label="{{ label }}" class="remove-one" data-increase-item-quantity="-1"><i class="fas fa-minus"></i></button>',
-            '#context'  => [
-              'label' => $this->t("Quantity -1"),
-            ],
+          $form['edit_quantity'][$key] = [
+            '#type' => 'container',
+            '#attributes' => [
+              'class' => ['item-update'],
+              'data-alter-quantity' => '',
+            ]
           ];
+
+          if ($this->options['add_quantity_button']) {
+            $form['edit_quantity'][$key]['quantity-decrease'] = [
+              '#type' => 'inline_template',
+              '#template' => '<button title="{{ label }}" aria-label="{{ label }}" class="remove-one" data-increase-item-quantity="-1"><i class="fas fa-minus"></i></button>',
+              '#context' => [
+                'label' => $this->t("Quantity -1"),
+              ],
+            ];
+          }
+
+          $form['edit_quantity'][$key]['quantity-edit'] = $input;
+
+          if ($this->options['add_quantity_button']) {
+            $form['edit_quantity'][$key]['quantity-increase'] = [
+              '#type' => 'inline_template',
+              '#template' => '<button title="{{ label }}" aria-label="{{ label }}" class="add-one" data-increase-item-quantity="1"><i class="fas fa-plus"></i></button>',
+              '#context' => [
+                'label' => $this->t("Quantity +1"),
+              ],
+            ];
+          }
+
+          if ($this->options['add_remove_button']) {
+            $form['edit_quantity'][$key]['remove-item'] = [
+              '#type' => 'inline_template',
+              '#template' => '<input class="delete-order-item button js-form-submit form-submit btn btn-primary form-control" data-drupal-selector="edit-remove-button-{{ key }}" type="submit" id="edit-remove-button-{{ key }}" name="delete-order-item-{{ key }}" value="Remove">',
+              '#context' => [
+                'label' => $this->t("Remove item"),
+                'key' => $key
+              ],
+            ];
+          }
         }
 
-        $form['edit_quantity'][$key]['quantity-edit'] = $input;
-
-        if ($this->options['add_quantity_button']) {
-          $form['edit_quantity'][$key]['quantity-increase'] = [
-            '#type' => 'inline_template',
-            '#template' => '<button title="{{ label }}" aria-label="{{ label }}" class="add-one" data-increase-item-quantity="1"><i class="fas fa-plus"></i></button>',
-            '#context'  => [
-              'label' => $this->t("Quantity +1"),
-            ],
-          ];
-        }
-
-        if ($this->options['add_remove_button']) {
-          $form['edit_quantity'][$key]['remove-item'] = [
-            '#type' => 'inline_template',
-            '#template' => '<input class="delete-order-item button js-form-submit form-submit btn btn-primary form-control" data-drupal-selector="edit-remove-button-{{ key }}" type="submit" id="edit-remove-button-{{ key }}" name="delete-order-item-{{ key }}" value="Remove">',
-            '#context'  => [
-              'label' => $this->t("Remove item"),
-              'key'   => $key
-            ],
-          ];
-        }
+        $form['actions']['submit']['#show_update_message'] = FALSE;
       }
-
-
-
-
-
-      $form['actions']['submit']['#show_update_message'] = FALSE;
     }
   }
 
