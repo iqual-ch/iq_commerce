@@ -274,7 +274,7 @@
                     <tr>
                       <td align="left" style="font-size:0px;padding:10px 25px;word-break:break-word;">
                         <div style="font-family:'Open Sans', Helvetica, Arial, sans-serif;font-size:16px;line-height:1.2;text-align:left;color:#000000;">
-                          <p><strong>{{ 'Notes'|t }}</strong></p> {% block order_entity.field_iq_commerce_comment.value %} {{ order_entity.field_iq_commerce_comment.value }} {% endblock %}</div>
+                          <p><strong>{{ 'Notes'|t }}</strong></p> {% if order_entity.field_iq_commerce_comment.value %} {{ order_entity.field_iq_commerce_comment.value }} {% endif %}</div>
                       </td>
                     </tr>
                   </table>
