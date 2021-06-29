@@ -2,6 +2,7 @@
 
 namespace Drupal\iq_commerce_related_product\EventSubscriber;
 
+use Drupal\commerce_product\Entity\Product;
 use Drupal\commerce_product\Entity\ProductVariation;
 use Drupal\Core\Entity\EntityRepositoryInterface;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
@@ -74,10 +75,29 @@ class RelatedProductEventSubscriber implements EventSubscriberInterface {
       foreach ($related_field_names as $related_field_name => $field_settings) {
         if ($purchased_entity->hasField($related_field_name)) {
           $related_products = $purchased_entity->get($related_field_name)->getValue();
+          $related_products_reference_type = $purchased_entity->get($related_field_name)->getFieldDefinition()->get('entity_type');
+        }
+        elseif ($purchased_entity->getProduct()->hasField($related_field_name)){
+          $related_products = $purchased_entity->getProduct()->get($related_field_name)->getValue();
+          $related_products_reference_type = $purchased_entity->getProduct()->get($related_field_name)->getFieldDefinition()->get('entity_type');
+        }
+
+        if (!empty($related_products)) {
           foreach ($related_products as $related_product) {
-            /** @var ProductVariation $related_product */
-            $related_product = ProductVariation::load($related_product['target_id']);
-            $suggested_products[] = $related_product;
+            // If the reference is of type product, then load all variations for each product and suggest them.
+            if ($related_products_reference_type == 'commerce_product') {
+              /** @var Product $related_product */
+              $related_product = Product::load($related_product['target_id']);
+              foreach ($related_product->getVariations() as $related_variation) {
+                $suggested_products[] = $related_variation;
+              }
+            }
+            // If the reference is of type variation, just suggest all of them.
+            else {
+              /** @var ProductVariation $related_variation */
+              $related_variation = ProductVariation::load($related_product['target_id']);
+              $suggested_products[] = $related_variation;
+            }
           }
         }
       }
