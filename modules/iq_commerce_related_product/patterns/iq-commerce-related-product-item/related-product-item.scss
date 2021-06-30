@@ -25,10 +25,10 @@
 
   .description{
     &.active{
-      .descpription-content{
+      .description-content{
         display: block;
       }
-      .descpription-toggler{
+      .description-toggler{
         i{
           font-size: 80%;
           margin-left: 15px;
@@ -36,11 +36,11 @@
         }
       }
     }
-    .descpription-content{
+    .description-content{
       display: none;
     }
 
-    .descpription-toggler{
+    .description-toggler{
       cursor: pointer;
       i{
         font-size: 80%;
