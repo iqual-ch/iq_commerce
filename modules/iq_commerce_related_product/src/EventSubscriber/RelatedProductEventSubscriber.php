@@ -89,14 +89,14 @@ class RelatedProductEventSubscriber implements EventSubscriberInterface {
               /** @var Product $related_product */
               $related_product = Product::load($related_product['target_id']);
               foreach ($related_product->getVariations() as $related_variation) {
-                $suggested_products[] = $related_variation;
+                $suggested_products[$related_variation->id()] = $related_variation;
               }
             }
             // If the reference is of type variation, just suggest all of them.
             else {
               /** @var ProductVariation $related_variation */
               $related_variation = ProductVariation::load($related_product['target_id']);
-              $suggested_products[] = $related_variation;
+              $suggested_products[$related_variation->id()] = $related_variation;
             }
           }
         }
