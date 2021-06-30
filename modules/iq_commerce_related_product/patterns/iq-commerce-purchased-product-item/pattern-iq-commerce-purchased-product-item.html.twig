@@ -1,10 +1,13 @@
-<div class="purchased-product-item">
-  {% if image_img|render is not empty %}
-    <div class="img-holder"><img src="{{ image_img }} " alt="{{title}}" title="{{title}}"/></div>
-  {% endif %}
-  <div class="content-holder">
-    <p class="title">{{ title }}</p>
-    <div class="descpription-content">{{ description }}</div>
+<div class="purchased-product-item-wrapper">
+  <div class="purchased-product-item">
+    {% if image_img|render is not empty %}
+      <div class="img-holder"><img src="{{ image_img }} " alt="{{title}}" title="{{title}}"/></div>
+    {% endif %}
+    <div class="content-holder">
+      <p class="title">{{ title }}</p>
+      <div class="descpription-content">{{ description }}</div>
+    </div>
   </div>
   <div class="title-related-products">{{ label_related_products }}</div>
 </div>
+
