@@ -25,7 +25,8 @@ class IqCommerceUserOrdersForm extends FormBase {
       $response->send();
     }
     else {
-      $response = new RedirectResponse('/user/login');
+      $resetURL = 'https://' . IqCommerceUserOrdersForm::getDomain() . '/user/login';
+      $response = new RedirectResponse($resetURL, 302);
       $response->send();
     }
     return;
