@@ -17,6 +17,7 @@ function iq_commerce_scheduler_cron()
     {
       $publish_date = $product->field_iq_commerce_publish_on->value;
     }
+    // If the publish date is in the past, then it should be published.
     if (!empty($publish_date) && $product->status->value == 0) {
       if ($publish_date <= $now && (empty($unpublish_date) || $unpublish_date > $now)) {
         // Publish the variation.
@@ -27,8 +28,17 @@ function iq_commerce_scheduler_cron()
         $product->save();
       }
     }
+    // If the unpublished date is in the past, then it we should unpublish it.
     if (!empty($unpublish_date) && $product->status->value == 1) {
       if ($unpublish_date <= $now) {
+        $product->setPublished(FALSE);
+        $product->save();
+      }
+    }
+    // If the product was already published, but there is a new publishing date
+    // then it should be unpublished till then.
+    if (!empty($publish_date) && $product->status->value == 1) {
+      if ($publish_date > $now) {
         $product->setPublished(FALSE);
         $product->save();
       }
