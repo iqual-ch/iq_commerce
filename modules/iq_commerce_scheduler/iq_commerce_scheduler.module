@@ -1,5 +1,6 @@
 <?php
 
+use Drupal\commerce_product\Entity\Product;
 use Drupal\commerce_product\Entity\ProductVariation;
 
 /**
@@ -42,6 +43,24 @@ function iq_commerce_scheduler_cron()
         $product->setPublished(FALSE);
         $product->save();
       }
+    }
+  }
+  // Check all products that should be unpublished, i.e. those that reference
+  // all unpublished variations.
+  $products_to_be_unpublished = Product::loadMultiple();
+  foreach ($products_to_be_unpublished as $key => $product) {
+    $variations = $product->getVariations();
+    $has_published_variation = FALSE;
+    foreach ($variations as $array_key => $variation) {
+      if ($variation->status->value == 1) {
+        $has_published_variation = TRUE;
+        break;
+      }
+    }
+    if (!$has_published_variation && $product->status->value == 1) {
+      $product->setPublished(FALSE);
+      $product->save();
+      \Drupal::logger('iq_commerce_scheduler')->notice('Unpublished ' . $product->id() . ' product');
     }
   }
 }
