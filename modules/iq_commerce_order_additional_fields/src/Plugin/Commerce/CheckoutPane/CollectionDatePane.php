@@ -6,6 +6,7 @@ use Drupal\commerce\AjaxFormTrait;
 use Drupal\commerce_checkout\Plugin\Commerce\CheckoutPane\CheckoutPaneBase;
 use Drupal\commerce_checkout\Plugin\Commerce\CheckoutPane\CheckoutPaneInterface;
 use Drupal\commerce_order\Entity\Order;
+use Drupal\Component\Serialization\Json;
 use Drupal\Core\Form\FormStateInterface;
 
 /**
@@ -29,15 +30,30 @@ class CollectionDatePane extends CheckoutPaneBase implements CheckoutPaneInterfa
     $pane_form = [];
     if ($this->order->hasField('field_iq_commerce_collect_date')) {
       $pane_form['collection_date'] = [
-        '#type' => 'date',
+        '#type' => 'single_date_time',
         '#title' => $this->t('Collection date'),
         '#default_value' => $this->order->field_iq_commerce_collect_date->value,
         '#required' => FALSE,
-        '#attributes' => [
-          'min' =>  \Drupal::service('date.formatter')->format(\Drupal::time()->getRequestTime(), 'custom', 'Y-m-d'),
-          'type' => 'date',
-          'max' => \Drupal::service('date.formatter')->format(strtotime('+90 days'), 'custom', 'Y-m-d'),
-        ],
+        '#max_date' => \Drupal::service('date.formatter')->format(strtotime('+90 days'), 'custom', 'd.m.Y'),
+        '#min_date' => \Drupal::service('date.formatter')->format(\Drupal::time()->getRequestTime(), 'custom', 'd.m.Y'),
+        '#date_timezone' => date_default_timezone_get(),
+        '#date_type' =>  'date',
+        '#time' => FALSE,
+        '#hour_format' => 24,
+        '#allow_times' => 60,
+        '#inline' => '0',
+        '#mask' => FALSE,
+        '#datetimepicker_theme' => 'default',
+        '#exclude_date' => '',
+        '#year_start' => '1970',
+        '#year_end' => intval(date('Y') +1),
+        '#date_date_element' => 'date',
+        '#date_date_callbacks' => [],
+        '#date_time_element' => NULL,
+        '#first_day' => \Drupal::config('system.date')->get('first_day'),
+        '#allowed_hours' => Json::encode(range(0, 23)),
+
+        // '#disable_days' => ["1","2","3"],
       ];
     }
     return $pane_form;

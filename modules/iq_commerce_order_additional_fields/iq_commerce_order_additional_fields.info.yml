@@ -6,3 +6,4 @@ core: 8.x
 dependencies:
   - iq_commerce:iq_commerce
   - drupal:datetime
+  - single_datetime:single_datetime
