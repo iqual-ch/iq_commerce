@@ -4,6 +4,7 @@ namespace Drupal\iq_commerce_required_product\EventSubscriber;
 
 use Drupal\commerce\PurchasableEntityInterface;
 use Drupal\commerce_cart\Event\CartEvents;
+use Drupal\commerce_cart\Event\CartOrderItemRemoveEvent;
 use Drupal\commerce_cart\Event\CartOrderItemUpdateEvent;
 use Drupal\commerce_product\Entity\Product;
 use Drupal\commerce_product\Entity\ProductVariation;
@@ -160,6 +161,27 @@ class RequiredProductEventSubscriber implements EventSubscriberInterface {
     }
   }
 
+  /**
+   * Helper function when removing products that have dependency products.
+   */
+  public function removeRequiredProducts(CartOrderItemRemoveEvent $event) {
+    $order_item = $event->getOrderItem();
+    /** @var ProductVariation $variation */
+    $variation = $order_item->getPurchasedEntity();
+    $requiredItems = $this->getRequiredVariations($variation, $order_item->getQuantity());
+    $cart = $order_item->getOrder();
+    foreach ($cart->getItems() as $item) {
+      /**
+       * @var int $key
+       * @var ProductVariation $requiredItem
+       */
+      foreach ($requiredItems as $key => $requiredItem) {
+        if ($requiredItem['required_product']->getSku() == $item->getPurchasedEntity()->getSku()) {
+          $item->delete();
+        }
+      }
+    }
+  }
 
   /**
    * Helper function to get required variations for the item.
