@@ -18,6 +18,7 @@
           let addProductFieldMapper = new iq_progressive_decoupler_FieldMapper(orderData.order_items[0], blockData.field_mapping_purchased_item);
           let addProductTemplate = Twig.twig({data: blockData.template_purchased_item});
           let $addProductItem = $(addProductTemplate.render(addProductFieldMapper.applyMappging()));
+          $blockElement.find('[data-product]').html('');
           $blockElement.find('[data-product]').append($addProductItem);
 
           orderData.related_products.forEach(function (variation) {
