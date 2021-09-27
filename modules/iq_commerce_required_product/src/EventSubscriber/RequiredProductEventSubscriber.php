@@ -157,16 +157,17 @@ class RequiredProductEventSubscriber implements EventSubscriberInterface {
     \Drupal::logger('iq_commerce_required_product')->notice(json_encode(array_keys($response_data->getResponseData())));
     $dependency_items = [];
     foreach ($response_data->getResponseData()['order_items'] as $required_item) {
-      $dependency_items = array_merge($this->getRequiredVariations($required_item), $dependency_items);
+      $dependency_items = array_merge($this->getRequiredVariations($required_item->getPurchasedEntity(), $required_item->getQuantity()), $dependency_items);
     }
 
     foreach ($response_data->getResponseData()['order_items'] as $required_item) {
-      $dependency_items = $this->getRequiredVariations($required_item);
-      \Drupal::logger('iq_commerce_required_product')->notice(json_encode($required_item->getPurchasedEntity()->label()));
-      if ($required_item->getPurchasedEntity()->getSku()) {
-        $required_item->setData('lock', TRUE)->save();
+      foreach($dependency_items as $dependency_item) {
+        if ($required_item->getPurchasedEntity()->getSku() == $dependency_item['required_product']->getSku()) {
+          $required_item->lock()->save();
+        }
       }
     }
+
   }
 
   /**
@@ -176,7 +177,6 @@ class RequiredProductEventSubscriber implements EventSubscriberInterface {
     $order_item = $event->getOrderItem();
     /** @var ProductVariation $variation */
     $variation = $order_item->getPurchasedEntity();
-    $variation->getSku()
 
     $requiredItems = $this->getRequiredVariations($variation, $order_item->getQuantity());
     $cart = $order_item->getOrder();
@@ -189,8 +189,6 @@ class RequiredProductEventSubscriber implements EventSubscriberInterface {
         if (!empty($requiredItem['required_product']) && $requiredItem['required_product']->getSku() == $item->getPurchasedEntity()->getSku() && $item->getQuantity() != $requiredItem['quantity']) {
           $item->setQuantity($requiredItem['quantity']);
           $this->cartManager->updateOrderItem($cart, $item, TRUE);
-          var_dump($item->getData('lock'));
-          die();
         }
       }
     }
@@ -237,7 +235,7 @@ class RequiredProductEventSubscriber implements EventSubscriberInterface {
       if ($purchased_entity->hasField($required_field_name)) {
         $required_products = $purchased_entity->get($required_field_name)->getValue();
         $required_products_reference_type = $purchased_entity->get($required_field_name)->getFieldDefinition()->get('entity_type');
-      } elseif ($purchased_entity->getProduct()->hasField($required_field_name)) {
+      } elseif ($purchased_entity instanceof ProductVariation && $purchased_entity->getProduct()->hasField($required_field_name)) {
         $required_products = $purchased_entity->getProduct()->get($required_field_name)->getValue();
         $required_products_reference_type = $purchased_entity->getProduct()->get($required_field_name)->getFieldDefinition()->get('entity_type');
       }
