@@ -50,10 +50,12 @@ class AlterQuantity extends EditQuantity {
     parent::viewsForm($form, $form_state);
 
     if ($this->options['add_quantity_button'] || $this->options['add_remove_button']) {
-      if (!empty($form['edit_quantity'])) {
-        foreach ($form['edit_quantity'] as $key => $input) {
-
-          $form['edit_quantity'][$key] = [
+      foreach ($this->view->result as $row_index => $row) {
+        $input = $form['edit_quantity'][$row_index];
+        /** @var \Drupal\commerce_order\Entity\OrderItemInterface $order_item */
+        $order_item = $this->getEntity($row);
+        if (!$order_item->isLocked()) {
+          $form['edit_quantity'][$row_index] = [
             '#type' => 'container',
             '#attributes' => [
               'class' => ['item-update'],
@@ -62,7 +64,7 @@ class AlterQuantity extends EditQuantity {
           ];
 
           if ($this->options['add_quantity_button']) {
-            $form['edit_quantity'][$key]['quantity-decrease'] = [
+            $form['edit_quantity'][$row_index]['quantity-decrease'] = [
               '#type' => 'inline_template',
               '#template' => '<button title="{{ label }}" aria-label="{{ label }}" class="remove-one" data-increase-item-quantity="-1"><i class="fas fa-minus"></i></button>',
               '#context' => [
@@ -70,11 +72,10 @@ class AlterQuantity extends EditQuantity {
               ],
             ];
           }
-
-          $form['edit_quantity'][$key]['quantity-edit'] = $input;
+          $form['edit_quantity'][$row_index]['quantity-edit'] = $input;
 
           if ($this->options['add_quantity_button']) {
-            $form['edit_quantity'][$key]['quantity-increase'] = [
+            $form['edit_quantity'][$row_index]['quantity-increase'] = [
               '#type' => 'inline_template',
               '#template' => '<button title="{{ label }}" aria-label="{{ label }}" class="add-one" data-increase-item-quantity="1"><i class="fas fa-plus"></i></button>',
               '#context' => [
@@ -84,16 +85,27 @@ class AlterQuantity extends EditQuantity {
           }
 
           if ($this->options['add_remove_button']) {
-            $form['edit_quantity'][$key]['remove-item'] = [
+            $form['edit_quantity'][$row_index]['remove-item'] = [
               '#type' => 'inline_template',
               '#template' => '<input class="delete-order-item button js-form-submit form-submit btn btn-primary form-control" data-drupal-selector="edit-remove-button-{{ key }}" type="submit" id="edit-remove-button-{{ key }}" name="delete-order-item-{{ key }}" value="Remove">',
               '#context' => [
                 'label' => $this->t("Remove item"),
-                'key' => $key
+                'key' => $row_index
               ],
             ];
           }
         }
+        else {
+          $form['edit_quantity'][$row_index] = [
+            '#type' => 'container',
+            '#attributes' => [
+              'class' => ['item-locked'],
+              'data-alter-quantity' => '',
+            ]
+          ];
+          $form['edit_quantity'][$row_index]['quantity-edit'] = $input;
+        }
+
 
         $form['actions']['submit']['#show_update_message'] = FALSE;
       }
