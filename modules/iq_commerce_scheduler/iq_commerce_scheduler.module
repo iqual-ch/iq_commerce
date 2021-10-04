@@ -14,9 +14,17 @@ function iq_commerce_scheduler_cron()
     if ($product->hasField('field_iq_commerce_unpublish_on')) {
       $unpublish_date = $product->field_iq_commerce_unpublish_on->value;
     }
+    // Reset the variable, just in case of a previous state of another product.
+    else {
+      unset($unpublish_date);
+    }
     if ($product->hasField('field_iq_commerce_publish_on'))
     {
       $publish_date = $product->field_iq_commerce_publish_on->value;
+    }
+    // Reset the variable, just in case of a previous state of another product.
+    else {
+      unset($publish_date);
     }
     // If the publish date is in the past, then it should be published.
     if (!empty($publish_date) && $product->status->value == 0) {
