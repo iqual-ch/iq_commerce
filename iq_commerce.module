@@ -1,8 +1,8 @@
 <?php
 
+use Drupal\commerce_product\Entity\ProductAttributeValue;
 use Drupal\commerce_tax\Entity\TaxType;
 use Drupal\Core\Form\FormStateInterface;
-
 
 /**
  * Implements hook_mail().
@@ -13,6 +13,7 @@ function iq_commerce_mail($key, &$message, $params) {
   mb_internal_encoding("UTF-8");
   $message['subject'] = mb_encode_mimeheader($message['subject'],'UTF-8','Q');
 }
+
 /**
  * Implements hook_theme().
  */
@@ -22,16 +23,8 @@ function iq_commerce_theme($existing, $type, $theme, $path) {
       'template' => 'iq-commerce-order-receipt',
       'base hook' => 'commerce_order_receipt',
     ],
-    'dropdown_cart_block' => [
-      'variables' => [
-        'count_text' => NULL,
-        'url' => NULL,
-        'count' => NULL,
-        'content' => NULL,
-        'links' => NULL,
-        'link_title' => NULL,
-        'label' => NULL,
-      ],
+    'commerce_product' => [
+      'render element' => 'elements',
     ],
   ];
 }
@@ -40,12 +33,10 @@ function iq_commerce_theme($existing, $type, $theme, $path) {
  * Implements hook_views_data_alter().
  */
 function iq_commerce_views_data_alter(array &$data) {
-  $data['views']['alter_cart_quantity_field'] = [
-    'title' => t('Quantity edit form'),
-    'help' => t('Form to alter the quantity of a cart item'),
-    'field' => [
-      'id' => 'alter_cart_quantity_field',
-    ],
+  $data['commerce_order_item']['edit_quantity']['field'] = [
+    'title' => t('Quantity text field'),
+    'help' => t('Adds a text field for editing the quantity.'),
+    'id' => 'commerce_order_item_alter_quantity',
   ];
 }
 
@@ -53,6 +44,54 @@ function iq_commerce_views_data_alter(array &$data) {
  * Implements hook_form_alter().
  */
 function iq_commerce_form_alter(&$form, \Drupal\Core\Form\FormStateInterface $form_state, $form_id) {
+  // If it is a commerce product variation edit form.
+  if (substr($form_id,0,strlen('commerce_product_variation')) == 'commerce_product_variation' && substr($form_id,0-(strlen('_edit_form')), strlen('_edit_form')) == '_edit_form') {
+    foreach(array_keys($form) as $form_array_key) {
+      // If there is an attribute field, sort the options by the weight.
+      if (substr($form_array_key, 0, strlen('attribute_')) == 'attribute_') {
+        uasort($form[$form_array_key]['widget']['#options'], function($a,$b) use ($form_array_key) {
+          $attribute_id = substr($form_array_key, strlen('attribute_'));
+          if (!is_string($a)) {
+            $a = $a->__toString();
+          }
+          $attribute_a_value = Drupal::entityTypeManager()->getStorage('commerce_product_attribute_value')->loadByProperties(['attribute'=> $attribute_id,'name'=> $a]);
+          $attribute_a_value = reset($attribute_a_value);
+          if ($attribute_a_value instanceof ProductAttributeValue) {
+            $attribute_a_weight = $attribute_a_value->getWeight();
+          }
+          if (!is_string($b)) {
+            $b = $b->__toString();
+          }
+          $attribute_b_value = Drupal::entityTypeManager()->getStorage('commerce_product_attribute_value')->loadByProperties(['attribute'=> $attribute_id,'name'=> $b]);
+          $attribute_b_value = reset($attribute_b_value);
+          if ($attribute_b_value instanceof ProductAttributeValue) {
+            $attribute_b_weight = $attribute_b_value->getWeight();
+          }
+          if (isset($attribute_a_weight) && isset($attribute_b_weight)) {
+            return $attribute_a_weight - $attribute_b_weight;
+          }
+          else {
+            return 0;
+          }
+        });
+      }
+    }
+  }
+  // Override the cart view.
+  if (substr($form_id, 0, strlen('views_form_commerce_cart_form_default')) == 'views_form_commerce_cart_form_default') {
+    $iq_commerce_additional_settings = \Drupal\iq_commerce\Form\IqCommerceAdditionalSettingsForm::getIqCommerceAdditionalSettings();
+    // Check for the additional settings (cart header and size).
+    if (!empty($iq_commerce_additional_settings['cart_header'])) {
+      $cart_header = $iq_commerce_additional_settings['cart_header'];
+
+      // Show the cart header accordingly.
+      $form['cart_header'] = [
+        '#type' => 'markup',
+        '#markup' => $cart_header,
+        '#weight' => -1
+      ];
+    }
+  }
   // Add the tax rate for each product type.
   if ($form_id == 'commerce_product_type_edit_form') {
     $tax_type = \Drupal::service('plugin.manager.commerce_tax_type')->createInstance('swiss_vat');
@@ -141,5 +180,9 @@ function iq_commerce_preprocess_commerce_order_receipt(&$variables) {
  * Implements hook_page_attachments().
  */
 function iq_commerce_page_attachments(array &$attachments) {
-  $attachments['#attached']['library'][] = 'iq_commerce/ajax-cart';
+  $attachments['#attached']['library'][] = 'iq_commerce/catalog';
+  $attachments['#attached']['library'][] = 'iq_commerce/categories';
+  $attachments['#attached']['library'][] = 'iq_commerce/checkout';
+  $attachments['#attached']['library'][] = 'iq_commerce/customer';
 }
+

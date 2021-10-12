@@ -1,4 +1,4 @@
-langcode: de
+langcode: en
 status: true
 dependencies:
   config:
@@ -14,8 +14,6 @@ dependencies:
     - path
     - term_reference_tree
     - text
-_core:
-  default_config_hash: bVqhDE0CBvUi4RPHqKu4sBhUOUwOTgcHVhn5PkfngLU
 id: commerce_product.default.default
 targetEntityType: commerce_product
 bundle: default

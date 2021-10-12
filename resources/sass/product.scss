@@ -1,0 +1,128 @@
+@import 'definitions';
+
+// product detail
+.path-product{
+  .product-information{
+    .iq-text{
+      h1{
+        margin: 0;
+      }
+      .field-sku{
+        margin-bottom: 1.5rem;
+        flex-basis: 100%;
+      }
+    }
+  }
+  img{
+    max-width: 100%;
+  }
+  .commerce-order-item-add-to-cart-form{
+    input[type="text"],
+    input[type="number"],
+    input[type="email"],
+    input[type="submit"],
+    input[type="password"],
+    select,
+    textarea {
+      border-radius: $border-radius-base;
+      border: $border-width-base solid $border-color-base;
+      margin-top: 0rem;
+    }
+    .btn-primary{
+      margin: 15px 0;
+      width: auto;
+    }
+  }
+
+  .iq-image-slider{
+    .owl-dots {
+      text-align: center;
+      position: absolute;
+      bottom: 15px;
+      left: 50%;
+      transform: translateX(-50%);
+      button {
+        background: none;
+        border: none;
+        color: $slider-dot-color;
+        outline: none;
+        margin: 0 10px;
+        padding: 0;
+        cursor: pointer;
+        font-size: $slider-dot-font-size;
+        &.active {
+          color: $slider-dot-color_active;
+        }
+      }
+    }
+
+    .owl-nav {
+      button{
+        outline: none;
+        cursor: pointer;
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        z-index: 1;
+
+        &.owl-prev {
+          left: 15px;
+        }
+
+        &.owl-next {
+          right: 15px;
+        }
+
+        i{
+          padding: 20px;
+          background: $slider-arrow-backgroundcolor;
+          color: $slider-arrow-color;
+          font-size: $slider-arrow-font-size;
+        }
+      }
+    }
+  }
+
+  .commerce-order-item-add-to-cart-form{
+    display: flex;
+    flex-wrap: wrap;
+    .field--widget-commerce-product-variation-attributes{
+      flex-basis: 100%;
+    }
+    .field--name-quantity{
+      flex-basis: 80px;
+      .form-group{
+        margin: 0;
+        height: 100%;
+      }
+      label{
+        display: none
+      }
+      input{
+        height: 100%;
+        margin: 0;
+        border-radius: 0;
+        border: 1px solid #ddd;
+        border-right: none;
+        border-radius: $border-radius-buttons 0 0 $border-radius-buttons;
+        padding-top: 6px;
+        padding-bottom: 6px;
+        font-style: $font-size-buttons;
+      }
+    }
+    .form-actions{
+      input{
+        cursor: pointer;
+        border: none;
+        padding: 7px 15px;
+        background: $background-color-buttons;
+        font-weight: $font-weight-buttons;
+        font-style: $font-style-buttons;
+        font-family: $font-family-buttons;
+        color: $font-color-buttons;
+        border-radius: 0 $border-radius-buttons $border-radius-buttons 0;
+        margin: 0;
+      }
+    }
+  }
+}

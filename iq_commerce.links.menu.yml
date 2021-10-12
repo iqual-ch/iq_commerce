@@ -1,6 +1,24 @@
-iq_commerce.iq_commerce_settings:
-  title: 'Iq Commerce Settings'
-  description: 'Set the receipt information.'
-  route_name: iq_commerce.iq_commerce_settings
-  parent: system.admin_config_system
+iq_commerce.main:
+  title: 'Iq Commerce Config'
+  route_name: iq_commerce.email_settings
+  description: 'Max Urech Config'
+  parent: system.admin_config
+  weight: 0
+
+iq_commerce.email_settings:
+  title: 'E-Mail settings'
+  route_name: iq_commerce.email_settings
+  parent: iq_commerce.main
   weight: 10
+
+iq_commerce.additional_settings:
+  title: 'Additional settings'
+  route_name: iq_commerce.additional_settings
+  parent: iq_commerce.main
+  weight: 30
+
+iq_commerce.product_settings:
+  title: 'Product settings'
+  route_name: iq_commerce.product_settings
+  parent: iq_commerce.main
+  weight: 20

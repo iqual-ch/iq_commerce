@@ -1,0 +1,61 @@
+iq-commerce-related-product-item:
+  label: iq_commerce Related products item
+  description: Related products item
+  pagedesigner: 0
+  fields:
+    title:
+      type: text
+      label: Title
+      description: Title of the item
+    description:
+      type: text
+      label: Description
+      description: Product description
+    product_id:
+      type: text
+      label: Product ID
+      description: Product ID of the item
+    image_img:
+      type: image
+      label: Product image
+    variations:
+      type: text
+      label: Variations
+      description: Array of items variations, containing ID, title & price
+    quantity:
+      type: text
+      label: Quantity
+      description: Quantity of the item
+    label_add:
+      type: text
+      label: Label add item
+      description: Label add item
+    label_added:
+      type: text
+      label: Label added item
+      description: Label added item
+    label_add_more:
+      type: text
+      label: Label add another item
+      description: Label add another item
+    label_choose_variation:
+      type: text
+      label: Label choose variation
+      description: Label choose variation
+    label_choose_variation:
+      type: text
+      label: Label choose variation
+      description: Label choose variation
+    label_toggle_description:
+      type: text
+      label: Label toggle description
+      description: Label toggle description
+  libraries:
+    - related-product-item:
+        js:
+          related-product-item.js: {}
+        css:
+          component:
+            related-product-item.css: {}
+      dependencies:
+        - core/drupal

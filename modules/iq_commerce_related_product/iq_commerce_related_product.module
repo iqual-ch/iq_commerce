@@ -1,8 +1,22 @@
 <?php
 
 /**
- * Implements hook_page_attachments().
+ * @file
+ * Contains iq_commerce_related_product.module.
  */
-function iq_commerce_related_product_page_attachments(array &$attachments) {
-  $attachments['#attached']['library'][] = 'iq_commerce_related_product/related-prodcuts';
+
+/**
+ * Implements hook_theme().
+ */
+function iq_commerce_related_product_theme($existing, $type, $theme, $path) {
+  return [
+    'iq_commerce_related_product_block' => [
+      'variables' => [
+        'oververlay_title' => NULL,
+        'oververlay_label_close' => NULL,
+        'oververlay_label_cart' => NULL,
+        'oververlay_link_cart' => NULL,
+      ],
+    ],
+  ];
 }

@@ -1,0 +1,74 @@
+<?php
+
+use Drupal\commerce_product\Entity\Product;
+use Drupal\commerce_product\Entity\ProductVariation;
+
+/**
+ * Implements hook_cron().
+ */
+function iq_commerce_scheduler_cron()
+{
+  $now = date("Y-m-d",time());
+  $products_to_be_published = ProductVariation::loadMultiple();
+  foreach ($products_to_be_published as $key => $product) {
+    if ($product->hasField('field_iq_commerce_unpublish_on')) {
+      $unpublish_date = $product->field_iq_commerce_unpublish_on->value;
+    }
+    // Reset the variable, just in case of a previous state of another product.
+    else {
+      unset($unpublish_date);
+    }
+    if ($product->hasField('field_iq_commerce_publish_on'))
+    {
+      $publish_date = $product->field_iq_commerce_publish_on->value;
+    }
+    // Reset the variable, just in case of a previous state of another product.
+    else {
+      unset($publish_date);
+    }
+    // If the publish date is in the past, then it should be published.
+    if (!empty($publish_date) && $product->status->value == 0) {
+      if ($publish_date <= $now && (empty($unpublish_date) || $unpublish_date > $now)) {
+        // Publish the variation.
+        $product->setPublished(TRUE);
+        $product->save();
+        // Publish the product as well just in case.
+        $product->getProduct()->setPublished(TRUE);
+        $product->save();
+      }
+    }
+    // If the unpublished date is in the past, then it we should unpublish it.
+    if (!empty($unpublish_date) && $product->status->value == 1) {
+      if ($unpublish_date <= $now) {
+        $product->setPublished(FALSE);
+        $product->save();
+      }
+    }
+    // If the product was already published, but there is a new publishing date
+    // then it should be unpublished till then.
+    if (!empty($publish_date) && $product->status->value == 1) {
+      if ($publish_date > $now) {
+        $product->setPublished(FALSE);
+        $product->save();
+      }
+    }
+  }
+  // Check all products that should be unpublished, i.e. those that reference
+  // all unpublished variations.
+  $products_to_be_unpublished = Product::loadMultiple();
+  foreach ($products_to_be_unpublished as $key => $product) {
+    $variations = $product->getVariations();
+    $has_published_variation = FALSE;
+    foreach ($variations as $array_key => $variation) {
+      if ($variation->status->value == 1) {
+        $has_published_variation = TRUE;
+        break;
+      }
+    }
+    if (!$has_published_variation && $product->status->value == 1) {
+      $product->setPublished(FALSE);
+      $product->save();
+      \Drupal::logger('iq_commerce_scheduler')->notice('Unpublished ' . $product->id() . ' product');
+    }
+  }
+}

@@ -1,0 +1,8 @@
+name: AJAX cart for iq_commerce
+description: AJAX Cart Block
+package: Custom
+type: module
+core: 8.x
+dependencies:
+  - iq_progressive_decoupler:iq_progressive_decoupler
+  - iq_commerce:iq_commerce

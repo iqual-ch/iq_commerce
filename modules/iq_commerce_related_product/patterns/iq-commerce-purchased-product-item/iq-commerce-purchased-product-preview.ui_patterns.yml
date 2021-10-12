@@ -1,0 +1,27 @@
+iq-commerce-purchased-product-item:
+  label: iq_commerce Purchased products item
+  description: Related products item
+  pagedesigner: 0
+  fields:
+    title:
+      type: text
+      label: Title
+      description: Title of the item
+    description:
+      type: text
+      label: Description
+      description: Product description
+    image_img:
+      type: image
+      label: Product image
+    label_related_products:
+      type: text
+      label: Label related products
+      description: Label related products
+  libraries:
+    - purchased-product-item:
+        css:
+          component:
+            purchased-product-item.css: {}
+      dependencies:
+        - core/drupal

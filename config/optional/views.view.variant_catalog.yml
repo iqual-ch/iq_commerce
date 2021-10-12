@@ -1,4 +1,4 @@
-langcode: de
+langcode: en
 status: true
 dependencies:
   config:
@@ -94,7 +94,7 @@ display:
             price__number: 0
           separator: ''
           hide_empty: 0
-          pattern: catalog_item
+          pattern: iq-commerce-catalog-item
           pattern_mapping:
             'views_row:price__currency_code':
               destination: variation_currency
@@ -1530,7 +1530,7 @@ display:
             nothing_5: 0
           separator: ''
           hide_empty: 0
-          pattern: catalog_item
+          pattern: iq-commerce-catalog-item
           pattern_mapping:
             'views_row:field_iq_commerce_lead':
               destination: product_description
@@ -2777,7 +2777,7 @@ display:
             nothing_4: 0
           separator: ''
           hide_empty: 0
-          pattern: catalog_item
+          pattern: iq-commerce-catalog-item
           pattern_mapping:
             'views_row:title':
               destination: product_title

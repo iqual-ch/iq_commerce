@@ -19,3 +19,9 @@ dependencies:
   - twig_tweak:twig_tweak
   - drupal:swiftmailer
   - commerce_cart_api:commerce_cart_api
+  - iq_progressive_decoupler:iq_progressive_decoupler
+  - iq_entity_browsers:iq_entity_browsers
+  - commerce_combine_carts:commerce_combine_carts
+  - redirect_after_login:redirect_after_login
+  - login_emailusername:login_emailusername
+  - entity_print:entity_print

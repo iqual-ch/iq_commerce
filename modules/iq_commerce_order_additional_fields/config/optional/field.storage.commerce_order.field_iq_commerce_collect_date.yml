@@ -1,0 +1,20 @@
+uuid: ebe86801-d019-4751-b173-5f6139a0477c
+langcode: de
+status: true
+dependencies:
+  module:
+    - commerce_order
+    - datetime
+id: commerce_order.field_iq_commerce_collect_date
+field_name: field_iq_commerce_collect_date
+entity_type: commerce_order
+type: datetime
+settings:
+  datetime_type: date
+module: datetime
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

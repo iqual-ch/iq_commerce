@@ -1,0 +1,60 @@
+iq-commerce-catalog-item:
+  label: iq_commerce Catalog item
+  description: Single product item inside catalog
+  category: Shop
+  icon: fas fa-anchor
+  pagedesigner: 0
+  type: component
+  styles: 1
+  fields:
+    product_link:
+      type: href
+      label: Product link
+    product_id:
+      type: text
+      label: Product id
+    variation_id:
+      type: text
+      label: Product variation id
+    variation_type:
+      type: text
+      label: Product variation type
+    product_title:
+      type: text
+      label: Product title
+    product_description:
+      type: text
+      label: Product description
+    product_img:
+      type: image
+      label: Product image
+    variation_price:
+      type: text
+      label: Product price
+    variation_currency:
+      type: text
+      label: Product currency
+    variation_additional_price_text:
+      type: text
+      label: Additional text for variation price
+    add_to_cart_action:
+      type: text
+      label: Add to cart form action
+    add_to_cart_title:
+      type: text
+      label: Add to cart title
+    add_to_cart_destination:
+      type: text
+      label: Add to cart destination
+    add_to_cart_icon:
+      type: fontawesome
+      label: Add to cart icon
+  libraries:
+    - catalog_item:
+        css:
+          component:
+            catalogitem.css: {}
+        js:
+          catalogitem.js: {}
+      dependencies:
+        - core/drupal

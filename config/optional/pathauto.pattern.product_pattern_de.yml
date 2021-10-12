@@ -1,0 +1,31 @@
+langcode: en
+status: true
+dependencies:
+  module:
+    - commerce_product
+    - ctools
+    - language
+id: product_pattern_de
+label: 'Product pattern (DE)'
+type: 'canonical_entities:commerce_product'
+pattern: '/produkt/[commerce_product:title]'
+selection_criteria:
+  e1ca727e-d64a-4c49-a6b2-4048ec712b77:
+    id: 'entity_bundle:commerce_product'
+    bundles:
+      default: default
+    negate: false
+    context_mapping:
+      commerce_product: commerce_product
+  428fd1c8-b73c-4555-8b08-8963aea89b0e:
+    id: language
+    langcodes:
+      de: de
+    negate: false
+    context_mapping:
+      language: 'commerce_product:langcode:language'
+selection_logic: and
+weight: -8
+relationships:
+  'commerce_product:langcode:language':
+    label: Language

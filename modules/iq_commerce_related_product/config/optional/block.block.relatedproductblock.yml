@@ -1,0 +1,47 @@
+langcode: en
+status: true
+dependencies:
+  module:
+    - advanced_menu_condition
+    - iq_commerce_related_product
+    - pagedesigner_block
+  theme:
+    - iq_custom
+id: relatedproductblock
+theme: iq_custom
+region: top_header
+weight: 0
+provider: null
+plugin: iq_commerce_related_product_block
+settings:
+  id: iq_commerce_related_product_block
+  label: 'Related product Block'
+  provider: iq_commerce_related_product
+  label_display: '0'
+  ui_pattern: iq-commerce-related-product-item
+  block_id: block-relatedproductblock
+  field_mapping: '"title:\r\n  value: title\r\ndescription:\r\n  value: field_iq_commerce_lead\r\nvariations:\r\n  type: array\r\n  value: variations\r\n  mapping:\r\n    title:\r\n      value: title\r\n    price:\r\n      value: price.formatted\r\n    variation_id:\r\n      value: variation_id\r\nimage_img:\r\n  value: field_iq_commerce_images[0].field_media_image.url\r\nlabel_choose_variation:\r\n  type: static\r\n  value: Variante wählen\r\nlabel_add:\r\n  type: static\r\n  value: Hinzufügen\r\nlabel_added:\r\n  type: static\r\n  value: Hinzugefügt\r\nlabel_add_more:\r\n  type: static\r\n  value: Weitere hinzufügen\r\nlabel_toggle_description:\r\n  type: static\r\n  value: Informationen"'
+  oververlay_title: 'Passende Produkte'
+  oververlay_label_close: Schliessen
+  oververlay_label_cart: 'Zum Warenkorb'
+  oververlay_link_cart: /cart
+  ui_pattern_purchased_item: iq-commerce-purchased-product-item
+  field_mapping_purchased_item: '"title:\r\n  value: purchased_entity.product_entity.title\r\ndescription:\r\n  value: title\r\nimage_img:\r\n  value: purchased_entity.field_iq_commerce_images[0].field_media_image.url\r\nlabel_related_products:\r\n  type: static\r\n  value: \"Wird oft zusammen gekauft mit\""'
+visibility:
+  advanced_menu_position:
+    id: advanced_menu_position
+    menu_position:
+      '': ''
+    negate: null
+    context_mapping: {  }
+  advanced_menu_position_not:
+    id: advanced_menu_position_not
+    not_menu_position:
+      '': ''
+    negate: null
+    context_mapping: {  }
+  pagedesigner_condition:
+    id: pagedesigner_condition
+    pagedesigner_condition: 0
+    negate: null
+    context_mapping: {  }

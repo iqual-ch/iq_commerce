@@ -1,0 +1,6 @@
+iq_commerce_required_product.required_product_settings:
+  title: 'Required Product Settings'
+  description: 'Define fields that provied required prodcuts.'
+  route_name: iq_commerce_required_product.required_product_settings
+  parent: iq_commerce.main
+  weight: 30

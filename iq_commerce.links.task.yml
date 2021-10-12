@@ -1,9 +1,15 @@
-iq_commerce.iq_commerce_settings:
-  route_name: iq_commerce.iq_commerce_settings
-  title: 'Settings'
-  base_route: iq_commerce.iq_commerce_settings
-iq_commerce.iq_commerce_product_settings:
-  route_name: iq_commerce.iq_commerce_product_settings
+iq_commerce.email_settings:
+  route_name: iq_commerce.email_settings
+  title: 'E-Mail Settings'
+  base_route: iq_commerce.email_settings
+
+iq_commerce.additional_settings:
+  route_name: iq_commerce.additional_settings
+  title: 'Additional Settings'
+  base_route: iq_commerce.email_settings
+
+iq_commerce.product_settings:
+  route_name: iq_commerce.product_settings
   title: 'Product Settings'
   weight: 100
-  base_route: iq_commerce.iq_commerce_settings
+  base_route: iq_commerce.email_settings

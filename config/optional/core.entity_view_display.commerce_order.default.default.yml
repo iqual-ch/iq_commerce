@@ -1,15 +1,14 @@
-langcode: de
+langcode: en
 status: true
 dependencies:
   config:
     - commerce_order.commerce_order_type.default
+    - field.field.commerce_order.default.field_iq_commerce_comment
     - field.field.commerce_order.default.shipments
   module:
     - commerce_order
     - state_machine
     - user
-_core:
-  default_config_hash: evnV-nUZotGAM4kgVWKzCtGRJQMstQX5RxlGG7kx3fg
 id: commerce_order.default.default
 targetEntityType: commerce_order
 bundle: default
@@ -35,6 +34,13 @@ content:
       timezone: ''
     third_party_settings: {  }
     region: content
+  field_iq_commerce_comment:
+    type: basic_string
+    weight: 8
+    region: content
+    label: inline
+    settings: {  }
+    third_party_settings: {  }
   ip_address:
     label: inline
     type: string
@@ -70,7 +76,7 @@ content:
   state:
     label: hidden
     type: state_transition_form
-    weight: 8
+    weight: 9
     settings: {  }
     third_party_settings: {  }
     region: content
@@ -89,6 +95,7 @@ content:
     third_party_settings: {  }
     region: content
 hidden:
+  balance: true
   billing_profile: true
   order_number: true
   shipments: true

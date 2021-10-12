@@ -1,4 +1,4 @@
-langcode: de
+langcode: en
 status: true
 dependencies:
   config:
@@ -12,8 +12,6 @@ dependencies:
       - commerce_product
   module:
     - image
-_core:
-  default_config_hash: 6GpSQzJM6086KplhyiaTF3ezvQ_ecs8bIcW4GQMzrJU
 id: commerce_product_variation.default.cart
 targetEntityType: commerce_product_variation
 bundle: default

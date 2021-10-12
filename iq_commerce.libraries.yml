@@ -1,30 +1,30 @@
-catalog-css:
-  version: 1.x
+catalog:
   css:
     theme:
-      css/catalog-css.css: {}
+      resources/css/catalog.css: {}
 
-dropdown_cart_block:
-  version: VERSION
+product:
   css:
     theme:
-      css/cart-block.css: {}
+      resources/css/product.css: {}
+      https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css: { minified: true, type: external }
   js:
-    //unpkg.com/react@17/umd/react.development.js: {}
-    //unpkg.com/react-dom@17/umd/react-dom.development.js: {}
-    //unpkg.com/babel-standalone@6/babel.min.js: {}
-    js/ajax-cart.js: {}
-    js/cart-block.js: {attributes: {type: text/babel}}
-    js/init.js: {}
-  dependencies:
-    - core/jquery
-    - core/drupal
+    resources/js/product.js:  {}
+    //cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js: { minified: true, type: external }
 
-ajax-cart:
-  version: VERSION
+categories:
+  css:
+    theme:
+      resources/css/categories.css: {}
+
+checkout:
+  css:
+    theme:
+      resources/css/checkout.css: {}
   js:
-    js/ajax-cart.js:  {}
-  dependencies:
-    - core/jquery
-    - core/drupal
-    - core/drupal.ajax
+    resources/js/checkout.js:  {}
+
+customer:
+  css:
+    theme:
+      resources/css/customer.css: {}

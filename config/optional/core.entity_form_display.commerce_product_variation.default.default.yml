@@ -1,4 +1,4 @@
-langcode: de
+langcode: en
 status: true
 dependencies:
   config:
@@ -8,8 +8,6 @@ dependencies:
   module:
     - commerce_price
     - entity_browser
-_core:
-  default_config_hash: dDLA40Axom_QFA79EWUpe_bWXWE8I_7MijzPkslbVfA
 id: commerce_product_variation.default.default
 targetEntityType: commerce_product_variation
 bundle: default

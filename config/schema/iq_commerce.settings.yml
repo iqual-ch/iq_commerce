@@ -23,3 +23,9 @@ iq_commerce.settings:
         format:
           type: string
           label: 'Format'
+    cart_header:
+      type: string
+      label: 'Cart Header'
+    cart_header_size:
+      type: string
+      label: 'Cart Header Size'

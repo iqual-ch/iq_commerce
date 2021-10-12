@@ -1,0 +1,4 @@
+services:
+  commerce_product.lazy_builders:
+    class: Drupal\iq_commerce_ajax_cart\ProductLazyBuilders
+    arguments: ['@entity_type.manager', '@form_builder', '@entity.repository']

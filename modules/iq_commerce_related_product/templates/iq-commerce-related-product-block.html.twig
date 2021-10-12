@@ -1,0 +1,18 @@
+<div class="iq-commerce-related-product hidden" data-related-product-overlay>
+  <div class="container-fluid content">
+    <div class="row iq-row" >
+      <div class="col" >
+        <p class="title">{{ oververlay_title }}</p>
+        <a class="btn-close" title="{{ oververlay_label_close }}" data-related-product-close><i class="fas fa-times"></i></a>
+        <div class="product-item" data-product></div>
+        <div class="related-product-items" data-related-product-items></div>
+        {{ pattern('button', {
+          href: oververlay_link_cart,
+          title: oververlay_label_cart,
+          text: oververlay_label_cart,
+          alignment: 'right'
+        }) }}
+      </div>
+    </div>
+  </div>
+</div>

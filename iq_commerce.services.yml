@@ -9,3 +9,9 @@ services:
     arguments: ['@entity.repository', '@current_route_match', '%commerce_cart_api%']
     tags:
       - { name: normalizer, priority: 9 }
+
+  iq_commerce.event_subscriber:
+    class: Drupal\iq_commerce\EventSubscriber\RedirectAnonymousSubscriber
+    arguments: []
+    tags:
+      - {name: event_subscriber}

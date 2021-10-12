@@ -129,11 +129,38 @@ class IqCommerceCartAddResource extends CartAddResource {
       }
     }
 
+    // Initialize an array with the order item fields.
+    $order_item_fields = [];
+    foreach (reset($body)['form_data'] as $field_name => $field_value) {
+      $field_name = explode('[', $field_name)[0];
+      if (!empty($order_item_fields[$field_name])) {
+        if (!is_array($order_item_fields[$field_name])) {
+          $order_item_fields[$field_name] = [$order_item_fields[$field_name]];
+        }
+        $order_item_fields[$field_name][] = $field_value;
+      }
+      else {
+        $order_item_fields[$field_name] = $field_value;
+      }
+
+    }
+
     /** @var \Drupal\iq_commerce\Event\IqCommerceBeforeCartAddEvent $before_event */
     $before_event = new IqCommerceBeforeCartAddEvent($body);
     $this->eventDispatcher->dispatch(IqCommerceCartEvents::BEFORE_CART_ENTITY_ADD, $before_event);
     $body = $before_event->getBody();
+    // Create the order item through the commerce API.
     $response = parent::post($body, $request);
+    // Go through the response, it should be only 1 order item.
+    /** @var OrderItem $order_item */
+    $order_item = reset($response->getResponseData());
+    foreach($order_item_fields as $field_name => $field_value) {
+      if($order_item->hasField($field_name)) {
+        $order_item->set($field_name, $field_value);
+      }
+    }
+    $order_item->save();
+
     $additional_data = $before_event->getAdditionalData();
     /** @var \Drupal\iq_commerce\Event\IqCommerceAfterCartAddEvent $before_event */
     $after_event = new IqCommerceAfterCartAddEvent($response, $additional_data);

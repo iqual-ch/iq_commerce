@@ -1,0 +1,42 @@
+@import '../../../../resources/sass/definitions';
+
+.iq-commerce-related-product{
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 20;
+  background-color: rgba(0,0,0,0.9);
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  > .container-fluid{
+    padding: 15px;
+  }
+  .content{
+    > .iq-row{
+      background-color: $color-white;
+        > .col > .title{
+        font-size: $font-size-h2;
+        line-height: $line-height-h2;
+        font-weight: $font-weight-h2;
+        font-style: $font-style-h2;
+        font-family: $font-family-h2;
+        color: $color-h2;
+        margin-bottom: $margin-bottom-h2;
+        @include fluid-type(320px, 991px, $font-size-min-h2, $font-size-h2);
+      }
+      .btn-close{
+        position: absolute;
+        top: -15px;
+        right: 15px;
+        cursor: pointer;
+      }
+      .related-product-items{
+
+      }
+    }
+
+  }
+}

@@ -1,0 +1,134 @@
+@import 'definitions';
+
+// order overview
+.view-commerce-user-orders{
+  max-width: 1140px;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 45px 15px;
+
+  .table {
+    font-size: $font-size-standard;
+    tr{
+      background: none;
+      th,
+      td{
+        padding: 8px 0;
+        background: none;
+        color: inherit;
+        border-bottom: 1px solid $border-color-base;
+        border-top: none;
+
+        a{
+          color: $color-standard;
+        }
+      }
+    }
+  }
+}
+
+// order detail
+.customer-information{
+  max-width: 1140px;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 45px 15px 0;
+
+  @media only screen and (min-width: 768px) {
+    display: grid;
+  }
+  .field--name-mail{
+    margin-bottom: 0.5rem;
+    @media only screen and (min-width: 768px) {
+      grid-column-start: 1;
+      grid-row-start: 1;
+    }
+  }
+  .customer-information__shipping{
+    @media only screen and (min-width: 768px) {
+      grid-column-start: 1;
+      grid-row-start: 2;
+    }
+  }
+  .customer-billing{
+    @media only screen and (min-width: 768px) {
+      grid-column-start: 2;
+      grid-row-start: 2;
+    }
+  }
+
+
+  .field__label,
+  .field--type-entity-reference .field__label{
+    font-weight: 700;
+  }
+}
+
+.order-information{
+  max-width: 1140px;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 0 15px 45px;
+
+  .field__label,
+  .field--type-entity-reference .field__label{
+    font-weight: 700;
+  }
+
+  .table {
+    font-size: $font-size-standard;
+    tr{
+      background: none;
+      th,
+      td{
+        padding: 8px 0;
+        background: none;
+        color: inherit;
+        border-bottom: 1px solid $border-color-base;
+        border-top: none;
+
+        a{
+          color: $color-standard;
+        }
+      }
+      .views-field-total-price__number{
+        text-align: right;
+      }
+    }
+  }
+
+  .order-total-line{
+    padding: 0;
+  }
+}
+
+// user profile
+article.profile{
+  max-width: 1140px;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 45px 15px;
+}
+
+.user-form{
+  max-width: 1140px;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 45px 15px;
+
+  input[type="text"],
+  input[type="number"],
+  input[type="email"],
+  input[type="submit"],
+  input[type="password"],
+  select,
+  textarea {
+    border-radius: $border-radius-base;
+    border: $border-width-base solid $border-color-base;
+    margin-top: 0rem;
+  }
+  .btn-primary{
+    margin: 15px 0;
+    width: auto;
+  }
+}

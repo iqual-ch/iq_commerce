@@ -1,0 +1,34 @@
+<div class="related-product-item">
+  {% if image_img|render is not empty %}
+    <div class="img-holder"><img src="{{ image_img }} " alt="{{title}}" title="{{title}}"/></div>
+  {% endif %}
+  <div class="content-holder">
+    <p class="title">{{ title }}</p>
+    {% if label_toggle_description %}
+    <div class="description">
+      <a class="description-toggler" data-toggle >{{ label_toggle_description }} <i class="fas fa-chevron-down"></i></a>
+      <div class="description-content">{{ description }}</div>
+    </div>
+    {% else %}
+      <div class="description">{{ description }}</div>
+    {% endif %}
+    {% if label_choose_variation %}
+    <div class="variations" data-variations>
+      <div data-variation>
+        <form>
+          <input type="hidden" name="product_id" value="{{ product_id }}" />
+          <select name="variation_id">
+            <option value="">{{ label_choose_variation }}</option>
+            {% for variation in variations  %}
+              <option value="{{ variation.variation_id }}" data-variation-price="{{ variation.price }}">{{ variation.title }}</option>
+            {% endfor %}
+          </select>
+          <span class="variation-price" data-variation-price-target></span>
+          <button data-text-success="{{ label_added }}" >{{ label_add }}</button>
+        </form>
+      </div>
+      <a data-add-more class="add-variation hidden">{{ label_add_more }}</a>
+    </div>
+    {% endif %}
+  </div>
+</div>

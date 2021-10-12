@@ -16,9 +16,18 @@
     "drupal/commerce_variation_cart_form": "*",
     "drupal/commerce_shipping": "*",
     "drupal/commerce_postfinance": "*",
-    "iqual/pagedesigner_block_adaptable": "*",
+    "iqual/pagedesigner_block_adaptable": "^0.5",
+    "iqual/iq_progressive_decoupler": "*",
     "drupal/term_reference_tree": "*",
     "drupal/twig_tweak": "*",
-    "drupal/swiftmailer": "*"
+    "drupal/swiftmailer": "*",
+    "drupal/commerce_cart_api": "*",
+    "drupal/iq_entity_browsers": "*",
+    "drupal/commerce_combine_carts": "*",
+    "drupal/login_emailusername": "*",
+    "drupal/redirect_after_login": "*",
+    "drupal/single_datetime": "*",
+    "drupal/entity_print": "2.x",
+    "dompdf/dompdf": "^0.8.6"
   }
 }

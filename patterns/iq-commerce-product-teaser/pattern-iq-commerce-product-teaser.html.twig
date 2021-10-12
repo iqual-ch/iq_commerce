@@ -1,0 +1,31 @@
+<div class="iq-product-teaser">
+  <a href="{{product_link}}">
+    <div class="img-holder">
+      <div>
+        <img src="{{product_img}}" title="{{product_title}}" alt="{{product_title}}" />
+      </div>
+    </div>
+    <div class="info-holder">
+      <span class="title">{{product_title}}</span>
+
+      {% if product_description|render is not empty %}
+      <div class="descpription">
+        {{product_description}}
+      </div>
+      {% endif %}
+
+      {% if product_variants|render is not empty %}
+      <div class="variants">
+        {{product_variants}}
+      </div>
+      {% endif %}
+
+      <div class="btn-product">
+        {{title_button}} <i class="fas fa-chevron-right"></i>
+      </div>
+
+    </div>
+
+  </a>
+
+</div>

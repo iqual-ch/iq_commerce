@@ -1,0 +1,9 @@
+iq_commerce_related_product.related_product_settings:
+  path: '/admin/config/system/iq-commerce-settings/related-product'
+  defaults:
+    _form: '\Drupal\iq_commerce_related_product\Form\RelatedProductSettingsForm'
+    _title: 'Related Product Settings'
+  requirements:
+    _permission: 'administer iq_commerce settings'
+  options:
+    _admin_route: TRUE

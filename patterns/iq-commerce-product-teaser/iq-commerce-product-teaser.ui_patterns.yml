@@ -1,0 +1,38 @@
+iq-commerce-product-teaser:
+  label: iq_commerce Product teaser
+  description: Teaser for a product
+  category: Shop
+  icon: fas fa-anchor
+  pagedesigner: 0
+  type: component
+  styles: 1
+  fields:
+    product_title:
+      type: text
+      label: Product title
+    product_link:
+      type: href
+      label: Product link
+    product_description:
+      type: text
+      label: Product description
+    product_variants:
+      type: text
+      label: Product variants
+    product_img:
+      type: image
+      label: Product image
+    title_button:
+      type: text
+      label: Button text
+
+  libraries:
+    - ui_patterns/button.button
+    - product_teaser:
+        css:
+          component:
+            productteaser.css: {}
+        js:
+          productteaser.js: {}
+      dependencies:
+        - core/drupal

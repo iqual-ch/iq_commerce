@@ -1,0 +1,8 @@
+name: iqual Commerce Scheduler
+description: Provides additional functionality to schedule publishing/unpublishing of the products.
+package: Custom
+type: module
+core: 8.x
+dependencies:
+  - iq_commerce:iq_commerce
+  - drupal:datetime
