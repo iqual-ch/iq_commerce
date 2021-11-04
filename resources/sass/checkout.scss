@@ -328,6 +328,20 @@
       margin-top: 0rem;
     }
 
+    // Pencil icon
+    .order-checkout-pencil-icon {
+      font-size: 1.2rem;
+
+      i {
+        margin: 15px 0;
+        transition: all 150ms ease-in-out;
+      }
+
+      &:hover i {
+        color: $color-primary;
+      }
+    }
+
     .btn-primary{
       margin: 15px 0;
     }

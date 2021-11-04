@@ -126,6 +126,38 @@ function iq_commerce_form_alter(&$form, \Drupal\Core\Form\FormStateInterface $fo
       '#type' => 'markup',
       '#markup' => '<a class="iqbm-button iqbm-text btn btn-cta" href="/cart">' . t('Back to Cart') . '</a>'
     ];
+    // If there is only 1 payment method, the field is hidden.
+    // Show it in another markup field, as an indication of the payment method.
+    if (count($form['payment_information']['payment_method']['#options']) == 1) {
+      $form['shipping_information']['method'] = [
+        '#type' => 'markup',
+        /*
+        If needed, change to radios.
+        '#type' => 'radios',
+        '#title' => t('Payment method'),
+        '#options' => $form['payment_information']['payment_method']['#options'],
+        '#disabled' => TRUE,
+        '#default_value' => array_key_first($form['payment_information']['payment_method']['#options']),
+        */
+        '#markup' => '<h3>' . t('Payment method') . '</h3>' . reset($form['payment_information']['payment_method']['#options'])
+      ];
+    }
+  }
+
+  if ($form_id == 'commerce_checkout_flow_multistep_default' && substr_count($url->getInternalPath(),'review') > 0) {
+    $node_id = explode('/', $url->getInternalPath());
+    $node_id = $node_id[1];
+    if (!empty($node_id)) {
+      if (!empty($form['review']['payment_information'])) {
+        $form['review']['payment_information']["#title"] = t('Payment information') . '&nbsp;&nbsp;&nbsp;&nbsp;' . '<a class="order-checkout-pencil-icon" href="/de/checkout/' . $node_id . '/order_information"><i class="fa fa-pencil"></i></a>';
+      }
+      if (!empty($form['review']['shipping_information'])) {
+        $form['review']['shipping_information']["#title"] = t('Shipping information') . '&nbsp;&nbsp;&nbsp;&nbsp;' . '<a class="order-checkout-pencil-icon" href="/de/checkout/' . $node_id . '/order_information"><i class="fa fa-pencil"></i></a>';
+      }
+      if (!empty($form['review']['customer_comments'])) {
+        $form['review']['customer_comments']["#title"] = t('Additional information') . '&nbsp;&nbsp;&nbsp;&nbsp;' . '<a class="order-checkout-pencil-icon" href="/de/checkout/' . $node_id . '/order_information"><i class="fa fa-pencil"></i></a>';
+      }
+    }
   }
 }
 

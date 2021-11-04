@@ -58,6 +58,7 @@ class TermsConfirmationPane extends CheckoutPaneBase {
       '#type' => 'textfield',
       '#title' => $this->t('Terms label'),
       '#default_value' => $this->configuration['terms_label'],
+      '#maxlength' => 1200
     ];
 
     $form['terms_link'] = [
