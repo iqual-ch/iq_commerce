@@ -130,16 +130,11 @@ function iq_commerce_form_alter(&$form, \Drupal\Core\Form\FormStateInterface $fo
     // Show it in another markup field, as an indication of the payment method.
     if (count($form['payment_information']['payment_method']['#options']) == 1) {
       $form['shipping_information']['method'] = [
-        '#type' => 'markup',
-        /*
-        If needed, change to radios.
         '#type' => 'radios',
         '#title' => t('Payment method'),
         '#options' => $form['payment_information']['payment_method']['#options'],
         '#disabled' => TRUE,
         '#default_value' => array_key_first($form['payment_information']['payment_method']['#options']),
-        */
-        '#markup' => '<h3>' . t('Payment method') . '</h3>' . reset($form['payment_information']['payment_method']['#options'])
       ];
     }
   }
