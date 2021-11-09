@@ -25,6 +25,7 @@ class TermsConfirmationPane extends CheckoutPaneBase {
       '#title' => $this->t($this->configuration['terms_label'], [
         '@terms_link' => $this->configuration['terms_link'],
       ]),
+      '#attributes' => ['class' => ['terms-and-conditions']]
     ];
     return $pane_form;
   }
