@@ -105,7 +105,7 @@ class IqCommerceCartAddResource extends CartAddResource {
   /**
    * Add order items to the session's carts.
    *
-   * @param array $body
+   * @param array $data
    *   The unserialized request body.
    * @param \Symfony\Component\HttpFoundation\Request $request
    *   The request.
@@ -115,9 +115,9 @@ class IqCommerceCartAddResource extends CartAddResource {
    *
    * @throws \Exception
    */
-  public function post(array $body, Request $request) {
+  public function post(array $data, Request $request) {
     // Do an initial validation of the payload before any processing.
-    foreach ($body as $key => $order_item_data) {
+    foreach ($data as $key => $order_item_data) {
       if (!isset($order_item_data['purchased_entity_type'])) {
         throw new UnprocessableEntityHttpException(sprintf('You must specify a purchasable entity type for row: %s', $key));
       }
@@ -131,7 +131,7 @@ class IqCommerceCartAddResource extends CartAddResource {
 
     // Initialize an array with the order item fields.
     $order_item_fields = [];
-    foreach (reset($body)['form_data'] as $field_name => $field_value) {
+    foreach (reset($data)['form_data'] as $field_name => $field_value) {
       $field_name = explode('[', $field_name)[0];
       if (!empty($order_item_fields[$field_name])) {
         if (!is_array($order_item_fields[$field_name])) {
@@ -146,16 +146,16 @@ class IqCommerceCartAddResource extends CartAddResource {
     }
 
     /** @var \Drupal\iq_commerce\Event\IqCommerceBeforeCartAddEvent $before_event */
-    $before_event = new IqCommerceBeforeCartAddEvent($body);
+    $before_event = new IqCommerceBeforeCartAddEvent($data);
     $this->eventDispatcher->dispatch(IqCommerceCartEvents::BEFORE_CART_ENTITY_ADD, $before_event);
-    $body = $before_event->getBody();
+    $data = $before_event->getBody();
     // Create the order item through the commerce API.
-    $response = parent::post($body, $request);
+    $response = parent::post($data, $request);
     // Go through the response, it should be only 1 order item.
     /** @var OrderItem $order_item */
     $order_item = reset($response->getResponseData());
-    foreach($order_item_fields as $field_name => $field_value) {
-      if($order_item->hasField($field_name)) {
+    foreach ($order_item_fields as $field_name => $field_value) {
+      if ($order_item->hasField($field_name)) {
         $order_item->set($field_name, $field_value);
       }
     }
