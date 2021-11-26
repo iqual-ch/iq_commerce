@@ -7,7 +7,7 @@
    */
   Drupal.behaviors.iq_commerce_ajax_cart = {
     getCsrfToken: function (callback) {
-      $.get(Drupal.url('rest/session/token'))
+      $.get(Drupal.url('/session/token'))
         .done(function (data) {
           callback(data);
         });
