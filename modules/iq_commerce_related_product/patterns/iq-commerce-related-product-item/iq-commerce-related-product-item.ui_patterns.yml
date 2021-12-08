@@ -42,10 +42,6 @@ iq-commerce-related-product-item:
       type: text
       label: Label choose variation
       description: Label choose variation
-    label_choose_variation:
-      type: text
-      label: Label choose variation
-      description: Label choose variation
     label_toggle_description:
       type: text
       label: Label toggle description
