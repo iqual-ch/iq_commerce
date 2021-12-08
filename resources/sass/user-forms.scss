@@ -1,0 +1,140 @@
+@import 'definitions';
+
+.forgot-password,
+.login-container,
+.register-container {
+  max-width: 1140px;
+  margin: 25px auto 100px;
+  padding: 0px 15px;
+
+  @media screen and (min-width: $breakpoint-m) {
+    margin: 100px auto 200px;
+  }
+
+  @media screen and (min-width: $breakpoint-l) {
+    margin: 150px auto 200px;
+  }
+
+  //Register page styles
+  .user-register-form {
+    background: #f5f5f5;
+    padding: 40px;
+
+    .form-actions {
+      margin-bottom: 0;
+
+      input {
+        margin-bottom: 0;
+        white-space: normal;
+      }
+    }
+  }
+
+  .login-flex-container {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: stretch;
+
+    //Separate Login page login form margins and styles
+    .login-form-container {
+      flex: 6;
+      margin-bottom: 24px;
+      @media screen and (min-width: $breakpoint-m) {
+        margin-right: 24px;
+      }
+    }
+
+    //Create account block on Login page
+    .create-account-container {
+      flex: 5;
+      background: #f5f5f5;
+      padding: 48px 40px;
+      margin-bottom: 24px;
+      max-width: 600px;
+
+      a {
+        white-space: nowrap;
+        margin: 0
+      }
+
+      @media screen and (min-width: 576px) {
+        min-width: 420px;
+      }
+
+      @media screen and (min-width: $breakpoint-m) {
+        padding: 40px 40px 52px 40px;
+      }
+    }
+  }
+
+  //General login, forgot password and register styles
+  .user-pass,
+  .login-form-container,
+  .user-register-form {
+    max-width: 600px;
+    background: #f5f5f5;
+    padding: 48px 40px;
+
+    @media screen and (min-width: $breakpoint-m) {
+      padding: 40px;
+    }
+
+    //Login form margins
+    .user-login-form {
+      margin-bottom: 35px;
+    }
+
+    // label and text input styles
+    .form-type-textfield,
+    .form-type-password,
+    .form-type-email {
+      input {
+        color: $color-grey3;
+        font-weight: 300;
+        height: 48px;
+        border-radius: 0;
+
+        @media screen and (min-width: 576px) {
+          min-width: 420px;
+        }
+      }
+    }
+
+    // button styles
+    .form-actions {
+      margin-bottom: 0;
+
+      .btn-primary {
+        margin-bottom: 0;
+        width: fit-content;
+      }
+    }
+
+    .login-forgot-password {
+      color: $color-grey4;
+      font-size: 14px;
+      line-height: 1.64;
+      letter-spacing: 1.2px;
+      font-weight: bold;
+      transition: all 150ms ease-in-out;
+      text-decoration: none;
+
+      &:hover,
+      &:focus {
+        color: $color-primary;
+      }
+    }
+  }
+
+  h1 {
+    margin: 0 auto 40px;
+
+    @media screen and (min-width: $breakpoint-m) {
+      margin: 0 0 40px 0;
+    }
+  }
+
+  h4 {
+    margin: 0 0 35px 0;
+  }
+}
