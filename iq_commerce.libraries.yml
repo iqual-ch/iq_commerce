@@ -30,3 +30,4 @@ customer:
       resources/css/customer.css: {}
       resources/css/user-forms.css: {}
       resources/css/user-profile.css: {}
+      resources/css/account-nav.css: {}
