@@ -22,7 +22,7 @@ checkout:
     theme:
       resources/css/checkout.css: {}
   js:
-    resources/js/checkout.js:  {}
+    resources/js/checkout.js: {}
 
 customer:
   css:
@@ -31,3 +31,5 @@ customer:
       resources/css/user-forms.css: {}
       resources/css/user-profile.css: {}
       resources/css/account-nav.css: {}
+  js:
+    resources/js/account-nav.js: {}
