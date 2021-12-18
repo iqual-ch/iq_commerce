@@ -169,6 +169,8 @@ function iq_commerce_views_pre_render(\Drupal\views\ViewExecutable $view) {
     $cart = \Drupal::service('commerce_cart.cart_provider')
       ->getCart('default', $store);
     $cart->recalculateTotalPrice();
+    $cart->setRefreshState(\Drupal\commerce_order\Entity\OrderInterface::REFRESH_ON_SAVE);
+    $cart->save();
   }
 }
 
