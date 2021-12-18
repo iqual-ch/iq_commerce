@@ -164,6 +164,12 @@ function iq_commerce_views_pre_render(\Drupal\views\ViewExecutable $view) {
     // Replace the old results with the results without duplicates.
     $view->result = $resultNoDoubleNodes;
   }
+  if ($view->id() == "commerce_cart_form") {
+    $store = \Drupal::service('commerce_store.current_store')->getStore();
+    $cart = \Drupal::service('commerce_cart.cart_provider')
+      ->getCart('default', $store);
+    $cart->recalculateTotalPrice();
+  }
 }
 
 /**
