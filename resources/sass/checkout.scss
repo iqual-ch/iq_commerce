@@ -291,163 +291,164 @@
 
   .layout-checkout-form {
 
-    // Payment methods (.checkout-pane-commerce-payrexx-integration-commerce-pane-payment-method-selection)
-    fieldset.payment-methods {
+    .checkout-pane-commerce-payrexx-integration-commerce-pane-payment-method-selection {
+      fieldset.payment-methods {
 
-      // Radio buttons wrapper
-      >.fieldset-wrapper {
-        >div.radio {
-          display: flex;
-          flex-direction: row;
-          flex-wrap: wrap;
-          justify-content: flex-start;
-          align-items: center;
+        // Radio buttons wrapper
+        >.fieldset-wrapper {
+          >div.radio {
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            justify-content: flex-start;
+            align-items: center;
 
-          >div {
+            >div {
 
-            // I'll choose later
-            &:first-of-type {
-              width: 100%;
-              margin-bottom: 15px;
-
-              label,
-              button {
-                cursor: pointer;
-              }
-            }
-
-            // Payment providers
-            &:not(:first-of-type) {
-
-              // Radio wrapper
-              .js-form-item {
-                width: 60px;
-                height: 40px;
-                background-color: $color-grey5;
-                margin-right: 15px;
+              // I'll choose later
+              &:first-of-type {
+                width: 100%;
                 margin-bottom: 15px;
-                cursor: pointer;
 
-                // Overlay
-                &:before {
-                  display: none;
-                  content: '';
-                  position: absolute;
-                  width: 100%;
-                  height: 100%;
-                  top: 0;
-                  right: 0;
-                  bottom: 0;
-                  left: 0;
-                  background-color: rgba($color: $color-white, $alpha: 0.5);
-                  z-index: 1;
+                label,
+                button {
+                  cursor: pointer;
                 }
+              }
 
-                &:hover,
-                &:focus {
+              // Payment providers
+              &:not(:first-of-type) {
+
+                // Radio wrapper
+                .js-form-item {
+                  width: 60px;
+                  height: 40px;
+                  background-color: $color-grey5;
+                  margin-right: 15px;
+                  margin-bottom: 15px;
+                  cursor: pointer;
+
+                  // Overlay
                   &:before {
-                    display: block;
+                    display: none;
+                    content: '';
+                    position: absolute;
+                    width: 100%;
+                    height: 100%;
+                    top: 0;
+                    right: 0;
+                    bottom: 0;
+                    left: 0;
+                    background-color: rgba($color: $color-white, $alpha: 0.5);
+                    z-index: 1;
+                  }
+
+                  &:hover,
+                  &:focus {
+                    &:before {
+                      display: block;
+                    }
                   }
                 }
-              }
 
-              // Radio button
-              input {
-                position: absolute;
-                left: 0;
-                bottom: 0;
-                margin: 0;
-                z-index: 2;
-                cursor: pointer;
-              }
-
-              // Label
-              label {
-                display: none;
-              }
-
-              // Images
-              // Mastercard
-              &.mastercard {
-                .js-form-item {
-                  background: url('../assets/payment-providers-svg/card_mastercard.svg') no-repeat center/contain;
+                // Radio button
+                input {
+                  position: absolute;
+                  left: 0;
+                  bottom: 0;
+                  margin: 0;
+                  z-index: 2;
+                  cursor: pointer;
                 }
-              }
 
-              // Visa
-              &.visa {
-                .js-form-item {
-                  background: url('../assets/payment-providers-svg/card_visa.svg') no-repeat center/contain;
+                // Label
+                label {
+                  display: none;
                 }
-              }
 
-              // American Express
-              &.american-express {
-                .js-form-item {
-                  background: url('../assets/payment-providers-svg/card_american-express.svg') no-repeat center/contain;
+                // Images
+                // Mastercard
+                &.mastercard {
+                  .js-form-item {
+                    background: url('../assets/payment-providers-svg/card_mastercard.svg') no-repeat center/contain;
+                  }
                 }
-              }
 
-              // Apple Pay
-              &.apple-pay {
-                .js-form-item {
-                  background: url('../assets/payment-providers-svg/card_apple-pay.svg') no-repeat center/contain;
+                // Visa
+                &.visa {
+                  .js-form-item {
+                    background: url('../assets/payment-providers-svg/card_visa.svg') no-repeat center/contain;
+                  }
                 }
-              }
 
-              // Google Pay
-              &.google-pay {
-                .js-form-item {
-                  background: url('../assets/payment-providers-svg/card_google-pay.svg') no-repeat center/contain;
+                // American Express
+                &.american-express {
+                  .js-form-item {
+                    background: url('../assets/payment-providers-svg/card_american-express.svg') no-repeat center/contain;
+                  }
                 }
-              }
 
-              // Bancontact
-              &.bancontact {
-                .js-form-item {
-                  background: url('../assets/payment-providers-svg/card_bancontact.svg') no-repeat center/contain;
+                // Apple Pay
+                &.apple-pay {
+                  .js-form-item {
+                    background: url('../assets/payment-providers-svg/card_apple-pay.svg') no-repeat center/contain;
+                  }
                 }
-              }
 
-              // Giropay
-              &.giropay {
-                .js-form-item {
-                  background: url('../assets/payment-providers-svg/card_giropay.svg') no-repeat center/contain;
+                // Google Pay
+                &.google-pay {
+                  .js-form-item {
+                    background: url('../assets/payment-providers-svg/card_google-pay.svg') no-repeat center/contain;
+                  }
                 }
-              }
 
-              // Ideal
-              &.ideal {
-                .js-form-item {
-                  background: url('../assets/payment-providers-svg/card_ideal.svg') no-repeat center/contain;
+                // Bancontact
+                &.bancontact {
+                  .js-form-item {
+                    background: url('../assets/payment-providers-svg/card_bancontact.svg') no-repeat center/contain;
+                  }
                 }
-              }
 
-              // Sofort
-              &.sofort {
-                .js-form-item {
-                  background: url('../assets/payment-providers-svg/card_sofort.svg') no-repeat center/contain;
+                // Giropay
+                &.giropay {
+                  .js-form-item {
+                    background: url('../assets/payment-providers-svg/card_giropay.svg') no-repeat center/contain;
+                  }
                 }
-              }
 
-              // EPS
-              &.eps {
-                .js-form-item {
-                  background: url('../assets/payment-providers-svg/card_eps.svg') no-repeat center/contain;
+                // Ideal
+                &.ideal {
+                  .js-form-item {
+                    background: url('../assets/payment-providers-svg/card_ideal.svg') no-repeat center/contain;
+                  }
                 }
-              }
 
-              // Alipay
-              &.alipay {
-                .js-form-item {
-                  background: url('../assets/payment-providers-svg/card_alipay.svg') no-repeat center/contain;
+                // Sofort
+                &.sofort {
+                  .js-form-item {
+                    background: url('../assets/payment-providers-svg/card_sofort.svg') no-repeat center/contain;
+                  }
                 }
-              }
 
-              // WeChat
-              &.wechat-pay {
-                .js-form-item {
-                  background: url('../assets/payment-providers-svg/card_wechat-pay.svg') no-repeat center/contain;
+                // EPS
+                &.eps {
+                  .js-form-item {
+                    background: url('../assets/payment-providers-svg/card_eps.svg') no-repeat center/contain;
+                  }
+                }
+
+                // Alipay
+                &.alipay {
+                  .js-form-item {
+                    background: url('../assets/payment-providers-svg/card_alipay.svg') no-repeat center/contain;
+                  }
+                }
+
+                // WeChat
+                &.wechat-pay {
+                  .js-form-item {
+                    background: url('../assets/payment-providers-svg/card_wechat-pay.svg') no-repeat center/contain;
+                  }
                 }
               }
             }
