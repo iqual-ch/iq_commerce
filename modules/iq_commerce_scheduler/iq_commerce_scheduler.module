@@ -40,7 +40,7 @@ function iq_commerce_scheduler_cron()
     // If the unpublished date is in the past, then it we should unpublish it.
     if (!empty($unpublish_date) && $product->status->value == 1) {
       if ($unpublish_date <= $now) {
-        $product->setPublished(FALSE);
+        $product->setUnpublished();
         $product->save();
       }
     }
@@ -48,7 +48,7 @@ function iq_commerce_scheduler_cron()
     // then it should be unpublished till then.
     if (!empty($publish_date) && $product->status->value == 1) {
       if ($publish_date > $now) {
-        $product->setPublished(FALSE);
+        $product->setUnpublished();
         $product->save();
       }
     }
@@ -66,7 +66,7 @@ function iq_commerce_scheduler_cron()
       }
     }
     if (!$has_published_variation && $product->status->value == 1) {
-      $product->setPublished(FALSE);
+      $product->setUnpublished();
       $product->save();
       \Drupal::logger('iq_commerce_scheduler')->notice('Unpublished ' . $product->id() . ' product');
     }
