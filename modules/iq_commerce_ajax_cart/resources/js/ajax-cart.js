@@ -124,7 +124,7 @@
                 let price = parseFloat(this.total_price.number);
                 totalSum += price;
               });
-              $blockElement.find('[data-total-value]').text('CHF ' + totalSum.toFixed(2));
+              $blockElement.find('[data-total-value]').text('CHF ' + totalSum.toLocaleString('de-CH', {minimumFractionDigits: 2}));
 
               $blockElement.find('[data-cart-content-holder]').removeClass('loading');
               $(document).trigger('ajax-cart-after-block-rendered[' + pattern + ']', $target);
