@@ -22,6 +22,7 @@ class UserController extends ControllerBase {
       $response = new RedirectResponse(Url::fromUserInput('/user/' . $user_id . '/edit')->toString(), 302);
       return $response;
     }
+    return [];
   }
 
 }
