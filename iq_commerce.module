@@ -194,3 +194,23 @@ function iq_commerce_page_attachments(array &$attachments) {
   $attachments['#attached']['library'][] = 'iq_commerce/customer';
 }
 
+/**
+ * Implements hook_ENTITY_TYPE_delete().
+ *
+ * Delete all cart assignment of the deleted product.
+ */
+function top_events_commerce_commerce_product_variation_delete(EntityInterfaceAlias $entity) {
+  $order_items = \Drupal::entityTypeManager()->getStorage('commerce_order_item')->loadByProperties([
+    'purchased_entity' => $entity->id(),
+  ]);
+  if (!empty($order_items)) {
+    foreach ($order_items as $order_item) {
+      if ($order_item &&
+          $order_item->getOrder() &&
+          $order_item->getOrder()->getState()->getLabel() != 'Completed'
+      ) {
+        $order_item->delete();
+      }
+    }
+  }
+}
