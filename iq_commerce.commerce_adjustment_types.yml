@@ -1,0 +1,6 @@
+min_order_fee:
+  label: 'Min amount fee'
+  singular_label: 'Min. fee'
+  plural_label: 'Min. fee'
+  has_ui: true
+  weight: 11

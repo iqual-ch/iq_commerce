@@ -15,3 +15,9 @@ services:
     arguments: []
     tags:
       - {name: event_subscriber}
+
+  iq_commerce.cart_update_subscriber:
+    class: Drupal\iq_commerce\EventSubscriber\CartEventSubscriber
+    arguments: ['@entity_type.manager']
+    tags:
+      - { name: event_subscriber }
