@@ -7,7 +7,7 @@
    */
   Drupal.behaviors.iq_commerce_ajax_cart = {
     getCsrfToken: function (callback) {
-      $.get(Drupal.url('rest/session/token'))
+      $.get(Drupal.url('session/token'))
         .done(function (data) {
           callback(data);
         });
@@ -84,7 +84,7 @@
           'Content-Type': 'application/json',
         },
         success: function (cartData) {
-          // add additionalData to eventTrigger.
+          // Add additionalData to eventTrigger.
           var updateData = {
             cartData: cartData,
             additionalData: additionalData
