@@ -1,8 +1,16 @@
 <?php
 
-use Drupal\commerce_product\Entity\ProductAttributeValue;
-use Drupal\commerce_tax\Entity\TaxType;
+/**
+ * @file
+ */
+
+use Drupal\Core\Locale\CountryManager;
+use Drupal\iq_commerce\Form\IqCommerceSettingsForm;
+use Drupal\views\ViewExecutable;
+use Drupal\Core\Url;
+use Drupal\iq_commerce\Form\IqCommerceAdditionalSettingsForm;
 use Drupal\Core\Form\FormStateInterface;
+use Drupal\commerce_product\Entity\ProductAttributeValue;
 
 /**
  * Implements hook_mail().
@@ -11,7 +19,7 @@ function iq_commerce_mail($key, &$message, $params) {
   $message['headers']['Content-Type'] = 'text/html; charset=UTF-8; format=flowed';
   \Drupal::logger('iq_commerce')->notice($key);
   mb_internal_encoding("UTF-8");
-  $message['subject'] = mb_encode_mimeheader($message['subject'],'UTF-8','Q');
+  $message['subject'] = mb_encode_mimeheader($message['subject'], 'UTF-8', 'Q');
 }
 
 /**
@@ -19,12 +27,52 @@ function iq_commerce_mail($key, &$message, $params) {
  */
 function iq_commerce_theme($existing, $type, $theme, $path) {
   return [
+    'block__menu_block__account' => [
+      'template' => 'block--menu-block--account',
+      'base hook' => 'block',
+    ],
+    'commerce_checkout_form__with_sidebar' => [
+      'template' => 'commerce-checkout-form--with-sidebar',
+      'base hook' => 'commerce_checkout_form',
+    ],
+    'commerce_order__user' => [
+      'template' => 'commerce--order--user',
+      'base hook' => 'commerce_order',
+    ],
+    'commerce_order_receipt__entity_print' => [
+      'template' => 'commerce-order-receipt--entity-print',
+      'base hook' => 'commerce_order_receipt',
+    ],
     'commerce_order_receipt' => [
       'template' => 'iq-commerce-order-receipt',
       'base hook' => 'commerce_order_receipt',
     ],
     'commerce_product' => [
       'render element' => 'elements',
+    ],
+    'page__user__login' => [
+      'template' => 'page--user--login',
+      'base hook' => 'page',
+    ],
+    'page__user__orders__%' => [
+      'template' => 'page--user--orders--%',
+      'base hook' => 'page',
+    ],
+    'page__user__password' => [
+      'template' => 'page--user--password',
+      'base hook' => 'page',
+    ],
+    'page__user__register' => [
+      'template' => 'page--user--register',
+      'base hook' => 'page',
+    ],
+    'menu__account' => [
+      'template' => 'menu--account',
+      'base hook' => 'menu',
+    ],
+    'user__full' => [
+      'template' => 'user--full',
+      'base hook' => 'user',
     ],
   ];
 }
@@ -43,18 +91,18 @@ function iq_commerce_views_data_alter(array &$data) {
 /**
  * Implements hook_form_alter().
  */
-function iq_commerce_form_alter(&$form, \Drupal\Core\Form\FormStateInterface $form_state, $form_id) {
+function iq_commerce_form_alter(&$form, FormStateInterface $form_state, $form_id) {
   // If it is a commerce product variation edit form.
-  if (substr($form_id,0,strlen('commerce_product_variation')) == 'commerce_product_variation' && substr($form_id,0-(strlen('_edit_form')), strlen('_edit_form')) == '_edit_form') {
-    foreach(array_keys($form) as $form_array_key) {
+  if (substr($form_id, 0, strlen('commerce_product_variation')) == 'commerce_product_variation' && substr($form_id, 0 - (strlen('_edit_form')), strlen('_edit_form')) == '_edit_form') {
+    foreach (array_keys($form) as $form_array_key) {
       // If there is an attribute field, sort the options by the weight.
       if (substr($form_array_key, 0, strlen('attribute_')) == 'attribute_') {
-        uasort($form[$form_array_key]['widget']['#options'], function($a,$b) use ($form_array_key) {
+        uasort($form[$form_array_key]['widget']['#options'], function ($a, $b) use ($form_array_key) {
           $attribute_id = substr($form_array_key, strlen('attribute_'));
           if (!is_string($a)) {
             $a = $a->__toString();
           }
-          $attribute_a_value = Drupal::entityTypeManager()->getStorage('commerce_product_attribute_value')->loadByProperties(['attribute'=> $attribute_id,'name'=> $a]);
+          $attribute_a_value = Drupal::entityTypeManager()->getStorage('commerce_product_attribute_value')->loadByProperties(['attribute' => $attribute_id, 'name' => $a]);
           $attribute_a_value = reset($attribute_a_value);
           if ($attribute_a_value instanceof ProductAttributeValue) {
             $attribute_a_weight = $attribute_a_value->getWeight();
@@ -62,7 +110,7 @@ function iq_commerce_form_alter(&$form, \Drupal\Core\Form\FormStateInterface $fo
           if (!is_string($b)) {
             $b = $b->__toString();
           }
-          $attribute_b_value = Drupal::entityTypeManager()->getStorage('commerce_product_attribute_value')->loadByProperties(['attribute'=> $attribute_id,'name'=> $b]);
+          $attribute_b_value = Drupal::entityTypeManager()->getStorage('commerce_product_attribute_value')->loadByProperties(['attribute' => $attribute_id, 'name' => $b]);
           $attribute_b_value = reset($attribute_b_value);
           if ($attribute_b_value instanceof ProductAttributeValue) {
             $attribute_b_weight = $attribute_b_value->getWeight();
@@ -79,7 +127,7 @@ function iq_commerce_form_alter(&$form, \Drupal\Core\Form\FormStateInterface $fo
   }
   // Override the cart view.
   if (substr($form_id, 0, strlen('views_form_commerce_cart_form_default')) == 'views_form_commerce_cart_form_default') {
-    $iq_commerce_additional_settings = \Drupal\iq_commerce\Form\IqCommerceAdditionalSettingsForm::getIqCommerceAdditionalSettings();
+    $iq_commerce_additional_settings = IqCommerceAdditionalSettingsForm::getIqCommerceAdditionalSettings();
     // Check for the additional settings (cart header and size).
     if (!empty($iq_commerce_additional_settings['cart_header'])) {
       $cart_header = $iq_commerce_additional_settings['cart_header'];
@@ -88,7 +136,7 @@ function iq_commerce_form_alter(&$form, \Drupal\Core\Form\FormStateInterface $fo
       $form['cart_header'] = [
         '#type' => 'markup',
         '#markup' => $cart_header,
-        '#weight' => -1
+        '#weight' => -1,
       ];
     }
   }
@@ -111,35 +159,38 @@ function iq_commerce_form_alter(&$form, \Drupal\Core\Form\FormStateInterface $fo
         '#type' => 'select',
         '#title' => t('Tax Rate'),
         '#options' => $rate_labels,
-        '#default_value' => $default_tax_rate
+        '#default_value' => $default_tax_rate,
       ];
     }
 
     $form['actions']['submit']['#submit'][] = 'iq_commerce_product_type_form_submit';
   }
-  $url = \Drupal\Core\Url::fromRoute('<current>');
+  $url = Url::fromRoute('<current>');
 
-  if ($form_id == 'commerce_checkout_flow_multistep_default' && substr_count($url->getInternalPath(),'order_information') > 0) {
+  if ($form_id == 'commerce_checkout_flow_multistep_default' && substr_count($url->getInternalPath(), 'order_information') > 0) {
     // Unset the "Go back" link and create a custom one.
     unset($form['actions']['next']['#suffix']);
     $form['back_to_cart'] = [
       '#type' => 'markup',
-      '#markup' => '<a class="iqbm-button iqbm-text btn btn-cta" href="/cart">' . t('Back to Cart') . '</a>'
+      '#markup' => '<a class="iqbm-button iqbm-text btn btn-cta" href="/cart">' . t('Back to Cart') . '</a>',
     ];
   }
 }
 
-function iq_commerce_product_type_form_submit(&$form, \Drupal\Core\Form\FormStateInterface $form_state) {
+/**
+ *
+ */
+function iq_commerce_product_type_form_submit(&$form, FormStateInterface $form_state) {
   /** @var \Drupal\commerce_product\Entity\ProductType $product_type_entity */
   $product_type_entity = $form_state->getFormObject()->getEntity();
-  $product_type_entity->setThirdPartySetting('iq_commerce',  'tax_rate', $form_state->getValue('tax_rate'));
+  $product_type_entity->setThirdPartySetting('iq_commerce', 'tax_rate', $form_state->getValue('tax_rate'));
   $product_type_entity->save();
 }
 
 /**
  * Implements hook_views_pre_render().
  */
-function iq_commerce_views_pre_render(\Drupal\views\ViewExecutable $view) {
+function iq_commerce_views_pre_render(ViewExecutable $view) {
   if ($view->id() == 'variant_catalog') {
 
     // Array of nodes to prevent duplicates.
@@ -178,10 +229,33 @@ function iq_commerce_views_pre_render(\Drupal\views\ViewExecutable $view) {
  * Implements hook_preprocess_HOOK().
  */
 function iq_commerce_preprocess_commerce_order_receipt(&$variables) {
-  $iq_commerce_settings = \Drupal\iq_commerce\Form\IqCommerceSettingsForm::getIqCommerceSettings();
-  $variables['iq_commerce_footer'] =  $iq_commerce_settings['footer']['value'];
-  $variables['iq_commerce_header'] =  $iq_commerce_settings['header']['value'];
-  $variables['iq_commerce_homepage'] = \Drupal\Core\Url::fromRoute('<front>');
+  $iq_commerce_settings = IqCommerceSettingsForm::getIqCommerceSettings();
+  $variables['iq_commerce_footer'] = $iq_commerce_settings['footer']['value'];
+  $variables['iq_commerce_header'] = $iq_commerce_settings['header']['value'];
+  $variables['iq_commerce_homepage'] = Url::fromRoute('<front>');
+
+  /** @var Drupal\commerce_order\Entity\OrderInterface $order */
+  $order = $variables['order_entity'];
+  $shipments = $order->get('shipments')->referencedEntities();
+  /** @var \Drupal\commerce_shipping\Entity\Shipment $shipment */
+  $shipment = reset($shipments);
+  /** @var \Drupal\address\Plugin\Field\FieldType\AddressItem $address */
+  $address = $shipment->getShippingProfile()->get('address')->first();
+  if (!empty($address)) {
+    $variables['full_name'] = $address->getGivenName() . ' ' . $address->getFamilyName();
+    $countries = CountryManager::getStandardList();
+    $full_country_name = $countries[$address->getCountryCode()]->__toString();
+    $variables['shipping_address'] = $address->getGivenName() . ' ' . $address->getFamilyName() . '<br />' . $address->getAddressLine1() . '<br />' . $address->getPostalCode() . ' ' . $address->getLocality() . '<br/>' . $full_country_name;
+  }
+  $billing_profile = $order->getBillingProfile();
+  $billing_address = $billing_profile->get('address')->first();
+  $full_country_name = $countries[$billing_address->getCountryCode()]->__toString();
+  $variables['billing_address'] = $billing_address->getGivenName() . ' ' . $billing_address->getFamilyName() . '<br />' . $billing_address->getAddressLine1() . '<br />' . $billing_address->getPostalCode() . ' ' . $billing_address->getLocality() . '<br/>' . $full_country_name;
+  if (!empty($shipment->get('shipping_method')->entity)) {
+    $variables['shipping_method'] = $shipment->get('shipping_method')->entity->getName();
+  }
+
+  // https://drupal.stackexchange.com/questions/263652/how-to-get-the-customer-name-in-commerce-order-confirmation-e-mail
 }
 
 /**
@@ -193,4 +267,3 @@ function iq_commerce_page_attachments(array &$attachments) {
   $attachments['#attached']['library'][] = 'iq_commerce/checkout';
   $attachments['#attached']['library'][] = 'iq_commerce/customer';
 }
-
