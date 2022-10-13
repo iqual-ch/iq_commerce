@@ -28,7 +28,7 @@ function iq_commerce_mail($key, &$message, $params) {
 function iq_commerce_theme($existing, $type, $theme, $path) {
   return [
     'block__menu_block__account' => [
-      'template' => 'bblock/lock--menu-block--account',
+      'template' => 'block/block--menu-block--account',
       'base hook' => 'block',
     ],
     'commerce_checkout_form__with_sidebar' => [
