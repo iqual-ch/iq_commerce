@@ -1,34 +1,39 @@
 @import 'definitions';
 
 // cart
-.cart-empty-page{
+.cart-empty-page {
   max-width: 1140px;
   margin-left: auto;
   margin-right: auto;
   padding: 45px 15px;
 }
-.cart{
+
+.cart {
   max-width: 1140px;
   margin-left: auto;
   margin-right: auto;
   padding: 0 15px;
-  .view-commerce-cart-form{
-    .views-form{
+
+  .view-commerce-cart-form {
+    .views-form {
       width: 100%;
 
       .table {
         margin: 0;
         font-size: $font-size-standard;
-        thead{
+
+        thead {
+
           .views-field-edit-quantity,
           .views-field-remove-button,
-          .views-field-total-price__number{
+          .views-field-total-price__number {
             @media only screen and (max-width: 767px) {
               display: none;
             }
           }
         }
-        tr{
+
+        tr {
           background: none;
 
           @media only screen and (max-width: 767px) {
@@ -41,7 +46,7 @@
 
 
           th,
-          td{
+          td {
             padding: 8px 0;
             background: none;
             color: inherit;
@@ -54,46 +59,52 @@
 
           }
 
-          .views-field-unit-price__number{
+          .views-field-unit-price__number {
             padding-left: 15px;
             padding-right: 15px;
             line-height: 35px;
+
             @media only screen and (max-width: 767px) {
               display: none;
             }
           }
 
-          .views-field-nothing{
+          .views-field-nothing {
             padding-right: 10px;
-            img{
+
+            img {
               max-width: 100%;
               height: auto;
             }
           }
 
-          .views-field-purchased-entity{
+          .views-field-purchased-entity {
             grid-column-end: 4;
             grid-column-start: 2;
-            .field--type-entity-reference{
+
+            .field--type-entity-reference {
               margin: 0
             }
           }
 
-          .views-field-edit-quantity{
+          .views-field-edit-quantity {
             grid-row-start: 2;
             grid-column-start: 1;
             grid-column-end: 4;
             width: 185px;
-            .form-number{
+
+            .form-number {
               width: 100%;
             }
 
-            .item-update{
+            .item-update {
               display: flex;
+
               @media only screen and (max-width: 767px) {
                 justify-content: space-between;
               }
-              button{
+
+              button {
                 background: $color-grey5;
                 border: 1px solid $color-grey4;
                 width: 35px;
@@ -105,7 +116,7 @@
                 cursor: pointer;
               }
 
-              .delete-order-item{
+              .delete-order-item {
                 background: none;
                 border: none;
                 width: 15px;
@@ -130,23 +141,26 @@
                 background-size: contain;
                 background-position: center;
                 background-repeat: no-repeat;
+
                 @media only screen and (min-width: 768px) {
                   margin-left: 15px;
                 }
+
                 @media only screen and (min-width: 1200px) {
                   margin-left: 45px;
                 }
               }
 
 
-              fieldset{
+              fieldset {
                 padding: 0 5px;
               }
 
-              input{
+              input {
                 text-align: center;
                 -moz-appearance: textfield;
                 border: 1px solid $color-grey4;
+
                 &::-webkit-outer-spin-button,
                 &::-webkit-inner-spin-button {
                   -webkit-appearance: none;
@@ -157,30 +171,32 @@
 
           }
 
-          .views-field-remove-button{
+          .views-field-remove-button {
             grid-row-start: 2;
             grid-column-start: 2;
           }
 
-          .views-field-total-price__number{
+          .views-field-total-price__number {
             grid-row-start: 3;
             grid-column-start: 1;
             grid-column-end: 4;
             line-height: 35px;
             text-align: right;
+
             @media only screen and (min-width: 768px) {
               width: 120px;
             }
+
             @media only screen and (min-width: 1200px) {
               width: 140px;
             }
           }
 
-          .form-group{
+          .form-group {
             margin-bottom: 0;
           }
 
-          .form-number{
+          .form-number {
             border-radius: $border-radius-base;
             border: $border-width-base solid $border-color-base;
             font-weight: normal;
@@ -188,7 +204,7 @@
             width: auto;
           }
 
-          .delete-order-item{
+          .delete-order-item {
             margin: 0;
             padding: .375rem .75rem;
             width: auto;
@@ -202,17 +218,19 @@
 
       }
 
-      .order-total-line{
+      .order-total-line {
         padding: 0 15px;
-        .order-total-line-value{
+
+        .order-total-line-value {
           width: 120px;
+
           @media only screen and (min-width: 1200px) {
             width: 140px;
           }
         }
       }
 
-      .form-actions{
+      .form-actions {
         padding: 15px;
         display: flex;
         flex-direction: column;
@@ -222,14 +240,14 @@
           padding: 15px 0;
         }
 
-        .btn-primary{
+        .btn-primary {
           margin: 15px 0;
 
           @media only screen and (min-width: 768px) {
             margin: 0 15px;
           }
 
-          &[data-drupal-selector="edit-submit"]{
+          &[data-drupal-selector="edit-submit"] {
             background-color: $color-grey4;
             border: $border-width-base solid $border-color-base;
             font-weight: normal;
@@ -238,7 +256,8 @@
         }
       }
     }
-    .order-total-line-value{
+
+    .order-total-line-value {
       width: 100px;
     }
   }
@@ -246,43 +265,212 @@
 
 
 // checkout
-.form-wrapper__login-option{
+.form-wrapper__login-option {
   padding: 0;
 }
 
-.commerce-checkout-flow{
+.commerce-checkout-flow {
   max-width: 1140px;
   margin-left: auto;
   margin-right: auto;
   padding: 0 15px;
 
-  .checkout-pane-login{
+  .checkout-pane-login {
     display: flex;
     flex-wrap: wrap;
     margin: 0 -15px;
-    .form-wrapper__login-option{
+
+    .form-wrapper__login-option {
       padding: 0 15px;
+
       @media only screen and (min-width: 768px) {
         flex-basis: 50%;
       }
     }
   }
 
-  .layout-checkout-form{
+  .layout-checkout-form {
 
-    .checkout-pane-order-summary{
+    .checkout-pane-commerce-payrexx-integration-commerce-pane-payment-method-selection {
+      fieldset.payment-methods {
+
+        // Radio buttons wrapper
+        >.fieldset-wrapper {
+          >div.radio {
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            justify-content: flex-start;
+            align-items: center;
+
+            >div {
+
+              // I'll choose later
+              &:first-of-type {
+                width: 100%;
+                margin-bottom: 15px;
+
+                label,
+                button {
+                  cursor: pointer;
+                }
+              }
+
+              // Payment providers
+              &:not(:first-of-type) {
+
+                // Radio wrapper
+                .js-form-item {
+                  width: 60px;
+                  height: 40px;
+                  background-color: $color-grey5;
+                  margin-right: 15px;
+                  margin-bottom: 15px;
+                  cursor: pointer;
+
+                  // Overlay
+                  &:before {
+                    display: none;
+                    content: '';
+                    position: absolute;
+                    width: 100%;
+                    height: 100%;
+                    top: 0;
+                    right: 0;
+                    bottom: 0;
+                    left: 0;
+                    background-color: rgba($color: $color-white, $alpha: 0.5);
+                    z-index: 1;
+                  }
+
+                  &:hover,
+                  &:focus {
+                    &:before {
+                      display: block;
+                    }
+                  }
+                }
+
+                // Radio button
+                input {
+                  position: absolute;
+                  left: 0;
+                  bottom: 0;
+                  margin: 0;
+                  z-index: 2;
+                  cursor: pointer;
+                }
+
+                // Label
+                label {
+                  display: none;
+                }
+
+                // Images
+                // Mastercard
+                &.mastercard {
+                  .js-form-item {
+                    background: url('../assets/payment-providers-svg/card_mastercard.svg') no-repeat center/contain;
+                  }
+                }
+
+                // Visa
+                &.visa {
+                  .js-form-item {
+                    background: url('../assets/payment-providers-svg/card_visa.svg') no-repeat center/contain;
+                  }
+                }
+
+                // American Express
+                &.american-express {
+                  .js-form-item {
+                    background: url('../assets/payment-providers-svg/card_american-express.svg') no-repeat center/contain;
+                  }
+                }
+
+                // Apple Pay
+                &.apple-pay {
+                  .js-form-item {
+                    background: url('../assets/payment-providers-svg/card_apple-pay.svg') no-repeat center/contain;
+                  }
+                }
+
+                // Google Pay
+                &.google-pay {
+                  .js-form-item {
+                    background: url('../assets/payment-providers-svg/card_google-pay.svg') no-repeat center/contain;
+                  }
+                }
+
+                // Bancontact
+                &.bancontact {
+                  .js-form-item {
+                    background: url('../assets/payment-providers-svg/card_bancontact.svg') no-repeat center/contain;
+                  }
+                }
+
+                // Giropay
+                &.giropay {
+                  .js-form-item {
+                    background: url('../assets/payment-providers-svg/card_giropay.svg') no-repeat center/contain;
+                  }
+                }
+
+                // Ideal
+                &.ideal {
+                  .js-form-item {
+                    background: url('../assets/payment-providers-svg/card_ideal.svg') no-repeat center/contain;
+                  }
+                }
+
+                // Sofort
+                &.sofort {
+                  .js-form-item {
+                    background: url('../assets/payment-providers-svg/card_sofort.svg') no-repeat center/contain;
+                  }
+                }
+
+                // EPS
+                &.eps {
+                  .js-form-item {
+                    background: url('../assets/payment-providers-svg/card_eps.svg') no-repeat center/contain;
+                  }
+                }
+
+                // Alipay
+                &.alipay {
+                  .js-form-item {
+                    background: url('../assets/payment-providers-svg/card_alipay.svg') no-repeat center/contain;
+                  }
+                }
+
+                // WeChat
+                &.wechat-pay {
+                  .js-form-item {
+                    background: url('../assets/payment-providers-svg/card_wechat-pay.svg') no-repeat center/contain;
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+
+    .checkout-pane-order-summary {
       position: sticky;
       top: 30px;
 
-      .order-total-line{
+      .order-total-line {
         padding-right: 0;
-        .order-total-line-value{
+
+        .order-total-line-value {
           width: 140px;
         }
       }
     }
 
-    .fieldset-legend{
+    .fieldset-legend {
       display: block;
       font-size: $font-size-h3;
       line-height: $line-height-h3;
@@ -328,40 +516,44 @@
       margin-top: 0rem;
     }
 
-    .btn-primary{
+    .btn-primary {
       margin: 15px 0;
     }
 
     .table {
       font-size: $font-size-standard;
-      tr{
+
+      tr {
         background: none;
+
         th,
-        td{
+        td {
           padding: 8px 0;
           background: none;
           color: inherit;
           border-bottom: 1px solid $border-color-base;
           border-top: none;
 
-          &:last-child{
+          &:last-child {
             text-align: right;
           }
         }
 
-        .views-field-quantity{
+        .views-field-quantity {
           padding-right: 5px;
         }
 
-        .views-field-purchased-entity{
-          > div{
+        .views-field-purchased-entity {
+          >div {
             @media only screen and (min-width: 768px) {
               display: grid;
               grid-template-columns: 100px 20px auto;
               grid-template-rows: auto auto;
             }
-            .field--name-field-images{
+
+            .field--name-field-images {
               display: none;
+
               @media only screen and (min-width: 768px) {
                 display: block;
                 grid-column-start: 1;
@@ -369,24 +561,27 @@
                 grid-row-end: none;
               }
 
-              .field__item{
-                img{
+              .field__item {
+                img {
                   margin: 0;
                   max-width: 100%;
                   height: auto;
                 }
               }
             }
-            .field--name-product-id{
+
+            .field--name-product-id {
               grid-column-start: 3;
               margin: 0;
             }
-            .field--name-sku{
+
+            .field--name-sku {
               grid-column-start: 3;
               grid-row-start: 2;
               font-size: 0.875rem;
-              .field__label{
-                &::after{
+
+              .field__label {
+                &::after {
                   content: ': ';
                 }
               }
@@ -394,13 +589,13 @@
           }
         }
 
-        .views-field-total-price__number{
+        .views-field-total-price__number {
           text-align: right;
         }
       }
     }
 
-    a[href*="cart"]{
+    a[href*="cart"] {
       position: absolute;
       top: 100%;
       font-size: $font-size-buttons;
@@ -411,49 +606,57 @@
       border-width: $border-width-buttons;
       border-style: solid;
       border-color: transparent;
-      &::before{
+
+      &::before {
         content: '\00ab';
         margin-right: 5px;
       }
     }
   }
 
-  .checkout-pane-payment-information{
-    > .fieldset-wrapper{
+  .checkout-pane-payment-information {
+    >.fieldset-wrapper {
       display: flex;
       flex-direction: column;
-      #edit-payment-information-payment-method--wrapper{
+
+      #edit-payment-information-payment-method--wrapper {
         order: 1;
       }
-      #edit-payment-information-billing-information{
+
+      #edit-payment-information-billing-information {
         order: 0;
       }
     }
   }
 
-  .layout-region-checkout-footer{
+  .layout-region-checkout-footer {
     float: none;
     width: auto;
     padding: 0;
-    .form-actions{
+
+    .form-actions {
       display: flex;
       justify-content: space-between;
-      &::before{
+
+      &::before {
         content: '';
         order: 1;
       }
-      input{
+
+      input {
         order: 2;
         max-width: 50%;
       }
-      a.link--previous{
+
+      a.link--previous {
         font-size: $font-size-buttons;
         line-height: $line-height-buttons;
         padding: $padding-buttons;
         padding-left: 0;
         padding-right: 0;
         border: $border-width-buttons solid transparent;
-        &::before{
+
+        &::before {
           content: '\00ab';
           margin-right: 5px;
         }

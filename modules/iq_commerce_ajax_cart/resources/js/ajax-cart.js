@@ -84,6 +84,13 @@
           'Content-Type': 'application/json',
         },
         success: function (cartData) {
+          // Add additionalData to eventTrigger.
+          var updateData = {
+            cartData: cartData,
+            additionalData: additionalData
+          };
+          $(document).trigger("iq-commerce-cart-refresh-before", [updateData]);
+
           Object.keys(drupalSettings.progressive_decoupler).filter(function(key){
             return drupalSettings.progressive_decoupler[key].type == 'iq_commerce_ajax_cart_block'
           }).forEach(function(blockID){
@@ -118,15 +125,8 @@
               $blockElement.find('[data-cart-content-holder]').addClass('loading');
               $blockElement.find(targetSelector).html('<p class="empty">' + $blockElement.find(targetSelector).data('label-empty') + '</p>');
             }
-
-
           });
 
-          // add additionalData to eventTrigger
-          var updateData = {
-            cartData: cartData,
-            additionalData: additionalData
-          };
           $(document).trigger("iq-commerce-cart-refresh-after", [updateData]);
         }
       });

@@ -7,7 +7,6 @@ use Drupal\Component\Serialization\Yaml;
 use Drupal\Component\Serialization\Yaml as YamlSerializer;
 use Drupal\Core\Form\ConfigFormBase;
 use Drupal\Core\Form\FormStateInterface;
-use Drupal\iq_commerce\Controller\UserController;
 use Symfony\Component\Yaml\Yaml as YamlParser;
 
 /**
@@ -91,7 +90,9 @@ class IqCommerceProductSettingsForm extends ConfigFormBase
    */
   public static function getIqCommerceProductSettings() {
     $iqCommerceProductSettingsConfig = \Drupal::config('iq_commerce.product.settings');
-    return YamlParser::parse(YamlSerializer::decode($iqCommerceProductSettingsConfig->get('general')));
+    if (!empty($iqCommerceProductSettingsConfig->get('general'))) {
+      return YamlParser::parse(YamlSerializer::decode($iqCommerceProductSettingsConfig->get('general')));
+    }
   }
 
 }
