@@ -186,12 +186,14 @@ function iq_commerce_form_alter(&$form, FormStateInterface $form_state, $form_id
     $config = \Drupal::configFactory()->getEditable('testing_commerce.config');
     $configName = 'enable_rounding_' . str_replace(' ', '_', $form_state->getFormObject()->getEntity()->name->value);
     $form['round_price'] = [
-        '#type' => 'checkbox',
-        '#weight' => 20,
-        '#title' => t('Round prices'),
-        '#default_value' => $config->get($configName),
+      '#type' => 'checkbox',
+      '#weight' => 20,
+      '#title' => t('Round prices'),
+      '#default_value' => $config->get($configName),
     ];
-    $config->set($configName, $form_state->getUserInput()['round_price'])->save();
+    if (count($form_state->getUserInput()) != 0) {
+      $config->set($configName, $form_state->getUserInput()['round_price'])->save();
+    }
   }
 }
 
@@ -302,7 +304,7 @@ function iq_commerce_commerce_order_presave($entity) {
         if ($order_total == NULL) {
             return;
         }
-        // // Rounds down 10.21 and 10.22 to 10.20, rounds up 10.23 and 10.24 to 10.25. 
+        // // Rounds down 10.21 and 10.22 to 10.20, rounds up 10.23 and 10.24 to 10.25.
         $rounded_total = $rounder->round($order_total->divide(5))->multiply(5);
         $difference = $rounded_total->subtract($order_total);
 
