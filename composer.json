@@ -22,7 +22,7 @@
     "drupal/twig_tweak": "*",
     "drupal/swiftmailer": "*",
     "drupal/commerce_cart_api": "*",
-    "drupal/iq_entity_browsers": "^2.0",
+    "iqual/iq_entity_browsers": "^2.0",
     "drupal/commerce_combine_carts": "*",
     "drupal/login_emailusername": "*",
     "drupal/redirect_after_login": "*",
