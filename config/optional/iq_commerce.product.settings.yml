@@ -1,0 +1,1 @@
+general: '"normalize_fields:\r\n  - product_id\r\n  - field_iq_commerce_images\r\n  - field_media_image"'
