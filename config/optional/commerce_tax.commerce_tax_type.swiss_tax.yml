@@ -1,3 +1,4 @@
+uuid: 231fcb24-acc7-4045-af9d-4807d656eadb
 langcode: en
 status: true
 dependencies: {  }
@@ -6,3 +7,5 @@ label: 'Swiss tax'
 plugin: swiss_vat
 configuration:
   display_inclusive: true
+conditions: {  }
+conditionOperator: AND

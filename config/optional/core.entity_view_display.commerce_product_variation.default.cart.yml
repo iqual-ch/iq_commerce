@@ -1,3 +1,4 @@
+uuid: c18fd990-3c2e-4b64-b0b1-57b3de7b7907
 langcode: en
 status: true
 dependencies:
@@ -5,13 +6,11 @@ dependencies:
     - commerce_product.commerce_product_variation_type.default
     - core.entity_view_mode.commerce_product_variation.cart
     - field.field.commerce_product_variation.default.field_iq_commerce_images
-    - image.style.medium
+    - field.field.commerce_product_variation.default.weight
   enforced:
     module:
       - commerce_cart
       - commerce_product
-  module:
-    - image
 id: commerce_product_variation.default.cart
 targetEntityType: commerce_product_variation
 bundle: default
@@ -19,23 +18,28 @@ mode: cart
 content:
   product_id:
     type: entity_reference_label
-    weight: 1
     label: hidden
     settings:
       link: true
     third_party_settings: {  }
+    weight: 1
     region: content
   sku:
     type: string
-    weight: 2
-    region: content
     label: inline
     settings:
       link_to_entity: false
     third_party_settings: {  }
+    weight: 2
+    region: content
 hidden:
+  commerce_variation_cart_form: true
+  entity_print_view_epub: true
+  entity_print_view_pdf: true
+  entity_print_view_word_docx: true
   field_iq_commerce_images: true
   langcode: true
   list_price: true
   price: true
   title: true
+  weight: true
