@@ -1,0 +1,22 @@
+uuid: b4c50f9c-e2f7-4bf5-b2bb-386700a12828
+langcode: de
+status: true
+dependencies:
+  module:
+    - commerce_checkout
+    - commerce_product
+    - commerce_variation_add_to_cart
+    - media
+    - system
+_core:
+  default_config_hash: j5zLMOdJBqC0bMvSdth5UebkprJB8g_2FXHqhfpJzow
+id: anonymous
+label: Gast
+weight: 0
+is_admin: false
+permissions:
+  - 'access checkout'
+  - 'access content'
+  - 'access variation add to cart'
+  - 'view commerce_product'
+  - 'view media'
