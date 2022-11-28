@@ -1,3 +1,4 @@
+uuid: 6295ec0a-69d5-4d46-ac78-d5c8e306c937
 langcode: en
 status: true
 dependencies:
@@ -5,40 +6,41 @@ dependencies:
     - commerce_payment
     - commerce_shipping
     - iq_commerce
-id: default
 label: Default
+id: default
 plugin: multistep_default
 configuration:
   display_checkout_progress: true
+  display_checkout_progress_breadcrumb_links: false
   panes:
     login:
-      allow_guest_checkout: true
-      allow_registration: true
       step: login
       weight: 0
+      allow_guest_checkout: true
+      allow_registration: true
     contact_information:
-      double_entry: true
       step: order_information
       weight: 1
+      double_entry: true
     shipping_information:
-      require_shipping_profile: false
       step: order_information
       weight: 2
+      require_shipping_profile: false
     payment_information:
       step: order_information
       weight: 3
     iq_commerce_pane_terms_confirmation:
-      terms_label: 'I accept the <a href="@terms_link">terms and condiditons</a>.'
-      terms_link: '#'
       step: order_information
       weight: 4
+      terms_label: 'I accept the <a href="@terms_link">terms and condiditons</a>.'
+      terms_link: '#'
     review:
       step: review
       weight: 5
     payment_process:
-      capture: true
       step: payment
       weight: 6
+      capture: true
     iq_commerce_pane_checkout_message:
       step: _disabled
       weight: 11
@@ -46,15 +48,15 @@ configuration:
       step: complete
       weight: 8
     order_summary:
-      view: null
       step: _sidebar
       weight: 9
+      view: null
     iq_commerce_pane_age_confirmation:
       step: _disabled
       weight: 10
     completion_message:
+      step: complete
+      weight: 7
       message:
         value: "Your order number is [commerce_order:order_number].\r\nYou can view your order on your account page when logged in."
         format: plain_text
-      step: complete
-      weight: 7
