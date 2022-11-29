@@ -32,6 +32,7 @@ hidden:
   entity_print_view_pdf: true
   entity_print_view_word_docx: true
   field_iq_commerce_category: true
+  field_iq_commerce_images: true
   field_iq_commerce_lead: true
   field_iq_commerce_tags: true
   field_meta_tags: true
