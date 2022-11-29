@@ -1,21 +1,13 @@
-uuid: a7d71e4f-c8e7-47f8-865e-acf56f5c881a
+uuid: 6e995bb0-8980-447b-b740-27046922b993
 langcode: de
 status: true
-dependencies:
-  module:
-    - iq_commerce
-third_party_settings:
-  iq_commerce:
-    tax_rate: standard
+dependencies: {  }
 _core:
-  default_config_hash: hwJoqnxqBS0fPM3s6FccZ2bWaq9LneRYLzFk-wlJWjs
+  default_config_hash: 3vA4FKQ1Qu8B1R8UdGPnmMfJrYO6Y6uMqeNgDgXxods
 id: default
 label: Default
-traits: {  }
+traits:
+  - purchasable_entity_shippable
 locked: false
-description: ''
-variationType: default
-variationTypes:
-  - default
-multipleVariations: true
-injectVariationFields: true
+orderItemType: default
+generateTitle: true
