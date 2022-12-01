@@ -4,6 +4,7 @@
  * @file
  */
 
+use Drupal\commerce_order\Entity\OrderInterface;
 use Drupal\Core\Locale\CountryManager;
 use Drupal\iq_commerce\Form\IqCommerceSettingsForm;
 use Drupal\views\ViewExecutable;
@@ -27,10 +28,6 @@ function iq_commerce_mail($key, &$message, $params) {
  */
 function iq_commerce_theme($existing, $type, $theme, $path) {
   return [
-    'block__menu_block__account' => [
-      'template' => 'block/block--menu-block--account',
-      'base hook' => 'block',
-    ],
     'commerce_checkout_form__with_sidebar' => [
       'template' => 'commerce/commerce-checkout-form--with-sidebar',
       'base hook' => 'commerce_checkout_form',
@@ -52,29 +49,9 @@ function iq_commerce_theme($existing, $type, $theme, $path) {
       'template' => 'commerce/commerce-product',
       'base hook' => 'commerce_product',
     ],
-    'page__user__login' => [
-      'template' => 'layout/page--user--login',
+    'page__user__orders' => [
+      'template' => 'layout/page--user--orders',
       'base hook' => 'page',
-    ],
-    'page__user__orders__%' => [
-      'template' => 'layout/page--user--orders--%',
-      'base hook' => 'page',
-    ],
-    'page__user__password' => [
-      'template' => 'layout/page--user--password',
-      'base hook' => 'page',
-    ],
-    'page__user__register' => [
-      'template' => 'layout/page--user--register',
-      'base hook' => 'page',
-    ],
-    'menu__account' => [
-      'template' => 'navigation/menu--account',
-      'base hook' => 'menu',
-    ],
-    'user__full' => [
-      'template' => 'user/user--full',
-      'base hook' => 'user',
     ],
   ];
 }
@@ -222,7 +199,7 @@ function iq_commerce_views_pre_render(ViewExecutable $view) {
     $cart = \Drupal::service('commerce_cart.cart_provider')
       ->getCart('default', $store);
     $cart->recalculateTotalPrice();
-    $cart->setRefreshState(\Drupal\commerce_order\Entity\OrderInterface::REFRESH_ON_SAVE);
+    $cart->setRefreshState(OrderInterface::REFRESH_ON_SAVE);
     $cart->save();
   }
 }
