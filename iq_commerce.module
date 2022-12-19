@@ -28,20 +28,8 @@ function iq_commerce_mail($key, &$message, $params) {
  */
 function iq_commerce_theme($existing, $type, $theme, $path) {
   return [
-    'commerce_checkout_form__with_sidebar' => [
-      'template' => 'commerce/commerce-checkout-form--with-sidebar',
-      'base hook' => 'commerce_checkout_form',
-    ],
-    'commerce_order__user' => [
-      'template' => 'commerce/commerce--order--user',
-      'base hook' => 'commerce_order',
-    ],
     'commerce_order_receipt__entity_print' => [
       'template' => 'commerce/commerce-order-receipt--entity-print',
-      'base hook' => 'commerce_order_receipt',
-    ],
-    'commerce_order_receipt' => [
-      'template' => 'commerce/commerce-order-receipt',
       'base hook' => 'commerce_order_receipt',
     ],
     'commerce_product' => [
@@ -54,6 +42,16 @@ function iq_commerce_theme($existing, $type, $theme, $path) {
       'base hook' => 'page',
     ],
   ];
+}
+
+/**
+ * Implements hook_theme_registry_alter().
+ */
+function iq_commerce_theme_registry_alter(&$theme_registry) {
+  // Replace the path to the registered template and use the one from custom module.
+  $theme_registry['commerce_order__user']['path'] = \Drupal::service('extension.list.module')->getPath('iq_commerce') . '/templates/commerce';
+  $theme_registry['commerce_order_receipt']['path'] = \Drupal::service('extension.list.module')->getPath('iq_commerce') . '/templates/commerce';
+  $theme_registry['commerce_checkout_form__with_sidebar']['path'] = \Drupal::service('extension.list.module')->getPath('iq_commerce') . '/templates/commerce';
 }
 
 /**
@@ -224,17 +222,22 @@ function iq_commerce_preprocess_commerce_order_receipt(&$variables) {
     $variables['full_name'] = $address->getGivenName() . ' ' . $address->getFamilyName();
     $countries = CountryManager::getStandardList();
     $full_country_name = $countries[$address->getCountryCode()]->__toString();
-    $variables['shipping_address'] = $address->getGivenName() . ' ' . $address->getFamilyName() . '<br />' . $address->getAddressLine1() . '<br />' . $address->getPostalCode() . ' ' . $address->getLocality() . '<br/>' . $full_country_name;
+    $variables['shipping_address'] = '<p>' . $address->getGivenName() . ' ' . $address->getFamilyName() . '</p><p>' . $address->getAddressLine1() . '</p><p>' . $address->getPostalCode() . ' ' . $address->getLocality() . '</p><p>' . $full_country_name . '</p>';
   }
   $billing_profile = $order->getBillingProfile();
   $billing_address = $billing_profile->get('address')->first();
   $full_country_name = $countries[$billing_address->getCountryCode()]->__toString();
-  $variables['billing_address'] = $billing_address->getGivenName() . ' ' . $billing_address->getFamilyName() . '<br />' . $billing_address->getAddressLine1() . '<br />' . $billing_address->getPostalCode() . ' ' . $billing_address->getLocality() . '<br/>' . $full_country_name;
+  $variables['billing_address'] = '<p>' . $billing_address->getGivenName() . ' ' . $billing_address->getFamilyName() . '</p><p>' . $billing_address->getAddressLine1() . '</p><p>' . $billing_address->getPostalCode() . ' ' . $billing_address->getLocality() . '</p><p>' . $full_country_name . '</p>';
   if (!empty($shipment->get('shipping_method')->entity)) {
     $variables['shipping_method'] = $shipment->get('shipping_method')->entity->getName();
   }
 
-  // https://drupal.stackexchange.com/questions/263652/how-to-get-the-customer-name-in-commerce-order-confirmation-e-mail
+  // Path to logo.
+  $activeTheme = \Drupal::theme()->getActiveTheme()->getName();
+  $logoPath = \Drupal::config($activeTheme . '.settings')->get('logo.path');
+  if ($wrapper = \Drupal::service('stream_wrapper_manager')->getViaUri($logoPath)) {
+    $variables['path_to_logo'] = $wrapper->getExternalUrl();
+  }
 }
 
 /**
@@ -244,5 +247,5 @@ function iq_commerce_page_attachments(array &$attachments) {
   $attachments['#attached']['library'][] = 'iq_commerce/catalog';
   $attachments['#attached']['library'][] = 'iq_commerce/categories';
   $attachments['#attached']['library'][] = 'iq_commerce/checkout';
-  $attachments['#attached']['library'][] = 'iq_commerce/customer';
+  $attachments['#attached']['library'][] = 'iq_commerce/order';
 }
