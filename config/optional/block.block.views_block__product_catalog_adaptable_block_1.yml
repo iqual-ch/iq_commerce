@@ -1,4 +1,5 @@
-langcode: en
+uuid: 8581a096-68a0-4df0-a20d-7c3d951cc5ae
+langcode: de
 status: true
 dependencies:
   config:
@@ -9,17 +10,17 @@ dependencies:
     - pagedesigner_block_adaptable
   theme:
     - iq_custom
-id: views_block__product_catalog_adaptable_block_3
+id: views_block__product_catalog_adaptable_block_1
 theme: iq_custom
 region: pagedesigner
 weight: 0
 provider: null
-plugin: 'adaptable_views_block:product_catalog-adaptable_block_3'
+plugin: 'adaptable_views_block:product_catalog-adaptable_block_1'
 settings:
-  id: 'adaptable_views_block:product_catalog-adaptable_block_3'
+  id: 'adaptable_views_block:product_catalog-adaptable_block_1'
   label: ''
-  provider: pagedesigner_block_adaptable
   label_display: '0'
+  provider: pagedesigner_block_adaptable
   views_label: ''
   items_per_page: none
 visibility:
@@ -28,15 +29,12 @@ visibility:
     menu_position:
       '': ''
     negate: null
-    context_mapping: {  }
   advanced_menu_position_not:
     id: advanced_menu_position_not
     not_menu_position:
       '': ''
     negate: null
-    context_mapping: {  }
   pagedesigner_condition:
     id: pagedesigner_condition
     pagedesigner_condition: 0
     negate: null
-    context_mapping: {  }

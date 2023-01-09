@@ -28,3 +28,7 @@ order:
   css:
     theme:
       resources/css/order.css: {}
+
+variation_add_to_cart_form:
+  js:
+    resources/js/variation_add_to_cart_form.js: {}

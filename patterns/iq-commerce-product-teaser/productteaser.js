@@ -1,5 +1,5 @@
 (function ($) {
-  Drupal.behaviors.iqual_pattern_catalog_item = {
+  Drupal.behaviors.iq_commerce_product_teaser = {
     attach: function (context, settings) {
 
     }
