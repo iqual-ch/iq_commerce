@@ -16,7 +16,6 @@ dependencies:
     - taxonomy
     - text
     - ui_patterns_views
-    - user
 id: product_catalog
 label: 'Product Catalog'
 module: views
@@ -694,9 +693,8 @@ display:
           sort_asc_label: Asc
           sort_desc_label: Desc
       access:
-        type: perm
-        options:
-          perm: 'access content'
+        type: none
+        options: {  }
       cache:
         type: tag
         options: {  }
@@ -726,7 +724,7 @@ display:
         type: default
         options:
           grouping: {  }
-          row_class: 'col iq-column'
+          row_class: 'col-12 col-md-6 col-lg-3 iq-column'
           default_row_class: false
       row:
         type: ui_patterns
@@ -841,7 +839,6 @@ display:
       contexts:
         - 'languages:language_content'
         - 'languages:language_interface'
-        - user.permissions
       tags:
         - 'config:field.storage.commerce_product.field_iq_commerce_lead'
         - 'config:field.storage.media.field_media_image'
@@ -934,7 +931,49 @@ display:
         - 'languages:language_content'
         - 'languages:language_interface'
         - url
-        - user.permissions
+      tags:
+        - 'config:field.storage.commerce_product.field_iq_commerce_lead'
+        - 'config:field.storage.media.field_media_image'
+  adaptable_block_2:
+    id: adaptable_block_2
+    display_title: 'Shop Teaser'
+    display_plugin: adaptable_block
+    position: 4
+    display_options:
+      title: 'Shop Teaser'
+      pager:
+        type: some
+        options:
+          offset: 0
+          items_per_page: 4
+      sorts:
+        created:
+          id: created
+          table: commerce_product_field_data
+          field: created
+          relationship: none
+          group_type: group
+          admin_label: ''
+          entity_type: commerce_product
+          entity_field: created
+          plugin_id: date
+          order: DESC
+          expose:
+            label: ''
+            field_identifier: ''
+          exposed: false
+          granularity: second
+      defaults:
+        title: false
+        pager: false
+        sorts: false
+      display_description: ''
+      display_extenders: {  }
+    cache_metadata:
+      max-age: -1
+      contexts:
+        - 'languages:language_content'
+        - 'languages:language_interface'
       tags:
         - 'config:field.storage.commerce_product.field_iq_commerce_lead'
         - 'config:field.storage.media.field_media_image'
@@ -942,7 +981,7 @@ display:
     id: adaptable_block_4
     display_title: 'Catalog of Products Block'
     display_plugin: adaptable_block
-    position: 4
+    position: 5
     display_options:
       arguments: {  }
       filters:
@@ -1120,7 +1159,6 @@ display:
         - 'languages:language_interface'
         - url
         - user
-        - user.permissions
       tags:
         - 'config:field.storage.commerce_product.field_iq_commerce_lead'
         - 'config:field.storage.media.field_media_image'
@@ -1137,7 +1175,6 @@ display:
       contexts:
         - 'languages:language_content'
         - 'languages:language_interface'
-        - user.permissions
       tags:
         - 'config:field.storage.commerce_product.field_iq_commerce_lead'
         - 'config:field.storage.media.field_media_image'
@@ -1351,7 +1388,6 @@ display:
       contexts:
         - 'languages:language_content'
         - 'languages:language_interface'
-        - user.permissions
       tags:
         - 'config:field.storage.commerce_product.field_iq_commerce_lead'
         - 'config:field.storage.media.field_media_image'
@@ -1359,7 +1395,7 @@ display:
     id: block_3
     display_title: 'Product Catalog by Category (Exposed Filters)'
     display_plugin: block
-    position: 5
+    position: 6
     display_options:
       pager:
         type: full
@@ -1562,7 +1598,6 @@ display:
         - url
         - url.query_args
         - user
-        - user.permissions
       tags:
         - 'config:field.storage.commerce_product.field_iq_commerce_lead'
         - 'config:field.storage.media.field_media_image'
