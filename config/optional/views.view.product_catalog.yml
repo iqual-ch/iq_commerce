@@ -724,7 +724,7 @@ display:
         type: default
         options:
           grouping: {  }
-          row_class: 'col-12 col-md-6 col-lg-3 iq-column'
+          row_class: 'col iq-column'
           default_row_class: false
       row:
         type: ui_patterns
@@ -963,9 +963,92 @@ display:
             field_identifier: ''
           exposed: false
           granularity: second
+      style:
+        type: default
+        options:
+          grouping: {  }
+          row_class: 'col-12 col-md-6 col-lg-3 iq-column'
+          default_row_class: false
+      row:
+        type: ui_patterns
+        options:
+          default_field_elements: 0
+          inline:
+            field_media_image: 0
+            field_iq_commerce_lead: 0
+            price__number: 0
+            price__currency_code: 0
+            view_commerce_product: 0
+            nothing_2: 0
+            nothing_3: 0
+            variations_target_id: 0
+            nothing_4: 0
+            nothing: 0
+            title: 0
+          separator: ''
+          hide_empty: 0
+          pattern: iq-commerce-product-teaser
+          pattern_mapping:
+            'views_row:field_media_image':
+              destination: image_img
+              weight: 0
+              plugin: views_row
+              source: field_media_image
+            'views_row:field_iq_commerce_lead':
+              destination: product_description
+              weight: 1
+              plugin: views_row
+              source: field_iq_commerce_lead
+            'views_row:price__number':
+              destination: product_price
+              weight: 2
+              plugin: views_row
+              source: price__number
+            'views_row:price__currency_code':
+              destination: product_price_currency
+              weight: 3
+              plugin: views_row
+              source: price__currency_code
+            'views_row:view_commerce_product':
+              destination: product_link
+              weight: 4
+              plugin: views_row
+              source: view_commerce_product
+            'views_row:nothing_2':
+              destination: button_icon
+              weight: 5
+              plugin: views_row
+              source: nothing_2
+            'views_row:nothing_3':
+              destination: product_price_additional_text
+              weight: 6
+              plugin: views_row
+              source: nothing_3
+            'views_row:variations_target_id':
+              destination: product_variations
+              weight: 7
+              plugin: views_row
+              source: variations_target_id
+            'views_row:nothing_4':
+              destination: title_weight
+              weight: 8
+              plugin: views_row
+              source: nothing_4
+            'views_row:nothing':
+              destination: button_text
+              weight: 9
+              plugin: views_row
+              source: nothing
+            'views_row:title':
+              destination: product_title
+              weight: 10
+              plugin: views_row
+              source: title
       defaults:
         title: false
         pager: false
+        style: false
+        row: false
         sorts: false
       display_description: ''
       display_extenders: {  }
@@ -974,6 +1057,203 @@ display:
       contexts:
         - 'languages:language_content'
         - 'languages:language_interface'
+      tags:
+        - 'config:field.storage.commerce_product.field_iq_commerce_lead'
+        - 'config:field.storage.media.field_media_image'
+  adaptable_block_3:
+    id: adaptable_block_3
+    display_title: 'Product Catalog by Category'
+    display_plugin: adaptable_block
+    position: 4
+    display_options:
+      title: 'Product Catalog by Category'
+      pager:
+        type: none
+        options:
+          offset: 0
+      sorts:
+        created:
+          id: created
+          table: commerce_product_field_data
+          field: created
+          relationship: none
+          group_type: group
+          admin_label: ''
+          entity_type: commerce_product
+          entity_field: created
+          plugin_id: date
+          order: DESC
+          expose:
+            label: ''
+            field_identifier: ''
+          exposed: false
+          granularity: second
+      filters:
+        status:
+          id: status
+          table: commerce_product_field_data
+          field: status
+          entity_type: commerce_product
+          entity_field: status
+          plugin_id: boolean
+          value: '1'
+          group: 1
+          expose:
+            operator: ''
+            operator_limit_selection: false
+            operator_list: {  }
+        field_iq_commerce_category_target_id:
+          id: field_iq_commerce_category_target_id
+          table: commerce_product__field_iq_commerce_category
+          field: field_iq_commerce_category_target_id
+          relationship: none
+          group_type: group
+          admin_label: ''
+          plugin_id: taxonomy_index_tid
+          operator: or
+          value: {  }
+          group: 1
+          exposed: true
+          expose:
+            operator_id: field_iq_commerce_category_target_id_op
+            label: Category
+            description: ''
+            use_operator: false
+            operator: field_iq_commerce_category_target_id_op
+            operator_limit_selection: false
+            operator_list: {  }
+            identifier: field_iq_commerce_category_target_id
+            required: false
+            remember: false
+            multiple: true
+            remember_roles:
+              authenticated: authenticated
+              author: '0'
+              editor: '0'
+              designer: '0'
+              anonymous: '0'
+            reduce: false
+          is_grouped: false
+          group_info:
+            label: ''
+            description: ''
+            identifier: ''
+            optional: true
+            widget: select
+            multiple: false
+            remember: false
+            default_group: All
+            default_group_multiple: {  }
+            group_items: {  }
+          reduce_duplicates: false
+          vid: iq_commerce_category
+          type: select
+          hierarchy: false
+          limit: true
+          error_message: true
+      filter_groups:
+        operator: AND
+        groups:
+          1: AND
+          2: OR
+      style:
+        type: default
+        options:
+          grouping: {  }
+          row_class: 'col-12 col-md-6 col-lg-4 iq-column'
+          default_row_class: false
+      row:
+        type: ui_patterns
+        options:
+          default_field_elements: 0
+          inline:
+            field_media_image: 0
+            field_iq_commerce_lead: 0
+            price__number: 0
+            price__currency_code: 0
+            view_commerce_product: 0
+            nothing_2: 0
+            nothing_3: 0
+            variations_target_id: 0
+            nothing_4: 0
+            nothing: 0
+            title: 0
+          separator: ''
+          hide_empty: 0
+          pattern: iq-commerce-product-teaser
+          pattern_mapping:
+            'views_row:field_media_image':
+              destination: image_img
+              weight: 0
+              plugin: views_row
+              source: field_media_image
+            'views_row:field_iq_commerce_lead':
+              destination: product_description
+              weight: 1
+              plugin: views_row
+              source: field_iq_commerce_lead
+            'views_row:price__number':
+              destination: product_price
+              weight: 2
+              plugin: views_row
+              source: price__number
+            'views_row:price__currency_code':
+              destination: product_price_currency
+              weight: 3
+              plugin: views_row
+              source: price__currency_code
+            'views_row:view_commerce_product':
+              destination: product_link
+              weight: 4
+              plugin: views_row
+              source: view_commerce_product
+            'views_row:nothing_2':
+              destination: button_icon
+              weight: 5
+              plugin: views_row
+              source: nothing_2
+            'views_row:nothing_3':
+              destination: product_price_additional_text
+              weight: 6
+              plugin: views_row
+              source: nothing_3
+            'views_row:variations_target_id':
+              destination: product_variations
+              weight: 7
+              plugin: views_row
+              source: variations_target_id
+            'views_row:nothing_4':
+              destination: title_weight
+              weight: 8
+              plugin: views_row
+              source: nothing_4
+            'views_row:nothing':
+              destination: button_text
+              weight: 9
+              plugin: views_row
+              source: nothing
+            'views_row:title':
+              destination: product_title
+              weight: 10
+              plugin: views_row
+              source: title
+      defaults:
+        title: false
+        pager: false
+        style: false
+        row: false
+        sorts: false
+        filters: false
+        filter_groups: false
+      display_description: ''
+      display_extenders: {  }
+    cache_metadata:
+      max-age: -1
+      contexts:
+        - 'languages:language_content'
+        - 'languages:language_interface'
+        - url
+        - user
       tags:
         - 'config:field.storage.commerce_product.field_iq_commerce_lead'
         - 'config:field.storage.media.field_media_image'
@@ -1168,6 +1448,9 @@ display:
     display_plugin: block
     position: 1
     display_options:
+      defaults:
+        style: true
+        row: true
       display_description: ''
       display_extenders: {  }
     cache_metadata:
