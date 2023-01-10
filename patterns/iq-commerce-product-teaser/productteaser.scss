@@ -48,6 +48,12 @@
     margin-bottom: 1rem;
   }
 
+  &__button {
+    a {
+      margin-top: 1rem;
+    }
+  }
+
   .commerce-variation-add-to-cart-form {
     display: flex;
     justify-content: space-between;
@@ -84,7 +90,7 @@
       background: $background-color-buttons;
       transition: $transition-default;
       cursor: pointer;
-      margin-top: 0.625rem;
+      margin-top: 1rem;
 
       &:hover,
       &:focus {
@@ -99,7 +105,7 @@
       display: flex;
       justify-content: flex-start;
       align-items: center;
-      margin-top: 0.625rem;
+      margin-top: 1rem;
 
       .quantity {
         border: 0;
