@@ -17,24 +17,23 @@ targetEntityType: commerce_product_variation
 bundle: default
 mode: cart
 content:
+  attribute_color:
+    type: entity_reference_label
+    label: inline
+    settings:
+      link: false
+    third_party_settings: {  }
+    weight: 1
+    region: content
   product_id:
     type: entity_reference_label
     label: hidden
     settings:
       link: true
     third_party_settings: {  }
-    weight: 1
-    region: content
-  sku:
-    type: string
-    label: inline
-    settings:
-      link_to_entity: false
-    third_party_settings: {  }
-    weight: 2
+    weight: 0
     region: content
 hidden:
-  attribute_color: true
   commerce_variation_cart_form: true
   entity_print_view_epub: true
   entity_print_view_pdf: true
@@ -43,5 +42,6 @@ hidden:
   langcode: true
   list_price: true
   price: true
+  sku: true
   title: true
   weight: true

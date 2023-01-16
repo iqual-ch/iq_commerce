@@ -252,4 +252,5 @@ function iq_commerce_page_attachments(array &$attachments) {
   $attachments['#attached']['library'][] = 'iq_commerce/categories';
   $attachments['#attached']['library'][] = 'iq_commerce/checkout';
   $attachments['#attached']['library'][] = 'iq_commerce/order';
+  $attachments['#attached']['library'][] = 'iq_commerce/cart';
 }
