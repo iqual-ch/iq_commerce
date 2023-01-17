@@ -12,6 +12,7 @@ use Drupal\Core\Url;
 use Drupal\iq_commerce\Form\IqCommerceAdditionalSettingsForm;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\commerce_product\Entity\ProductAttributeValue;
+use Drupal\commerce_order\Adjustment;
 
 /**
  * Implements hook_mail().
@@ -155,53 +156,6 @@ function iq_commerce_form_alter(&$form, FormStateInterface $form_state, $form_id
       '#type' => 'markup',
       '#markup' => '<a class="iqbm-button iqbm-text btn btn-cta" href="/cart">' . t('Back to Cart') . '</a>',
     ];
-  }
-  // Add the rounding option to the shop and save to the config.
-  if ($form_id === 'commerce_store_online_edit_form') {
-    if (!property_exists($form_state->getFormObject(), 'entity')) {
-      return;
-    }
-    $config = \Drupal::configFactory()->getEditable('iq_commerce.config');
-    $configName = 'enable_rounding_' . str_replace(' ', '_', $form_state->getFormObject()->getEntity()->name->value);
-    $form['round_price'] = [
-      '#type' => 'checkbox',
-      '#weight' => 20,
-      '#title' => t('Round prices'),
-      '#default_value' => $config->get($configName),
-    ];
-    if (count($form_state->getUserInput()) != 0) {
-      $config->set($configName, $form_state->getUserInput()['round_price'])->save();
-    }
-  }
-}
-
-/**
- * Implements hook_ENTITY_TYPE_presave().
- *
- * Adds rounding adjustment to the total price on presave of the order.
- */
-function iq_commerce_commerce_order_presave($entity) {
-  if ($entity->getEntityTypeId() == 'commerce_order') {
-    $config = \Drupal::configFactory()->getEditable('iq_commerce.config');
-    $configName = 'enable_rounding_' . str_replace(' ', '_', $entity->store_id->entity->name->value);
-    if ($config->get($configName) == 0) {
-      return;
-    }
-
-    $rounder = \Drupal::service('commerce_price.rounder');
-    $order_total = $entity->getTotalPrice();
-    if ($order_total == NULL) {
-      return;
-    }
-    // // Rounds down 10.21 and 10.22 to 10.20, rounds up 10.23 and 10.24 to 10.25.
-    $rounded_total = $rounder->round($order_total->divide(5))->multiply(5);
-    $difference = $rounded_total->subtract($order_total);
-
-    $entity->addAdjustment(new Adjustment([
-      'type' => 'rounding',
-      'label' => 'Rounding',
-      'amount' => $difference,
-    ]));
   }
 }
 
