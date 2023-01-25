@@ -12,7 +12,6 @@ use Drupal\Core\Url;
 use Drupal\iq_commerce\Form\IqCommerceAdditionalSettingsForm;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\commerce_product\Entity\ProductAttributeValue;
-use Drupal\commerce_order\Adjustment;
 
 /**
  * Implements hook_mail().
@@ -42,10 +41,6 @@ function iq_commerce_theme($existing, $type, $theme, $path) {
       'template' => 'layout/page--user--orders',
       'base hook' => 'page',
     ],
-    'variation_add_to_cart_formatter' => [
-      'template' => 'commerce/variation-add-to-cart-formatter',
-      'base hook' => 'variation_add_to_cart_formatter',
-    ],
   ];
 }
 
@@ -57,6 +52,7 @@ function iq_commerce_theme_registry_alter(&$theme_registry) {
   $theme_registry['commerce_order__user']['path'] = \Drupal::service('extension.list.module')->getPath('iq_commerce') . '/templates/commerce';
   $theme_registry['commerce_order_receipt']['path'] = \Drupal::service('extension.list.module')->getPath('iq_commerce') . '/templates/commerce';
   $theme_registry['commerce_checkout_form__with_sidebar']['path'] = \Drupal::service('extension.list.module')->getPath('iq_commerce') . '/templates/commerce';
+  $theme_registry['swiftmailer']['path'] = \Drupal::service('extension.list.module')->getPath('iq_commerce') . '/templates/swiftmailer';
 }
 
 /**
