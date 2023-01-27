@@ -68,6 +68,25 @@ function iq_commerce_views_data_alter(array &$data) {
     'help' => t('Adds a text field for editing the quantity.'),
     'id' => 'commerce_order_item_alter_quantity',
   ];
+
+  // Adds shipping profile to be avaliable in view relationship.
+  $data['commerce_shipment']['shipping_profile'] = [
+    'title' => t('Shipping Profile'),
+    'help' => t('Reference to the shipping profile of a commerce shipment.'),
+    'relationship' => [
+      'group' => 'Shipment',
+      // Views name of the table being joined to from commerce_shipment.
+      'base' => 'profile',
+      // Database field name in profile for the join.
+      'base field' => 'profile_id',
+      // Real database field name in commerce_shipment for the join, to override
+      // 'unique_dummy_name'.
+      'field' => 'shipping_profile__target_id',
+      // ID of relationship handler plugin to use.
+      'id' => 'standard',
+      'label' => t('Shipping Profile'),
+    ],
+  ];
 }
 
 /**
