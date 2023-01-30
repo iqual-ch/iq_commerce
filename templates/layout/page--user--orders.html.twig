@@ -98,16 +98,18 @@
   {% endif %}
 
   <main{{ content_attributes }}>
-  <div class="row iq-row iq-user-area">
-    <div class="col-sm-12 col-md-3">
-      {{ drupal_menu('user-area-menu') }}
+    <div class="row iq-row iq-user-area">
+      <div class="col-sm-12 col-md-3">
+        {{ drupal_menu('user-area-menu') }}
+      </div>
+      <div class="col-sm-12 col-md-9">
+        <section class="section">
+          <a id="main-content" tabindex="-1"></a>
+          <h1>{{ 'Orders'|t }}</h1>
+          {{ page.content }}
+        </section>
+      </div>
     </div>
-    <div class="col-sm-12 col-md-9">
-    <section class="section">
-      <a id="main-content" tabindex="-1"></a>
-      <h1>{{ 'Orders'|t }}</h1>
-      {{ page.content }}
-    </section>
   </main>
 
   {% if page.sidebar_first %}
