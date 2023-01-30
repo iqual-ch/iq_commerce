@@ -25,40 +25,47 @@
 
       {% block order_print_icon %}
       <div class="print-icon">
-        <a class="print-icon__link" href="/print/pdf/commerce_order/{{ order_entity.id }}">
-          <div class="print-icon__label">{{'Print'|t}}</div>
-          <i class="fa fa-print print-icon__icon"></i>
+        <a class="field__link" href="/print/pdf/commerce_order/{{ order_entity.id }}">
+          <div class="field__label">{{'Print'|t}}</div>
+          <i class="fa fa-print field__icon"></i>
         </a>
       </div>
       {% endblock %}
 
       {% block order_status %}
-        {% set divider = ":" %}
         <div class="order-status">
-          <span class="order-status__label">{{ "Order placed"|t }}</span>
-          <span class="order-status__divider"{{ divider }}</span>
-          <span class="order-status__value">{{ order.placed }}</span>
+          <div class="order-status__placed">
+            <div class="field__label">{{ "Order placed"|t }}</div>
+            <div class="field__value">{{ order.placed.0 }}</div>
+          </div>
 
-          <span class="order-status__label">{{ "Order completed"|t }}</span>
-          <span class="order-status__divider">{{ divider }}</span>
-          <span class="order-status__value">{{ order.completed }}</span>
+          <div class="order-status__completed">
+            <div class="field__label">{{ "Order completed"|t }}</div>
+            <div class="field__value">{{ order.completed.0 }}</div>
+          </div>
 
-          <span class="order-status__label">{{ "Order number"|t }}</span>
-          <span class="order-status__divider">{{ divider }}</span>
-          <span class="order-status__value">{{ order.order_number }}</span>
+          <div class="order-status__number">
+            <div class="field__label">{{ "Order number"|t }}</div>
+            <div class="field__value">{{ order.order_number.0 }}</div>
+          </div>
 
-          <span class="order-status__label">{{ "Order state"|t }}</span>
-          <span class="order-status__divider">{{ divider }}</span>
-          <span class="order-status__value">{{ order.state }}</span>
+          <div class="order-status__state">
+            <div class="field__label">{{ "Order state"|t }}</div>
+            <div class="field__value">{{ order.state.0 }}</div>
+          </div>
 
-          <span class="order-status__label">{{ "Shipping information"|t }}</span>
-          <span class="order-status__divider">{{ divider }}</span>
-          <span class="order-status__value">{{ order.shipping_information.0.shipment }}</span>
+          <div class="order-status__shipping">
+            <div class="field__label">{{ "Shipping information"|t }}</div>
+            <div class="field__value">{{ order.shipping_information.0.shipment }}</div>
+          </div>
         </div>
       {% endblock %}
 
       {% block customer_email %}
-        <div class="customer-email">{{ order.mail }}</div>
+        <div class="customer-email">
+          <div class="field__value">{{ "E-Mail"|t }}</div>
+          <div class="field__value">{{ order.mail }}</div>
+        </div>
       {% endblock %}
 
       {% block customer_information %}
@@ -66,13 +73,13 @@
           {% if order.billing_information %}
             <div class="customer-information__billing">
               <div class="field__label">{{ 'Billing information'|t }}</div>
-              {{ order.billing_information }}
+              <div class="field__value">{{ order.billing_information }}</div>
             </div>
           {% endif %}
           {% if order.shipping_information %}
             <div class="customer-information__shipping">
               <div class="field__label">{{ 'Shipping information'|t }}</div>
-              {{ order.shipping_information.shipping_profile }}
+              <div class="field__value">{{ order.shipping_information.shipping_profile }}</div>
             </div>
           {% endif %}
         </div>
