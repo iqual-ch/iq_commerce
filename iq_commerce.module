@@ -12,6 +12,7 @@ use Drupal\Core\Url;
 use Drupal\iq_commerce\Form\IqCommerceAdditionalSettingsForm;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\commerce_product\Entity\ProductAttributeValue;
+use Drupal\commerce_order\Adjustment;
 
 /**
  * Implements hook_mail().
