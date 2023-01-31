@@ -358,7 +358,7 @@ display:
         type: full
         options:
           offset: 0
-          items_per_page: 25
+          items_per_page: 0
           total_pages: null
           id: 0
           tags:
@@ -496,28 +496,29 @@ display:
           row_class: ''
           default_row_class: true
           columns:
+            order_id: order_id
             order_number: order_number
             placed: placed
             total_price__number: total_price__number
             state: state
           default: placed
           info:
-            order_number:
-              sortable: true
-              default_sort_order: desc
+            order_id:
+              sortable: false
+              default_sort_order: asc
               align: ''
               separator: ''
               empty_column: false
               responsive: ''
-            created:
-              sortable: true
+            order_number:
+              sortable: false
               default_sort_order: desc
               align: ''
               separator: ''
               empty_column: false
               responsive: ''
             placed:
-              sortable: true
+              sortable: false
               default_sort_order: desc
               align: ''
               separator: ''
@@ -531,7 +532,7 @@ display:
               empty_column: false
               responsive: ''
             state:
-              sortable: true
+              sortable: false
               default_sort_order: asc
               align: ''
               separator: ''
