@@ -61,9 +61,11 @@
         </div>
       {% endblock %}
 
+      {{ drupal_dump(order.shipping_information.0.shipment['#commerce_shipment'].shipping_method.0) }}
+
       {% block customer_email %}
         <div class="customer-email">
-          <div class="field__value">{{ "E-Mail"|t }}</div>
+          <div class="field__label">{{ "E-Mail"|t }}</div>
           <div class="field__value">{{ order.mail }}</div>
         </div>
       {% endblock %}
@@ -89,7 +91,7 @@
         <div class="order-information">
           {{ order.order_items }}
           {{ order.total_price }}
-          {{ additional_order_fields }}
+          {# {{ additional_order_fields }} #}
         </div>
       {% endblock %}
 
