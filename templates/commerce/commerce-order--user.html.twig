@@ -20,78 +20,107 @@
 
 <div{{ attributes }}>
 
-  <div class="row iq-row fullwidth iq-user-area__order-detail">
+  <div class="row iq-row fullwidth iq-order-detail">
     <div class="col iq-column">
 
+      <h1 class="page-title">{{ "Order"|t }} &num;{{ order.order_number.0 }}</h1>
+
       {% block order_print_icon %}
-      <div class="print-icon">
-        <a class="field__link" href="/print/pdf/commerce_order/{{ order_entity.id }}">
-          <div class="field__label">{{'Print'|t}}</div>
-          <i class="fa fa-print field__icon"></i>
-        </a>
-      </div>
-      {% endblock %}
+        <div class="fieldset-wrapper order-print">
 
-      {% block order_status %}
-        <div class="order-status">
-          <div class="order-status__placed">
-            <div class="field__label">{{ "Order placed"|t }}</div>
-            <div class="field__value">{{ order.placed.0 }}</div>
+          <div class="fieldset-wrapper__inner">
+
+            <div class="field order-print__icon">
+              <a href="/print/pdf/commerce_order/{{ order_entity.id }}">
+                <div class="field__label">{{'Print this order'|t}}</div>
+                <i class="field__item fa fa-print"></i>
+              </a>
+            </div>
+
           </div>
 
-          <div class="order-status__completed">
-            <div class="field__label">{{ "Order completed"|t }}</div>
-            <div class="field__value">{{ order.completed.0 }}</div>
-          </div>
-
-          <div class="order-status__number">
-            <div class="field__label">{{ "Order number"|t }}</div>
-            <div class="field__value">{{ order.order_number.0 }}</div>
-          </div>
-
-          <div class="order-status__state">
-            <div class="field__label">{{ "Order state"|t }}</div>
-            <div class="field__value">{{ order.state.0 }}</div>
-          </div>
-
-          <div class="order-status__shipping">
-            <div class="field__label">{{ "Shipping information"|t }}</div>
-            <div class="field__value">{{ order.shipping_information.0.shipment }}</div>
-          </div>
         </div>
       {% endblock %}
 
-      {{ drupal_dump(order.shipping_information.0.shipment['#commerce_shipment'].shipping_method.0) }}
+      {% block order_status %}
+        <div class="fieldset-wrapper order-status">
 
-      {% block customer_email %}
-        <div class="customer-email">
-          <div class="field__label">{{ "E-Mail"|t }}</div>
-          <div class="field__value">{{ order.mail }}</div>
+          <h2 class="section-title">{{ "Order status"|t }}</h2>
+
+          <div class="fieldset-wrapper__inner">
+
+            <div class="field order-status__placed">
+              <div class="field__label">{{ "Order placed"|t }}</div>
+              <div class="field__item">{{ order.placed.0 }}</div>
+            </div>
+
+            <div class="field order-status__completed">
+              <div class="field__label">{{ "Order completed"|t }}</div>
+              <div class="field__item">{{ order.completed.0 }}</div>
+            </div>
+
+            <div class="field order-status__number">
+              <div class="field__label">{{ "Order number"|t }}</div>
+              <div class="field__item">{{ order.order_number.0 }}</div>
+            </div>
+
+            <div class="field order-status__state">
+              <div class="field__label">{{ "Order state"|t }}</div>
+              <div class="field__item">{{ order.state.0 }}</div>
+            </div>
+
+            <div class="field order-status__shipping">
+              <div class="field__label">{{ "Shipping method"|t }}</div>
+              <div class="field__item">{{ order.shipping_information.0.shipment['#commerce_shipment'].shipping_method.0.entity.name.value }}</div>
+            </div>
+
+          </div>
+
         </div>
       {% endblock %}
 
       {% block customer_information %}
-        <div class="customer-information">
-          {% if order.billing_information %}
-            <div class="customer-information__billing">
-              <div class="field__label">{{ 'Billing information'|t }}</div>
-              <div class="field__value">{{ order.billing_information }}</div>
+        <div class="fieldset-wrapper customer-information">
+
+          <h2 class="section-title">{{ "Your information"|t }}</h2>
+
+          <div class="fieldset-wrapper__inner">
+
+            {% if order.billing_information %}
+              <div class="field customer-information__billing">
+                <div class="field__label">{{ 'Billing information'|t }}</div>
+                <div class="field__item">{{ billing_address|raw }}</div>
+              </div>
+            {% endif %}
+
+            {% if order.shipping_information %}
+              <div class="field customer-information__shipping">
+                <div class="field__label">{{ 'Shipping information'|t }}</div>
+                <div class="field__item">{{ shipping_address|raw }}</div>
+              </div>
+            {% endif %}
+
+            <div class="field customer-email">
+              <div class="field__label">{{ "E-Mail"|t }}</div>
+              <div class="field__item">{{ order.mail.0 }}</div>
             </div>
-          {% endif %}
-          {% if order.shipping_information %}
-            <div class="customer-information__shipping">
-              <div class="field__label">{{ 'Shipping information'|t }}</div>
-              <div class="field__value">{{ order.shipping_information.shipping_profile }}</div>
-            </div>
-          {% endif %}
+
+          </div>
+
         </div>
       {% endblock %}
 
       {% block order_information %}
-        <div class="order-information">
-          {{ order.order_items }}
-          {{ order.total_price }}
-          {# {{ additional_order_fields }} #}
+        <div class="fieldset-wrapper order-information">
+
+          <h2 class="section-title">{{ "Order items"|t }}</h2>
+
+          <div class="fieldset-wrapper__inner">
+            {{ order.order_items }}
+            {{ order.total_price }}
+            {# {{ additional_order_fields }} #}
+
+          </div>
         </div>
       {% endblock %}
 
