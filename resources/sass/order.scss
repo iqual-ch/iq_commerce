@@ -1,111 +1,113 @@
 @import 'definitions';
 
-// order overview
+// Genetal table styles
+.view-commerce-user-orders,
+.iq-order-detail {
+  .table {
+    font-size: $font-size-standard;
+    margin: 0;
+
+    tr {
+      background: none;
+
+      th,
+      td {
+        padding: 8px 0;
+        background: none;
+        color: inherit;
+        border-bottom: 1px solid $border-color-base;
+        border-top: none;
+
+        a {
+          color: $color-standard;
+        }
+      }
+    }
+  }
+}
+
+// Row styling overrides
+.container-fluid .iq-row {
+  &.iq-order-detail {
+    padding-top: 0;
+    padding-bottom: 0;
+  }
+}
+
+// Order overview
 .view-commerce-user-orders {
   max-width: 1140px;
   margin-left: auto;
   margin-right: auto;
+}
 
+// Order detail page
+.iq-order-detail {
+
+  h1 {
+    margin-bottom: 50px;
+  }
+
+  // Titles
+  .section-title {
+    flex: 0 0 100%;
+    max-width: 100%;
+    margin-bottom: 30px;
+  }
+
+  // General field styles
+  .fieldset-wrapper {
+    margin-bottom: 50px;
+
+    &__inner {
+      display: flex;
+      flex-wrap: wrap;
+    }
+
+    .field {
+      flex: 0 0 100%;
+      max-width: 100%;
+      margin-bottom: 15px;
+
+      @media screen and (min-width: 768px) {
+        flex: 0 0 50%;
+        max-width: 50%;
+      }
+
+      &__label {
+        font-weight: bold;
+      }
+    }
+  }
+
+  // Order detail page specific table styles
   .table {
-    font-size: $font-size-standard;
+    .views-field-total-price__number {
+      text-align: right;
+    }
+  }
 
-    tr {
-      background: none;
+  // Order information overrides
+  .order-information {
 
-      th,
-      td {
-        padding: 8px 0;
-        background: none;
-        color: inherit;
-        border-bottom: 1px solid $border-color-base;
-        border-top: none;
+    .field--name-order-items {
+      flex: 0 0 100%;
+      max-width: 100%;
+      margin-bottom: 30px;
+    }
 
-        a {
-          color: $color-standard;
+    .field--name-total-price {
+      flex: 0 0 100%;
+      max-width: 100%;
+
+      .order-total-line {
+        padding: 0;
+        margin-bottom: 8px;
+
+        .order-total-line-value {
+          width: 120px;
         }
       }
     }
-  }
-}
-
-// order detail
-.customer-information {
-  max-width: 1140px;
-  margin-left: auto;
-  margin-right: auto;
-  padding: 45px 15px 0;
-
-  @media only screen and (min-width: 768px) {
-    display: grid;
-  }
-
-  .field--name-mail {
-    margin-bottom: 0.5rem;
-
-    @media only screen and (min-width: 768px) {
-      grid-column-start: 1;
-      grid-row-start: 1;
-    }
-  }
-
-  .customer-information__shipping {
-    @media only screen and (min-width: 768px) {
-      grid-column-start: 1;
-      grid-row-start: 2;
-    }
-  }
-
-  .customer-billing {
-    @media only screen and (min-width: 768px) {
-      grid-column-start: 2;
-      grid-row-start: 2;
-    }
-  }
-
-
-  .field__label,
-  .field--type-entity-reference .field__label {
-    font-weight: 700;
-  }
-}
-
-.order-information {
-  max-width: 1140px;
-  margin-left: auto;
-  margin-right: auto;
-  padding: 0 15px 45px;
-
-  .field__label,
-  .field--type-entity-reference .field__label {
-    font-weight: 700;
-  }
-
-  .table {
-    font-size: $font-size-standard;
-
-    tr {
-      background: none;
-
-      th,
-      td {
-        padding: 8px 0;
-        background: none;
-        color: inherit;
-        border-bottom: 1px solid $border-color-base;
-        border-top: none;
-
-        a {
-          color: $color-standard;
-        }
-      }
-
-      .views-field-total-price__number {
-        text-align: right;
-      }
-    }
-  }
-
-  .order-total-line {
-    padding: 0;
   }
 }
