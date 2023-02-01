@@ -12,6 +12,8 @@ use Drupal\Core\Url;
 use Drupal\iq_commerce\Form\IqCommerceAdditionalSettingsForm;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\commerce_product\Entity\ProductAttributeValue;
+use Drupal\address\Plugin\Field\FieldType\AddressItem;
+use Drupal\profile\Entity\Profile;
 
 /**
  * Implements hook_mail().
@@ -326,4 +328,59 @@ function iq_commerce_page_attachments(array &$attachments) {
   $attachments['#attached']['library'][] = 'iq_commerce/checkout';
   $attachments['#attached']['library'][] = 'iq_commerce/order';
   $attachments['#attached']['library'][] = 'iq_commerce/cart';
+}
+
+/**
+ * Implemenets hook_preprocess_commerce_order().
+ */
+function iq_commerce_preprocess_commerce_order(&$variables) {
+  /** @var Drupal\commerce_order\Entity\OrderInterface $order */
+  $order = $variables['order_entity'];
+  $shipments = $order->get('shipments')->referencedEntities();
+  /** @var \Drupal\commerce_shipping\Entity\Shipment $shipment */
+  $shipment = reset($shipments);
+  if (!empty($shipment)) {
+    $shipping_profile = $shipment->getShippingProfile();
+
+    /** @var \Drupal\address\Plugin\Field\FieldType\AddressItem $address */
+    $address = $shipping_profile->get('address')->first();
+
+    if (!empty($address)) {
+      $variables['shipping_address'] = iq_commerce_get_address_string($address, $shipping_profile);
+    }
+    if (!empty($shipment->get('shipping_method')->entity)) {
+      $variables['shipping_method'] = $shipment->get('shipping_method')->entity->getName();
+      $amount = @reset($shipment->get('amount')->getValue());
+      if (!empty($amount)) {
+        $variables['shipping_rate'] = intval($amount['number']) . ' ' . $amount['currency_code'];
+      }
+    }
+  }
+  $billing_profile = $order->getBillingProfile();
+  $billing_address = $billing_profile->get('address')->first();
+  $variables['billing_address'] = iq_commerce_get_address_string($billing_address, $billing_profile);
+}
+
+/**
+ * Builds a address string for email and oder overview template.
+ *
+ * @param Drupal\address\Plugin\Field\FieldType\AddressItem $address
+ *   Address fields from the shipping/billing form.
+ * @param Drupal\profile\Entity\Profile $profile
+ *   User profile billing/shipping fields.
+ *
+ * @return string
+ *   String containing address fields.
+ */
+function iq_commerce_get_address_string(AddressItem $address, Profile $profile) {
+  $countries = CountryManager::getStandardList();
+  $full_country_name = $countries[$address->getCountryCode()]->__toString();
+  $address_string = !empty($address->getOrganization()) ? $address->getOrganization() . '<br />' : '';
+  $address_string .= !empty($profile->field_st_firmenzusatz->value) ? $profile->field_st_firmenzusatz->value . '<br />' : '';
+  $address_string .= !empty($profile->field_st_salutation->value) ? $profile->field_st_salutation->getSettings()['allowed_values'][$profile->field_st_salutation->value] . ' ' : '';
+  $address_string .= !empty($profile->field_st_title->value) ? $profile->field_st_title->value . ' ' : '';
+  $address_string .= $address->getGivenName() . ' ' . $address->getFamilyName() . '<br />' . $address->getAddressLine1() . '<br />';
+  $address_string .= !empty($address->getAddressLine2()) ? $address->getAddressLine2() . '<br />' : "";
+  $address_string .= $address->getPostalCode() . ' ' . $address->getLocality() . '<br/>' . $full_country_name;
+  return $address_string;
 }
