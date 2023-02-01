@@ -14,6 +14,7 @@ use Drupal\Core\Form\FormStateInterface;
 use Drupal\commerce_product\Entity\ProductAttributeValue;
 use Drupal\address\Plugin\Field\FieldType\AddressItem;
 use Drupal\profile\Entity\Profile;
+use Drupal\commerce_order\Adjustment;
 
 /**
  * Implements hook_mail().

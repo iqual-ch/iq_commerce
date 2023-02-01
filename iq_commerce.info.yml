@@ -25,3 +25,4 @@ dependencies:
   - redirect_after_login:redirect_after_login
   - login_emailusername:login_emailusername
   - entity_print:entity_print
+  - commerce_payrexx_integration:commerce_payrexx_integration

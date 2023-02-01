@@ -4,6 +4,7 @@ status: true
 dependencies:
   module:
     - commerce_payment
+    - commerce_payrexx_integration
     - commerce_shipping
     - email_registration
     - iq_commerce
@@ -59,20 +60,23 @@ configuration:
       step: _sidebar
       weight: 10
       view: null
-    email_registration_completion_registration:
+    commerce_payrexx_integration_commerce_pane_payment_method_selection:
       step: _disabled
       weight: 11
-    login:
+    email_registration_completion_registration:
       step: _disabled
       weight: 12
+    login:
+      step: _disabled
+      weight: 13
       allow_guest_checkout: true
       allow_registration: false
     iq_commerce_pane_payment_confirmation:
       step: _disabled
-      weight: 13
+      weight: 14
     iq_commerce_pane_age_confirmation:
       step: _disabled
-      weight: 14
+      weight: 15
     iq_commerce_pane_checkout_message:
       step: _disabled
-      weight: 15
+      weight: 16
