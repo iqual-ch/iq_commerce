@@ -39,12 +39,15 @@
         // General tr and td styles
         tr {
           display: grid;
-          align-items: center;
           grid-template-rows: auto;
-          grid-template-columns: minmax(115px, auto) auto minmax(40px, auto);
+          grid-template-columns: 115px auto;
           padding: 15px 0;
           background: none;
           border-bottom: 1px solid $border-color-base;
+
+          @media screen and (min-width: 425px) {
+            grid-template-columns: 115px auto 40px;
+          }
 
           @media screen and (min-width: 768px) {
             display: table-row;
@@ -112,6 +115,10 @@
           .field--name-product-id {
             margin: 0;
           }
+
+          .field--name-attribute-color {
+            margin-bottom: 15px;
+          }
         }
 
         // Total price
@@ -159,10 +166,17 @@
 
         // Remove button
         .views-field-remove-button {
-          grid-row-start: 1;
-          grid-row-end: 4;
-          grid-column: 3;
-          text-align: right;
+          grid-row: 4;
+          grid-column: 2;
+          margin-top: 15px;
+
+          @media screen and (min-width: 425px) {
+            grid-row-start: 1;
+            grid-row-end: 4;
+            grid-column: 3;
+            margin-top: 0;
+            text-align: right;
+          }
 
           .delete-order-item {
             display: inline-block;
