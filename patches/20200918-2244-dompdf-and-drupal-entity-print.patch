@@ -1,0 +1,12 @@
+index e2fc6c1..e184fab 100644
+--- a/src/Css/Style.php
++++ b/src/Css/Style.php
+@@ -1804,7 +1804,7 @@ class Style
+         $DEBUGCSS = $this->_stylesheet->get_dompdf()->getOptions()->getDebugCss();
+         $parsed_url = "none";
+
+-        if (empty($val) || $val === "none") {
++        if (empty($val) || $val === "none" || $val === "url(none)") {
+             $path = "none";
+         } else if (mb_strpos($val, "url") === false) {
+             $path = "none"; //Don't resolve no image -> otherwise would prefix path and no longer recognize as none

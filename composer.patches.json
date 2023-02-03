@@ -1,0 +1,7 @@
+{
+  "patches": {
+    "dompdf/dompdf": {
+      "2244 - dompdf and drupal entity_print": "./patches/20200918-2244-dompdf-and-drupal-entity-print.patch"
+    }
+  }
+}
