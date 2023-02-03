@@ -32,5 +32,13 @@
     "drupal/commerce_repeat_order": "^2.2",
     "drupal/commerce_payrexx_integration": "^1.0@beta",
     "iqual/iq_bef_extensions": "^2.0"
+  },
+  "extra": {
+    "patches": {
+      "enable-patching": true,
+      "dompdf/dompdf": {
+        "2244 - dompdf and drupal entity_print": "public/modules/custom/iq_commerce/patches/20200918-2244-dompdf-and-drupal-entity-print.patch"
+      }
+    }
   }
 }
