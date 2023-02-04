@@ -55,10 +55,10 @@
           <table cellpadding="0" cellspacing="0" style="padding: 24px 0 30px">
             <tr>
               <td style="padding-right: 50px; font-size: 14px; line-height: 1.8; font-weight: bold">
-                <span>Bestelldatum</span><br />
-                <span>Bestellnummer</span><br />
-                <span>Versandart</span><br />
-                <span>Zahlungsart</span>
+                <span>{{ 'Order date'|t }}</span><br />
+                <span>{{ 'Order number'|t }}</span><br />
+                <span>{{ 'Shipping method'|t }}</span><br />
+                <span>{{ 'Payment method' }}</span>
               </td>
               <td style="font-size: 14px; line-height: 1.8;">
                 <span>{{ order_entity.placed.value|date('d.m.Y') }}</span><br />
