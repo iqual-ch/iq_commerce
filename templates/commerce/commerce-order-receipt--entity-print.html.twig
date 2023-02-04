@@ -30,27 +30,20 @@
           <table cellpadding="0" cellspacing="0" style='width: 100%; border-bottom: 1px solid black'>
             <tr>
               <td style="padding-bottom: 24px">
-                <span style="font-size: 20px; font-weight: bold;">{{'Vielen Dank Ihre Bestellung'|t}}</span>
+                <span style="font-size: 20px; font-weight: bold;">{{'Thank you for your order!'|t}}</span>
               </td>
             </tr>
             <tr>
               <td style="padding-bottom: 12px;">
                 <span style="font-size: 14px; line-height: 1.5;">
-                  {{'Sehr geehrter'|t}} {{ full_name }},
+                  {{'Dear'|t}} {{ full_name }},
                 </span>
               </td>
             </tr>
             <tr>
               <td style="padding-bottom: 12px;">
                 <span style="font-size: 14px; line-height: 1.5;">
-                  {{'Vielen Dank für Ihre Bestellung bei Softtrend dictation solutions. Wir haben Ihre Bestellung erhalten und werden sie umgehend bearbeiten.'|t}}
-                </span>
-              </td>
-            </tr>
-            <tr>
-              <td style="padding-bottom: 30px;">
-                <span style="font-size: 14px; line-height: 1.5;">
-                  {{'Freundliche Grüsse'|t}}<br />{{'Ihr Softtrend Team'|t}}
+                  {{'We have received your order and will process it immediately.'|t}}
                 </span>
               </td>
             </tr>
@@ -112,7 +105,7 @@
       <tr>
         <td style="padding: 24px 0 0;">
           <table cellpadding="0" cellspacing="0" style="width: 100%; font-size: 14px; line-height: 1.5">
-            <tr><td style="font-weight: bold;">{{ 'Bestellübersicht'|t }}</td></tr>
+            <tr><td style="font-weight: bold;">{{ 'Order items'|t }}</td></tr>
             {% block order_items %}
               <tr>
                 <td>
@@ -123,16 +116,16 @@
                           <table cellpadding="0" cellspacing="0" style="width: 100%; border-collapse: collapse;">
                             <tr>
                               <th style="padding-bottom: 16px; border-bottom: 1px solid #dedede; text-align: left; font-size: 12px; font-weight: normal; line-height: 1.5; color: #9a9a9a; text-transform: uppercase">
-                                {{'Produkt'|t}}
+                                {{'Product'|t}}
                               </th>
                               <th style="padding-bottom: 16px; border-bottom: 1px solid #dedede; float: right; text-align: right; font-size: 12px; font-weight: normal; line-height: 1.5; color: #9a9a9a; text-transform: uppercase">
-                                {{'Preis'|t}}
+                                {{'Price'|t}}
                               </th>
                               <th style="padding-bottom: 16px; border-bottom: 1px solid #dedede; float: right; text-align: right; font-size: 12px; font-weight: normal; line-height: 1.5; color: #9a9a9a; text-transform: uppercase">
-                                {{'Menge'|t}}
+                                {{'Quantity'|t}}
                               </th>
                               <th style="padding-bottom: 16px; border-bottom: 1px solid #dedede; float: right; text-align: right; font-size: 12px; font-weight: normal; line-height: 1.5; color: #9a9a9a; text-transform: uppercase">
-                                {{'Summe'|t}}
+                                {{'Total'|t}}
                               </th>
                             </tr>
                             {% for order_item in order_entity.getItems %}
@@ -200,48 +193,6 @@
               <td>
                 <span style="float: right; text-align: right; font-weight: bold">
                   {{ order_entity.getTotalPrice|commerce_price_format }}
-                </span>
-              </td>
-            </tr>
-          </table>
-        </td>
-      </tr>
-      <tr>
-        <td style="padding: 24px 0 30px; border-bottom: 1px solid black">
-          <table cellpadding="0" cellspacing="0" style="width: 100%; font-size: 14px; line-height: 1.5">
-            <tr>
-              <td style="width: 100%; padding-bottom: 12px">
-                <span style="font-weight: bold;">
-                  {{'Haben Sie Fragen zur Bestellung?'|t}}
-                </span>
-              </td>
-            </tr>
-            <tr>
-              <td style="width: 100%; padding-bottom: 12px">
-                <span>{{'Melden Sie sich per Telefon'|t}}</span>&nbsp;<a style="color: #f34645; text-decoration: underline">+41 58 445 15 00</a>
-                <br />
-                <span>{{'oder E-Mail'|t}}</span>&nbsp;<a style="color: #f34645; text-decoration: underline">info@softtrend.ch</a>
-              </td>
-            </tr>
-            <tr>
-              <td style="width: 100%">
-                <span>{{'Mo–Do 08.30–12.00 Uhr, 13.30–17.30 Uhr'|t}}</span><br />
-                <span>{{'Fr 08.30–12.00 Uhr, 13.30–17.00 Uhr'|t}}</span>
-              </td>
-            </tr>
-          </table>
-        </td>
-      </tr>
-      <tr>
-        <td style="padding-top: 24px;">
-          <table cellpadding="0" cellspacing="0" style="width: 100%; font-size: 14px; line-height: 1.5">
-            <tr>
-              <td>
-                <span style="font-size: 12px; line-height: 1.58">
-                  {{'Softtrend AG | Steinstrasse 21, CH-8003 Zürich | Waldeggstrasse 37, Postfach, CH-3097 Liebefeld Bern'|t}}
-                </span>
-                <span style="font-size: 12px; line-height: 1.58">
-                  {{'T +41 58 445 15 00 | F +41 58 445 15 05 | info@softtrend.ch | www.softtrend.ch'|t}}
                 </span>
               </td>
             </tr>
