@@ -1,23 +1,23 @@
 @import '../../../../resources/sass/definitions';
 
-.iq-commerce-mini-cart {
+.iq-commerce-ajax-cart {
   position: relative;
 
   &.show,
   &:hover {
-    .iq-commerce-mini-cart-content{
+    .content {
       display: block;
     }
   }
 
-  .iq-commerce-mini-cart-toggle {
+  .toggle {
 
-    a,
-    a:hover {
+    &__link,
+    &__link:hover {
       text-decoration: none;
     }
 
-    .count {
+    &__count {
       width: 1.5rem;
       display: inline-block;
       height: 1.5rem;
@@ -34,7 +34,7 @@
     }
   }
 
-  .iq-commerce-mini-cart-content {
+  .content {
     display: none;
     position: absolute;
     z-index: 10;
@@ -45,27 +45,28 @@
     max-width: 500px;
     min-width: 300px;
 
-    &.loading {
-      .iq-commerce-mini-cart-header,
-      .iq-commerce-mini-cart-footer {
+    &--loading {
+
+      .content__header,
+      .content__footer {
         display: none;
       }
     }
 
-    .iq-commerce-mini-cart-header {
+    &__header {
       .title {
         font-weight: 700;
       }
     }
 
-    .empty{
-      white-space: nowrap;
-      margin: 0;
-    }
-
-    .iq-commerce-mini-cart-body {
+    &__body {
       max-height: 400px;
       overflow: auto;
+
+      .empty {
+        white-space: nowrap;
+        margin: 0;
+      }
 
       .item {
         padding: 15px 0;
@@ -85,14 +86,17 @@
             padding-right: 15px;
             line-height: 1.2;
             display: flex;
-            .img-holder{
+
+            .img-holder {
               flex-basis: 40px;
               margin-right: 15px;
-              img{
+
+              img {
                 width: 100%;
               }
             }
-            .title-holder{
+
+            .title-holder {
               flex: 1;
             }
           }
@@ -129,6 +133,7 @@
             border: 1px solid $color-grey4;
             margin: 0 5px;
             text-align: center;
+
             &::-webkit-outer-spin-button,
             &::-webkit-inner-spin-button {
               -webkit-appearance: none;
@@ -155,16 +160,16 @@
       }
     }
 
-    .iq-commerce-mini-cart-footer {
+    &__footer {
       .total {
         display: flex;
         font-weight: 700;
         justify-content: space-between;
         padding: 15px 0;
-      }
 
-      .total-value {
-        text-align: right;
+        &__value {
+          text-align: right;
+        }
       }
 
       .iq-button a {
@@ -172,7 +177,8 @@
         white-space: nowrap;
         width: 100%;
         color: $font-color-buttons;
-        span{
+
+        span {
           color: $font-color-buttons;
         }
       }
