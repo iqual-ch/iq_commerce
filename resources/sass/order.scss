@@ -80,6 +80,22 @@
     }
   }
 
+  // Make Print icon presentable
+  .order-print {
+    .field {
+      a {
+        display: flex;
+        align-items: center;
+        text-decoration: none;
+      }
+
+      &__item {
+        font-size: 20px;
+        margin-right: 15px;
+      }
+    }
+  }
+
   // Order detail page specific table styles
   .table {
     .views-field-total-price__number {
