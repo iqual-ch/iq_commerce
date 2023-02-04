@@ -55,16 +55,16 @@
           <table cellpadding="0" cellspacing="0" style="padding: 24px 0 30px">
             <tr>
               <td style="padding-right: 50px; font-size: 14px; line-height: 1.8; font-weight: bold">
-                <div style="padding-bottom: 8px">{{ 'Order date'|t }}</div>
-                <div style="padding-bottom: 8px">{{ 'Order number'|t }}</div>
-                <div style="padding-bottom: 8px">{{ 'Shipping method'|t }}</div>
-                <div style="padding-bottom: 8px">{{ 'Payment method' }}</div>
+                <div style="padding-bottom: 10px">{{ 'Order date'|t }}</div>
+                <div style="padding-bottom: 10px">{{ 'Order number'|t }}</div>
+                <div style="padding-bottom: 10px">{{ 'Shipping method'|t }}</div>
+                <div>{{ 'Payment method' }}</div>
               </td>
               <td style="font-size: 14px; line-height: 1.8;">
-                <div style="padding-bottom: 8px">{{ order_entity.placed.value|date('d.m.Y') }}</div>
-                <div style="padding-bottom: 8px">{{ order_entity.getOrderNumber }}</div>
-                <div style="padding-bottom: 8px">{{ shipping_method }}</div>
-                <div style="padding-bottom: 8px">{{ payment_method }}</div>
+                <div style="padding-bottom: 10px">{{ order_entity.placed.value|date('d.m.Y') }}</div>
+                <div style="padding-bottom: 10px">{{ order_entity.getOrderNumber }}</div>
+                <div style="padding-bottom: 10px">{{ shipping_method }}</div>
+                <div>{{ payment_method }}</div>
               </td>
             </tr>
           </table>
