@@ -32,12 +32,22 @@
 
     .remove-item {
       display: flex;
+      height: fit-content;
       background: none;
       border: none;
       cursor: pointer;
+      outline: 0;
 
       i {
         color: $color-grey3;
+        transition: $transition-default;
+      }
+
+      &:hover,
+      &:focus {
+        i {
+          color: $color-grey2;
+        }
       }
     }
   }
