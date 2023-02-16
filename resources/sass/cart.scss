@@ -140,28 +140,58 @@
 
           .item-update {
             display: flex;
-            flex-wrap: nowrap;
-            margin-bottom: 0;
+            justify-content: space-between;
+            padding-right: 15px;
 
-            .js-form-item {
-              margin: 0 15px;
+            .quantity-edit-input {
+              width: 40px;
+              height: 40px;
+              line-height: 40px;
+              padding: 0;
+              border: 0;
+              margin: 0 10px;
+              text-align: center;
+              box-shadow: none;
+              outline: 0;
+              border-radius: 0;
+              transition: $transition-default;
+              background-color: $color-grey5;
+              color: $color-grey3;
+              transition: $transition-default;
 
-              input {
-                width: 80px;
-                text-align: center;
+              &::-webkit-outer-spin-button,
+              &::-webkit-inner-spin-button {
+                -webkit-appearance: none;
+                margin: 0;
+              }
+
+              &[type=number] {
                 -moz-appearance: textfield;
-
-                &::-webkit-outer-spin-button,
-                &::-webkit-inner-spin-button {
-                  -webkit-appearance: none;
-                }
               }
             }
 
-            button {}
+            .add-one,
+            .remove-one {
+              font-size: 10px;
+              border: 1px solid $color-grey5;
+              background-color: $color-white;
+              height: 40px;
+              width: 40px;
+              text-align: center;
+              cursor: pointer;
+              outline: 0;
+              transition: $transition-default;
+
+              &:hover,
+              &:focus {
+                border: 1px solid $color-grey4;
+              }
+
+              i {
+                color: $color-grey3;
+              }
+            }
           }
-
-
         }
 
         // Remove button
@@ -203,133 +233,6 @@
             -webkit-font-smoothing: antialiased;
           }
         }
-
-        // .views-field-edit-quantity {
-        //   width: 185px;
-
-        //   .form-number {
-        //     width: 100%;
-        //   }
-
-        //   .item-update {
-        //     display: flex;
-
-        //     @media only screen and (max-width: 767px) {
-        //       justify-content: space-between;
-        //     }
-
-        //     button {
-        //       background: $color-grey5;
-        //       border: 1px solid $color-grey4;
-        //       width: 35px;
-        //       padding: 0;
-        //       text-align: center;
-        //       line-height: 33px;
-        //       font-size: $font-size-small;
-        //       color: $color-grey3;
-        //       cursor: pointer;
-        //     }
-
-        //     .delete-order-item {
-        //       background: none;
-        //       border: none;
-        //       width: 15px;
-        //       padding: 0;
-        //       text-align: center;
-        //       line-height: 35px;
-        //       font-size: $font-size-small;
-        //       color: $color-grey3;
-        //       cursor: pointer;
-        //       font-family: "Font Awesome 5 Free";
-        //       font-weight: 900;
-        //       -moz-osx-font-smoothing: grayscale;
-        //       -webkit-font-smoothing: antialiased;
-        //       display: inline-block;
-        //       font-style: normal;
-        //       font-variant: normal;
-        //       text-rendering: auto;
-        //       line-height: 1;
-        //       margin-left: auto;
-        //       text-indent: 100px;
-        //       background-image: url("data:image/svg+xml,%3C%3Fxml version='1.0' encoding='utf-8'%3F%3E%3Csvg version='1.1' focusable='false' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' x='0px' y='0px' viewBox='0 0 416 700' style='enable-background:new 0 0 416 700;' xml:space='preserve'%3E%3Cpath class='st0' fill='%23999999' d='M248.9,498.6h22.3c6.2,0,11.1-5,11.1-11.1V286.9c0-6.2-5-11.1-11.1-11.1h-22.3c-6.2,0-11.1,5-11.1,11.1v200.6 C237.7,493.6,242.7,498.6,248.9,498.6z M401.1,186.6h-76.5L293,133.9c-8.1-13.4-22.6-21.6-38.2-21.6h-93.6 c-15.7,0-30.2,8.2-38.2,21.6l-31.6,52.6H14.9c-8.2,0-14.9,6.7-14.9,14.9v14.9c0,8.2,6.7,14.9,14.9,14.9h14.9v312 c0,24.6,20,44.6,44.6,44.6l0,0h267.4c24.6,0,44.6-20,44.6-44.6l0,0v-312h14.9c8.2,0,14.9-6.7,14.9-14.9v-14.9 C416,193.2,409.3,186.6,401.1,186.6z M159.6,159.6c1-1.7,2.8-2.7,4.8-2.7h87.3c2,0,3.8,1,4.8,2.7l16.2,27H143.4L159.6,159.6z M341.7,543.1H74.3v-312h267.4V543.1z M144.9,498.6h22.3c6.2,0,11.1-5,11.1-11.1V286.9c0-6.2-5-11.1-11.1-11.1h-22.3 c-6.2,0-11.1,5-11.1,11.1v200.6C133.7,493.6,138.7,498.6,144.9,498.6z'/%3E%3C/svg%3E%0A");
-        //       background-size: contain;
-        //       background-position: center;
-        //       background-repeat: no-repeat;
-
-        //       @media only screen and (min-width: 768px) {
-        //         margin-left: 15px;
-        //       }
-
-        //       @media only screen and (min-width: 1200px) {
-        //         margin-left: 45px;
-        //       }
-        //     }
-
-
-        //     fieldset {
-        //       padding: 0 5px;
-        //     }
-
-        //     input {
-        //       text-align: center;
-        //       -moz-appearance: textfield;
-        //       border: 1px solid $color-grey4;
-
-        //       &::-webkit-outer-spin-button,
-        //       &::-webkit-inner-spin-button {
-        //         -webkit-appearance: none;
-        //         margin: 0;
-        //       }
-        //     }
-        //   }
-
-        // }
-
-        // .views-field-remove-button {
-        //   grid-row-start: 2;
-        //   grid-column-start: 2;
-        // }
-
-        // .views-field-total-price__number {
-        //   grid-row-start: 3;
-        //   grid-column-start: 1;
-        //   grid-column-end: 4;
-        //   line-height: 35px;
-        //   text-align: right;
-
-        //   @media only screen and (min-width: 768px) {
-        //     width: 120px;
-        //   }
-
-        //   @media only screen and (min-width: 1200px) {
-        //     width: 140px;
-        //   }
-        // }
-
-        // .form-group {
-        //   margin-bottom: 0;
-        // }
-
-        // .form-number {
-        //   border-radius: $border-radius-base;
-        //   border: $border-width-base solid $border-color-base;
-        //   font-weight: normal;
-        //   font-size: 0.875rem;
-        //   width: auto;
-        // }
-
-        // .delete-order-item {
-        //   margin: 0;
-        //   padding: .375rem .75rem;
-        //   width: auto;
-        //   background-color: $color-grey4;
-        //   border: $border-width-base solid $border-color-base;
-        //   font-weight: normal;
-        //   font-size: 0.875rem;
-        //   line-height: 1.5;
-        // }
-
-
       }
 
       [data-drupal-selector="order-total-summary"] {
