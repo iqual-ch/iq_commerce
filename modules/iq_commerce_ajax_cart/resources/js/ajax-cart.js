@@ -91,17 +91,17 @@
           };
           $(document).trigger("iq-commerce-cart-refresh-before", [updateData]);
 
-          Object.keys(drupalSettings.progressive_decoupler).filter(function(key){
+          Object.keys(drupalSettings.progressive_decoupler).filter(function (key) {
             return drupalSettings.progressive_decoupler[key].type == 'iq_commerce_ajax_cart_block'
-          }).forEach(function(blockID){
+          }).forEach(function (blockID) {
             let $blockElement = $('[id^="' + blockID + '"]');
             let blockData = drupalSettings.progressive_decoupler[blockID];
-            let template = Twig.twig({data: blockData.template});
+            let template = Twig.twig({ data: blockData.template });
             let pattern = blockData.ui_pattern;
 
             if (cartData && cartData[0] && cartData[0].order_items.length) {
               let $target = $blockElement.find(targetSelector).html('');
-              cartData[0].order_items.forEach(function(item){
+              cartData[0].order_items.forEach(function (item) {
 
                 let fieldMapper = new iq_progressive_decoupler_FieldMapper(item, blockData.field_mapping);
                 let $item = $(template.render(fieldMapper.applyMappging()));
@@ -113,16 +113,16 @@
                     order_item_id: item.order_item_id,
                   },
                 });
-                $target.append($item);
+                $target.prepend($item);
               });
 
               $blockElement.find('[data-total-value]').text(cartData[0].total_price.formatted);
-              $blockElement.find('[data-cart-content-holder]').removeClass('loading');
+              $blockElement.find('[data-cart-content-holder]').removeClass('content--loading');
               $(document).trigger('ajax-cart-after-block-rendered[' + pattern + ']', $target);
             }
-            else{
+            else {
               $blockElement.find('[data-total-value]').text('');
-              $blockElement.find('[data-cart-content-holder]').addClass('loading');
+              $blockElement.find('[data-cart-content-holder]').addClass('content--loading');
               $blockElement.find(targetSelector).html('<p class="empty">' + $blockElement.find(targetSelector).data('label-empty') + '</p>');
             }
           });
