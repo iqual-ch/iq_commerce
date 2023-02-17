@@ -21,15 +21,18 @@
    */
   #}
 
-  <img src="{{ path_to_logo }}" alt="alt" style="float: right" width="180px" height="auto"></img>
-
   <table cellpadding="0" cellspacing="0" style="clear: right; font-family: arial, sans-serif; width: 100%; margin-left: 40px;">
     <tbody>
       <tr>
         <td>
-          <table cellpadding="0" cellspacing="0" style='width: 100%; border-bottom: 1px solid black'>
+          <table cellpadding="0" cellspacing="0" style="width: 100%; border-bottom: 1px solid black">
             <tr>
-              <td style="padding-bottom: 24px">
+              <td align="right">
+                <img src="{{ path_to_logo }}" alt="alt" width="180px" height="auto"></img>
+              </td>
+            </tr>
+            <tr>
+              <td style="padding-bottom: 30px">
                 <span style="font-size: 20px; font-weight: bold;">{{'Thank you for your order!'|t}}</span>
               </td>
             </tr>
@@ -54,13 +57,13 @@
         <td style="width: 100%; border-bottom: 1px solid black">
           <table cellpadding="0" cellspacing="0" style="padding: 24px 0 30px">
             <tr>
-              <td style="padding-right: 50px; font-size: 14px; line-height: 1.8; font-weight: bold">
+              <td style="padding-right: 50px; font-size: 14px; line-height: 1.5; font-weight: bold">
                 <div style="padding-bottom: 10px">{{ 'Order date'|t }}</div>
                 <div style="padding-bottom: 10px">{{ 'Order number'|t }}</div>
                 <div style="padding-bottom: 10px">{{ 'Shipping method'|t }}</div>
                 <div>{{ 'Payment method' }}</div>
               </td>
-              <td style="font-size: 14px; line-height: 1.8;">
+              <td style="font-size: 14px; line-height: 1.5;">
                 <div style="padding-bottom: 10px">{{ order_entity.placed.value|date('d.m.Y') }}</div>
                 <div style="padding-bottom: 10px">{{ order_entity.getOrderNumber }}</div>
                 <div style="padding-bottom: 10px">{{ shipping_method }}</div>
@@ -72,8 +75,8 @@
       </tr>
       <tr>
         {% if (billing_information or shipping_information) %}
-          <td style="padding: 24px 0 14px; border-bottom: 1px solid black;">
-            <table cellpadding="0" cellspacing="0" style="width: 100%; font-size: 14px; line-height: 1.5">
+          <td style="padding: 30px 0 18px; border-bottom: 1px solid black;">
+            <table cellpadding="0" cellspacing="0" style="width: 100%; font-size: 14px; line-height: 1.15">
               <tr>
                 {% if shipping_information %}
                   <td style="width: 50%; font-weight: bold;">{{ 'Shipping Information'|t }}</td>
@@ -103,8 +106,8 @@
         {% endif %}
       </tr>
       <tr>
-        <td style="padding: 24px 0 0;">
-          <table cellpadding="0" cellspacing="0" style="width: 100%; font-size: 14px; line-height: 1.5">
+        <td style="padding: 30px 0 0;">
+          <table cellpadding="0" cellspacing="0" style="width: 100%; font-size: 14px; line-height: 1.15">
             <tr><td style="font-weight: bold;">{{ 'Order items'|t }}</td></tr>
             {% block order_items %}
               <tr>
@@ -156,8 +159,8 @@
         </td>
       </tr>
       <tr>
-        <td style="padding: 24px 0 30px; border-bottom: 1px solid black">
-          <table cellpadding="0" cellspacing="0" style="width: 100%; font-size: 14px; line-height: 1.5">
+        <td style="padding: 24px 0 0;">
+          <table cellpadding="0" cellspacing="0" style="width: 100%; font-size: 14px; line-height: 2">
             <tr>
               <td>
                 <span>
