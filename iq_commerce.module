@@ -175,14 +175,6 @@ function iq_commerce_form_alter(&$form, FormStateInterface $form_state, $form_id
   }
   $url = Url::fromRoute('<current>');
 
-  if ($form_id == 'commerce_checkout_flow_multistep_default' && substr_count($url->getInternalPath(), 'order_information') > 0) {
-    // Unset the "Go back" link and create a custom one.
-    unset($form['actions']['next']['#suffix']);
-    $form['back_to_cart'] = [
-      '#type' => 'markup',
-      '#markup' => '<a class="iqbm-button iqbm-text btn btn-cta" href="/cart">' . t('Back to Cart') . '</a>',
-    ];
-  }
   // Add the rounding option to the shop and save to the config.
   if ($form_id === 'commerce_store_online_edit_form') {
     if (!property_exists($form_state->getFormObject(), 'entity')) {
