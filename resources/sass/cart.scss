@@ -139,33 +139,37 @@
 
           .item-update {
             display: flex;
-            justify-content: space-between;
             padding-right: 15px;
+            margin-bottom: 0;
 
-            .quantity-edit-input {
-              width: 40px;
-              height: 40px;
-              line-height: 40px;
-              padding: 0;
-              border: 0;
-              margin: 0 10px;
-              text-align: center;
-              box-shadow: none;
-              outline: 0;
-              border-radius: 0;
-              transition: $transition-default;
-              background-color: $color-grey5;
-              color: $color-grey3;
-              transition: $transition-default;
+            .js-form-item {
+              margin-bottom: 0;
 
-              &::-webkit-outer-spin-button,
-              &::-webkit-inner-spin-button {
-                -webkit-appearance: none;
-                margin: 0;
-              }
+              .quantity-edit-input {
+                width: 40px;
+                height: 40px;
+                line-height: 40px;
+                padding: 0;
+                border: 0;
+                margin: 0 10px;
+                text-align: center;
+                box-shadow: none;
+                outline: 0;
+                border-radius: 0;
+                transition: $transition-default;
+                background-color: $color-grey5;
+                color: $color-grey3;
+                transition: $transition-default;
 
-              &[type=number] {
-                -moz-appearance: textfield;
+                &::-webkit-outer-spin-button,
+                &::-webkit-inner-spin-button {
+                  -webkit-appearance: none;
+                  margin: 0;
+                }
+
+                &[type=number] {
+                  -moz-appearance: textfield;
+                }
               }
             }
 
@@ -240,6 +244,10 @@
 
       .order-total-line {
         padding: 0 15px;
+
+        &:not(:last-of-type) {
+          margin-bottom: 0.5rem;
+        }
 
         .order-total-line-value {
           width: 120px;
