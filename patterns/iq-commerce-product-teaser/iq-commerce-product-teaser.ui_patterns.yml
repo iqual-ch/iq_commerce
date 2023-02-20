@@ -58,7 +58,5 @@ iq-commerce-product-teaser:
         css:
           component:
             productteaser.css: {}
-        js:
-          productteaser.js: {}
       dependencies:
         - core/drupal

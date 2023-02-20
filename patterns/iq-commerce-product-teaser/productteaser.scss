@@ -54,77 +54,88 @@
     }
   }
 
-  .commerce-variation-add-to-cart-form {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    flex-wrap: wrap;
+  .commerce-variation-add-to-cart {
 
-    // Hide spinners for Chrome, Safari, Opera
-    input[type="number"]::-webkit-outer-spin-button,
-    input[type="number"]::-webkit-inner-spin-button {
-      -webkit-appearance: none;
-      margin: 0;
-    }
+    &__form {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
 
-    // Hide spinners for Firefox
-    input[type="number"] {
-      -moz-appearance: textfield;
-    }
+      // Hide spinners for Chrome, Safari, Opera
+      input[type="number"]::-webkit-outer-spin-button,
+      input[type="number"]::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+      }
 
-    button[type="submit"] {
-      display: inline-block;
-      padding: $padding-buttons;
-      font-size: $font-size-buttons;
-      font-weight: $font-weight-buttons;
-      font-style: $font-style-buttons;
-      font-family: $font-family-buttons;
-      line-height: $line-height-buttons;
-      //margin: $margin-buttons;
-      color: $font-color-buttons;
-      text-decoration: none;
-      border-color: $border-color-buttons;
-      border-style: solid;
-      border-width: $border-width-buttons;
-      border-radius: $border-radius-buttons;
-      background: $background-color-buttons;
-      transition: $transition-default;
-      cursor: pointer;
-      margin-top: 1rem;
+      // Hide spinners for Firefox
+      input[type="number"] {
+        -moz-appearance: textfield;
+      }
 
-      &:hover,
-      &:focus {
-        background-color: $background-color-hover-buttons;
-        color: $font-color-hover-buttons;
-        border-color: $border-color-hover-buttons;
+      button[type="submit"] {
+        display: inline-block;
+        padding: $padding-buttons;
+        font-size: $font-size-buttons;
+        font-weight: $font-weight-buttons;
+        font-style: $font-style-buttons;
+        font-family: $font-family-buttons;
+        line-height: $line-height-buttons;
+        //margin: $margin-buttons;
+        color: $font-color-buttons;
         text-decoration: none;
+        border-color: $border-color-buttons;
+        border-style: solid;
+        border-width: $border-width-buttons;
+        border-radius: $border-radius-buttons;
+        background: $background-color-buttons;
+        transition: $transition-default;
+        cursor: pointer;
+        margin-top: 1rem;
+
+        &:hover,
+        &:focus {
+          background-color: $background-color-hover-buttons;
+          color: $font-color-hover-buttons;
+          border-color: $border-color-hover-buttons;
+          text-decoration: none;
+        }
       }
     }
 
-    .quantity-wrapper {
+    &__quantity-wrapper {
       display: flex;
       justify-content: flex-start;
       align-items: center;
       margin-top: 1rem;
+    }
 
-      .quantity {
-        border: 0;
-        border-radius: 0;
-        outline: 0;
-        text-align: center;
-        color: $color-grey3;
+    &__quantity-input {
+      border: 0;
+      border-radius: 0;
+      outline: 0;
+      text-align: center;
+      color: $color-grey3;
+    }
+
+    &__quantity-button {
+      border: 0;
+      background-color: transparent;
+      outline: 0;
+      cursor: pointer;
+
+      &:hover,
+      &:focus {
+        i {
+          color: $color-grey4;
+        }
       }
 
-      button {
-        border: 0;
-        background-color: transparent;
-        outline: 0;
-        cursor: pointer;
-
-        i {
-          font-size: 0.75rem;
-          color: $color-grey3;
-        }
+      i {
+        font-size: 0.75rem;
+        color: $color-grey3;
+        transition: $transition-default;
       }
     }
   }
