@@ -1,53 +1,36 @@
 @import 'definitions';
 
-// checkout
-.form-wrapper__login-option {
-  padding: 0;
-}
-
 .commerce-checkout-flow {
   max-width: 1140px;
   margin-left: auto;
   margin-right: auto;
-  padding: 45px 15px;
+  padding: 60px 15px;
 
   .layout-checkout-form {
 
-    // General styles
-
     // Titles
-    .fieldset-legend {
-      display: block;
-      font-size: $font-size-h3;
-      line-height: $line-height-h3;
-      font-weight: $font-weight-h3;
-      font-style: $font-style-h3;
-      font-family: $font-family-h3;
-      color: $color-h3;
-      margin-top: $margin-top-h3;
-      margin-bottom: $margin-bottom-h3;
-      @include fluid-type(320px, 991px, $font-size-min-h3, $font-size-h3);
-      word-break: break-all;
+    legend {
+      margin-bottom: 0;
 
-      a {
-        text-decoration: none;
-        display: inline-block;
-        overflow: hidden;
-        text-indent: -9999px;
+      .fieldset-legend {
+        display: flex;
+        font-size: $font-size-h3;
+        line-height: $line-height-h3;
+        font-weight: $font-weight-h3;
+        font-style: $font-style-h3;
+        font-family: $font-family-h3;
+        color: $color-h3;
+        margin-top: $margin-top-h3;
+        margin-bottom: $margin-bottom-h3;
+        @include fluid-type(320px, 991px, $font-size-min-h3, $font-size-h3);
 
-        &::before {
-          content: "\f044";
-          font-weight: 400;
-          -moz-osx-font-smoothing: grayscale;
-          -webkit-font-smoothing: antialiased;
-          display: inline-block;
-          font-style: normal;
-          font-variant: normal;
-          text-rendering: auto;
-          line-height: 1;
-          font-family: "Font Awesome 5 Free";
-          float: left;
-          text-indent: 0;
+        a {
+          text-decoration: none;
+
+          i {
+            font-size: $font-size-min-h3;
+            transition: $transition-default;
+          }
         }
       }
     }
@@ -62,17 +45,42 @@
     textarea {
       border-radius: $border-radius-base;
       border: $border-width-base solid $border-color-base;
-      margin-top: 0rem;
+      margin-top: 0;
     }
 
     // Button
-    .btn-primary {
-      margin: 15px 0;
+    .js-form-submit {
+      display: inline-block;
+      padding: $padding-buttons;
+      margin: 0 0 15px 0;
+      font-size: $font-size-buttons;
+      font-weight: $font-weight-buttons;
+      font-style: $font-style-buttons;
+      font-family: $font-family-buttons;
+      line-height: $line-height-buttons;
+      color: $font-color-buttons;
+      text-decoration: none;
+      border-color: $border-color-buttons;
+      border-style: solid;
+      border-width: $border-width-buttons;
+      border-radius: $border-radius-buttons;
+      background: $background-color-buttons;
+      transition: $transition-default;
+      cursor: pointer;
+
+      &:hover,
+      &:focus {
+        background-color: $background-color-hover-buttons;
+        color: $font-color-hover-buttons;
+        border-color: $border-color-hover-buttons;
+        text-decoration: none;
+      }
     }
 
     // Table
     .table {
       font-size: $font-size-standard;
+      margin: 0 0 15px 0;
 
       tr {
         background: none;
@@ -89,84 +97,34 @@
             text-align: right;
           }
         }
-
-        .views-field-quantity {
-          padding-right: 5px;
-        }
-
-        .views-field-purchased-entity {
-          >div {
-            @media only screen and (min-width: 768px) {
-              display: grid;
-              grid-template-columns: 100px 20px auto;
-              grid-template-rows: auto auto;
-            }
-
-            .field--name-field-images {
-              display: none;
-
-              @media only screen and (min-width: 768px) {
-                display: block;
-                grid-column-start: 1;
-                grid-row-start: 1;
-                grid-row-end: none;
-              }
-
-              .field__item {
-                img {
-                  margin: 0;
-                  max-width: 100%;
-                  height: auto;
-                }
-              }
-            }
-
-            .field--name-product-id {
-              grid-column-start: 3;
-              margin: 0;
-            }
-
-            .field--name-sku {
-              grid-column-start: 3;
-              grid-row-start: 2;
-              font-size: 0.875rem;
-
-              .field__label {
-                &::after {
-                  content: ': ';
-                }
-              }
-            }
-          }
-        }
-
-        .views-field-total-price__number {
-          text-align: right;
-        }
       }
     }
 
-    // Add to cart button
-    a[href*="cart"] {
-      position: absolute;
-      top: 100%;
-      font-size: $font-size-buttons;
-      line-height: $line-height-buttons;
-      padding: $padding-buttons;
-      padding-left: 0;
-      padding-right: 0;
-      border-width: $border-width-buttons;
-      border-style: solid;
-      border-color: transparent;
+    // Address field
+    .address {
+      margin-bottom: 30px;
+    }
 
-      &::before {
-        content: '\00ab';
-        margin-right: 5px;
-      }
+    // Form Group reset
+    .form-group {
+      margin-bottom: 0;
+    }
+
+    // Entity reference field reset
+    .field--type-entity-reference {
+      margin-bottom: 0;
+    }
+
+    // Fields
+    .js-form-item {
+      margin-bottom: 30px;
     }
 
     // Checkout panes
     .checkout-pane {
+      margin-bottom: 60px;
+
+      // Login
       &.checkout-pane-login {
         display: flex;
         flex-wrap: wrap;
@@ -178,9 +136,16 @@
           @media only screen and (min-width: 768px) {
             flex-basis: 50%;
           }
+
+          .fieldset-wrapper {
+            >fieldset {
+              margin-bottom: 30px;
+            }
+          }
         }
       }
 
+      // Payment provider selection
       &.checkout-pane-commerce-payrexx-integration-commerce-pane-payment-method-selection {
         fieldset.payment-methods {
 
@@ -347,30 +312,63 @@
         }
       }
 
+      // Order Summary
       &.checkout-pane-order-summary {
         position: sticky;
         top: 30px;
 
         .order-total-line {
-          padding-right: 0;
+          padding: 0;
+
+          &:not(:last-of-type) {
+            margin-bottom: 0.5rem;
+          }
 
           .order-total-line-value {
             width: 140px;
           }
+
+          &__total {
+            padding-top: 0;
+          }
         }
       }
 
-      &.checkout-pane-payment-information {
-        >.fieldset-wrapper {
-          display: flex;
-          flex-direction: column;
+      // Shipping information
+      &.checkout-pane-shipping-information {
 
-          #edit-payment-information-payment-method--wrapper {
-            order: 1;
+        // Field overrides
+        [data-drupal-selector="edit-shipping-information-shipments-0-shipping-method-0"] {
+          margin-bottom: 0;
+
+          .js-form-item {
+            margin-bottom: 0;
           }
+        }
 
-          #edit-payment-information-billing-information {
-            order: 0;
+        // Recalculate shipping button override
+        [data-drupal-selector="edit-shipping-information-recalculate-shipping"] {
+          margin-bottom: 60px;
+        }
+      }
+
+      // Payment information
+      &.checkout-pane-payment-information {
+        margin-bottom: 30px;
+
+        // Bearbeiten button override
+        .address-book-edit-button {
+          margin-bottom: 30px;
+        }
+      }
+
+      // Review
+      &.checkout-pane-review {
+
+        // Spacings between sections
+        .form-group {
+          &:not(:last-of-type) {
+            margin-bottom: 60px;
           }
         }
       }
@@ -384,29 +382,17 @@
 
       .form-actions {
         display: flex;
+        flex-direction: column;
         justify-content: space-between;
 
-        &::before {
-          content: '';
-          order: 1;
+        @media screen and (min-width: $breakpoint-s) {
+          flex-direction: row-reverse;
         }
 
         input {
-          order: 2;
-          max-width: 50%;
-        }
-
-        a.link--previous {
-          font-size: $font-size-buttons;
-          line-height: $line-height-buttons;
-          padding: $padding-buttons;
-          padding-left: 0;
-          padding-right: 0;
-          border: $border-width-buttons solid transparent;
-
-          &::before {
-            content: '\00ab';
-            margin-right: 5px;
+          @media screen and (min-width: $breakpoint-s) {
+            flex: 0 0 50%;
+            max-width: 50%;
           }
         }
       }
