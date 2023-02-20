@@ -33,53 +33,53 @@ configuration:
       terms_label: 'I accept the <a href="@terms_link">terms and condiditons</a>.'
       terms_link: '#'
     customer_comments:
-      step: order_information
-      weight: 4
+      step: _disabled
+      weight: 16
     review:
       step: review
-      weight: 5
+      weight: 4
     payment_process:
       step: payment
-      weight: 6
+      weight: 5
       capture: true
     iq_commerce_pane_checkout_message:
       step: complete
-      weight: 7
+      weight: 6
       header:
         value: "<h1>Thank you for your order.</h1>\r\n\r\n<p>The order number is : [commerce_order:order_number]<br />\r\nYou can view your orders <a href=\"/user/orders\">here</a><br />\r\nContinue to <a href=\"/de\">homepage</a><br />\r\nIf you have any questions, feel free to leave us a message.</p>\r\n"
         format: pagedesigner
     completion_register:
       step: complete
-      weight: 8
+      weight: 7
     order_summary:
       step: _sidebar
-      weight: 9
+      weight: 8
       view: null
     commerce_payrexx_integration_commerce_pane_payment_method_selection:
       step: _disabled
-      weight: 10
+      weight: 9
     email_registration_completion_registration:
       step: _disabled
-      weight: 11
+      weight: 10
     login:
       step: _disabled
-      weight: 12
+      weight: 11
       allow_guest_checkout: true
       allow_registration: false
     iq_commerce_pane_payment_confirmation:
       step: _disabled
-      weight: 13
+      weight: 12
     iq_commerce_pane_age_confirmation:
       step: _disabled
-      weight: 14
+      weight: 13
     email_registration_login:
       step: _disabled
-      weight: 15
+      weight: 14
       allow_guest_checkout: true
       allow_registration: false
     completion_message:
       step: _disabled
-      weight: 16
+      weight: 15
       message:
         value: "Your order number is [commerce_order:order_number].\r\nYou can view your order on your account page when logged in."
         format: plain_text
