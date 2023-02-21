@@ -1,5 +1,5 @@
 uuid: 6f9682ee-66a8-4bda-9ae6-ff48c783ff46
-langcode: en
+langcode: de
 status: true
 dependencies:
   config:
@@ -1890,27 +1890,6 @@ display:
     display_plugin: block
     position: 6
     display_options:
-      pager:
-        type: full
-        options:
-          offset: 0
-          items_per_page: 12
-          total_pages: null
-          id: 0
-          tags:
-            next: 'Next ›'
-            previous: '‹ Previous'
-            first: '« First'
-            last: 'Last »'
-          expose:
-            items_per_page: false
-            items_per_page_label: 'Items per page'
-            items_per_page_options: '5, 10, 25, 50'
-            items_per_page_options_all: false
-            items_per_page_options_all_label: '- All -'
-            offset: false
-            offset_label: Offset
-          quantity: 9
       filters:
         status:
           id: status
@@ -2062,7 +2041,7 @@ display:
               source: title
       defaults:
         css_class: false
-        pager: false
+        pager: true
         style: false
         row: false
         filters: false
@@ -2076,7 +2055,6 @@ display:
         - 'languages:language_content'
         - 'languages:language_interface'
         - url
-        - url.query_args
         - user
       tags:
         - 'config:field.storage.commerce_product.field_iq_commerce_lead'
