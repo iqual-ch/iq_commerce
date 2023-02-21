@@ -244,7 +244,7 @@ function iq_commerce_commerce_order_presave($entity) {
     if ($difference->getNumber() > 0) {
       $entity->addAdjustment(new Adjustment([
         'type' => 'rounding',
-        'label' => 'Rounding',
+        'label' => t('Rounding'),
         'amount' => $difference,
       ]));
     }
