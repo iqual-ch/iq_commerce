@@ -2,12 +2,20 @@
 
 .iq-commerce-ajax-cart {
   position: relative;
-  padding-bottom: 10px;
+  padding: 0;
+
+  @media screen and (min-width: 1200px) {
+    padding-bottom: 10px;
+  }
 
   &.show,
   &:hover {
     .content {
-      display: block;
+      display: none;
+
+      @media screen and (min-width: 1200px) {
+        display: block;
+      }
     }
   }
 
@@ -49,9 +57,10 @@
     top: 100%;
     padding: 15px;
     right: 0;
-    background: $color-grey5;
+    background-color: $color-white;
+    border: 1px solid $color-grey5;
+    min-width: 350px;
     max-width: 500px;
-    min-width: 300px;
 
     &--loading {
 
