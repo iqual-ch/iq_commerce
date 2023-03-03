@@ -4,7 +4,6 @@ namespace Drupal\iq_commerce\Form;
 
 use Drupal\Core\Form\ConfigFormBase;
 use Drupal\Core\Form\FormStateInterface;
-use Drupal\iq_commerce\Controller\UserController;
 
 /**
  * Class IqCommerceSettingsForm.
