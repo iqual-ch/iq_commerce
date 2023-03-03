@@ -35,3 +35,11 @@ iq_commerce.user_settings:
     _title: 'User account settings'
   requirements:
     _permission: 'access content'
+
+iq_commerce.user_address_book:
+  path: '/user/address-book'
+  defaults:
+    _controller: '\Drupal\iq_commerce\Controller\UserController:userAddressBookPage'
+    _title: 'User account settings'
+  requirements:
+    _user_is_logged_in: 'TRUE'

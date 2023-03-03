@@ -23,4 +23,13 @@ class UserController extends ControllerBase {
     $response = new RedirectResponse(Url::fromUserInput('/user/' . $user->id() . '/orders')->toString(), 302);
     return $response;
   }
+
+  /**
+   *  Redirects user to /user/address-book page if its logged in.
+   */
+  public function userAddressBookPage() {
+    $user = \Drupal::currentUser();
+    $response = new RedirectResponse(Url::fromUserInput('/user/' . $user->id() . '/address-book')->toString(), 302);
+    return $response;
+  }
 }
