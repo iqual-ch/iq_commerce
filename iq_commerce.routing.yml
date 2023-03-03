@@ -27,11 +27,3 @@ iq_commerce.additional_settings:
     _permission: 'administer iq_commerce settings'
   options:
     _admin_route: TRUE
-
-iq_commerce.user_orders:
-  path: '/user/orders'
-  defaults:
-    _form: '\Drupal\iq_commerce\Form\IqCommerceUserOrdersForm'
-    _title: 'Orders'
-  requirements:
-    _access: 'TRUE'
