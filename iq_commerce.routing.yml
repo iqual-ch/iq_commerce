@@ -35,11 +35,3 @@ iq_commerce.user_orders:
     _title: 'Orders'
   requirements:
     _access: 'TRUE'
-
-iq_commerce.user_settings:
-  path: '/user/edit'
-  defaults:
-    _controller: '\Drupal\iq_commerce\Controller\UserController:userEditPage'
-    _title: 'User account settings'
-  requirements:
-    _role: 'authenticated'
