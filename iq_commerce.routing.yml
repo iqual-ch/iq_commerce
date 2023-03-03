@@ -27,3 +27,11 @@ iq_commerce.additional_settings:
     _permission: 'administer iq_commerce settings'
   options:
     _admin_route: TRUE
+
+iq_commerce.user_settings:
+  path: '/user/orders'
+  defaults:
+    _controller: '\Drupal\iq_commerce\Controller\UserController:userOrdersPage'
+    _title: 'User account settings'
+  requirements:
+    _permission: 'access content'
