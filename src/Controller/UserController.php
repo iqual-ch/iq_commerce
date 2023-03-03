@@ -15,21 +15,13 @@ class UserController extends ControllerBase {
    *  Redirects user based on content access for /user/orders page.
    */
   public function userOrdersPage() {
-    $user = \Drupal::currentUser();
-    if ($user->isAnonymous()) {
-      $response = new RedirectResponse(Url::fromUserInput('/user/login')->toString(), 302);
-      return $response;
-    }
-    $response = new RedirectResponse(Url::fromUserInput('/user/' . $user->id() . '/orders')->toString(), 302);
-    return $response;
+    return new RedirectResponse(Url::fromUserInput('/user/' . \Drupal::currentUser()->id() . '/orders')->toString(), 302);
   }
 
   /**
    *  Redirects user to /user/address-book page if its logged in.
    */
   public function userAddressBookPage() {
-    $user = \Drupal::currentUser();
-    $response = new RedirectResponse(Url::fromUserInput('/user/' . $user->id() . '/address-book')->toString(), 302);
-    return $response;
+    return new RedirectResponse(Url::fromUserInput('/user/' . \Drupal::currentUser()->id(). '/address-book')->toString(), 302);
   }
 }
