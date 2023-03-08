@@ -28,3 +28,4 @@ dependencies:
   - commerce_payrexx_integration:commerce_payrexx_integration
   - better_exposed_filters:better_exposed_filters
   - commerce_repeat_order:commerce_repeat_order
+  - iq_user_base:iq_user_base
