@@ -33,12 +33,5 @@
     "iqual/iq_bef_extensions": "^2.0",
     "iqual/iq_user_base": "misc/rework-dev"
   },
-  "extra": {
-    "patches": {
-      "enable-patching": true,
-      "dompdf/dompdf": {
-        "2244 - dompdf and drupal entity_print": "public/modules/custom/iq_commerce/patches/20200918-2244-dompdf-and-drupal-entity-print.patch"
-      }
-    }
-  }
+  "extra": {}
 }
