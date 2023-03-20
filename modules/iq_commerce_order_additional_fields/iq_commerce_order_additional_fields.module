@@ -8,7 +8,7 @@ function iq_commerce_order_additional_fields_form_alter(&$form, \Drupal\Core\For
   // Only show collection date if the customer has selected
   // the option to pick up product(s) from store.
   if ($form_id == 'commerce_checkout_flow_multistep_default' && !empty($form['collection_date_pane']) && !empty($form['shipping_information'])) {
-    $shipping_methods = $form['shipping_information']['shipments'][0]['shipping_method']['widget'][0]['#options'];
+    $shipping_methods = $form['shipping_information']['shipments'][0]['shipping_method']['widget'][0]['#options'] ?? [];
     /** @var \Drupal\Component\Render\FormattableMarkup $shipping_method */
     foreach ($shipping_methods as $key => $shipping_method) {
       $label = explode(':', $shipping_method->jsonSerialize())[0];
@@ -17,6 +17,9 @@ function iq_commerce_order_additional_fields_form_alter(&$form, \Drupal\Core\For
       if ($label == 'Abholung vor Ort') {
         $form['collection_date_pane']['collection_date']['#states'] = [
           'visible' => [
+            ':input[name="shipping_information[shipments][0][shipping_method][0]"]' => ['value' => $key],
+          ],
+          'required' => [
             ':input[name="shipping_information[shipments][0][shipping_method][0]"]' => ['value' => $key],
           ],
         ];
