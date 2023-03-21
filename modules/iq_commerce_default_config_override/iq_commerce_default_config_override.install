@@ -1,0 +1,1301 @@
+<?php
+
+/**
+ * @file
+ * Install, update and uninstall functions for the commerce_log module.
+ */
+
+
+/**
+ * Commerce config override for default config that comes from commerce modules upon install.
+ *
+ */
+function test_module_install() {
+
+  // commerce_checkout.commerce_checkout_flow.default
+  $config = \Drupal::configFactory()->getEditable('commerce_checkout.commerce_checkout_flow.default');
+  $configuration = $config->get('configuration');
+  $panes = $configuration['panes'];
+
+  $dependencies['module'] = ['commerce_payment', 'commerce_payrexx_integration', 'commerce_shipping', 'email_registration', 'iq_commerce'];
+  $config->set('dependencies', $dependencies);
+
+  $panes = [];
+  $panes[] = [
+    'login' => [
+      'step' => 'login',
+      'weight' => 0,
+      'allow_guest_checkout' => FALSE,
+      'allow_registration' => TRUE,
+      'registration_form_mode' => 'register'
+    ],
+    'contact_information' => [
+      'step' => 'order_information',
+      'weight' => 1,
+      'double_entry' => TRUE,
+    ],
+    'shipping_information'  => [
+      'step' => 'order_information',
+      'weight' => 2,
+      'auto_recalculate' => true,
+      'require_shipping_profile' => false,
+    ],
+    'payment_information' => [
+      'step' => 'order_information',
+      'weight' => 3,
+    ],
+    'iq_commerce_pane_terms_confirmation' => [
+      'step' => 'order_information',
+      'weight' => 4,
+      'terms_label' => 'I accept the <a href="@terms_link">terms and condiditons</a>.',
+      'terms_link' => '#',
+    ],
+    'review' => [
+      'step' => 'review',
+      'weight' => 5,
+    ],
+    'payment_process' => [
+      'step' => 'payment',
+      'weight' => 6,
+      'capture' => true,
+    ],
+    'iq_commerce_pane_checkout_message' => [
+      'step' => 'complete',
+      'weight' => 7,
+      'header' => [
+        'value' => "<h1>Thank you for your order.</h1>\r\n\r\n<p>The order number is  => [commerce_order =>order_number]<br />\r\nYou can view your orders <a href=\"/user/orders\">here</a><br />\r\nContinue to <a href=\"/de\">homepage</a><br />\r\nIf you have any questions, feel free to leave us a message.</p>\r\n",
+        'format' => 'pagedesigner',
+      ],
+    ],
+    'completion_register' => [
+      'step' => 'complete',
+      'weight' => 8,
+    ],
+    'order_summary' => [
+      'step' => '_sidebar',
+      'weight' => 9,
+      'view' => null,
+    ]
+  ];
+
+  $configuration['panes'] = $panes;
+  $config->set('configuration', $configuration)->save(TRUE);
+
+
+  // ===================================================================================
+  //
+  // core.entity_form_display.commerce_order_item.default.add_to_cart
+  $config = \Drupal::configFactory()->getEditable('core.entity_form_display.commerce_order_item.default.add_to_cart');
+  $content = $config->get('content');
+
+  $dependencies = $config->get('dependencies');
+
+  $dependencies['module'] = ['commerce_order', 'commerce_product'];
+  $config->set('dependencies', $dependencies)->save(TRUE);
+
+
+  $content['quantity'] = [
+    'type' => 'commerce_quantity',
+    'weight' => 1,
+    'region' => 'content',
+    'settings' => [
+      'placeholder' => '',
+      'step' => '1'
+    ],
+  ];
+  $config->set('content', $content)->save(TRUE);
+
+
+  //==============================================================================================================
+  // core.entity_form_display.commerce_product_variation.default.default
+  //
+  $config = \Drupal::configFactory()->getEditable('core.entity_form_display.commerce_product_variation.default.default');
+  $content = $config->get('content');
+
+  $dependencies = $config->get('dependencies');
+  $dependencies['config'][] = 'entity_browser.browser.iq_image_browser';
+  $dependencies['module'][] = 'entity_browser';
+  $dependencies['module'][] = 'physical';
+  $config->set('dependencies', $dependencies)->save(TRUE);
+
+
+  $content['attribute_color'] = [
+    'type' => 'options_select',
+    'weight' => 2,
+    'region' => 'content',
+    'settings' => [],
+    'third_party_settings' => [],
+  ];
+  $content['field_iq_commerce_images'] = [
+    'type' => 'entity_browser_entity_reference',
+    'weight' => 1,
+    'region' => 'content',
+    'settings' => [
+      'entity_browser' => 'iq_image_browser',
+      'field_widget_display' => 'rendered_entity',
+      'field_widget_edit' => true,
+      'field_widget_remove' => true,
+      'field_widget_replace' => false,
+      'open' => false,
+      'field_widget_display_settings' => [
+        'view_mode' => 'default',
+      ],
+      'selection_mode' => 'selection_append',
+    ],
+    'third_party_settings' => [],
+  ];
+  $content['langcode']['weight'] = 7;
+  $content['list_price']['weight'] = 4;
+  $content['price']['weight'] = 5;
+  $content['sku']['weight'] = 3;
+  $content['status']['weight'] = 8;
+
+  $content['weight'] = [
+    'type' => 'physical_measurement_default',
+    'weight' => 6,
+    'region' => 'content',
+    'settings' => [
+      'default_unit' => '',
+      'allow_unit_change' => true,
+    ],
+    'third_party_settings' => [],
+  ];
+
+  $config->set('content', $content)->save(TRUE);
+
+
+  //==============================================================================================================
+  // core.entity_form_display.commerce_product.default.default
+  //
+  $config = \Drupal::configFactory()->getEditable('core.entity_form_display.commerce_product.default.default');
+  $content = $config->get('content');
+
+  $dependencies = $config->get('dependencies');
+  $dependencies['module'][] = 'term_reference_tree';
+  $config->set('dependencies', $dependencies)->save(TRUE);
+
+
+  $content['created'] = [
+    'type' => 'datetime_timestamp',
+    'weight' => 4,
+    'region' => 'content',
+    'settings' => [],
+    'third_party_settings' => [],
+  ];
+  $content['field_iq_commerce_category'] = [
+    'type' => 'term_reference_tree',
+    'weight' => 7,
+    'region' => 'content',
+    'settings' => [
+      'start_minimized' => false,
+      'leaves_only' => false,
+      'select_parents' => true,
+      'cascading_selection' => 3,
+      'max_depth' => 0,
+    ],
+    'third_party_settings' => [],
+  ];
+
+  $content['field_iq_commerce_lead'] = [
+    'type' => 'text_textarea',
+    'weight' => 8,
+    'region' => 'content',
+    'settings' => [
+      'rows' => 5,
+      'placeholder' => '',
+    ],
+    'third_party_settings' => [],
+  ];
+
+  $content['field_iq_commerce_tags'] = [
+    'type' => 'entity_reference_autocomplete_tags',
+    'weight' => 9,
+    'region' => 'content',
+    'settings' => [
+      'match_operator' => 'CONTAINS',
+      'match_limit' => 10,
+      'size' => 60,
+      'placeholder' => '',
+    ],
+    'third_party_settings' => [],
+  ];
+  $content['path']['weight'] = 5;
+  $content['status']['weight'] = 6;
+  $content['uid']['weight'] = 3;
+
+  $config->set('content', $content)->save(TRUE);
+
+  $hidden = $config->get('hidden');
+
+  unset($hidden['field_iq_commerce_lead']);
+  unset($hidden['field_iq_commerce_tags']);
+
+  $config->set('hidden', $hidden)->save(TRUE);
+
+
+
+  // ===============================================================
+  //
+  //core.entity_view_display.commerce_order_item.default.default
+  $config = \Drupal::configFactory()->getEditable('core.entity_view_display.commerce_order_item.default.default');
+  $content = $config->get('content');
+
+  $dependencies = $config->get('dependencies');
+  $dependencies['module'][] = 'commerce_price';
+  $config->set('dependencies', $dependencies)->save(TRUE);
+
+  unset($content['created']);
+
+  $content['purchased_entity']['weight'] = 0;
+  $content['purchased_entity']['settings']['link'] = true;
+  $content['purchased_entity']['label'] = 'above';
+
+  $content['quantity']['weight'] = 1;
+  $content['quantity']['region'] = 'content';
+
+  $content['total_price']['weight'] = 3;
+  $content['total_price']['region'] = 'content';
+
+  $content['unit_price']['weight'] = 2;
+  $content['unit_price']['region'] = 'content';
+
+  $config->set('content', $content)->save(TRUE);
+
+  $hidden = $config->get('hidden');
+  $hidden['created'] = true;
+
+  unset($hidden['entity_print_view_epub']);
+  unset($hidden['entity_print_view_pdf']);
+  unset($hidden['entity_print_view_word_docx']);
+
+  $config->set('hidden', $hidden)->save(TRUE);
+
+
+    // ===============================================================
+  //
+  //core.entity_view_display.commerce_order.default.default
+  $config = \Drupal::configFactory()->getEditable('core.entity_view_display.commerce_order.default.default');
+  $content = $config->get('content');
+
+  $dependencies = $config->get('dependencies');
+  unset($dependencies['commerce_price']);
+  $config->set('dependencies', $dependencies)->save(TRUE);
+
+  unset($content['balance']);
+
+  $content['field_iq_commerce_comment'] = [
+    'type' => 'basic_string',
+    'weight' => 8,
+    'region' => 'content',
+    'labbel' => 'inline',
+    'settings' => [],
+    'third_party_settings' => [],
+  ];
+
+  $content['state']['weight'] = 9;
+  $content['state']['settings'] = [];
+
+  unset($content['entity_print_view_pdf']);
+  unset($content['store_id']);
+
+
+  $config->set('content', $content)->save(TRUE);
+
+  $hidden = $config->get('hidden');
+  $hidden['balance'] = true;
+  $hidden['store_id'] = true;
+
+  unset($hidden['entity_print_view_epub']);
+  unset($hidden['entity_print_view_word_docx']);
+  unset($hidden['field_iq_commerce_comment']);
+
+  $config->set('hidden', $hidden)->save(TRUE);
+
+
+
+  // ==============================================================
+  //
+  //core.entity_view_display.commerce_product_variation.default.cart
+
+  $config = \Drupal::configFactory()->getEditable('core.entity_view_display.commerce_product_variation.default.cart');
+  $content = $config->get('content');
+
+  unset($content['list_price']);
+
+  $content['attribute_color'] = [
+    'type' => 'entity_reference_label',
+    'weight' => 1,
+    'region' => 'content',
+    'labbel' => 'inline',
+    'settings' => [
+      'link' => false,
+    ],
+    'third_party_settings' => [],
+  ];
+  $config->set('content', $content)->save(TRUE);
+
+  $hidden = $config->get('hidden');
+  $hidden['list_price'] = true;
+  unset($hidden['attribute_color']);
+
+  $config->set('hidden', $hidden)->save(TRUE);
+
+  // ==============================================================
+  //
+  //entity_print.settings
+
+  $config = \Drupal::configFactory()->getEditable('entity_print.settings');
+  $config->set('force_download', false)->save(TRUE);
+
+  // ==============================================================
+  //
+  //  iq_commerce.settings
+  $config = \Drupal::configFactory()->getEditable('iq_commerce.settings');
+  $config->set('cart_header', '<h1><strong>Warenkorb</strong></h1>\r\n\r\n<p>Das is Ihr Warenkorb</p>\r\n')->save(TRUE);
+
+
+
+
+  // ==============================================================
+  //
+  // mailsystem.settings
+  $config = \Drupal::configFactory()->getEditable('mailsystem.settings');
+  $defaults = $config->get('defaults');
+  $defaults['sender'] = 'swiftmailer';
+  $defaults['formatter'] = 'swiftmailer';
+  $config->set('defaults', $defaults)->save(TRUE);
+
+
+
+
+    // ==============================================================
+  //
+  // pathauto.pattern.iq_commerce_shop_categories
+  $config = \Drupal::configFactory()->getEditable('pathauto.pattern.iq_commerce_shop_categories');
+
+  $dependencies['module'] = ['ctools', 'taxonomy'];
+  $config->set('dependencies', $dependencies)->save(TRUE);
+
+
+
+
+  // ==============================================================
+  //
+  // pathauto.pattern.product_pattern_de
+
+  $config = \Drupal::configFactory()->getEditable('pathauto.pattern.product_pattern_de');
+
+  $dependencies['module'] = ['ctools', 'commerce_product', 'language'];
+  $config->set('dependencies', $dependencies)->save(TRUE);
+
+
+  // ==============================================================
+  //
+  // pathauto.pattern.product_pattern_en
+
+  $config = \Drupal::configFactory()->getEditable('pathauto.pattern.product_pattern_en');
+
+  $dependencies['module'] = ['ctools', 'commerce_product', 'language'];
+  $config->set('dependencies', $dependencies)->save(TRUE);
+
+
+
+
+  // ==============================================================
+  //
+  //rest.resource.commerce_cart_add
+
+
+  $config = \Drupal::configFactory()->getEditable('rest.resource.commerce_cart_add');
+  $config->set('status', false)->save(TRUE);
+
+
+
+
+
+  // ==============================================================
+  //
+  //rest.resource.commerce_cart_remove_item
+
+  $config = \Drupal::configFactory()->getEditable('rest.resource.commerce_cart_remove_item');
+  $config->set('status', false)->save(TRUE);
+  $config->set('id', 'commerce_cart_remove_item')->save(TRUE);
+  $config->set('plugin_id', 'commerce_cart_remove_item')->save(TRUE);
+
+  $dependencies['module'] = ['commerce_cart_api', 'serialization', 'user'];
+  $config->set('dependencies', $dependencies)->save(TRUE);
+
+
+
+  // ==============================================================
+  //
+  //rest.resource.commerce_cart_update_item
+
+  $config = \Drupal::configFactory()->getEditable('rest.resource.commerce_cart_update_item');
+  $config->set('status', false)->save(TRUE);
+
+
+  // ==============================================================
+  //
+  // user.role.annymous
+
+  $config = \Drupal::configFactory()->getEditable('user.role.anonymous');
+
+  $dependencies['module'] = ['commerce_checkout', 'commerce_product', 'commerce_variation_add_to_cart', 'media', 'system'];
+  $config->set('dependencies', $dependencies)->save(TRUE);
+
+  $config->set('label', 'Anonymous user')->save(TRUE);
+
+  $permissions = $config->get('permissions');
+  $permissions[] = 'access variation add to cart';
+  $config->set('permissions', $permissions)->save(TRUE);
+
+
+  // ==============================================================
+  //
+  //user.role.authenticated
+    $config = \Drupal::configFactory()->getEditable('user.role.authenticated');
+    $dependencies['module'] = ['commerce_checkout', 'commerce_order', 'commerce_payment', 'commerce_product', 'commerce_variation_add_to_cart', 'entity_print', 'media', 'profile', 'system'];
+    $config->set('dependencies', $dependencies)->save(TRUE);
+    $config->set('label', 'Authenticated user')->save(TRUE);
+
+    $permissions = $config->get('permissions');
+    $permissions[] = 'access variation add to cart';
+    $permissions[] = 'bypass entity print access';
+    $permissions[] = 'create customer profile';
+    $permissions[] = 'delete own customer profile';
+    $permissions[] = 'update own customer profile';
+    $permissions[] = 'view own customer profile';
+    $permissions[] = 'view own profile';
+    $config->set('permissions', $permissions)->save(TRUE);
+
+
+
+  // ==============================================================
+  //
+  //views.view.commerce_cart_form
+  $config = \Drupal::configFactory()->getEditable('views.view.commerce_cart_form');
+  $dependencies = $config->get('dependencies');
+
+  $dependencies['config'] = ['field.storage.commerce_product_variation.field_iq_commerce_images', 'image.style.thumbnail'];
+  $dependencies['module'][] = 'commerce_product';
+  $dependencies['module'][] = 'media';
+  $dependencies['module'][] = 'iq_commerce';
+  $config->set('dependencies', $dependencies)->save(TRUE);
+
+  $display = $config->get('display');
+  $fields = $display['default']['display_options']['fields'];
+  $field_iq_commerce_images = $fields['purchased_entity'];
+
+  $field_iq_commerce_images['id'] = 'field_iq_commerce_images';
+  $field_iq_commerce_images['table'] = 'commerce_product_variation__field_iq_commerce_images';
+  $field_iq_commerce_images['field'] = 'field_iq_commerce_images';
+  $field_iq_commerce_images['relationship'] = 'commerce_product_variation';
+  $field_iq_commerce_images['lable'] = 'Image';
+  $field_iq_commerce_images['element_label_colon'] = false;
+  $field_iq_commerce_images['type'] = 'media_thumbnail';
+  $field_iq_commerce_images['settings'] = [
+    'image_style' => 'thumbnail',
+    'image_link' => 'content',
+    'image_loading' => [
+      'attribute' => 'lazy',
+    ]
+  ];
+
+  $field_iq_commerce_images['delta_limit'] = 1;
+
+  unset($field_iq_commerce_images['entity_type']);
+  unset($field_iq_commerce_images['entity_field']);
+
+  $fields['field_iq_commerce_images'] = $field_iq_commerce_images;
+
+  $fields['edit_quantity']['add_quantity_button'] = 1;
+  $fields['edit_quantity']['add_remove_button'] = 0;
+
+
+
+
+
+
+  $display['default']['display_options']['fields'] = $fields;
+  $display = $config->set('display', $display)->save(TRUE);
+
+
+
+
+
+  // ==============================================================
+  //
+  //views.view.commerce_orders
+  $config = \Drupal::configFactory()->getEditable('views.view.commerce_orders');
+  $dependencies = $config->get('dependencies');
+
+  $dependencies['module'][] = 'better_exposed_filters';
+  $dependencies['module'][] = 'commerce_payment';
+  $dependencies['module'][] = 'commerce_shipping';
+  $dependencies['module'][] = 'profile';
+
+  $config->set('dependencies', $dependencies)->save(TRUE);
+
+  $config->set('label', '');
+
+  $display = $config->get('display');
+
+  $display['default']['display_options']['fields']['remote_id'] = [
+    'id' => 'remote_id',
+    'table' => 'commerce_payment',
+    'field' => 'remote_id',
+    'relationship' => 'reverse__commerce_payment__order_id',
+    'group_type' => 'group',
+    'admin_label' => '',
+    'entity_type' => 'commerce_payment',
+    'entity_field' => 'remote_id',
+    'plugin_id' => 'field',
+    'label' => 'Remote ID',
+    'exclude' => false,
+    'alter' => [
+      'alter_text' => false,
+      'text' => '',
+      'make_link' => false,
+      'path' => '',
+      'absolute' => false,
+      'external' => false,
+      'replace_spaces' => false,
+      'path_case' => 'none',
+      'trim_whitespace' => false,
+      'alt' => '',
+      'rel' => '',
+      'link_class' => '',
+      'prefix' => '',
+      'suffix' => '',
+      'target' => '',
+      'nl2br' => false,
+      'max_length' => 0,
+      'word_boundary' => true,
+      'ellipsis' => true,
+      'more_link' => false,
+      'more_link_text' => '',
+      'more_link_path' => '',
+      'strip_tags' => false,
+      'trim' => false,
+      'preserve_tags' => '',
+      'html' => false,
+    ],
+    'element_type' => '',
+    'element_class' => '',
+    'element_label_type' => '',
+    'element_label_class' => '',
+    'element_label_colon' => true,
+    'element_wrapper_type' => '',
+    'element_wrapper_class' => '',
+    'element_default_classes' => true,
+    'empty' => '',
+    'hide_empty' => false,
+    'empty_zero' => false,
+    'hide_alter_empty' => true,
+    'click_sort_column' => 'value',
+    'type' => 'string',
+    'settings' => [
+      'link_to_entity' => false,
+    ],
+    'group_column' => 'value',
+    'group_columns' => [],
+    'group_rows' => true,
+    'delta_limit' => 0,
+    'delta_offset' => 0,
+    'delta_reversed' => false,
+    'delta_first_last' => false,
+    'multi_type' => 'separator',
+    'separator' => ', ',
+    'field_api_classes' => false,
+  ];
+
+  $display['default']['display_options']['fields']['address_family_name'] = [
+    'id' => 'address_family_name',
+    'table' => 'profile__address',
+    'field' => 'address_family_name',
+    'relationship' => 'shipping_profile',
+    'group_type' => 'group',
+    'admin_label' => '',
+    'plugin_id' => 'standard',
+    'label' => '',
+    'exclude' => true,
+    'alter' => [
+      'alter_text' => false,
+      'text' => '',
+      'make_link' => false,
+      'path' => '',
+      'absolute' => false,
+      'external' => false,
+      'replace_spaces' => false,
+      'path_case' => 'none',
+      'trim_whitespace' => false,
+      'alt' => '',
+      'rel' => '',
+      'link_class' => '',
+      'prefix' => '',
+      'suffix' => '',
+      'target' => '',
+      'nl2br' => false,
+      'max_length' => 0,
+      'word_boundary' => true,
+      'ellipsis' => true,
+      'more_link' => false,
+      'more_link_text' => '',
+      'more_link_path' => '',
+      'strip_tags' => false,
+      'trim' => false,
+      'preserve_tags' => '',
+      'html' => false,
+    ],
+    'element_type' => '',
+    'element_class' => '',
+    'element_label_type' => '',
+    'element_label_class' => '',
+    'element_label_colon' => false,
+    'element_wrapper_type' => '',
+    'element_wrapper_class' => '',
+    'element_default_classes' => true,
+    'empty' => '',
+    'hide_empty' => false,
+    'empty_zero' => false,
+    'hide_alter_empty' => true,
+  ];
+
+  $display['default']['display_options']['fields']['address_given_name'] = [
+    'id' => 'address_given_name',
+    'table' => 'profile__address',
+    'field' => 'address_given_name',
+    'relationship' => 'shipping_profile',
+    'group_type' => 'group',
+    'admin_label' => '',
+    'plugin_id' => 'standard',
+    'label' => '',
+    'exclude' => true,
+    'alter' => [
+      'alter_text' => false,
+      'text' => '',
+      'make_link' => false,
+      'path' => '',
+      'absolute' => false,
+      'external' => false,
+      'replace_spaces' => false,
+      'path_case' => 'none',
+      'trim_whitespace' => false,
+      'alt' => '',
+      'rel' => '',
+      'link_class' => '',
+      'prefix' => '',
+      'suffix' => '',
+      'target' => '',
+      'nl2br' => false,
+      'max_length' => 0,
+      'word_boundary' => true,
+      'ellipsis' => true,
+      'more_link' => false,
+      'more_link_text' => '',
+      'more_link_path' => '',
+      'strip_tags' => false,
+      'trim' => false,
+      'preserve_tags' => '',
+      'html' => false,
+    ],
+    'element_type' => '',
+    'element_class' => '',
+    'element_label_type' => '',
+    'element_label_class' => '',
+    'element_label_colon' => false,
+    'element_wrapper_type' => '',
+    'element_wrapper_class' => '',
+    'element_default_classes' => true,
+    'empty' => '',
+    'hide_empty' => false,
+    'empty_zero' => false,
+    'hide_alter_empty' => true,
+  ];
+  $display['default']['display_options']['fields']['address_organization'] = [
+    'id' => 'address_organization',
+    'table' => 'profile__address',
+    'field' => 'address_organization',
+    'relationship' => 'shipping_profile',
+    'group_type' => 'group',
+    'admin_label' => '',
+    'plugin_id' => 'standard',
+    'label' => '',
+    'exclude' => true,
+    'alter' => [
+      'alter_text' => false,
+      'text' => '',
+      'make_link' => false,
+      'path' => '',
+      'absolute' => false,
+      'external' => false,
+      'replace_spaces' => false,
+      'path_case' => 'none',
+      'trim_whitespace' => false,
+      'alt' => '',
+      'rel' => '',
+      'link_class' => '',
+      'prefix' => '',
+      'suffix' => '',
+      'target' => '',
+      'nl2br' => false,
+      'max_length' => 0,
+      'word_boundary' => true,
+      'ellipsis' => true,
+      'more_link' => false,
+      'more_link_text' => '',
+      'more_link_path' => '',
+      'strip_tags' => false,
+      'trim' => false,
+      'preserve_tags' => '',
+      'html' => false,
+    ],
+    'element_type' => '',
+    'element_class' => '',
+    'element_label_type' => '',
+    'element_label_class' => '',
+    'element_label_colon' => false,
+    'element_wrapper_type' => '',
+    'element_wrapper_class' => '',
+    'element_default_classes' => true,
+    'empty' => '',
+    'hide_empty' => false,
+    'empty_zero' => false,
+    'hide_alter_empty' => true,
+  ];
+
+  $display['default']['display_options']['exposed_form'] = [
+    'type' => 'bef',
+    'options' => [
+      'submit_button' => 'Filter',
+      'reset_button' => true,
+      'reset_button_label' => 'Reset',
+      'exposed_sorts_label' => 'Sort by',
+      'expose_sort_order' => true,
+      'sort_asc_label' => 'Asc',
+      'sort_desc_label' => 'Desc',
+      'text_input_required' => 'Select any filter and click on Apply to see results',
+      'text_input_required_format' => 'pagedesigner',
+      'bef' => [
+        'general' => [
+          'autosubmit' => false,
+          'autosubmit_exclude_textfield' => false,
+          'autosubmit_textfield_delay' => 500,
+          'autosubmit_hide' => false,
+          'input_required' => false,
+          'allow_secondary' => false,
+          'secondary_label' => 'Advanced options',
+          'secondary_open' => false,
+          'reset_button_always_show' => false,
+        ],
+        'filter' => [
+          'order_number' => [
+            'plugin_id' => 'default',
+            'advanced' => [
+              'placeholder_text' => '',
+              'collapsible' => false,
+              'is_secondary' => false,
+            ],
+          ],
+          'type' => [
+            'plugin_id' => 'default',
+            'advanced' => [
+              'sort_options' => false,
+              'rewrite' => [
+                'filter_rewrite_values' => '',
+              ],
+              'collapsible' => false,
+              'is_secondary' => false,
+            ],
+          ],
+          'address_organization' => [
+            'plugin_id' => 'default',
+            'advanced' => [
+              'placeholder_text' => '',
+              'collapsible' => false,
+              'is_secondary' => false,
+            ],
+          ],
+          'combine' => [
+            'plugin_id' => 'default',
+            'advanced' => [
+              'placeholder_text' => '',
+              'collapsible' => false,
+              'is_secondary' => false,
+            ],
+          ],
+          'state' => [
+            'plugin_id' => 'default',
+            'advanced' => [
+              'sort_options' => false,
+              'rewrite' => [
+                'filter_rewrite_values' => '',
+              ],
+              'collapsible' => false,
+              'is_secondary' => false,
+            ],
+          ],
+          'placed' => [
+            'plugin_id' => 'bef_datepicker',
+            'advanced' => [
+              'collapsible' => false,
+              'is_secondary' => false,
+            ],
+          ],
+        ],
+      ],
+    ],
+  ];
+
+  $display['default']['display_options']['filters']['address_organization'] = [
+    'id' => 'address_organization',
+    'table' => 'profile__address',
+    'field' => 'address_organization',
+    'relationship' => 'shipping_profile',
+    'group_type' => 'group',
+    'admin_label' => '',
+    'plugin_id' => 'string',
+    'operator' => 'word',
+    'value' => '',
+    'group' => 1,
+    'exposed' => true,
+    'expose' => [
+      'operator_id' => 'address_organization_op',
+      'label' => 'Company name',
+      'description' => '',
+      'use_operator' => false,
+      'operator' => 'address_organization_op',
+      'operator_limit_selection' => false,
+      'operator_list' =>[],
+      'identifier' => 'address_organization',
+      'required' => false,
+      'remember' => false,
+      'multiple' => false,
+      'remember_roles' => [
+        'authenticated' => 'authenticated',
+        'author' => '0',
+        'editor' => '0',
+        'designer' => '0',
+        'anonymous' => '0',
+      ],
+      'placeholder' => '',
+    ],
+    'is_grouped' => false,
+    'group_info' => [
+      'label' => '',
+      'description' => '',
+      'identifier' => '',
+      'optional' => true,
+      'widget' => 'select',
+      'multiple' => false,
+      'remember' => false,
+      'default_group' => 'All',
+      'default_group_multiple' => [],
+      'group_items' => [],
+    ],
+  ];
+
+
+  $display['default']['display_options']['filters']['combine'] = [
+    'id' => 'combine',
+    'table' => 'views',
+    'field' => 'combine',
+    'relationship' => 'none',
+    'group_type' => 'group',
+    'admin_label' => '',
+    'plugin_id' => 'combine',
+    'operator' => 'word',
+    'value' => '',
+    'group' => 1,
+    'exposed' => true,
+    'expose' => [
+      'operator_id' => 'combine_op',
+      'label' => 'Name or Email',
+      'description' => '',
+      'use_operator' => false,
+      'operator' => 'combine_op',
+      'operator_limit_selection' => false,
+      'operator_list' => [],
+      'identifier' => 'combine',
+      'required' => false,
+      'remember' => false,
+      'multiple' => false,
+      'remember_roles' => [
+        'authenticated' => 'authenticated',
+        'author' => '0',
+        'editor' => '0',
+        'designer' => '0',
+        'anonymous' => '0',
+      ],
+      'placeholder' => '',
+    ],
+    'is_grouped' => false,
+    'group_info' => [
+      'label' => '',
+      'description' => '',
+      'identifier' => '',
+      'optional' => true,
+      'widget' => 'select',
+      'multiple' => false,
+      'remember' => false,
+      'default_group' => 'All',
+      'default_group_multiple' => [],
+      'group_items' => [],
+    ],
+    'fields' => [
+      'mail' => 'mail',
+      'address_family_name' => 'address_family_name',
+      'address_given_name' => 'address_given_name',
+    ],
+  ];
+
+  $display['default']['display_options']['filters']['placed'] = [
+    'id' => 'placed',
+    'table' => 'commerce_order',
+    'field' => 'placed',
+    'relationship' => 'none',
+    'group_type' => 'group',
+    'admin_label' => '',
+    'entity_type' => 'commerce_order',
+    'entity_field' => 'placed',
+    'plugin_id' => 'date',
+    'operator' => 'between',
+    'value' => [
+      'min' => '',
+      'max' => '',
+      'value' => '',
+      'type' => 'date',
+    ],
+    'group' => 1,
+    'exposed' => true,
+    'expose' => [
+      'operator_id' => 'placed_op',
+      'label' => 'Placed',
+      'description' => '',
+      'use_operator' => false,
+      'operator' => 'placed_op',
+      'operator_limit_selection' => false,
+      'operator_list' => [],
+      'identifier' => 'placed',
+      'required' => false,
+      'remember' => false,
+      'multiple' => false,
+      'remember_roles' => [
+        'authenticated' => 'authenticated',
+        'author' => '0',
+        'editor' => '0',
+        'designer' => '0',
+        'anonymous' => '0',
+      ],
+      'min_placeholder' => '',
+      'max_placeholder' => '',
+      'placeholder' => '',
+    ],
+    'is_grouped' => false,
+    'group_info' => [
+      'label' => '',
+      'description' => '',
+      'identifier' => '',
+      'optional' => true,
+      'widget' => 'select',
+      'multiple' => false,
+      'remember' => false,
+      'default_group' => 'All',
+      'default_group_multiple' => [],
+      'group_items' => [],
+    ],
+  ];
+
+  $display['default']['display_options']['relationships'] = [
+    'reverse__commerce_payment__order_id' => [
+      'id' => 'reverse__commerce_payment__order_id',
+      'table' => 'commerce_order',
+      'field' => 'reverse__commerce_payment__order_id',
+      'relationship' => 'none',
+      'group_type' => 'group',
+      'admin_label' => 'Payment',
+      'entity_type' => 'commerce_order',
+      'plugin_id' => 'standard',
+      'required' => false,
+    ],
+    'reverse__commerce_shipment__order_id' => [
+      'id' => 'reverse__commerce_shipment__order_id',
+      'table' => 'commerce_order',
+      'field' => 'reverse__commerce_shipment__order_id',
+      'relationship' => 'none',
+      'group_type' => 'group',
+      'admin_label' => 'Shipment',
+      'entity_type' => 'commerce_order',
+      'plugin_id' => 'standard',
+      'required' => false,
+    ],
+    'uid' => [
+      'id' => 'uid',
+      'table' => 'commerce_order',
+      'field' => 'uid',
+      'relationship' => 'none',
+      'group_type' => 'group',
+      'admin_label' => 'User',
+      'entity_type' => 'commerce_order',
+      'entity_field' => 'uid',
+      'plugin_id' => 'standard',
+      'required' => true,
+    ],
+    'shipping_profile' => [
+      'id' => 'shipping_profile',
+      'table' => 'commerce_shipment',
+      'field' => 'shipping_profile',
+      'relationship' => 'reverse__commerce_shipment__order_id',
+      'group_type' => 'group',
+      'admin_label' => 'Shipping Profile',
+      'entity_type' => 'commerce_shipment',
+      'plugin_id' => 'standard',
+      'required' => false,
+    ],
+  ];
+
+  $config->set('display', $display)->save(TRUE);
+
+  // ==============================================================
+  //
+  //views.view.commerce_user_orders
+
+  $config = \Drupal::configFactory()->getEditable('views.view.commerce_user_orders');
+  $dependencies = $config->get('dependencies');
+
+  $display = $config->get('display');
+  $display['default']['display_options']['fields']['nothing'] = [
+    'id' => 'nothing',
+    'table' => 'views',
+    'field' => 'nothing',
+    'relationship' => 'none',
+    'group_type' => 'group',
+    'admin_label' => '',
+    'plugin_id' => 'custom',
+    'label' => '',
+    'exclude' => false,
+    'alter' => [
+      'alter_text' => 'true',
+      'text' => "<div class=\"iq-button small-button\" data-align=\"right\">\r\n    <a href=\"/commerce-repeat-order/{{ order_id }}\">\r\n        <span>\r\n            {{ \"Reorder\"|t }}\r\n            <i class=\"fas fa-chevron-right\"></i>\r\n        </span>\r\n    </a>\r\n</div>",
+      'make_link' => false,
+      'path' => '',
+      'absolute' => false,
+      'external' => false,
+      'replace_spaces' => false,
+      'path_case' => 'none',
+      'trim_whitespace' => false,
+      'alt' => '',
+      'rel' => '',
+      'link_class' => '',
+      'prefix' => '',
+      'suffix' => '',
+      'target' => '',
+      'nl2br' => false,
+      'max_length' => 0,
+      'word_boundary' => true,
+      'ellipsis' => true,
+      'more_link' => false,
+      'more_link_text' => '',
+      'more_link_path' => '',
+      'strip_tags' => false,
+      'trim' => false,
+      'preserve_tags' => '',
+      'html' => false,
+    ],
+    'element_type' => '',
+    'element_class' => '',
+    'element_label_type' => '',
+    'element_label_class' => '',
+    'element_label_colon' => false,
+    'element_wrapper_type' => '',
+    'element_wrapper_class' => '',
+    'element_default_classes' => true,
+    'empty' => '',
+    'hide_empty' => false,
+    'empty_zero' => false,
+    'hide_alter_empty' => false,
+  ];
+
+  $pager = $display['default']['display_options']['pager'];
+  $pager['type'] = 'none';
+  $pager['options'] = [
+    'offset' => 0,
+  ];
+  $display['default']['display_options']['pager'] = $pager;
+
+  $display['default']['display_options']['empty']['content']['format'] = 'pagedesigner';
+  $display['default']['display_options']['style']['options']['columns']['order_id'] = 'order_id';
+
+  $info = $display['default']['display_options']['style']['options']['info'];
+
+  $order_id = $info['order_number'];
+  $oredr_id['sortable'] = false;
+  $order_id['default_sort_order'] = 'asc';
+  $info['order_number']['sortable'] = false;
+  $info['order_id'] = $order_id;
+  $info['placed']['sortable'] = false;
+  $info['state']['sortable'] = false;
+
+  unset($info['created']);
+
+  $contexts = $display['default']['cache_metadata']['contexts'];
+
+  foreach(array_keys($contexts, 'url.query_args', true) as $key) {
+    unset($contexts[$key]);
+  }
+
+  $display['default']['display_options']['style']['options']['info'] = $info;
+  $display['default']['cache_metadata']['contexts'] = $contexts;
+
+  $config->set('display', $display)->save(TRUE);
+
+
+
+
+  // ==============================================================
+  //
+  //commerce_order.commerce_order_type.default
+  $config = \Drupal::configFactory()->getEditable('commerce_order.commerce_order_type.default');
+  $dependencies = $config->get('dependencies');
+
+  $dependencies['module'][] = 'commerce_cart';
+  $dependencies['module'][] = 'commerce_checkout';
+  $dependencies['module'][] = 'commerce_shipping';
+
+  $config->set('dependencies', $dependencies)->save(TRUE);
+
+  $third_party_settings = [
+    'commerce_cart' => [
+      'cart_form_view' => 'commerce_cart_form',
+      'cart_block_view' => 'commerce_cart_block',
+      'cart_expiration' => [],
+    ],
+    'commerce_checkout' => [
+      'checkout_flow' => 'default',
+    ],
+
+    'commerce_shipping' => [
+      'shipment_type' => 'default',
+    ],
+  ];
+  $config->set('third_party_settings', $third_party_settings)->save(TRUE);
+
+  // ==============================================================
+  //
+  //commerce_product.commerce_product_type.default
+  $config = \Drupal::configFactory()->getEditable('commerce_product.commerce_product_type.default');
+  $dependencies = $config->get('dependencies');
+
+  $dependencies['module'][] = 'iq_commerce';
+
+  $config->set('dependencies', $dependencies)->save(TRUE);
+
+  $third_party_settings = [
+    'iq_commerce' => [
+      'tax_rate' => 'standard',
+    ],
+  ];
+  $config->set('third_party_settings', $third_party_settings)->save(TRUE);
+
+  // ==============================================================
+  //
+  //commerce_product.commerce_product_variation_type.default
+  $config = \Drupal::configFactory()->getEditable('commerce_product.commerce_product_variation_type.default');
+
+  $traits[] = 'purchasable_entity_shippable';
+  $config->set('traits', $traits)->save(TRUE);
+
+  // ==============================================================
+  //
+  //commerce_shipping.commerce_shipment_type.default
+  $config = \Drupal::configFactory()->getEditable('commerce_shipping.commerce_shipment_type.default');
+
+  $config->set('sendConfirmation', TRUE)->save(TRUE);
+  $config->set('confirmationBcc', '')->save(TRUE);
+
+  // ==============================================================
+  //
+  //core.entity_form_display.commerce_order_item.default.variation_cart_form
+  $config = \Drupal::configFactory()->getEditable('core.entity_form_display.commerce_order_item.default.variation_cart_form');
+  $config->set('mode', 'default')->save(TRUE);
+  $config->set('id', 'commerce_order_item.default.default')->save(TRUE);
+
+  $dependencies = $config->get('dependencies');
+  $dependencies['config'] = ['commerce_order.commerce_order_item_type.default'];
+  $dependencies['enforced']['module'] = ['commerce_product'];
+  $dependencies['module'][] = ['commerce_order'];
+
+  $config->set('dependencies', $dependencies)->save(TRUE);
+
+
+  $content['content'] = [
+    'purchased_entity' => [
+      'type' => 'entity_reference_autocomplete',
+      'weight' => 0,
+      'settings' => [
+        'match_operator' => 'CONTAINS',
+        'match_limit' => 10,
+        'size' => 60,
+        'placeholder' => '',
+      ],
+      'third_party_settings' => [],
+      'region' => 'content',
+    ],
+    'quantity' => [
+      'type' => 'commerce_quantity',
+      'weight' => 1,
+      'settings' => [
+        'placeholder' => '',
+        'step' => '1',
+      ],
+      'third_party_settings' => [],
+      'region' => 'content',
+    ],
+    'unit_price' => [
+      'type' => 'commerce_unit_price',
+      'weight' => 2,
+      'settings' => [
+        'require_confirmation' => true,
+      ],
+      'third_party_settings' => [],
+      'region' => 'content',
+    ]
+  ];
+  $config->set('content', $content)->save(TRUE);
+
+  $hidden = $config->get('hidden');
+
+  unset($hidden['adjustments']);
+  unset($hidden['purchased_entity']);
+  unset($hidden['total_price']);
+  unset($hidden['unit_price']);
+
+  $config->set('hidden', $hidden)->save(TRUE);
+
+
+  // ==============================================================
+  //
+  //core.entity_view_display.commerce_order.default.user
+  $config = \Drupal::configFactory()->getEditable('core.entity_view_display.commerce_order.default.user');
+
+$dependencies = $config->get('dependencies');
+$dependencies['config'] = ['commerce_order.commerce_order_type.default', 'core.entity_view_mode.commerce_order.user', 'field.field.commerce_order.default.shipments'];
+$config->set('dependencies', $dependencies)->save(TRUE);
+
+$content = $config->get('content');
+unset($content['entity_print_view_pd']);
+
+$config->set('content', $content)->save(TRUE);
+
+
+$hidden = $config->get('hidden');
+
+unset($hidden['balance']);
+unset($hidden['entity_print_view_epub']);
+unset($hidden['entity_print_view_word_docx']);
+unset($hidden['field_iq_commerce_comment']);
+
+$config->set('hidden', $hidden)->save(TRUE);
+
+}

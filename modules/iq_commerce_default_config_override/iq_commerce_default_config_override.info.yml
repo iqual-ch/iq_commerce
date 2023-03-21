@@ -1,0 +1,5 @@
+name: iqual commerce config override
+description: Provides default commerce config override trought hook_install
+package: Custom
+type: module
+core_version_requirement: ^8.8 || ^9
