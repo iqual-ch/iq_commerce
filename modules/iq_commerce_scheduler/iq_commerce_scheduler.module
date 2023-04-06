@@ -1,14 +1,17 @@
 <?php
 
+/**
+ * @file
+ */
+
 use Drupal\commerce_product\Entity\Product;
 use Drupal\commerce_product\Entity\ProductVariation;
 
 /**
  * Implements hook_cron().
  */
-function iq_commerce_scheduler_cron()
-{
-  $now = date("Y-m-d",time());
+function iq_commerce_scheduler_cron() {
+  $now = date("Y-m-d", time());
   $products_to_be_published = ProductVariation::loadMultiple();
   foreach ($products_to_be_published as $key => $product) {
     if ($product->hasField('field_iq_commerce_unpublish_on')) {
@@ -18,8 +21,7 @@ function iq_commerce_scheduler_cron()
     else {
       unset($unpublish_date);
     }
-    if ($product->hasField('field_iq_commerce_publish_on'))
-    {
+    if ($product->hasField('field_iq_commerce_publish_on')) {
       $publish_date = $product->field_iq_commerce_publish_on->value;
     }
     // Reset the variable, just in case of a previous state of another product.
@@ -30,7 +32,7 @@ function iq_commerce_scheduler_cron()
     if (!empty($publish_date) && $product->status->value == 0) {
       if ($publish_date <= $now && (empty($unpublish_date) || $unpublish_date > $now)) {
         // Publish the variation.
-        $product->setPublished(TRUE);
+        $product->setPublished();
         $product->save();
         // Publish the product as well just in case.
         $product->getProduct()->setPublished(TRUE);

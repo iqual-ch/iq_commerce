@@ -6,13 +6,13 @@ use Drupal\Core\DependencyInjection\ContainerBuilder;
 use Drupal\Core\DependencyInjection\ServiceProviderBase;
 
 /**
-* Remove the foo event subscriber.
-*/
+ * Remove the foo event subscriber.
+ */
 class IqCommerceServiceProvider extends ServiceProviderBase {
 
   /**
-  * {@inheritdoc}
-  */
+   * {@inheritdoc}
+   */
   public function alter(ContainerBuilder $container) {
     $container->removeDefinition('commerce_cart.cart_subscriber');
   }

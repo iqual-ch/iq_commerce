@@ -12,16 +12,17 @@ use Symfony\Component\HttpFoundation\RedirectResponse;
 class UserController extends ControllerBase {
 
   /**
-   *  Redirects user based on content access for /user/orders page.
+   * Redirects user based on content access for /user/orders page.
    */
   public function userOrdersPage() {
     return new RedirectResponse(Url::fromUserInput('/user/' . \Drupal::currentUser()->id() . '/orders')->toString(), 302);
   }
 
   /**
-   *  Redirects user to /user/address-book page if its logged in.
+   * Redirects user to /user/address-book page if its logged in.
    */
   public function userAddressBookPage() {
-    return new RedirectResponse(Url::fromUserInput('/user/' . \Drupal::currentUser()->id(). '/address-book')->toString(), 302);
+    return new RedirectResponse(Url::fromUserInput('/user/' . \Drupal::currentUser()->id() . '/address-book')->toString(), 302);
   }
+
 }

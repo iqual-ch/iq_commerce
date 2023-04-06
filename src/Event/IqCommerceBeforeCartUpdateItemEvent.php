@@ -2,7 +2,7 @@
 
 namespace Drupal\iq_commerce\Event;
 
-use Symfony\Component\EventDispatcher\Event;
+use Symfony\Contracts\EventDispatcher\Event;
 
 /**
  * Defines the before cart update item event.
@@ -22,7 +22,7 @@ class IqCommerceBeforeCartUpdateItemEvent extends Event {
   protected $commerceOrderItem;
 
   /**
-   * @var    $unserialized
+   * @var    unserialized
    *   The unserialized data from the request body.
    */
   protected $unserialized;
@@ -42,7 +42,6 @@ class IqCommerceBeforeCartUpdateItemEvent extends Event {
     \Drupal::logger('iq_commerce')->notice('before cart updated created event');
 
   }
-
 
   /**
    * Gets the order.
@@ -64,4 +63,5 @@ class IqCommerceBeforeCartUpdateItemEvent extends Event {
   public function getUnserialized() {
     return $this->unserialized;
   }
+
 }

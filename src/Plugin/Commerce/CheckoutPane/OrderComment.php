@@ -54,4 +54,5 @@ class OrderComment extends CheckoutPaneBase implements CheckoutPaneInterface {
       return ['#markup' => ''];
     }
   }
+
 }

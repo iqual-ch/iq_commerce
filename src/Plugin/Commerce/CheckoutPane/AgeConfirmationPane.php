@@ -26,4 +26,5 @@ class AgeConfirmationPane extends CheckoutPaneBase {
     ];
     return $pane_form;
   }
+
 }

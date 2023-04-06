@@ -2,7 +2,7 @@
 
 namespace Drupal\iq_commerce\Event;
 
-use Symfony\Component\EventDispatcher\Event;
+use Symfony\Contracts\EventDispatcher\Event;
 
 /**
  * Defines the before cart add event.
@@ -61,4 +61,5 @@ class IqCommerceBeforeCartAddEvent extends Event {
   public function getBody() {
     return $this->body;
   }
+
 }

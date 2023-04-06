@@ -10,23 +10,20 @@ use Drupal\Core\Form\FormStateInterface;
  *
  * @package Drupal\iq_commerce\Form
  */
-class IqCommerceSettingsForm extends ConfigFormBase
-{
+class IqCommerceSettingsForm extends ConfigFormBase {
 
   /**
    * {@inheritdoc}
    */
-  public function getFormId()
-  {
+  public function getFormId() {
     return 'iq_commerce_settings_form';
   }
 
   /**
    * {@inheritdoc}
    */
-  public function buildForm(array $form, FormStateInterface $form_state)
-  {
-    $iqCommerceSettings = $this->getIqCommerceSettings();
+  public function buildForm(array $form, FormStateInterface $form_state) {
+    $iqCommerceSettings = static::getIqCommerceSettings();
     $form['header'] = [
       '#type'       => 'text_format',
       '#format' => $iqCommerceSettings['header']['format'],
@@ -62,8 +59,7 @@ class IqCommerceSettingsForm extends ConfigFormBase
   /**
    * {@inheritdoc}
    */
-  public function submitForm(array &$form, FormStateInterface $form_state)
-  {
+  public function submitForm(array &$form, FormStateInterface $form_state) {
     $current_language = \Drupal::languageManager()->getCurrentLanguage()->getId();
     $iqCommerceSettingsConfig = \Drupal::languageManager()->getLanguageConfigOverride($current_language, 'iq_commerce.settings');
     $iqCommerceSettingsConfig
@@ -79,8 +75,7 @@ class IqCommerceSettingsForm extends ConfigFormBase
    *
    * @inheritDoc
    */
-  protected function getEditableConfigNames()
-  {
+  protected function getEditableConfigNames() {
     return ['iq_commerce.settings'];
   }
 
@@ -95,6 +90,5 @@ class IqCommerceSettingsForm extends ConfigFormBase
       'footer' => $iqCommerceSettingsConfig->get('footer') != NULL ? $iqCommerceSettingsConfig->get('footer') : ['value' => t("Thank you for your order. You will receive the item(s) in 3 - 7 days."), 'format' => 'pagedesigner'],
     ];
   }
-
 
 }

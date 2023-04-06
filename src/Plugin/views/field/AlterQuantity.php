@@ -60,7 +60,7 @@ class AlterQuantity extends EditQuantity {
             '#attributes' => [
               'class' => ['item-update'],
               'data-alter-quantity' => '',
-            ]
+            ],
           ];
 
           if ($this->options['add_quantity_button']) {
@@ -90,7 +90,7 @@ class AlterQuantity extends EditQuantity {
               '#template' => '<input class="delete-order-item button js-form-submit form-submit btn btn-primary form-control" data-drupal-selector="edit-remove-button-{{ key }}" type="submit" id="edit-remove-button-{{ key }}" name="delete-order-item-{{ key }}" value="Remove">',
               '#context' => [
                 'label' => $this->t("Remove item"),
-                'key' => $row_index
+                'key' => $row_index,
               ],
             ];
           }
@@ -101,11 +101,10 @@ class AlterQuantity extends EditQuantity {
             '#attributes' => [
               'class' => ['item-locked'],
               'data-alter-quantity' => '',
-            ]
+            ],
           ];
           $form['edit_quantity'][$row_index]['quantity-edit'] = $input;
         }
-
 
         $form['actions']['submit']['#show_update_message'] = FALSE;
       }
@@ -166,6 +165,5 @@ class AlterQuantity extends EditQuantity {
       }
     }
   }
-
 
 }
