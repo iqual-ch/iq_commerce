@@ -377,6 +377,7 @@ function iq_commerce_preprocess_commerce_order(&$variables) {
   $billing_profile = $order->getBillingProfile();
   $billing_address = $billing_profile->get('address')->first();
   $variables['billing_address'] = iq_commerce_get_address_string($billing_address, $billing_profile);
+  $variables['language'] = \Drupal::languageManager()->getCurrentLanguage()->getId();
 }
 
 /**
