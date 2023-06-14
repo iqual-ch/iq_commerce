@@ -51,6 +51,8 @@ class IqCommerceCartRemoveResource extends CartRemoveItemResource {
    *   The cart provider.
    * @param \Drupal\commerce_cart\CartManagerInterface $cart_manager
    *   The cart manager.
+   * @param \Symfony\Component\EventDispatcher\EventDispatcherInterface $event_dispatcher
+   *   The event dispatcher.
    */
   public function __construct(array $configuration, $plugin_id, $plugin_definition, array $serializer_formats, LoggerInterface $logger, CartProviderInterface $cart_provider, CartManagerInterface $cart_manager, EventDispatcherInterface $event_dispatcher) {
     parent::__construct($configuration, $plugin_id, $plugin_definition, $serializer_formats, $logger, $cart_provider, $cart_manager);
