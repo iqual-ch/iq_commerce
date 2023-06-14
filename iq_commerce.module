@@ -4,6 +4,7 @@
  * @file
  */
 
+use Drupal\commerce_order\Entity\OrderInterface;
 use Drupal\Core\Locale\CountryManager;
 use Drupal\iq_commerce\Form\IqCommerceSettingsForm;
 use Drupal\views\ViewExecutable;
@@ -102,7 +103,8 @@ function iq_commerce_form_alter(&$form, FormStateInterface $form_state, $form_id
           if (!is_string($a)) {
             $a = $a->__toString();
           }
-          $attribute_a_value = Drupal::entityTypeManager()->getStorage('commerce_product_attribute_value')->loadByProperties(['attribute' => $attribute_id, 'name' => $a]);
+          $attribute_a_value = Drupal::entityTypeManager()->getStorage('commerce_product_attribute_value')
+            ->loadByProperties(['attribute' => $attribute_id, 'name' => $a]);
           $attribute_a_value = reset($attribute_a_value);
           if ($attribute_a_value instanceof ProductAttributeValue) {
             $attribute_a_weight = $attribute_a_value->getWeight();
@@ -110,7 +112,8 @@ function iq_commerce_form_alter(&$form, FormStateInterface $form_state, $form_id
           if (!is_string($b)) {
             $b = $b->__toString();
           }
-          $attribute_b_value = Drupal::entityTypeManager()->getStorage('commerce_product_attribute_value')->loadByProperties(['attribute' => $attribute_id, 'name' => $b]);
+          $attribute_b_value = Drupal::entityTypeManager()->getStorage('commerce_product_attribute_value')
+            ->loadByProperties(['attribute' => $attribute_id, 'name' => $b]);
           $attribute_b_value = reset($attribute_b_value);
           if ($attribute_b_value instanceof ProductAttributeValue) {
             $attribute_b_weight = $attribute_b_value->getWeight();
@@ -220,7 +223,7 @@ function iq_commerce_views_pre_render(ViewExecutable $view) {
     $cart = \Drupal::service('commerce_cart.cart_provider')
       ->getCart('default', $store);
     $cart->recalculateTotalPrice();
-    $cart->setRefreshState(\Drupal\commerce_order\Entity\OrderInterface::REFRESH_ON_SAVE);
+    $cart->setRefreshState(OrderInterface::REFRESH_ON_SAVE);
     $cart->save();
   }
 }
@@ -236,7 +239,7 @@ function iq_commerce_preprocess_commerce_order_receipt(&$variables) {
 
   /** @var Drupal\commerce_order\Entity\OrderInterface $order */
   $order = $variables['order_entity'];
-  $shipments = $order->get('shipments')->referencedEntities();
+  $shipments = $order->shipments->referencedEntities();
   /** @var \Drupal\commerce_shipping\Entity\Shipment $shipment */
   $shipment = reset($shipments);
   /** @var \Drupal\address\Plugin\Field\FieldType\AddressItem $address */
@@ -248,7 +251,7 @@ function iq_commerce_preprocess_commerce_order_receipt(&$variables) {
     $variables['shipping_address'] = $address->getGivenName() . ' ' . $address->getFamilyName() . '<br />' . $address->getAddressLine1() . '<br />' . $address->getPostalCode() . ' ' . $address->getLocality() . '<br/>' . $full_country_name;
   }
   $billing_profile = $order->getBillingProfile();
-  $billing_address = $billing_profile->get('address')->first();
+  $billing_address = $billing_profile->address->first();
   $full_country_name = $countries[$billing_address->getCountryCode()]->__toString();
   $variables['billing_address'] = $billing_address->getGivenName() . ' ' . $billing_address->getFamilyName() . '<br />' . $billing_address->getAddressLine1() . '<br />' . $billing_address->getPostalCode() . ' ' . $billing_address->getLocality() . '<br/>' . $full_country_name;
   if (!empty($shipment->get('shipping_method')->entity)) {

@@ -2,24 +2,32 @@
 
 namespace Drupal\iq_commerce\Form;
 
+use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Form\FormBase;
 use Drupal\user\Entity\User;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 
+/**
+ *
+ */
 class IqCommerceUserOrdersForm extends FormBase {
 
-  public function getFormId()
-  {
-    // TODO: Implement getFormId() method.
+  /**
+   *
+   */
+  public function getFormId() {
+    // @todo Implement getFormId() method.
   }
 
-  public function buildForm(array $form, \Drupal\Core\Form\FormStateInterface $form_state)
-  {
-    /** @var User $user */
+  /**
+   *
+   */
+  public function buildForm(array $form, FormStateInterface $form_state) {
+    /** @var \Drupal\user\Entity\User $user */
     $user = User::load(\Drupal::currentUser()->id());
     $user_id = $user->id();
     if ($user->isAuthenticated()) {
-      $resetURL = 'https://' . IqCommerceUserOrdersForm::getDomain() . '/user/' . $user_id .'/orders';
+      $resetURL = 'https://' . IqCommerceUserOrdersForm::getDomain() . '/user/' . $user_id . '/orders';
       // @todo if there is a destination, attach it to the url
       $response = new RedirectResponse($resetURL, 302);
       $response->send();
@@ -32,14 +40,18 @@ class IqCommerceUserOrdersForm extends FormBase {
     return;
   }
 
-  public function submitForm(array &$form, \Drupal\Core\Form\FormStateInterface $form_state)
-  {
-    // TODO: Implement submitForm() method.
+  /**
+   *
+   */
+  public function submitForm(array &$form, FormStateInterface $form_state) {
+    // @todo Implement submitForm() method.
   }
+
   /**
    * Helper function to get domain of the server.
    */
   public static function getDomain() {
+    $domain = NULL;
     if (!empty($_SERVER["HTTP_HOST"]) || getenv("VIRTUAL_HOSTS")) {
       $virtual_host = "";
       if (getenv("VIRTUAL_HOSTS")) {
@@ -47,7 +59,8 @@ class IqCommerceUserOrdersForm extends FormBase {
 
         if (count($virtual_hosts) > 1) {
           $virtual_host = $virtual_hosts[1];
-        } else {
+        }
+        else {
           $virtual_host = $virtual_hosts[0];
         }
       }
@@ -57,4 +70,5 @@ class IqCommerceUserOrdersForm extends FormBase {
     }
     return $domain;
   }
+
 }

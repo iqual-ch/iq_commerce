@@ -2,8 +2,8 @@
 
 namespace Drupal\iq_commerce\Event;
 
+use Symfony\Contracts\EventDispatcher\Event;
 use Drupal\rest\ModifiedResourceResponse;
-use Symfony\Component\EventDispatcher\Event;
 
 /**
  * Defines the cart after add event.
@@ -65,4 +65,5 @@ class IqCommerceAfterCartAddEvent extends Event {
   public function addAdditionalData($data) {
     $this->additionalData = array_merge($this->additionalData, $data);
   }
+
 }

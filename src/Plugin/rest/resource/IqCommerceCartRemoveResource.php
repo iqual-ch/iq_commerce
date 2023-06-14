@@ -7,15 +7,11 @@ use Drupal\commerce_cart\CartProviderInterface;
 use Drupal\commerce_cart_api\Plugin\rest\resource\CartRemoveItemResource;
 use Drupal\commerce_order\Entity\OrderInterface;
 use Drupal\commerce_order\Entity\OrderItemInterface;
-use Drupal\iq_commerce\Event\AfterCartAddEvent;
-use Drupal\iq_commerce\Event\BeforeCartAddEvent;
 use Drupal\iq_commerce\Event\IqCommerceAfterCartRemoveItemEvent;
 use Drupal\iq_commerce\Event\IqCommerceBeforeCartRemoveItemEvent;
 use Drupal\iq_commerce\Event\IqCommerceCartEvents;
 use Psr\Log\LoggerInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
-use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpKernel\Exception\UnprocessableEntityHttpException;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 
 /**
@@ -34,7 +30,7 @@ class IqCommerceCartRemoveResource extends CartRemoveItemResource {
   /**
    * The entity repository.
    *
-   * @var EventDispatcherInterface
+   * @var \Symfony\Component\EventDispatcher\EventDispatcherInterface
    */
   protected $eventDispatcher;
 
@@ -55,7 +51,6 @@ class IqCommerceCartRemoveResource extends CartRemoveItemResource {
    *   The cart provider.
    * @param \Drupal\commerce_cart\CartManagerInterface $cart_manager
    *   The cart manager.
-   *
    */
   public function __construct(array $configuration, $plugin_id, $plugin_definition, array $serializer_formats, LoggerInterface $logger, CartProviderInterface $cart_provider, CartManagerInterface $cart_manager, EventDispatcherInterface $event_dispatcher) {
     parent::__construct($configuration, $plugin_id, $plugin_definition, $serializer_formats, $logger, $cart_provider, $cart_manager);
@@ -100,11 +95,11 @@ class IqCommerceCartRemoveResource extends CartRemoveItemResource {
   public function delete(OrderInterface $commerce_order, OrderItemInterface $commerce_order_item) {
     /** @var \Drupal\iq_commerce\Event\IqCommerceBeforeCartRemoveItemEvent $before_event */
     $before_event = new IqCommerceBeforeCartRemoveItemEvent($commerce_order, $commerce_order_item);
-    $this->eventDispatcher->dispatch(IqCommerceCartEvents::BEFORE_CART_ENTITY_REMOVE_ITEM, $before_event);
+    $this->eventDispatcher->dispatch($before_event, IqCommerceCartEvents::BEFORE_CART_ENTITY_REMOVE_ITEM);
     $response = parent::delete($commerce_order, $commerce_order_item);
     /** @var \Drupal\iq_commerce\Event\IqCommerceAfterCartRemoveItemEvent $before_event */
     $after_event = new IqCommerceAfterCartRemoveItemEvent($response);
-    $this->eventDispatcher->dispatch(IqCommerceCartEvents::AFTER_CART_ENTITY_REMOVE_ITEM, $after_event);
+    $this->eventDispatcher->dispatch($after_event, IqCommerceCartEvents::AFTER_CART_ENTITY_REMOVE_ITEM);
     $response = $after_event->getResponse();
     return $response;
   }

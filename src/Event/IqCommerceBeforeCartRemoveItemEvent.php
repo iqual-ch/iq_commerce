@@ -2,7 +2,7 @@
 
 namespace Drupal\iq_commerce\Event;
 
-use Symfony\Component\EventDispatcher\Event;
+use Symfony\Contracts\EventDispatcher\Event;
 
 /**
  * Defines the before cart remove item event.
@@ -36,7 +36,6 @@ class IqCommerceBeforeCartRemoveItemEvent extends Event {
 
   }
 
-
   /**
    * Gets the order.
    */
@@ -50,4 +49,5 @@ class IqCommerceBeforeCartRemoveItemEvent extends Event {
   public function getOrderItem() {
     return $this->commerceOrderItem;
   }
+
 }

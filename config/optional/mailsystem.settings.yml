@@ -8,4 +8,3 @@ modules:
     none:
       formatter: swiftmailer
       sender: swiftmailer
-
