@@ -28,7 +28,6 @@
     "drupal/redirect_after_login": "*",
     "drupal/single_datetime": "*",
     "drupal/entity_print": "2.x",
-    "dompdf/dompdf": "^0.8.6",
     "drupal/commerce_repeat_order": "^2.2"
   }
 }
