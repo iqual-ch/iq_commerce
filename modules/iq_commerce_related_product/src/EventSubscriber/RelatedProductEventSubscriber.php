@@ -12,7 +12,7 @@ use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Drupal\iq_commerce\Event\IqCommerceAfterCartAddEvent;
 
 /**
- *
+ * Handles related products on adding products to cart.
  */
 class RelatedProductEventSubscriber implements EventSubscriberInterface {
 
@@ -75,11 +75,11 @@ class RelatedProductEventSubscriber implements EventSubscriberInterface {
       foreach ($related_field_names as $related_field_name => $field_settings) {
         if ($purchased_entity->hasField($related_field_name)) {
           $related_products = $purchased_entity->get($related_field_name)->getValue();
-          $related_products_reference_type = $purchased_entity->get($related_field_name)->getFieldDefinition()->get('entity_type');
+          $related_products_reference_type = $purchased_entity->get($related_field_name)->getFieldDefinition()->getTargetEntityTypeId();
         }
         elseif ($purchased_entity->getProduct()->hasField($related_field_name)) {
           $related_products = $purchased_entity->getProduct()->get($related_field_name)->getValue();
-          $related_products_reference_type = $purchased_entity->getProduct()->get($related_field_name)->getFieldDefinition()->get('entity_type');
+          $related_products_reference_type = $purchased_entity->getProduct()->get($related_field_name)->getFieldDefinition()->getTargetEntityTypeId();
         }
 
         if (!empty($related_products)) {
