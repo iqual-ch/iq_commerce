@@ -18,7 +18,7 @@
     "drupal/commerce_postfinance": "^3.0",
     "drupal/pagedesigner_block_adaptable": "^2.0",
     "iqual/iq_progressive_decoupler": "^2.0",
-    "drupal/term_reference_tree": "^2.0",
+    "drupal/term_reference_tree": "*",
     "drupal/twig_tweak": "^2.0",
     "drupal/swiftmailer": "^2.0",
     "drupal/commerce_cart_api": "^1.0",
