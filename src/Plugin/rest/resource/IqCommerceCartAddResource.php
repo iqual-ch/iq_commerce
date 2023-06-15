@@ -11,8 +11,6 @@ use Drupal\commerce_store\CurrentStoreInterface;
 use Drupal\Core\Entity\EntityRepositoryInterface;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\Session\AccountInterface;
-use Drupal\iq_commerce\Event\AfterCartAddEvent;
-use Drupal\iq_commerce\Event\BeforeCartAddEvent;
 use Drupal\iq_commerce\Event\IqCommerceAfterCartAddEvent;
 use Drupal\iq_commerce\Event\IqCommerceBeforeCartAddEvent;
 use Drupal\iq_commerce\Event\IqCommerceCartEvents;
@@ -38,7 +36,7 @@ class IqCommerceCartAddResource extends CartAddResource {
   /**
    * The entity repository.
    *
-   * @var EventDispatcherInterface
+   * @var \Symfony\Component\EventDispatcher\EventDispatcherInterface
    */
   protected $eventDispatcher;
 
@@ -71,6 +69,8 @@ class IqCommerceCartAddResource extends CartAddResource {
    *   The current user.
    * @param \Drupal\Core\Entity\EntityRepositoryInterface $entity_repository
    *   The entity repository.
+   * @param \Symfony\Component\EventDispatcher\EventDispatcherInterface $event_dispatcher
+   *   The event dispatcher.
    *
    * @throws \Drupal\Component\Plugin\Exception\InvalidPluginDefinitionException
    * @throws \Drupal\Component\Plugin\Exception\PluginNotFoundException
@@ -147,7 +147,7 @@ class IqCommerceCartAddResource extends CartAddResource {
 
     /** @var \Drupal\iq_commerce\Event\IqCommerceBeforeCartAddEvent $before_event */
     $before_event = new IqCommerceBeforeCartAddEvent($data);
-    $this->eventDispatcher->dispatch(IqCommerceCartEvents::BEFORE_CART_ENTITY_ADD, $before_event);
+    $this->eventDispatcher->dispatch($before_event, IqCommerceCartEvents::BEFORE_CART_ENTITY_ADD);
     $data = $before_event->getBody();
     // Create the order item through the commerce API.
     $response = parent::post($data, $request);
@@ -164,7 +164,7 @@ class IqCommerceCartAddResource extends CartAddResource {
     $additional_data = $before_event->getAdditionalData();
     /** @var \Drupal\iq_commerce\Event\IqCommerceAfterCartAddEvent $before_event */
     $after_event = new IqCommerceAfterCartAddEvent($response, $additional_data);
-    $this->eventDispatcher->dispatch(IqCommerceCartEvents::AFTER_CART_ENTITY_ADD, $after_event);
+    $this->eventDispatcher->dispatch($after_event, IqCommerceCartEvents::AFTER_CART_ENTITY_ADD);
     $response = $after_event->getResponseWithAdditionalData();
 
     return $response;

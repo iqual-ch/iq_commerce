@@ -67,7 +67,7 @@ class TermsConfirmationPane extends CheckoutPaneBase {
       '#autocomplete_route_parameters' => [
         'linkit_profile_id' => 'default_linkit',
       ],
-      '#default_value' => isset($this->configuration['terms_link']) ? $this->configuration['terms_link'] : '',
+      '#default_value' => $this->configuration['terms_link'] ?? '',
     ];
 
     return $form;

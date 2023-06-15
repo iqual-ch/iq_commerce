@@ -2,8 +2,10 @@
 
 /**
  * @file
+ * Iq_commerce module file.
  */
 
+use Drupal\commerce_order\Entity\OrderInterface;
 use Drupal\Core\Locale\CountryManager;
 use Drupal\iq_commerce\Form\IqCommerceSettingsForm;
 use Drupal\views\ViewExecutable;
@@ -28,50 +30,50 @@ function iq_commerce_mail($key, &$message, $params) {
 function iq_commerce_theme($existing, $type, $theme, $path) {
   return [
     'block__menu_block__account' => [
-      'template' => 'block--menu-block--account',
+      'template' => 'block/block--menu-block--account',
       'base hook' => 'block',
     ],
     'commerce_checkout_form__with_sidebar' => [
-      'template' => 'commerce-checkout-form--with-sidebar',
+      'template' => 'commerce/commerce-checkout-form--with-sidebar',
       'base hook' => 'commerce_checkout_form',
     ],
     'commerce_order__user' => [
-      'template' => 'commerce--order--user',
+      'template' => 'commerce/commerce--order--user',
       'base hook' => 'commerce_order',
     ],
     'commerce_order_receipt__entity_print' => [
-      'template' => 'commerce-order-receipt--entity-print',
+      'template' => 'commerce/commerce-order-receipt--entity-print',
       'base hook' => 'commerce_order_receipt',
     ],
     'commerce_order_receipt' => [
-      'template' => 'iq-commerce-order-receipt',
+      'template' => 'commerce/iq-commerce-order-receipt',
       'base hook' => 'commerce_order_receipt',
     ],
     'commerce_product' => [
       'render element' => 'elements',
     ],
     'page__user__login' => [
-      'template' => 'page--user--login',
+      'template' => 'layout/page--user--login',
       'base hook' => 'page',
     ],
     'page__user__orders__%' => [
-      'template' => 'page--user--orders--%',
+      'template' => 'layout/page--user--orders--%',
       'base hook' => 'page',
     ],
     'page__user__password' => [
-      'template' => 'page--user--password',
+      'template' => 'layout/page--user--password',
       'base hook' => 'page',
     ],
     'page__user__register' => [
-      'template' => 'page--user--register',
+      'template' => 'layout/page--user--register',
       'base hook' => 'page',
     ],
     'menu__account' => [
-      'template' => 'menu--account',
+      'template' => 'navigation/menu--account',
       'base hook' => 'menu',
     ],
     'user__full' => [
-      'template' => 'user--full',
+      'template' => 'user/user--full',
       'base hook' => 'user',
     ],
   ];
@@ -102,7 +104,8 @@ function iq_commerce_form_alter(&$form, FormStateInterface $form_state, $form_id
           if (!is_string($a)) {
             $a = $a->__toString();
           }
-          $attribute_a_value = Drupal::entityTypeManager()->getStorage('commerce_product_attribute_value')->loadByProperties(['attribute' => $attribute_id, 'name' => $a]);
+          $attribute_a_value = Drupal::entityTypeManager()->getStorage('commerce_product_attribute_value')
+            ->loadByProperties(['attribute' => $attribute_id, 'name' => $a]);
           $attribute_a_value = reset($attribute_a_value);
           if ($attribute_a_value instanceof ProductAttributeValue) {
             $attribute_a_weight = $attribute_a_value->getWeight();
@@ -110,7 +113,8 @@ function iq_commerce_form_alter(&$form, FormStateInterface $form_state, $form_id
           if (!is_string($b)) {
             $b = $b->__toString();
           }
-          $attribute_b_value = Drupal::entityTypeManager()->getStorage('commerce_product_attribute_value')->loadByProperties(['attribute' => $attribute_id, 'name' => $b]);
+          $attribute_b_value = Drupal::entityTypeManager()->getStorage('commerce_product_attribute_value')
+            ->loadByProperties(['attribute' => $attribute_id, 'name' => $b]);
           $attribute_b_value = reset($attribute_b_value);
           if ($attribute_b_value instanceof ProductAttributeValue) {
             $attribute_b_weight = $attribute_b_value->getWeight();
@@ -178,7 +182,12 @@ function iq_commerce_form_alter(&$form, FormStateInterface $form_state, $form_id
 }
 
 /**
+ * Set tax rate as third party setting on the entity type.
  *
+ * @param array $form
+ *   The submitted form.
+ * @param \Drupal\Core\Form\FormStateInterface $form_state
+ *   The submitted form state.
  */
 function iq_commerce_product_type_form_submit(&$form, FormStateInterface $form_state) {
   /** @var \Drupal\commerce_product\Entity\ProductType $product_type_entity */
@@ -220,7 +229,7 @@ function iq_commerce_views_pre_render(ViewExecutable $view) {
     $cart = \Drupal::service('commerce_cart.cart_provider')
       ->getCart('default', $store);
     $cart->recalculateTotalPrice();
-    $cart->setRefreshState(\Drupal\commerce_order\Entity\OrderInterface::REFRESH_ON_SAVE);
+    $cart->setRefreshState(OrderInterface::REFRESH_ON_SAVE);
     $cart->save();
   }
 }
@@ -236,7 +245,7 @@ function iq_commerce_preprocess_commerce_order_receipt(&$variables) {
 
   /** @var Drupal\commerce_order\Entity\OrderInterface $order */
   $order = $variables['order_entity'];
-  $shipments = $order->get('shipments')->referencedEntities();
+  $shipments = $order->shipments->referencedEntities();
   /** @var \Drupal\commerce_shipping\Entity\Shipment $shipment */
   $shipment = reset($shipments);
   /** @var \Drupal\address\Plugin\Field\FieldType\AddressItem $address */
@@ -248,7 +257,7 @@ function iq_commerce_preprocess_commerce_order_receipt(&$variables) {
     $variables['shipping_address'] = $address->getGivenName() . ' ' . $address->getFamilyName() . '<br />' . $address->getAddressLine1() . '<br />' . $address->getPostalCode() . ' ' . $address->getLocality() . '<br/>' . $full_country_name;
   }
   $billing_profile = $order->getBillingProfile();
-  $billing_address = $billing_profile->get('address')->first();
+  $billing_address = $billing_profile->address->first();
   $full_country_name = $countries[$billing_address->getCountryCode()]->__toString();
   $variables['billing_address'] = $billing_address->getGivenName() . ' ' . $billing_address->getFamilyName() . '<br />' . $billing_address->getAddressLine1() . '<br />' . $billing_address->getPostalCode() . ' ' . $billing_address->getLocality() . '<br/>' . $full_country_name;
   if (!empty($shipment->get('shipping_method')->entity)) {

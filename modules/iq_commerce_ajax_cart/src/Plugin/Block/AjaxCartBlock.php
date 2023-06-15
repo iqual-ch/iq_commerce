@@ -24,25 +24,25 @@ class AjaxCartBlock extends DecoupledBlockBase {
     $form['link'] = [
       '#type' => 'textfield',
       '#title' => $this->t('Link Cart'),
-      '#default_value' => isset($this->configuration['link']) ? $this->configuration['link'] : '/cart',
+      '#default_value' => $this->configuration['link'] ?? '/cart',
     ];
 
     $form['link_title'] = [
       '#type' => 'textfield',
       '#title' => $this->t('Link Title'),
-      '#default_value' => isset($this->configuration['link_title']) ? $this->configuration['link_title'] : 'Cart',
+      '#default_value' => $this->configuration['link_title'] ?? 'Cart',
     ];
 
     $form['label_total'] = [
       '#type' => 'textfield',
       '#title' => $this->t('Label Total'),
-      '#default_value' => isset($this->configuration['label_total']) ? $this->configuration['label_total'] : 'Total',
+      '#default_value' => $this->configuration['label_total'] ?? 'Total',
     ];
 
     $form['label_cart_empty'] = [
       '#type' => 'textfield',
       '#title' => $this->t('Label Cart empty'),
-      '#default_value' => isset($this->configuration['label_cart_empty']) ? $this->configuration['label_cart_empty'] : 'Empty',
+      '#default_value' => $this->configuration['label_cart_empty'] ?? 'Empty',
     ];
     return $form;
   }
