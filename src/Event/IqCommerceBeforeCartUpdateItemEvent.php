@@ -2,21 +2,20 @@
 
 namespace Drupal\iq_commerce\Event;
 
+<<<<<<< HEAD
 use Symfony\Contracts\EventDispatcher\Event;
 
+=======
+>>>>>>> 2.x
 /**
  * Defines the before cart update item event.
  *
  * @see \Drupal\iq_commerce\Event\CartEvents
  */
-class IqCommerceBeforeCartUpdateItemEvent extends Event {
+class IqCommerceBeforeCartUpdateItemEvent extends IqCommerceBeforeCartRemoveItemEvent {
 
   /**
-   * The order that is being edited.
-   */
-  protected $commerceOrder;
-
-  /**
+<<<<<<< HEAD
    * The ordered item that is being updated from the cart.
    */
   protected $commerceOrderItem;
@@ -24,21 +23,28 @@ class IqCommerceBeforeCartUpdateItemEvent extends Event {
   /**
    * @var    unserialized
    *   The unserialized data from the request body.
+=======
+   * The unserialized data from the request body.
+   *
+   * @var mixed
+>>>>>>> 2.x
    */
   protected $unserialized;
 
   /**
    * Constructs a new BeforeCartUpdateItemEvent.
    *
-   * @param $commerce_order
+   * @param \Drupal\commerce_order\Entity\OrderInterface $commerce_order
    *   The order that is being edited.
-   * @param $commerce_order_item
-   *   The order item that is being updated.
+   * @param \Drupal\commerce_order\Entity\OrderItemInterface $commerce_order_item
+   *   The order item that is being removed.
+   * @param mixed $unserialized
+   *   The unserialized data from the request body.
    */
   public function __construct($commerce_order, $commerce_order_item, $unserialized) {
-    $this->commerceOrder = $commerce_order;
-    $this->commerceOrderItem = $commerce_order_item;
+    parent::__construct($commerce_order, $commerce_order_item);
     $this->unserialized = $unserialized;
+<<<<<<< HEAD
     \Drupal::logger('iq_commerce')->notice('before cart updated created event');
 
   }
@@ -55,10 +61,16 @@ class IqCommerceBeforeCartUpdateItemEvent extends Event {
    */
   public function getOrderItem() {
     return $this->commerceOrderItem;
+=======
+
+>>>>>>> 2.x
   }
 
   /**
    * Gets the unseralized data.
+   *
+   * @return mixed
+   *   The unserialized data from the request body.
    */
   public function getUnserialized() {
     return $this->unserialized;

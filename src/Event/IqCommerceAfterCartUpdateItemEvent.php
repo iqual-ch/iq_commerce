@@ -13,24 +13,25 @@ class IqCommerceAfterCartUpdateItemEvent extends Event {
 
   /**
    * The response after the product item is updated from the cart.
+   *
+   * @var \Drupal\rest\ResourceResponse
    */
   protected $response;
 
   /**
    * Constructs a new AfterCartUpdateEvent.
    *
-   * @param $response
+   * @param \Drupal\rest\ResourceResponse $response
    *   The response after the order item is updated from the cart.
    */
   public function __construct($response) {
     $this->response = $response;
-    \Drupal::logger('iq_commerce')->notice('after cart updated created event');
   }
 
   /**
    * Gets the response.
    *
-   * @return array
+   * @return \Drupal\rest\ResourceResponse
    *   The response from the cart api.
    */
   public function getResponse() {

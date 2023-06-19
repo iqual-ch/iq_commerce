@@ -69,6 +69,8 @@ class IqCommerceCartAddResource extends CartAddResource {
    *   The current user.
    * @param \Drupal\Core\Entity\EntityRepositoryInterface $entity_repository
    *   The entity repository.
+   * @param \Symfony\Component\EventDispatcher\EventDispatcherInterface $event_dispatcher
+   *   The event dispatcher.
    *
    * @throws \Drupal\Component\Plugin\Exception\InvalidPluginDefinitionException
    * @throws \Drupal\Component\Plugin\Exception\PluginNotFoundException

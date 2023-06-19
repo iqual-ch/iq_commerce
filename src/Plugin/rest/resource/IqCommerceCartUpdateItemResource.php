@@ -18,7 +18,7 @@ use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Symfony\Component\Serializer\SerializerInterface;
 
 /**
- * Provides a a resource for updating the quantity of a cart's single order item.
+ * Provides a resource for updating the quantity of a cart's single order item.
  *
  * @RestResource(
  *   id = "iq_commerce_cart_update_item",
@@ -54,6 +54,12 @@ class IqCommerceCartUpdateItemResource extends CartUpdateItemResource {
    *   The cart provider.
    * @param \Drupal\commerce_cart\CartManagerInterface $cart_manager
    *   The cart manager.
+   * @param \Symfony\Component\Serializer\SerializerInterface $serializer
+   *   The serializer.
+   * @param \Drupal\Core\Entity\EntityTypeManagerInterface $entity_type_manager
+   *   The entity type manager.
+   * @param \Symfony\Component\EventDispatcher\EventDispatcherInterface $event_dispatcher
+   *   The event dispatcher.
    */
   public function __construct(array $configuration, $plugin_id, $plugin_definition, array $serializer_formats, LoggerInterface $logger, CartProviderInterface $cart_provider, CartManagerInterface $cart_manager, SerializerInterface $serializer, EntityTypeManagerInterface $entity_type_manager, EventDispatcherInterface $event_dispatcher) {
     parent::__construct($configuration, $plugin_id, $plugin_definition, $serializer_formats, $logger, $cart_provider, $cart_manager, $serializer, $entity_type_manager);

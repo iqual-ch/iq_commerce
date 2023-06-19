@@ -32,7 +32,11 @@ class IqCommerceProductSettingsForm extends ConfigFormBase {
       '#type' => 'textarea',
       '#title' => $this->t('IQ Commerce Product settings'),
       '#description' => $this->t('This text field should be written in yml syntax (main keys are "required" and "related" products).'),
+<<<<<<< HEAD
       '#default_value' => $iqCommerceProductSettingsConfig->get('general') ? Yaml::decode($iqCommerceProductSettingsConfig->get('general')) : '',
+=======
+      '#default_value' => Yaml::decode($iqCommerceProductSettingsConfig->get('general')),
+>>>>>>> 2.x
     ];
 
     $form['actions']['#type'] = 'actions';

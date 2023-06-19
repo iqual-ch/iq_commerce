@@ -4,6 +4,7 @@ namespace Drupal\iq_commerce\Event;
 
 use Symfony\Contracts\EventDispatcher\Event;
 use Drupal\rest\ModifiedResourceResponse;
+use Drupal\rest\ResourceResponse;
 
 /**
  * Defines the cart after add event.
@@ -14,21 +15,27 @@ class IqCommerceAfterCartAddEvent extends Event {
 
   /**
    * The response after the product item(s) is added to the cart.
+   *
+   * @var \Drupal\rest\ResourceResponse
    */
   protected $response;
 
   /**
    * The additional data to the response.
+   *
+   * @var array
    */
   protected $additionalData;
 
   /**
    * Constructs a new AfterCartAddEvent.
    *
-   * @param $response
+   * @param \Drupal\rest\ResourceResponse $response
    *   The response after the order item(s) is added to the cart.
+   * @param array $additionalData
+   *   The additional data to be added.
    */
-  public function __construct($response, $additionalData) {
+  public function __construct(ResourceResponse $response, array $additionalData = []) {
     $this->response = $response;
     $this->additionalData = $additionalData;
   }
@@ -36,7 +43,7 @@ class IqCommerceAfterCartAddEvent extends Event {
   /**
    * Gets the response.
    *
-   * @return array
+   * @return \Drupal\rest\ResourceResponse
    *   The response from the cart api.
    */
   public function getResponse() {
@@ -46,7 +53,7 @@ class IqCommerceAfterCartAddEvent extends Event {
   /**
    * Gets the response.
    *
-   * @return array
+   * @return \Drupal\rest\ResourceResponse
    *   The response with the additional data.
    */
   public function getResponseWithAdditionalData() {
@@ -59,7 +66,7 @@ class IqCommerceAfterCartAddEvent extends Event {
   /**
    * Adds additional data to the response.
    *
-   * @param $data
+   * @param array $data
    *   The additional data to be added.
    */
   public function addAdditionalData($data) {

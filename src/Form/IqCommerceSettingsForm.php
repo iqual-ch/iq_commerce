@@ -60,8 +60,9 @@ class IqCommerceSettingsForm extends ConfigFormBase {
    * {@inheritdoc}
    */
   public function submitForm(array &$form, FormStateInterface $form_state) {
-    $current_language = \Drupal::languageManager()->getCurrentLanguage()->getId();
-    $iqCommerceSettingsConfig = \Drupal::languageManager()->getLanguageConfigOverride($current_language, 'iq_commerce.settings');
+    $language_manager = \Drupal::languageManager();
+    $current_language = $language_manager->getCurrentLanguage()->getId();
+    $iqCommerceSettingsConfig = $language_manager->getLanguageConfigOverride($current_language, 'iq_commerce.settings');
     $iqCommerceSettingsConfig
       ->set('header', $form_state->getValue('header'))
       ->set('footer', $form_state->getValue('footer'))
@@ -83,8 +84,9 @@ class IqCommerceSettingsForm extends ConfigFormBase {
    * Helper function to get the iq_commerce settings.
    */
   public static function getIqCommerceSettings() {
-    $current_language = \Drupal::languageManager()->getCurrentLanguage()->getId();
-    $iqCommerceSettingsConfig = \Drupal::languageManager()->getLanguageConfigOverride($current_language, 'iq_commerce.settings');
+    $language_manager = \Drupal::languageManager();
+    $current_language = $language_manager->getCurrentLanguage()->getId();
+    $iqCommerceSettingsConfig = $language_manager->getLanguageConfigOverride($current_language, 'iq_commerce.settings');
     return [
       'header' => $iqCommerceSettingsConfig->get('header') != NULL ? $iqCommerceSettingsConfig->get('header') : ['value' => '<b>' . t("Commerce Store.") . '</b>', 'format' => 'pagedesigner'],
       'footer' => $iqCommerceSettingsConfig->get('footer') != NULL ? $iqCommerceSettingsConfig->get('footer') : ['value' => t("Thank you for your order. You will receive the item(s) in 3 - 7 days."), 'format' => 'pagedesigner'],

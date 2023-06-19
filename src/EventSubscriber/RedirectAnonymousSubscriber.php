@@ -2,6 +2,7 @@
 
 namespace Drupal\iq_commerce\EventSubscriber;
 
+use Drupal\Core\Session\AccountProxyInterface;
 use Symfony\Component\HttpKernel\Event\RequestEvent;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpKernel\KernelEvents;
@@ -13,10 +14,20 @@ use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 class RedirectAnonymousSubscriber implements EventSubscriberInterface {
 
   /**
+   * The current user.
    *
+   * @var \Drupal\Core\Session\AccountProxyInterface
    */
-  public function __construct() {
-    $this->account = \Drupal::currentUser();
+  protected $account = NULL;
+
+  /**
+   * Create a new subscriber.
+   *
+   * @param \Drupal\Core\Session\AccountProxyInterface $account
+   *   The current user.
+   */
+  public function __construct(AccountProxyInterface $account) {
+    $this->account = $account;
   }
 
   /**
