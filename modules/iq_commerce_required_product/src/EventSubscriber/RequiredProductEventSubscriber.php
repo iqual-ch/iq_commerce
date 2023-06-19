@@ -18,11 +18,7 @@ use Drupal\iq_commerce_required_product\Form\RequiredProductSettingsForm;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
 /**
-<<<<<<< HEAD
- *
-=======
  * Handles cart events and processes required products.
->>>>>>> 2.x
  */
 class RequiredProductEventSubscriber implements EventSubscriberInterface {
 
@@ -106,15 +102,9 @@ class RequiredProductEventSubscriber implements EventSubscriberInterface {
           $required_products = $purchased_entity->get($required_field_name)->getValue();
           $required_products_reference_type = $purchased_entity->get($required_field_name)->getFieldDefinition()->getTargetEntityTypeId();
         }
-<<<<<<< HEAD
-        elseif ($purchased_entity->getProduct()->hasField($required_field_name)) {
-          $required_products = $purchased_entity->getProduct()->get($required_field_name)->getValue();
-          $required_products_reference_type = $purchased_entity->getProduct()->get($required_field_name)->getFieldDefinition()->get('entity_type');
-=======
         elseif ($purchased_entity->hasField($required_field_name)) {
           $required_products = $purchased_entity->get($required_field_name)->getValue();
           $required_products_reference_type = $purchased_entity->get($required_field_name)->getFieldDefinition()->getTargetEntityTypeId();
->>>>>>> 2.x
         }
         if (!empty($required_products)) {
           foreach ($required_products as $required_product) {
@@ -161,21 +151,13 @@ class RequiredProductEventSubscriber implements EventSubscriberInterface {
   }
 
   /**
-<<<<<<< HEAD
-   *
-=======
    * Helper to lock the required order items.
    *
    * @param \Drupal\iq_commerce\Event\IqCommerceAfterCartAddEvent $event
    *   The after card add event.
->>>>>>> 2.x
    */
   public function lockRequiredProducts(IqCommerceAfterCartAddEvent $event) {
     $response_data = $event->getResponseWithAdditionalData();
-<<<<<<< HEAD
-    \Drupal::logger('iq_commerce_required_product')->notice(json_encode(array_keys($response_data->getResponseData()), JSON_THROW_ON_ERROR));
-=======
->>>>>>> 2.x
     $dependency_items = [];
     foreach ($response_data->getResponseData()['order_items'] as $required_item) {
       $dependency_items = array_merge($this->getRequiredVariations($required_item->getPurchasedEntity(), $required_item->getQuantity()), $dependency_items);
@@ -206,16 +188,6 @@ class RequiredProductEventSubscriber implements EventSubscriberInterface {
 
     /** @var \Drupal\commerce_order\Entity\OrderItemInterface $item */
     foreach ($cart->getItems() as $item) {
-<<<<<<< HEAD
-      /**
-       * @var int $key
-       * @var \Drupal\commerce_product\Entity\ProductVariation $requiredItem
-       */
-      foreach ($requiredItems as $key => $requiredItem) {
-        if (!empty($requiredItem['required_product']) && $requiredItem['required_product']->getSku() == $item->getPurchasedEntity()->getSku() && $item->getQuantity() != $requiredItem['quantity']) {
-          $item->setQuantity($requiredItem['quantity']);
-          $this->cartManager->updateOrderItem($cart, $item, TRUE);
-=======
       foreach ($requiredItems as $requiredItem) {
         /** @var \Drupal\commerce_product\Entity\ProductVariation $requiredItem */
         $required_product = $requiredItem['required_product'];
@@ -230,7 +202,6 @@ class RequiredProductEventSubscriber implements EventSubscriberInterface {
             $this->cartManager->updateOrderItem($cart, $item, TRUE);
           }
 
->>>>>>> 2.x
         }
       }
     }
@@ -249,15 +220,6 @@ class RequiredProductEventSubscriber implements EventSubscriberInterface {
     $requiredItems = $this->getRequiredVariations($variation, $order_item->getQuantity());
     $cart = $order_item->getOrder();
     foreach ($cart->getItems() as $item) {
-<<<<<<< HEAD
-      /**
-       * @var int $key
-       * @var \Drupal\commerce_product\Entity\ProductVariation $requiredItem
-       */
-      foreach ($requiredItems as $key => $requiredItem) {
-        if ($requiredItem['required_product']->getSku() == $item->getPurchasedEntity()->getSku()) {
-          $item->delete();
-=======
       foreach ($requiredItems as $requiredItem) {
         /** @var \Drupal\commerce_product\Entity\ProductVariation $requiredItem */
         $required_product = $requiredItem['required_product'];
@@ -266,7 +228,6 @@ class RequiredProductEventSubscriber implements EventSubscriberInterface {
           if ($required_product->getSku() == $purchased_entity->getSku()) {
             $item->delete();
           }
->>>>>>> 2.x
         }
       }
     }
@@ -275,24 +236,15 @@ class RequiredProductEventSubscriber implements EventSubscriberInterface {
   /**
    * Helper function to get required variations for the item.
    *
-<<<<<<< HEAD
-   * @param $purchased_entity
-   * @param $purchased_entity_quantity
-=======
    * @param \Drupal\commerce_product\Entity\ProductVariation $purchased_entity
    *   The purchased entity.
    * @param int $purchased_entity_quantity
    *   The amount of items.
->>>>>>> 2.x
    *
    * @return array
    *   The added products.
    */
-<<<<<<< HEAD
-  private function getRequiredVariations($purchased_entity, $purchased_entity_quantity) {
-=======
   protected function getRequiredVariations(ProductVariation $purchased_entity, int $purchased_entity_quantity) {
->>>>>>> 2.x
     // Get all required field references in the product from the settings.
     $iqCommerceProductSettingsConfig = RequiredProductSettingsForm::getSettings();
     $required_field_names = $iqCommerceProductSettingsConfig['required_product_fields'];
@@ -303,11 +255,7 @@ class RequiredProductEventSubscriber implements EventSubscriberInterface {
     foreach ($required_field_names as $required_field_name => $field_settings) {
       if ($purchased_entity->hasField($required_field_name)) {
         $required_products = $purchased_entity->get($required_field_name)->getValue();
-<<<<<<< HEAD
-        $required_products_reference_type = $purchased_entity->get($required_field_name)->getFieldDefinition()->get('entity_type');
-=======
         $required_products_reference_type = $purchased_entity->get($required_field_name)->getFieldDefinition()->getTargetEntityTypeId();
->>>>>>> 2.x
       }
       elseif ($purchased_entity instanceof ProductVariation && $purchased_entity->getProduct()->hasField($required_field_name)) {
         $required_products = $purchased_entity->getProduct()->get($required_field_name)->getValue();
