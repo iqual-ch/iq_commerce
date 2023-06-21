@@ -29,12 +29,5 @@
     "drupal/single_datetime": "^1.0",
     "drupal/entity_print": "2.x",
     "drupal/commerce_repeat_order": "^2.2"
-  },
-  "extra": {
-    "patches": {
-      "drupal/commerce": {
-        "#3368331: Duplicate, differing NumberFormatterInterface causes signature error": "https://git.drupalcode.org/project/commerce/-/merge_requests/165.diff"
-      }
-    }
   }
 }
