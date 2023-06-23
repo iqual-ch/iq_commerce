@@ -16,9 +16,9 @@ use Drupal\iq_commerce\Event\IqCommerceBeforeCartAddEvent;
 use Drupal\iq_commerce\Event\IqCommerceCartEvents;
 use Psr\Log\LoggerInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
+use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\Exception\UnprocessableEntityHttpException;
-use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 
 /**
  * Creates order items for the session's carts.
@@ -152,8 +152,9 @@ class IqCommerceCartAddResource extends CartAddResource {
     // Create the order item through the commerce API.
     $response = parent::post($data, $request);
     // Go through the response, it should be only 1 order item.
+    $responseData = $response->getResponseData();
     /** @var OrderItem $order_item */
-    $order_item = reset($response->getResponseData());
+    $order_item = reset($responseData);
     foreach ($order_item_fields as $field_name => $field_value) {
       if ($order_item->hasField($field_name)) {
         $order_item->set($field_name, $field_value);
@@ -166,7 +167,6 @@ class IqCommerceCartAddResource extends CartAddResource {
     $after_event = new IqCommerceAfterCartAddEvent($response, $additional_data);
     $this->eventDispatcher->dispatch($after_event, IqCommerceCartEvents::AFTER_CART_ENTITY_ADD);
     $response = $after_event->getResponseWithAdditionalData();
-
     return $response;
   }
 
