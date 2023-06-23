@@ -90,7 +90,7 @@ function iq_commerce_form_alter(&$form, FormStateInterface $form_state, $form_id
     }
   }
   // Override the cart view.
-  if (substr($form_id, 0, strlen('views_form_commerce_cart_form_default')) == 'views_form_commerce_cart_form_default') {
+  if (substr((string) $form_id, 0, strlen('views_form_commerce_cart_form_default')) == 'views_form_commerce_cart_form_default') {
     $iq_commerce_additional_settings = IqCommerceAdditionalSettingsForm::getIqCommerceAdditionalSettings();
     // Check for the additional settings (cart header and size).
     if (!empty($iq_commerce_additional_settings['cart_header'])) {
