@@ -14,14 +14,14 @@ class IqCommerceAfterCartUpdateItemEvent extends Event {
   /**
    * The response after the product item is updated from the cart.
    *
-   * @var \Drupal\rest\ResourceResponse
+   * @var \Drupal\rest\ResourceResponseInterface
    */
   protected $response;
 
   /**
    * Constructs a new AfterCartUpdateEvent.
    *
-   * @param \Drupal\rest\ResourceResponse $response
+   * @param \Drupal\rest\ResourceResponseInterface $response
    *   The response after the order item is updated from the cart.
    */
   public function __construct($response) {
@@ -31,7 +31,7 @@ class IqCommerceAfterCartUpdateItemEvent extends Event {
   /**
    * Gets the response.
    *
-   * @return \Drupal\rest\ResourceResponse
+   * @return \Drupal\rest\ResourceResponseInterface
    *   The response from the cart api.
    */
   public function getResponse() {
