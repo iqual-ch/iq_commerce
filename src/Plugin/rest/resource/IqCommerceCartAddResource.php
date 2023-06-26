@@ -14,6 +14,7 @@ use Drupal\Core\Session\AccountInterface;
 use Drupal\iq_commerce\Event\IqCommerceAfterCartAddEvent;
 use Drupal\iq_commerce\Event\IqCommerceBeforeCartAddEvent;
 use Drupal\iq_commerce\Event\IqCommerceCartEvents;
+use InvalidArgumentException;
 use Psr\Log\LoggerInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
@@ -116,6 +117,9 @@ class IqCommerceCartAddResource extends CartAddResource {
    * @throws \Exception
    */
   public function post(array $data, Request $request) {
+    if (empty($data )) {
+      return new InvalidArgumentException(sprintf('No data provided.'));
+    }
     // Do an initial validation of the payload before any processing.
     foreach ($data as $key => $order_item_data) {
       if (!isset($order_item_data['purchased_entity_type'])) {
@@ -131,18 +135,20 @@ class IqCommerceCartAddResource extends CartAddResource {
 
     // Initialize an array with the order item fields.
     $order_item_fields = [];
-    foreach (reset($data)['form_data'] as $field_name => $field_value) {
-      $field_name = explode('[', $field_name)[0];
-      if (!empty($order_item_fields[$field_name])) {
-        if (!is_array($order_item_fields[$field_name])) {
-          $order_item_fields[$field_name] = [$order_item_fields[$field_name]];
+    $first_item = reset($data);
+    if (!empty($first_item['form_data'])) {
+      foreach ($first_item['form_data'] as $field_name => $field_value) {
+        $field_name = explode('[', $field_name)[0];
+        if (!empty($order_item_fields[$field_name])) {
+          if (!is_array($order_item_fields[$field_name])) {
+            $order_item_fields[$field_name] = [$order_item_fields[$field_name]];
+          }
+          $order_item_fields[$field_name][] = $field_value;
         }
-        $order_item_fields[$field_name][] = $field_value;
+        else {
+          $order_item_fields[$field_name] = $field_value;
+        }
       }
-      else {
-        $order_item_fields[$field_name] = $field_value;
-      }
-
     }
 
     /** @var \Drupal\iq_commerce\Event\IqCommerceBeforeCartAddEvent $before_event */
