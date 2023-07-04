@@ -2,6 +2,7 @@
 
 /**
  * @file
+ * Iq_commerce_scheduler module file.
  */
 
 use Drupal\commerce_product\Entity\Product;
