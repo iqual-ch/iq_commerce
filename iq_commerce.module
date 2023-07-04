@@ -6,13 +6,13 @@
  */
 
 use Drupal\commerce_order\Entity\OrderInterface;
+use Drupal\commerce_product\Entity\ProductAttributeValue;
+use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Locale\CountryManager;
-use Drupal\iq_commerce\Form\IqCommerceSettingsForm;
-use Drupal\views\ViewExecutable;
 use Drupal\Core\Url;
 use Drupal\iq_commerce\Form\IqCommerceAdditionalSettingsForm;
-use Drupal\Core\Form\FormStateInterface;
-use Drupal\commerce_product\Entity\ProductAttributeValue;
+use Drupal\iq_commerce\Form\IqCommerceSettingsForm;
+use Drupal\views\ViewExecutable;
 use Drupal\address\Plugin\Field\FieldType\AddressItem;
 use Drupal\profile\Entity\Profile;
 use Drupal\commerce_order\Adjustment;
@@ -32,30 +32,12 @@ function iq_commerce_mail($key, &$message, $params) {
  */
 function iq_commerce_theme($existing, $type, $theme, $path) {
   return [
-    'block__menu_block__account' => [
-      'template' => 'block/block--menu-block--account',
-      'base hook' => 'block',
-    ],
-    'commerce_checkout_form__with_sidebar' => [
-      'template' => 'commerce/commerce-checkout-form--with-sidebar',
-      'base hook' => 'commerce_checkout_form',
-    ],
-    'commerce_order__user' => [
-      'template' => 'commerce/commerce--order--user',
-      'base hook' => 'commerce_order',
-    ],
-    'commerce_order_receipt__entity_print' => [
-      'template' => 'commerce/commerce-order-receipt--entity-print',
-      'base hook' => 'commerce_order_receipt',
-    ],
     'commerce_order_receipt' => [
       'template' => 'commerce/iq-commerce-order-receipt',
       'base hook' => 'commerce_order_receipt',
     ],
     'commerce_product' => [
       'render element' => 'elements',
-      'template' => 'commerce/commerce-product',
-      'base hook' => 'commerce_product',
     ],
     'page__user__login' => [
       'template' => 'layout/page--user--login',
@@ -128,9 +110,9 @@ function iq_commerce_views_data_alter(array &$data) {
 /**
  * Implements hook_form_alter().
  */
-function iq_commerce_form_alter(&$form, FormStateInterface $form_state, $form_id) {
+function iq_commerce_form_alter(&$form, FormStateInterface $form_state, $form_id = '') {
   // If it is a commerce product variation edit form.
-  if (substr($form_id, 0, strlen('commerce_product_variation')) == 'commerce_product_variation' && substr($form_id, 0 - (strlen('_edit_form')), strlen('_edit_form')) == '_edit_form') {
+  if (substr((string) $form_id, 0, strlen('commerce_product_variation')) == 'commerce_product_variation' && substr((string) $form_id, 0 - (strlen('_edit_form')), strlen('_edit_form')) == '_edit_form') {
     foreach (array_keys($form) as $form_array_key) {
       // If there is an attribute field, sort the options by the weight.
       if (substr($form_array_key, 0, strlen('attribute_')) == 'attribute_') {
@@ -165,7 +147,7 @@ function iq_commerce_form_alter(&$form, FormStateInterface $form_state, $form_id
     }
   }
   // Override the cart view.
-  if (substr($form_id, 0, strlen('views_form_commerce_cart_form_default')) == 'views_form_commerce_cart_form_default') {
+  if (substr((string) $form_id, 0, strlen('views_form_commerce_cart_form_default')) == 'views_form_commerce_cart_form_default') {
     $iq_commerce_additional_settings = IqCommerceAdditionalSettingsForm::getIqCommerceAdditionalSettings();
     // Check for the additional settings (cart header and size).
     if (!empty($iq_commerce_additional_settings['cart_header'])) {
