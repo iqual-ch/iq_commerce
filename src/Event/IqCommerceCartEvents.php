@@ -14,7 +14,7 @@ final class IqCommerceCartEvents {
    *
    * @Event
    */
-  const BEFORE_CART_ENTITY_ADD = 'iq_commerce.before_cart_add';
+  public const BEFORE_CART_ENTITY_ADD = 'iq_commerce.before_cart_add';
 
   /**
    * Name of the event fired after adding the order item(s) to the cart.
@@ -23,7 +23,7 @@ final class IqCommerceCartEvents {
    *
    * @Event
    */
-  const AFTER_CART_ENTITY_ADD = 'iq_commerce.after_cart_add';
+  public const AFTER_CART_ENTITY_ADD = 'iq_commerce.after_cart_add';
 
   /**
    * Name of the event fired before removing the order item from the cart.
@@ -32,7 +32,7 @@ final class IqCommerceCartEvents {
    *
    * @Event
    */
-  const BEFORE_CART_ENTITY_REMOVE_ITEM = 'iq_commerce.before_cart_remove_item';
+  public const BEFORE_CART_ENTITY_REMOVE_ITEM = 'iq_commerce.before_cart_remove_item';
 
   /**
    * Name of the event fired after removing the item from the cart.
@@ -41,7 +41,7 @@ final class IqCommerceCartEvents {
    *
    * @Event
    */
-  const AFTER_CART_ENTITY_REMOVE_ITEM = 'iq_commerce.after_cart_remove_item';
+  public const AFTER_CART_ENTITY_REMOVE_ITEM = 'iq_commerce.after_cart_remove_item';
 
 
   /**
@@ -51,7 +51,7 @@ final class IqCommerceCartEvents {
    *
    * @Event
    */
-  const BEFORE_CART_ENTITY_UPDATE_ITEM = 'iq_commerce.before_cart_update_item';
+  public const BEFORE_CART_ENTITY_UPDATE_ITEM = 'iq_commerce.before_cart_update_item';
 
   /**
    * Name of the event fired after updating the item from the cart.
@@ -60,6 +60,6 @@ final class IqCommerceCartEvents {
    *
    * @Event
    */
-  const AFTER_CART_ENTITY_UPDATE_ITEM = 'iq_commerce.after_cart_update_item';
+  public const AFTER_CART_ENTITY_UPDATE_ITEM = 'iq_commerce.after_cart_update_item';
 
 }

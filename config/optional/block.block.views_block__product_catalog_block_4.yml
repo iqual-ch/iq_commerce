@@ -1,0 +1,39 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - views.view.product_catalog
+  module:
+    - advanced_menu_condition
+    - pagedesigner_block
+    - views
+  theme:
+    - iq_custom
+id: views_block__product_catalog_block_4
+theme: iq_custom
+region: pagedesigner
+weight: 0
+provider: null
+plugin: 'views_block:product_catalog-block_4'
+settings:
+  id: 'views_block:product_catalog-block_4'
+  label: ''
+  label_display: '0'
+  provider: views
+  views_label: ''
+  items_per_page: none
+visibility:
+  advanced_menu_position:
+    id: advanced_menu_position
+    menu_position:
+      '': ''
+    negate: null
+  advanced_menu_position_not:
+    id: advanced_menu_position_not
+    not_menu_position:
+      '': ''
+    negate: null
+  pagedesigner_condition:
+    id: pagedesigner_condition
+    pagedesigner_condition: 0
+    negate: null

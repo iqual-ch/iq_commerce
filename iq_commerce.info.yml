@@ -25,3 +25,7 @@ dependencies:
   - redirect_after_login:redirect_after_login
   - login_emailusername:login_emailusername
   - entity_print:entity_print
+  - commerce_payrexx_integration:commerce_payrexx_integration
+  - better_exposed_filters:better_exposed_filters
+  - commerce_repeat_order:commerce_repeat_order
+  - iq_user_base:iq_user_base

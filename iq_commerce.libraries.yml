@@ -23,3 +23,17 @@ checkout:
       resources/css/checkout.css: {}
   js:
     resources/js/checkout.js: {}
+
+order:
+  css:
+    theme:
+      resources/css/order.css: {}
+
+cart:
+  css:
+    theme:
+      resources/css/cart.css: {}
+
+variation_add_to_cart_form:
+  js:
+    resources/js/variation_add_to_cart_form.js: {}

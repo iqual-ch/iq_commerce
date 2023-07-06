@@ -1,0 +1,6 @@
+rounding:
+  label: 'Rounding'
+  singular_label: 'Rounding'
+  plural_label: 'Rounding'
+  has_ui: true
+  weight: 12

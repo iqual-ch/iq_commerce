@@ -12,17 +12,17 @@ use Symfony\Component\HttpFoundation\RedirectResponse;
 class UserController extends ControllerBase {
 
   /**
-   *
+   * Redirects user based on content access for /user/orders page.
    */
-  public function userEditPage() {
-    $moduleHandler = \Drupal::service('module_handler');
-    // If the IQ Group is not enabled, handle the redirect.
-    if (!$moduleHandler->moduleExists('iq_group')) {
-      $user_id = \Drupal::currentUser()->id();
-      $response = new RedirectResponse(Url::fromUserInput('/user/' . $user_id . '/edit')->toString(), 302);
-      return $response;
-    }
-    return [];
+  public function userOrdersPage() {
+    return new RedirectResponse(Url::fromUserInput('/user/' . \Drupal::currentUser()->id() . '/orders')->toString(), 302);
+  }
+
+  /**
+   * Redirects user to /user/address-book page if its logged in.
+   */
+  public function userAddressBookPage() {
+    return new RedirectResponse(Url::fromUserInput('/user/' . \Drupal::currentUser()->id() . '/address-book')->toString(), 302);
   }
 
 }

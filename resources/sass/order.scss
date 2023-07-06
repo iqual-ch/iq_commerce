@@ -1,0 +1,130 @@
+@import 'definitions';
+
+// Genetal table styles
+.view-commerce-user-orders,
+.iq-order-detail {
+  .table {
+    font-size: $font-size-standard;
+    margin: 0;
+
+    tr {
+      background: none;
+
+      th,
+      td {
+        padding: 8px 0;
+        background: none;
+        color: inherit;
+        border-bottom: 1px solid $border-color-base;
+        border-top: none;
+
+        a {
+          color: $color-standard;
+        }
+      }
+    }
+  }
+}
+
+// Row styling overrides
+.container-fluid .iq-row {
+  &.iq-order-detail {
+    padding-top: 0;
+    padding-bottom: 0;
+  }
+}
+
+// Order overview
+.view-commerce-user-orders {
+  max-width: 1140px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 60px;
+}
+
+// Order detail page
+.iq-order-detail {
+
+  h1 {
+    margin-bottom: 50px;
+  }
+
+  // Titles
+  .section-title {
+    flex: 0 0 100%;
+    max-width: 100%;
+    margin-bottom: 30px;
+  }
+
+  // General field styles
+  .fieldset-wrapper {
+    margin-bottom: 50px;
+
+    &__inner {
+      display: flex;
+      flex-wrap: wrap;
+    }
+
+    .field {
+      flex: 0 0 100%;
+      max-width: 100%;
+      margin-bottom: 15px;
+
+      @media screen and (min-width: 768px) {
+        flex: 0 0 50%;
+        max-width: 50%;
+      }
+
+      &__label {
+        font-weight: bold;
+      }
+    }
+  }
+
+  // Make Print icon presentable
+  .order-print {
+    .field {
+      a {
+        display: flex;
+        align-items: center;
+        text-decoration: none;
+      }
+
+      &__item {
+        font-size: 20px;
+        margin-right: 15px;
+      }
+    }
+  }
+
+  // Order detail page specific table styles
+  .table {
+    .views-field-total-price__number {
+      text-align: right;
+    }
+  }
+
+  // Order information overrides
+  .order-information {
+
+    .field--name-order-items {
+      flex: 0 0 100%;
+      max-width: 100%;
+      margin-bottom: 30px;
+    }
+
+    .field--name-total-price {
+      flex: 0 0 100%;
+      max-width: 100%;
+
+      .order-total-line {
+        padding: 0;
+        margin-bottom: 8px;
+
+        .order-total-line-value {
+          width: 120px;
+        }
+      }
+    }
+  }
+}
