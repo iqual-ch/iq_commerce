@@ -2,7 +2,7 @@
 
 namespace Drupal\iq_commerce\Event;
 
-use Symfony\Component\EventDispatcher\Event;
+use Symfony\Contracts\EventDispatcher\Event;
 
 /**
  * Defines the after cart remove item event.
@@ -36,4 +36,5 @@ class IqCommerceAfterCartRemoveItemEvent extends Event {
   public function getResponse() {
     return $this->response;
   }
+
 }

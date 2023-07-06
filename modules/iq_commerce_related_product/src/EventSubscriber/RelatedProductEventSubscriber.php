@@ -7,12 +7,13 @@ use Drupal\commerce_product\Entity\ProductVariation;
 use Drupal\Core\Entity\EntityRepositoryInterface;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\iq_commerce\Event\IqCommerceCartEvents;
-use Drupal\iq_commerce\Form\IqCommerceProductSettingsForm;
-use Drupal\rest\ModifiedResourceResponse;
 use Drupal\iq_commerce_related_product\Form\RelatedProductSettingsForm;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Drupal\iq_commerce\Event\IqCommerceAfterCartAddEvent;
 
+/**
+ * Handles related products on adding products to cart.
+ */
 class RelatedProductEventSubscriber implements EventSubscriberInterface {
 
   /**
@@ -36,9 +37,8 @@ class RelatedProductEventSubscriber implements EventSubscriberInterface {
    *   The entity type manager.
    * @param \Drupal\Core\Entity\EntityRepositoryInterface $entity_repository
    *   The entity repository.
-   *
    */
-  public function __construct(EntityTypeManagerInterface $entity_type_manager,EntityRepositoryInterface $entity_repository) {
+  public function __construct(EntityTypeManagerInterface $entity_type_manager, EntityRepositoryInterface $entity_repository) {
     $this->entityTypeManager = $entity_type_manager;
     $this->entityRepository = $entity_repository;
   }
@@ -75,18 +75,18 @@ class RelatedProductEventSubscriber implements EventSubscriberInterface {
       foreach ($related_field_names as $related_field_name => $field_settings) {
         if ($purchased_entity->hasField($related_field_name)) {
           $related_products = $purchased_entity->get($related_field_name)->getValue();
-          $related_products_reference_type = $purchased_entity->get($related_field_name)->getFieldDefinition()->get('entity_type');
+          $related_products_reference_type = $purchased_entity->get($related_field_name)->getFieldDefinition()->getTargetEntityTypeId();
         }
-        elseif ($purchased_entity->getProduct()->hasField($related_field_name)){
+        elseif ($purchased_entity->getProduct()->hasField($related_field_name)) {
           $related_products = $purchased_entity->getProduct()->get($related_field_name)->getValue();
-          $related_products_reference_type = $purchased_entity->getProduct()->get($related_field_name)->getFieldDefinition()->get('entity_type');
+          $related_products_reference_type = $purchased_entity->getProduct()->get($related_field_name)->getFieldDefinition()->getTargetEntityTypeId();
         }
 
         if (!empty($related_products)) {
           foreach ($related_products as $related_product) {
             // If the reference is of type product, then load all variations for each product and suggest them.
             if ($related_products_reference_type == 'commerce_product') {
-              /** @var Product $related_product */
+              /** @var \Drupal\commerce_product\Entity\Product $related_product */
               $related_product = Product::load($related_product['target_id']);
               foreach ($related_product->getVariations() as $related_variation) {
                 $suggested_products[$related_variation->id()] = $related_variation;
@@ -94,7 +94,7 @@ class RelatedProductEventSubscriber implements EventSubscriberInterface {
             }
             // If the reference is of type variation, just suggest all of them.
             else {
-              /** @var ProductVariation $related_variation */
+              /** @var \Drupal\commerce_product\Entity\ProductVariation $related_variation */
               $related_variation = ProductVariation::load($related_product['target_id']);
               $suggested_products[$related_variation->id()] = $related_variation;
             }
@@ -107,4 +107,5 @@ class RelatedProductEventSubscriber implements EventSubscriberInterface {
     $additional_data['related_products'] = array_values($suggested_products);
     $event->addAdditionalData($additional_data);
   }
+
 }

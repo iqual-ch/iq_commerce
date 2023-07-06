@@ -7,7 +7,6 @@ use Drupal\Component\Serialization\Yaml;
 use Drupal\Component\Serialization\Yaml as YamlSerializer;
 use Drupal\Core\Form\ConfigFormBase;
 use Drupal\Core\Form\FormStateInterface;
-use Drupal\iq_commerce\Controller\UserController;
 use Symfony\Component\Yaml\Yaml as YamlParser;
 
 /**
@@ -15,29 +14,26 @@ use Symfony\Component\Yaml\Yaml as YamlParser;
  *
  * @package Drupal\iq_commerce\Form
  */
-class IqCommerceProductSettingsForm extends ConfigFormBase
-{
+class IqCommerceProductSettingsForm extends ConfigFormBase {
 
   /**
    * {@inheritdoc}
    */
-  public function getFormId()
-  {
+  public function getFormId() {
     return 'iq_commerce_product_settings_form';
   }
 
   /**
    * {@inheritdoc}
    */
-  public function buildForm(array $form, FormStateInterface $form_state)
-  {
+  public function buildForm(array $form, FormStateInterface $form_state) {
     $iqCommerceProductSettingsConfig = \Drupal::config('iq_commerce.product.settings');
     $form['general'] = [
       '#type' => 'textarea',
       '#title' => $this->t('IQ Commerce Product settings'),
       '#description' => $this->t('This text field should be written in yml syntax (main keys are "required" and "related" products).'),
-      '#default_value' => Yaml::decode($iqCommerceProductSettingsConfig->get('general')),
-   ];
+      '#default_value' => $iqCommerceProductSettingsConfig->get('general') ? Yaml::decode($iqCommerceProductSettingsConfig->get('general')) : '',
+    ];
 
     $form['actions']['#type'] = 'actions';
     $form['actions']['submit'] = [
@@ -67,8 +63,7 @@ class IqCommerceProductSettingsForm extends ConfigFormBase
   /**
    * {@inheritdoc}
    */
-  public function submitForm(array &$form, FormStateInterface $form_state)
-  {
+  public function submitForm(array &$form, FormStateInterface $form_state) {
     $this->config('iq_commerce.product.settings')
       ->set('general', Yaml::encode($form_state->getValue('general')))
       ->save();
@@ -81,8 +76,7 @@ class IqCommerceProductSettingsForm extends ConfigFormBase
    *
    * @inheritDoc
    */
-  protected function getEditableConfigNames()
-  {
+  protected function getEditableConfigNames() {
     return ['iq_commerce.product.settings'];
   }
 
@@ -91,7 +85,9 @@ class IqCommerceProductSettingsForm extends ConfigFormBase
    */
   public static function getIqCommerceProductSettings() {
     $iqCommerceProductSettingsConfig = \Drupal::config('iq_commerce.product.settings');
-    return YamlParser::parse(YamlSerializer::decode($iqCommerceProductSettingsConfig->get('general')));
+    if (!empty($iqCommerceProductSettingsConfig->get('general'))) {
+      return YamlParser::parse(YamlSerializer::decode($iqCommerceProductSettingsConfig->get('general')));
+    }
   }
 
 }

@@ -1,0 +1,312 @@
+<mjml>
+  <mj-body>
+
+    <!-- Logo section -->
+    <mj-section>
+      <mj-column>
+
+        <!-- Image -->
+        <mj-image padding="0" width="150px" src="https://www.drupal.org/files/Logo-Iqual-Orange-2017-mit-rahmen.png"
+          align="left"></mj-image>
+
+      </mj-column>
+    </mj-section>
+
+
+    <!-- Intro text section -->
+    <mj-section>
+      <mj-column>
+
+        <!-- Title -->
+        <mj-text font-size="24px" font-weight="bold" text-transform="uppercase" color="#333333" font-family="helvetica">
+          Order confirmation
+        </mj-text>
+
+        <!-- Content -->
+        <mj-text font-size="16px" color="#333333" font-family="helvetica">
+          Thank you for your order, ______!
+        </mj-text>
+
+        <mj-text font-size="16px" color="#333333" font-family="helvetica">
+          Your order has been received and will be processed as soon as possible. You can find information about your
+          order below.
+        </mj-text>
+
+      </mj-column>
+    </mj-section>
+
+    <!-- Divider -->
+    <mj-section padding-top="0" padding-bottom="0">
+      <mj-column>
+        <mj-divider border-width="1px"></mj-divider>
+      </mj-column>
+    </mj-section>
+
+    <!-- Order summary title section - one column -->
+    <mj-section padding-bottom="0">
+      <mj-column>
+
+        <!-- Title -->
+        <mj-text font-size="24px" font-weight="bold" text-transform="uppercase" color="#333333" font-family="helvetica">
+          Order summary
+        </mj-text>
+
+      </mj-column>
+    </mj-section>
+
+    <!-- Order summary content section - two columns -->
+    <mj-section padding-top="0">
+      <mj-column>
+
+        <!-- Order number label -->
+        <mj-text font-size="16px" color="#333333" font-weight="bold" font-family="helvetica">
+          Order number:
+        </mj-text>
+
+        <!-- Order number value -->
+        <mj-text font-size="16px" color="#333333" font-family="helvetica">
+          #
+        </mj-text>
+
+      </mj-column>
+      <mj-column>
+
+        <!-- Order date label -->
+        <mj-text font-size="16px" color="#333333" font-weight="bold" font-family="helvetica">
+          Order date:
+        </mj-text>
+
+        <!-- Order date value -->
+        <mj-text font-size="16px" color="#333333" font-family="helvetica">
+          1.1.2013
+        </mj-text>
+
+      </mj-column>
+    </mj-section>
+
+    <!-- Divider -->
+    <mj-section padding-top="0" padding-bottom="0">
+      <mj-column>
+        <mj-divider border-width="1px"></mj-divider>
+      </mj-column>
+    </mj-section>
+
+    <!-- Billing and shipping title section - one column -->
+    <mj-section padding-bottom="0">
+      <mj-column>
+
+        <!-- Title -->
+        <mj-text font-size="24px" font-weight="bold" text-transform="uppercase" color="#333333" font-family="helvetica">
+          Billing and Shipping
+        </mj-text>
+
+      </mj-column>
+    </mj-section>
+
+    <!-- Billing and shipping content section - two columns -->
+    <mj-section padding-top="0" padding-bottom="0">
+      <mj-column>
+
+        <!-- Billing information title - first column -->
+        <mj-text font-size="16px" color="#333333" font-weight="bold" font-family="helvetica">
+          Billing information
+        </mj-text>
+
+        <!-- Billing information content - first column -->
+        <mj-text font-size="16px" color="#333333" font-family="helvetica" padding-bottom="0">
+          Firma AG
+        </mj-text>
+        <mj-text font-size="16px" color="#333333" font-family="helvetica" padding-bottom="0">
+          Firstname Lastname
+        </mj-text>
+        <mj-text font-size="16px" color="#333333" font-family="helvetica" padding-bottom="0">
+          Address street 15
+        </mj-text>
+        <mj-text font-size="16px" color="#333333" font-family="helvetica" padding-bottom="0">
+          1000 City
+        </mj-text>
+        <mj-text font-size="16px" color="#333333" font-family="helvetica">
+          Switzerland
+        </mj-text>
+
+      </mj-column>
+      <mj-column>
+
+        <!-- Shipping information title - second column -->
+        <mj-text font-size="16px" color="#333333" font-weight="bold" font-family="helvetica">
+          Shipping information
+        </mj-text>
+
+        <!-- Shipping information content - second column -->
+        <mj-text font-size="16px" color="#333333" font-family="helvetica" padding-bottom="0">
+          Firma AG
+        </mj-text>
+        <mj-text font-size="16px" color="#333333" font-family="helvetica" padding-bottom="0">
+          Firstname Lastname
+        </mj-text>
+        <mj-text font-size="16px" color="#333333" font-family="helvetica" padding-bottom="0">
+          Address street 15
+        </mj-text>
+        <mj-text font-size="16px" color="#333333" font-family="helvetica" padding-bottom="0">
+          1000 City
+        </mj-text>
+        <mj-text font-size="16px" color="#333333" font-family="helvetica">
+          Switzerland
+        </mj-text>
+
+      </mj-column>
+    </mj-section>
+
+    <!-- Payment method/Shipping method section - two columns -->
+    <mj-section padding-top="0">
+      <mj-column>
+
+        <!-- Payment method label - first column -->
+        <mj-text font-size="16px" color="#333333" font-weight="bold" font-family="helvetica">
+          Payment method
+        </mj-text>
+
+        <!-- Payment method value - first column -->
+        <mj-text font-size="16px" color="#333333" font-family="helvetica">
+          Payment method
+        </mj-text>
+
+        <!-- Shipping method section - second column -->
+      </mj-column>
+      <mj-column>
+
+        <!-- Shipping method label - second column -->
+        <mj-text font-size="16px" color="#333333" font-weight="bold" font-family="helvetica">
+          Shipping method
+        </mj-text>
+
+        <!-- Shipping method value - second column -->
+        <mj-text font-size="16px" color="#333333" font-family="helvetica">
+          Shipping method
+        </mj-text>
+
+      </mj-column>
+    </mj-section>
+
+    <!-- Divider -->
+    <mj-section padding-top="0" padding-bottom="0">
+      <mj-column>
+        <mj-divider border-width="1px"></mj-divider>
+      </mj-column>
+    </mj-section>
+
+    <!-- Order items title section -->
+    <mj-section padding-bottom="0">
+      <mj-column>
+
+        <!-- Order items title -->
+        <mj-text font-size="24px" font-weight="bold" text-transform="uppercase" color="#333333" font-family="helvetica">
+          Order items
+        </mj-text>
+
+      </mj-column>
+    </mj-section>
+
+    <!-- Order items content section -->
+    <mj-section padding-top="0">
+      <mj-column>
+
+        <!-- Order items content -->
+        <mj-text font-size="16px" color="#333333" font-family="helvetica">
+          Order items
+        </mj-text>
+
+      </mj-column>
+    </mj-section>
+
+    <!-- Divider -->
+    <mj-section padding-top="0" padding-bottom="0">
+      <mj-column>
+        <mj-divider border-width="1px"></mj-divider>
+      </mj-column>
+    </mj-section>
+
+    <!-- Order total title section -->
+    <mj-section padding-bottom="0">
+      <mj-column>
+
+        <!-- Order total title -->
+        <mj-text font-size="24px" font-weight="bold" text-transform="uppercase" color="#333333" font-family="helvetica">
+          Order total
+        </mj-text>
+
+      </mj-column>
+    </mj-section>
+
+    <!-- Order total content section -->
+    <mj-section padding-top="0">
+      <mj-column>
+
+        <!-- Order total content -->
+        <mj-text font-size="16px" color="#333333" font-family="helvetica">
+          Order total
+        </mj-text>
+
+      </mj-column>
+    </mj-section>
+
+    <!-- Divider -->
+    <mj-section padding-top="0" padding-bottom="0">
+      <mj-column>
+        <mj-divider border-width="1px"></mj-divider>
+      </mj-column>
+    </mj-section>
+
+
+    <!-- Have any questions title section -->
+    <mj-section padding-bottom="0">
+      <mj-column>
+
+        <!-- Have any questions title -->
+        <mj-text font-size="24px" font-weight="bold" text-transform="uppercase" color="#333333" font-family="helvetica">
+          Have any questions?
+        </mj-text>
+
+      </mj-column>
+    </mj-section>
+
+    <!-- Have any questions content section -->
+    <mj-section padding-top="0">
+      <mj-column>
+
+        <!-- Have any questions content -->
+        <mj-text font-size="16px" color="#333333" font-family="helvetica">
+          Lorem ipsum dolor sit amet consectetur adipiscing elit litora, congue luctus commodo nisl nullam egestas
+          fringilla, accumsan natoque semper dui ut pretium ridiculus. Pulvinar scelerisque consequat eu urna suscipit
+          non habitasse, vulputate montes mattis massa quisque nostra nibh, eget integer varius rhoncus pharetra tempor.
+          Tellus vestibulum fermentum fringilla nulla est cras, et inceptos duis vivamus justo aliquet, nibh lacinia
+          maecenas interdum felis.
+        </mj-text>
+
+      </mj-column>
+    </mj-section>
+
+    <!-- Divider -->
+    <mj-section padding-top="0" padding-bottom="0">
+      <mj-column>
+        <mj-divider border-width="1px"></mj-divider>
+      </mj-column>
+    </mj-section>
+
+    <!-- Fine print content section -->
+    <mj-section padding-top="0">
+      <mj-column>
+
+        <!-- Fine print content -->
+        <mj-text font-size="14px" color="#333333" font-family="helvetica">
+          Lorem ipsum dolor sit amet consectetur adipiscing elit litora, congue luctus commodo nisl nullam egestas
+          fringilla, accumsan natoque semper dui ut pretium ridiculus. Pulvinar scelerisque consequat eu urna suscipit
+          non habitasse, vulputate montes mattis massa quisque nostra nibh, eget integer varius rhoncus pharetra tempor.
+          Tellus vestibulum fermentum fringilla nulla est cras, et inceptos duis vivamus justo aliquet, nibh lacinia
+          maecenas interdum felis.
+        </mj-text>
+      </mj-column>
+    </mj-section>
+
+  </mj-body>
+</mjml>

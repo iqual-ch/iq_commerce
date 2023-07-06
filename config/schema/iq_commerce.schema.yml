@@ -15,4 +15,3 @@ iq_commerce.settings:
     cart_header_size:
       type: label
       label: 'Cart Header Size'
-

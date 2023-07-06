@@ -1,31 +1,64 @@
 <div class="iq-product-teaser">
-  <a href="{{product_link}}">
-    <div class="img-holder">
-      <div>
-        <img src="{{product_img}}" title="{{product_title}}" alt="{{product_title}}" />
-      </div>
-    </div>
-    <div class="info-holder">
-      <span class="title">{{product_title}}</span>
 
-      {% if product_description|render is not empty %}
-      <div class="descpription">
-        {{product_description}}
-      </div>
-      {% endif %}
+	{# Image #}
+	<a class="iq-product-teaser__link iq-product-teaser__link--image" href="{{ product_link }}">
+		<div class="iq-product-teaser__image">
+			{% include '@iq_barrio/includes/responsive-image.html.twig' with {
+        'image' : image_img,
+        'template' : 'image_standard',
+        'sizes': sizes,
+          'attributes' : {
+            alt: product_title,
+            title: product_title
+          }
+      } %}
+		</div>
+	</a>
 
-      {% if product_variants|render is not empty %}
-      <div class="variants">
-        {{product_variants}}
-      </div>
-      {% endif %}
+	{# Content starts here #}
+	<div class="iq-product-teaser__content">
 
-      <div class="btn-product">
-        {{title_button}} <i class="fas fa-chevron-right"></i>
-      </div>
+		{# Title #}
+		<a class="iq-product-teaser__link iq-product-teaser__link--title" href="{{ product_link }}">
+			{% if title_weight|render == "h1" %}<span class="h1 iq-product-teaser__product-title">{{ product_title|nl2br|raw }}</span>{% endif %}
+			{% if title_weight|render == "h2" %}<span class="h2 iq-product-teaser__product-title">{{ product_title|nl2br|raw }}</span>{% endif %}
+			{% if title_weight|render == "h3" %}<span class="h3 iq-product-teaser__product-title">{{ product_title|nl2br|raw }}</span>{% endif %}
+			{% if title_weight|render == "h4" %}<span class="h4 iq-product-teaser__product-title">{{ product_title|nl2br|raw }}</span>{% endif %}
+			{% if title_weight|render == "h5" %}<span class="h5 iq-product-teaser__product-title">{{ product_title|nl2br|raw }}</span>{% endif %}
+			{% if title_weight|render == "h6" %}<span class="h6 iq-product-teaser__product-title">{{ product_title|nl2br|raw }}</span>{% endif %}
+			{% if title_weight|render == "span" %}<span class="span iq-product-teaser__product-title">{{ product_title|nl2br|raw }} </span>{% endif %}
+		</a>
 
-    </div>
+		{# Price #}
+		<div class="iq-product-teaser__price">
+			<span class="iq-product-teaser__price__additional-text">{{ product_price_additional_text }}</span>
+			<span class="iq-product-teaser__price__currency">{{ product_price_currency }}</span>
+			<span class="iq-product-teaser__price__price">{{ product_price }}</span>
+		</div>
 
-  </a>
+		{# Description #}
+		{% if product_description|render is not empty %}
+			<div class="iq-product-teaser__description">
+				{{ product_description }}
+			</div>
+		{% endif %}
+
+		{# Quantity box / See more button #}
+		{% set count = product_variations|split(',')|length %}
+		{% if count == 1 %}
+			{{ product_variations }}
+		{% else %}
+			<div class="iq-button iq-product-teaser__button" data-align="left">
+				<a href="{{ product_link }}" title="{{ product_title }}" target="_blank">
+					<span>
+						{{ button_text }}
+						<i class="{{ button_icon }}"></i>
+					</span>
+				</a>
+			</div>
+		{% endif %}
+
+	</div>
+	{# Content ends here #}
 
 </div>

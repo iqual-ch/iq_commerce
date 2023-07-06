@@ -28,10 +28,18 @@ iq_commerce.additional_settings:
   options:
     _admin_route: TRUE
 
-iq_commerce.user_orders:
+iq_commerce.user_settings:
   path: '/user/orders'
   defaults:
-    _form: '\Drupal\iq_commerce\Form\IqCommerceUserOrdersForm'
-    _title: 'Orders'
+    _controller: '\Drupal\iq_commerce\Controller\UserController:userOrdersPage'
+    _title: 'User account settings'
   requirements:
-    _access: 'TRUE'
+    _user_is_logged_in: 'TRUE'
+
+iq_commerce.user_address_book:
+  path: '/user/address-book'
+  defaults:
+    _controller: '\Drupal\iq_commerce\Controller\UserController:userAddressBookPage'
+    _title: 'User account settings'
+  requirements:
+    _user_is_logged_in: 'TRUE'

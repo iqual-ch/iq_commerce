@@ -5,7 +5,6 @@ namespace Drupal\iq_commerce_order_additional_fields\Plugin\Commerce\CheckoutPan
 use Drupal\commerce\AjaxFormTrait;
 use Drupal\commerce_checkout\Plugin\Commerce\CheckoutPane\CheckoutPaneBase;
 use Drupal\commerce_checkout\Plugin\Commerce\CheckoutPane\CheckoutPaneInterface;
-use Drupal\commerce_order\Entity\Order;
 use Drupal\Component\Serialization\Json;
 use Drupal\Core\Form\FormStateInterface;
 
@@ -37,7 +36,7 @@ class CollectionDatePane extends CheckoutPaneBase implements CheckoutPaneInterfa
         '#max_date' => \Drupal::service('date.formatter')->format(strtotime('+90 days'), 'custom', 'd.m.Y'),
         '#min_date' => \Drupal::service('date.formatter')->format(\Drupal::time()->getRequestTime(), 'custom', 'd.m.Y'),
         '#date_timezone' => date_default_timezone_get(),
-        '#date_type' =>  'date',
+        '#date_type' => 'date',
         '#time' => FALSE,
         '#hour_format' => 24,
         '#allow_times' => 60,
@@ -46,7 +45,7 @@ class CollectionDatePane extends CheckoutPaneBase implements CheckoutPaneInterfa
         '#datetimepicker_theme' => 'default',
         '#exclude_date' => '',
         '#year_start' => '1970',
-        '#year_end' => intval(date('Y') +1),
+        '#year_end' => intval(date('Y') + 1),
         '#date_date_element' => 'date',
         '#date_date_callbacks' => [],
         '#date_time_element' => NULL,
@@ -69,14 +68,12 @@ class CollectionDatePane extends CheckoutPaneBase implements CheckoutPaneInterfa
     }
   }
 
-
   /**
    * {@inheritdoc}
    */
   public function isVisible() {
-    // @TODO Only show if the pick up from store shipping method is selected.
-    // @TODO This can be done either through ajax or somehow through form alter.
-
+    // @todo Only show if the pick up from store shipping method is selected.
+    // @todo This can be done either through ajax or somehow through form alter.
     return TRUE;
   }
 

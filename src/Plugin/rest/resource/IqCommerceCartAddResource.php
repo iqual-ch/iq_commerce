@@ -11,16 +11,15 @@ use Drupal\commerce_store\CurrentStoreInterface;
 use Drupal\Core\Entity\EntityRepositoryInterface;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\Session\AccountInterface;
-use Drupal\iq_commerce\Event\AfterCartAddEvent;
-use Drupal\iq_commerce\Event\BeforeCartAddEvent;
 use Drupal\iq_commerce\Event\IqCommerceAfterCartAddEvent;
 use Drupal\iq_commerce\Event\IqCommerceBeforeCartAddEvent;
 use Drupal\iq_commerce\Event\IqCommerceCartEvents;
+use InvalidArgumentException;
 use Psr\Log\LoggerInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
+use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\Exception\UnprocessableEntityHttpException;
-use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 
 /**
  * Creates order items for the session's carts.
@@ -38,7 +37,7 @@ class IqCommerceCartAddResource extends CartAddResource {
   /**
    * The entity repository.
    *
-   * @var EventDispatcherInterface
+   * @var \Symfony\Component\EventDispatcher\EventDispatcherInterface
    */
   protected $eventDispatcher;
 
@@ -71,6 +70,8 @@ class IqCommerceCartAddResource extends CartAddResource {
    *   The current user.
    * @param \Drupal\Core\Entity\EntityRepositoryInterface $entity_repository
    *   The entity repository.
+   * @param \Symfony\Component\EventDispatcher\EventDispatcherInterface $event_dispatcher
+   *   The event dispatcher.
    *
    * @throws \Drupal\Component\Plugin\Exception\InvalidPluginDefinitionException
    * @throws \Drupal\Component\Plugin\Exception\PluginNotFoundException
@@ -105,7 +106,7 @@ class IqCommerceCartAddResource extends CartAddResource {
   /**
    * Add order items to the session's carts.
    *
-   * @param array $body
+   * @param array $data
    *   The unserialized request body.
    * @param \Symfony\Component\HttpFoundation\Request $request
    *   The request.
@@ -115,9 +116,12 @@ class IqCommerceCartAddResource extends CartAddResource {
    *
    * @throws \Exception
    */
-  public function post(array $body, Request $request) {
+  public function post(array $data, Request $request) {
+    if (empty($data )) {
+      return new InvalidArgumentException(sprintf('No data provided.'));
+    }
     // Do an initial validation of the payload before any processing.
-    foreach ($body as $key => $order_item_data) {
+    foreach ($data as $key => $order_item_data) {
       if (!isset($order_item_data['purchased_entity_type'])) {
         throw new UnprocessableEntityHttpException(sprintf('You must specify a purchasable entity type for row: %s', $key));
       }
@@ -131,31 +135,34 @@ class IqCommerceCartAddResource extends CartAddResource {
 
     // Initialize an array with the order item fields.
     $order_item_fields = [];
-    foreach (reset($body)['form_data'] as $field_name => $field_value) {
-      $field_name = explode('[', $field_name)[0];
-      if (!empty($order_item_fields[$field_name])) {
-        if (!is_array($order_item_fields[$field_name])) {
-          $order_item_fields[$field_name] = [$order_item_fields[$field_name]];
+    $first_item = reset($data);
+    if (!empty($first_item['form_data'])) {
+      foreach ($first_item['form_data'] as $field_name => $field_value) {
+        $field_name = explode('[', $field_name)[0];
+        if (!empty($order_item_fields[$field_name])) {
+          if (!is_array($order_item_fields[$field_name])) {
+            $order_item_fields[$field_name] = [$order_item_fields[$field_name]];
+          }
+          $order_item_fields[$field_name][] = $field_value;
         }
-        $order_item_fields[$field_name][] = $field_value;
+        else {
+          $order_item_fields[$field_name] = $field_value;
+        }
       }
-      else {
-        $order_item_fields[$field_name] = $field_value;
-      }
-
     }
 
     /** @var \Drupal\iq_commerce\Event\IqCommerceBeforeCartAddEvent $before_event */
-    $before_event = new IqCommerceBeforeCartAddEvent($body);
-    $this->eventDispatcher->dispatch(IqCommerceCartEvents::BEFORE_CART_ENTITY_ADD, $before_event);
-    $body = $before_event->getBody();
+    $before_event = new IqCommerceBeforeCartAddEvent($data);
+    $this->eventDispatcher->dispatch($before_event, IqCommerceCartEvents::BEFORE_CART_ENTITY_ADD);
+    $data = $before_event->getBody();
     // Create the order item through the commerce API.
-    $response = parent::post($body, $request);
+    $response = parent::post($data, $request);
     // Go through the response, it should be only 1 order item.
+    $responseData = $response->getResponseData();
     /** @var OrderItem $order_item */
-    $order_item = reset($response->getResponseData());
-    foreach($order_item_fields as $field_name => $field_value) {
-      if($order_item->hasField($field_name)) {
+    $order_item = reset($responseData);
+    foreach ($order_item_fields as $field_name => $field_value) {
+      if ($order_item->hasField($field_name)) {
         $order_item->set($field_name, $field_value);
       }
     }
@@ -164,9 +171,8 @@ class IqCommerceCartAddResource extends CartAddResource {
     $additional_data = $before_event->getAdditionalData();
     /** @var \Drupal\iq_commerce\Event\IqCommerceAfterCartAddEvent $before_event */
     $after_event = new IqCommerceAfterCartAddEvent($response, $additional_data);
-    $this->eventDispatcher->dispatch(IqCommerceCartEvents::AFTER_CART_ENTITY_ADD, $after_event);
+    $this->eventDispatcher->dispatch($after_event, IqCommerceCartEvents::AFTER_CART_ENTITY_ADD);
     $response = $after_event->getResponseWithAdditionalData();
-
     return $response;
   }
 
