@@ -40,7 +40,7 @@ class EntityReferenceNormalizer extends EntityReferenceNormalizerBase {
       unset($normalized['product_id']);
     }
     if (!empty($normalized['uri'])) {
-      $normalized['url'] = file_create_url($normalized['uri']);
+      $normalized['url'] = \Drupal::service('file_url_generator')->generateAbsoluteString($normalized['uri']);
     }
     return $normalized;
   }

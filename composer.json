@@ -9,7 +9,7 @@
     }
   ],
   "require": {
-    "drupal/commerce": "2.33.0",
+    "drupal/commerce": "^2.0",
     "drupal/hierarchical_taxonomy_menu": "^1.0",
     "drupal/media_entity_browser": "^2.0",
     "drupal/commerce_variation_add_to_cart": "^1.0",
@@ -19,7 +19,7 @@
     "drupal/pagedesigner_block_adaptable": "^2.0",
     "iqual/iq_progressive_decoupler": "^2.0",
     "drupal/term_reference_tree": "^2.0",
-    "drupal/twig_tweak": "^3.0",
+    "drupal/twig_tweak": "^2.0",
     "drupal/swiftmailer": "^2.0",
     "drupal/commerce_cart_api": "^1.0",
     "iqual/iq_entity_browsers": "^2.0",

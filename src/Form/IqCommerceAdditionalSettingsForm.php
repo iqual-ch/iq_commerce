@@ -10,23 +10,20 @@ use Drupal\Core\Form\FormStateInterface;
  *
  * @package Drupal\iq_commerce\Form
  */
-class IqCommerceAdditionalSettingsForm extends ConfigFormBase
-{
+class IqCommerceAdditionalSettingsForm extends ConfigFormBase {
 
   /**
    * {@inheritdoc}
    */
-  public function getFormId()
-  {
+  public function getFormId() {
     return 'iq_commerce_additional_settings_form';
   }
 
   /**
    * {@inheritdoc}
    */
-  public function buildForm(array $form, FormStateInterface $form_state)
-  {
-    $iqCommerceSettings = $this->getIqCommerceAdditionalSettings();
+  public function buildForm(array $form, FormStateInterface $form_state) {
+    $iqCommerceSettings = static::getIqCommerceAdditionalSettings();
     $form['cart_header'] = [
       '#type'       => 'text_format',
       '#format' => 'pagedesigner',
@@ -53,8 +50,7 @@ class IqCommerceAdditionalSettingsForm extends ConfigFormBase
   /**
    * {@inheritdoc}
    */
-  public function submitForm(array &$form, FormStateInterface $form_state)
-  {
+  public function submitForm(array &$form, FormStateInterface $form_state) {
     $this->config('iq_commerce.settings')
       ->set('cart_header', $form_state->getValue('cart_header')['value'])
       ->save();
@@ -67,8 +63,7 @@ class IqCommerceAdditionalSettingsForm extends ConfigFormBase
    *
    * @inheritDoc
    */
-  protected function getEditableConfigNames()
-  {
+  protected function getEditableConfigNames() {
     return ['iq_commerce.settings'];
   }
 
@@ -81,6 +76,5 @@ class IqCommerceAdditionalSettingsForm extends ConfigFormBase
       'cart_header' => $iqCommerceSettingsConfig->get('cart_header') != NULL ? $iqCommerceSettingsConfig->get('cart_header') : "",
     ];
   }
-
 
 }

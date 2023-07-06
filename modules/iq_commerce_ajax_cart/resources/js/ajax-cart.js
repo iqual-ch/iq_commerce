@@ -90,7 +90,6 @@
             additionalData: additionalData
           };
           $(document).trigger("iq-commerce-cart-refresh-before", [updateData]);
-
           Object.keys(drupalSettings.progressive_decoupler).filter(function (key) {
             return drupalSettings.progressive_decoupler[key].type == 'iq_commerce_ajax_cart_block'
           }).forEach(function (blockID) {
@@ -116,8 +115,18 @@
                 $target.prepend($item);
               });
 
-              $blockElement.find('[data-total-value]').text(cartData[0].total_price.formatted);
-              $blockElement.find('[data-cart-content-holder]').removeClass('content--loading');
+              // Adjustment of total price displayed in the Ajax Cart
+              // For WS-405 Warenkorb Pop-up - Total price Softtrend ticket
+              // $blockElement.find('[data-total-value]').text(cartData[0].total_price.formatted);
+              const $prices = $(cartData[0].order_items);
+              let totalSum = 0;
+              $prices.each(function () {
+                let price = parseFloat(this.total_price.number);
+                totalSum += price;
+              });
+              $blockElement.find('[data-total-value]').text('CHF ' + totalSum.toLocaleString('de-CH', { minimumFractionDigits: 2 }));
+
+              $blockElement.find('[data-cart-content-holder]').removeClass('loading');
               $(document).trigger('ajax-cart-after-block-rendered[' + pattern + ']', $target);
             }
             else {

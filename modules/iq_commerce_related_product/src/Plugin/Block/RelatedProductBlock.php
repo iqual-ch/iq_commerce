@@ -27,31 +27,31 @@ class RelatedProductBlock extends DecoupledBlockBase {
     $form['oververlay_title'] = [
       '#type' => 'textfield',
       '#title' => $this->t('Title'),
-      '#default_value' => isset($this->configuration['oververlay_title']) ? $this->configuration['oververlay_title'] : 'Additional products',
+      '#default_value' => $this->configuration['oververlay_title'] ?? 'Additional products',
     ];
 
     $form['oververlay_title'] = [
       '#type' => 'textfield',
       '#title' => $this->t('Title'),
-      '#default_value' => isset($this->configuration['oververlay_title']) ? $this->configuration['oververlay_title'] : 'Additional products',
+      '#default_value' => $this->configuration['oververlay_title'] ?? 'Additional products',
     ];
 
     $form['oververlay_label_close'] = [
       '#type' => 'textfield',
       '#title' => $this->t('Title'),
-      '#default_value' => isset($this->configuration['oververlay_label_close']) ? $this->configuration['oververlay_label_close'] : 'Close',
+      '#default_value' => $this->configuration['oververlay_label_close'] ?? 'Close',
     ];
 
     $form['oververlay_label_cart'] = [
       '#type' => 'textfield',
       '#title' => $this->t('Title'),
-      '#default_value' => isset($this->configuration['oververlay_label_cart']) ? $this->configuration['oververlay_label_cart'] : 'Go to cart',
+      '#default_value' => $this->configuration['oververlay_label_cart'] ?? 'Go to cart',
     ];
 
     $form['oververlay_link_cart'] = [
       '#type' => 'textfield',
       '#title' => $this->t('Link Cart'),
-      '#default_value' => isset($this->configuration['oververlay_link_cart']) ? $this->configuration['oververlay_link_cart'] : '/cart',
+      '#default_value' => $this->configuration['oververlay_link_cart'] ?? '/cart',
     ];
 
     $form['ui_pattern_purchased_item'] = [
@@ -59,7 +59,7 @@ class RelatedProductBlock extends DecoupledBlockBase {
       '#empty_value' => '_none',
       '#title' => $this->t('Added product: Pattern'),
       '#options' => $this->patternsManager->getPatternsOptions(),
-      '#default_value' => isset($this->configuration['ui_pattern_purchased_item']) ? $this->configuration['ui_pattern_purchased_item'] : NULL,
+      '#default_value' => $this->configuration['ui_pattern_purchased_item'] ?? NULL,
       '#required' => TRUE,
     ];
 
