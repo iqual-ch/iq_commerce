@@ -39,6 +39,7 @@ function iq_commerce_theme($existing, $type, $theme, $path) {
     ],
     'commerce_product' => [
       'render element' => 'elements',
+      'template' => 'commerce/commerce-product'
     ],
     'page__user__login' => [
       'template' => 'layout/page--user--login',
