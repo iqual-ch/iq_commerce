@@ -49,6 +49,10 @@ function iq_commerce_theme($existing, $type, $theme, $path) {
       'template' => 'layout/page--user--orders--%',
       'base hook' => 'page',
     ],
+    'variation_add_to_cart_formatter' => [
+      'template' => 'commerce/variation-add-to-cart-formatter',
+      'base hook' => 'variation_add_to_cart_formatter',
+    ],
     'page__user__password' => [
       'template' => 'layout/page--user--password',
       'base hook' => 'page',
