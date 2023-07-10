@@ -33,6 +33,14 @@ function iq_commerce_mail($key, &$message, $params) {
  */
 function iq_commerce_theme($existing, $type, $theme, $path) {
   return [
+    'commerce_checkout_form__with_sidebar' => [
+      'template' => 'commerce/commerce-checkout-form--with-sidebar',
+      'base hook' => 'commerce_checkout_form',
+    ],
+    'commerce_order__user' => [
+      'template' => 'commerce/commerce-order--user',
+      'base hook' => 'commerce_order',
+    ],
     'commerce_order_receipt__entity_print' => [
       'template' => 'commerce/commerce-order-receipt--entity-print',
       'base hook' => 'commerce_order_receipt',
@@ -43,7 +51,12 @@ function iq_commerce_theme($existing, $type, $theme, $path) {
     ],
     'commerce_product' => [
       'render element' => 'elements',
-      'template' => 'commerce/commerce-product'
+      'template' => 'commerce/commerce-product',
+      'base hook' => 'commerce_product',
+    ],
+    'variation_add_to_cart_formatter' => [
+      'template' => 'commerce/variation-add-to-cart-formatter',
+      'base hook' => 'variation_add_to_cart_formatter',
     ],
     'page__user__login' => [
       'template' => 'layout/page--user--login',
@@ -53,9 +66,9 @@ function iq_commerce_theme($existing, $type, $theme, $path) {
       'template' => 'layout/page--user--orders--%',
       'base hook' => 'page',
     ],
-    'variation_add_to_cart_formatter' => [
-      'template' => 'commerce/variation-add-to-cart-formatter',
-      'base hook' => 'variation_add_to_cart_formatter',
+    'page__user__orders' => [
+      'template' => 'layout/page--user--orders',
+      'base hook' => 'page',
     ],
     'page__user__password' => [
       'template' => 'layout/page--user--password',
