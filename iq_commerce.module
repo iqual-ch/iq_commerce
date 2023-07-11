@@ -33,12 +33,17 @@ function iq_commerce_mail($key, &$message, $params) {
  */
 function iq_commerce_theme($existing, $type, $theme, $path) {
   return [
+    'commerce_order_receipt__entity_print' => [
+      'template' => 'commerce/commerce-order-receipt--entity-print',
+      'base hook' => 'commerce_order_receipt',
+    ],
     'commerce_order_receipt' => [
       'template' => 'commerce/iq-commerce-order-receipt',
       'base hook' => 'commerce_order_receipt',
     ],
     'commerce_product' => [
       'render element' => 'elements',
+      'template' => 'commerce/commerce-product'
     ],
     'page__user__login' => [
       'template' => 'layout/page--user--login',
@@ -47,6 +52,10 @@ function iq_commerce_theme($existing, $type, $theme, $path) {
     'page__user__orders__%' => [
       'template' => 'layout/page--user--orders--%',
       'base hook' => 'page',
+    ],
+    'variation_add_to_cart_formatter' => [
+      'template' => 'commerce/variation-add-to-cart-formatter',
+      'base hook' => 'variation_add_to_cart_formatter',
     ],
     'page__user__password' => [
       'template' => 'layout/page--user--password',
