@@ -17,6 +17,7 @@ use Drupal\views\ViewExecutable;
 use Drupal\address\Plugin\Field\FieldType\AddressItem;
 use Drupal\profile\Entity\Profile;
 use Drupal\commerce_order\Adjustment;
+use Drupal\Core\Entity\EntityInterface;
 
 /**
  * Implements hook_mail().
@@ -406,6 +407,28 @@ function iq_commerce_preprocess_commerce_order(&$variables) {
   $billing_address = $billing_profile->get('address')->first();
   $variables['billing_address'] = iq_commerce_get_address_string($billing_address, $billing_profile);
   $variables['language'] = \Drupal::languageManager()->getCurrentLanguage(LanguageInterface::TYPE_CONTENT)->getId();
+}
+
+/**
+ * Implements hook_ENTITY_TYPE_delete().
+ *
+ * Delete all cart assignment of the deleted product.
+ */
+function iq_commerce_commerce_product_variation_delete(EntityInterface $entity) {
+  /** @var Drupal\Core\Entity\EntityInterface[] $order_items */
+  $order_items = \Drupal::entityTypeManager()->getStorage('commerce_order_item')->loadByProperties([
+    'purchased_entity' => $entity->id(),
+  ]);
+  if (!empty($order_items)) {
+    foreach ($order_items as $order_item) {
+      if ($order_item &&
+          $order_item->getOrder() &&
+          $order_item->getOrder()->getState()->getLabel() != 'Completed'
+      ) {
+        $order_item->delete();
+      }
+    }
+  }
 }
 
 /**
