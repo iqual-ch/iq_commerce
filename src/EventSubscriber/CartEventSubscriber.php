@@ -25,6 +25,7 @@ class CartEventSubscriber implements EventSubscriberInterface
       CartEvents::CART_ENTITY_ADD => ['onCartEntityAdd', -50],
       CartEvents::CART_ORDER_ITEM_REMOVE => ['onCartOrderItemRemove', -50],
       CartEvents::CART_ORDER_ITEM_UPDATE => ['onCartItemUpdate', -50],
+      OrderCloneEvent::ORDER_CLONED => ['onCartCloned', -50],
     ];
     return $events;
   }
@@ -93,6 +94,29 @@ class CartEventSubscriber implements EventSubscriberInterface
         'included' => FALSE,
         'locked' => TRUE,
       ]));
+    }
+  }
+
+  /**
+   * Subscriber for repeat order cart clone. Writes message to tempstorage.
+   *
+   * @param \Drupal\commerce_repeat_order\Event\OrderCloneEvent $event
+   *   Event object parameter.
+   */
+  public function onCartCloned(OrderCloneEvent $event) {
+    $originalOrderItems = $event->getOriginal()->getItems();
+    $message = '';
+    foreach ($originalOrderItems as $order_item) {
+      // Creating new duplicate order item for adding in cart.
+      /** @var \Drupal\commerce_product\Entity\ProductVariationInterface $variation */
+      $variation = $order_item->getPurchasedEntity();
+      $product = $variation ? $variation->getProduct() : NULL;
+      if ($product == NULL || !$product->isPublished()) {
+        $message = t("Some products weren't copied to the cart as they aren't currently available.");
+        $tempstore = \Drupal::service('tempstore.private');
+        $store = $tempstore->get('top_events_commerce');
+        $store->set('unavailable_products', $message);
+      }
     }
   }
 

@@ -1,7 +1,8 @@
-@import 'definitions';
+@import "definitions";
+@import "variables";
 
 // order overview
-.view-commerce-user-orders{
+.view-commerce-user-orders {
   max-width: 1140px;
   margin-left: auto;
   margin-right: auto;
@@ -9,18 +10,93 @@
 
   .table {
     font-size: $font-size-standard;
-    tr{
+    tr {
       background: none;
       th,
-      td{
+      td {
         padding: 8px 0;
         background: none;
         color: inherit;
         border-bottom: 1px solid $border-color-base;
         border-top: none;
 
-        a{
+        a {
           color: $color-standard;
+        }
+      }
+    }
+  }
+
+  .view-header {
+    margin-bottom: 40px;
+    margin-left: -20px;
+  }
+
+  .view-content {
+    flex-direction: column;
+
+    .views-row {
+      display: flex;
+      flex-wrap: wrap;
+      padding: 32px 0;
+      border-top: 1px solid lightgray;
+
+      @media screen and (max-width: $breakpoint-s) {
+        flex-direction: column;
+      }
+
+      &:last-of-type {
+        border-bottom: 1px solid lightgray;
+      }
+
+      // Order number
+      .views-field-order-number {
+        position: relative;
+        width: 100%;
+        margin-bottom: 24px;
+        font-weight: 700;
+
+        a {
+          text-decoration: none;
+
+          &::before {
+            display: block;
+            content: "";
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            right: 0;
+            top: 50%;
+            transform: translateY(-50%) rotate(45deg);
+            border-top: 2px solid $red;
+            border-right: 2px solid $red;
+          }
+        }
+      }
+
+      // Date & Price
+      .views-field-placed,
+      .views-field-total-price__number {
+        display: flex;
+        flex-direction: column;
+
+        .views-label {
+          font-weight: 700;
+        }
+      }
+
+      // Price responsive margins
+      .views-field-placed {
+        margin-right: 60px;
+
+        @media screen and (max-width: $breakpoint-m) {
+          width: 50%;
+          margin-right: 0;
+        }
+
+        @media screen and (max-width: $breakpoint-s) {
+          width: auto;
+          margin-bottom: 8px;
         }
       }
     }
@@ -28,7 +104,7 @@
 }
 
 // order detail
-.customer-information{
+.customer-information {
   max-width: 1140px;
   margin-left: auto;
   margin-right: auto;
@@ -37,80 +113,79 @@
   @media only screen and (min-width: 768px) {
     display: grid;
   }
-  .field--name-mail{
+  .field--name-mail {
     margin-bottom: 0.5rem;
     @media only screen and (min-width: 768px) {
       grid-column-start: 1;
       grid-row-start: 1;
     }
   }
-  .customer-information__shipping{
+  .customer-information__shipping {
     @media only screen and (min-width: 768px) {
       grid-column-start: 1;
       grid-row-start: 2;
     }
   }
-  .customer-billing{
+  .customer-billing {
     @media only screen and (min-width: 768px) {
       grid-column-start: 2;
       grid-row-start: 2;
     }
   }
 
-
   .field__label,
-  .field--type-entity-reference .field__label{
+  .field--type-entity-reference .field__label {
     font-weight: 700;
   }
 }
 
-.order-information{
+.order-information {
   max-width: 1140px;
   margin-left: auto;
   margin-right: auto;
   padding: 0 15px 45px;
 
   .field__label,
-  .field--type-entity-reference .field__label{
+  .field--type-entity-reference .field__label {
     font-weight: 700;
   }
 
   .table {
     font-size: $font-size-standard;
-    tr{
+    tr {
       background: none;
       th,
-      td{
+      td {
         padding: 8px 0;
         background: none;
         color: inherit;
         border-bottom: 1px solid $border-color-base;
         border-top: none;
 
-        a{
+        a {
           color: $color-standard;
         }
       }
-      .views-field-total-price__number{
+      .views-field-total-price__number {
         text-align: right;
       }
     }
   }
 
-  .order-total-line{
+  .order-total-line {
     padding: 0;
   }
 }
 
 // user profile
-article.profile{
+article.profile {
   max-width: 1140px;
   margin-left: auto;
   margin-right: auto;
   padding: 45px 15px;
 }
 
-.user-form{
+.user-form {
   max-width: 1140px;
   margin-left: auto;
   margin-right: auto;
@@ -127,7 +202,7 @@ article.profile{
     border: $border-width-base solid $border-color-base;
     margin-top: 0rem;
   }
-  .btn-primary{
+  .btn-primary {
     margin: 15px 0;
     width: auto;
   }

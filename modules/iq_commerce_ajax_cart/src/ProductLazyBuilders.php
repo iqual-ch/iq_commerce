@@ -29,9 +29,8 @@ class ProductLazyBuilders extends ProductLazyBuildersBase {
     $product = Product::load($productId);
     $variations = [];
 
-    foreach ($product->getVariationIds() as $variationId) {
-      $variation = \Drupal::entityTypeManager()->getStorage('commerce_product_variation')->load($variationId);
-      $variations[$variationId] = $variation->getAttributeValueIds();
+    foreach ($product->getVariations() as $variation) {
+      $variations[$variation->id()] = $variation->getAttributeValueIds();
     }
 
     return $variations;

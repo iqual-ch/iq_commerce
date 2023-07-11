@@ -1,3 +1,9 @@
+rounding:
+  label: 'Rounding'
+  singular_label: 'Rounding'
+  plural_label: 'Rounding'
+  has_ui: true
+  weight: 12
 min_order_fee:
   label: 'Min amount fee'
   singular_label: 'Min. fee'

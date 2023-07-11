@@ -16,15 +16,41 @@ iq-commerce-product-teaser:
     product_description:
       type: text
       label: Product description
-    product_variants:
+    product_variations:
       type: text
-      label: Product variants
-    product_img:
+      label: Product variations
+    image_img:
       type: image
-      label: Product image
-    title_button:
+      label: Image
+    image_template:
+      type: image_style_template
+      label: Template
+    sizes:
+      type: component_sizes
+      label: Sizes
+    button_text:
       type: text
       label: Button text
+    button_icon:
+      type: text
+      label: Button icon
+    product_price:
+      type: text
+      label: Product price
+    product_price_currency:
+      type: text
+      label: Product price currency
+    product_price_additional_text:
+      type: text
+      label: Additional text for product price
+    title_weight:
+      type: text
+      label: Title weight
+
+  responsive_images:
+    template_fields:
+      image_img: image_template
+    component_sizes_field: sizes
 
   libraries:
     - ui_patterns/button.button
@@ -32,7 +58,5 @@ iq-commerce-product-teaser:
         css:
           component:
             productteaser.css: {}
-        js:
-          productteaser.js: {}
       dependencies:
         - core/drupal

@@ -1,0 +1,206 @@
+{#
+  /**
+   * @file
+   * Template for the order receipt.
+   *
+   * Available variables:
+   * - order_entity: The order entity.
+   * - billing_information: The billing information.
+   * - shipping_information: The shipping information.
+   * - payment_method: The payment method.
+   * - totals: An array of order totals values with the following keys:
+   *   - subtotal: The order subtotal price.
+   *   - adjustments: An array of adjustment totals:
+   *     - type: The adjustment type.
+   *     - label: The adjustment label.
+   *     - total: The adjustment total price.
+   *     - weight: The adjustment weight, taken from the adjustment type.
+   *   - total: The order total price.
+   *
+   * @ingroup themeable
+   */
+  #}
+
+  <table cellpadding="0" cellspacing="0" style="clear: right; font-family: arial, sans-serif; width: 92%; float: right;">
+    <tbody>
+      <tr>
+        <td>
+          <table cellpadding="0" cellspacing="0" style="width: 100%; border-bottom: 1px solid black">
+            <tr>
+              <td align="right">
+                <img src="{{ path_to_logo }}" alt="alt" width="180px" height="auto"></img>
+              </td>
+            </tr>
+            <tr>
+              <td style="padding-bottom: 30px">
+                <span style="font-size: 20px; font-weight: bold;">{{'Thank you for your order!'|t}}</span>
+              </td>
+            </tr>
+            <tr>
+              <td style="padding-bottom: 12px;">
+                <span style="font-size: 14px; line-height: 1.5;">
+                  {{'Dear'|t}} {{ full_name }},
+                </span>
+              </td>
+            </tr>
+            <tr>
+              <td style="padding-bottom: 30px;">
+                <span style="font-size: 14px; line-height: 1.5;">
+                  {{'We have received your order and will process it immediately.'|t}}
+                </span>
+              </td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+      <tr>
+        <td style="width: 100%; border-bottom: 1px solid black">
+          <table cellpadding="0" cellspacing="0" style="padding: 24px 0 30px">
+            <tr>
+              <td style="padding-right: 50px; font-size: 14px; line-height: 1.5; font-weight: bold">
+                <div style="padding-bottom: 10px">{{ 'Order date'|t }}</div>
+                <div style="padding-bottom: 10px">{{ 'Order number'|t }}</div>
+                <div style="padding-bottom: 10px">{{ 'Shipping method'|t }}</div>
+                <div>{{ 'Payment method' }}</div>
+              </td>
+              <td style="font-size: 14px; line-height: 1.5;">
+                <div style="padding-bottom: 10px">{{ order_entity.placed.value|date('d.m.Y') }}</div>
+                <div style="padding-bottom: 10px">{{ order_entity.getOrderNumber }}</div>
+                <div style="padding-bottom: 10px">{{ shipping_method }}</div>
+                <div>{{ payment_method }}</div>
+              </td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+      <tr>
+        {% if (billing_information or shipping_information) %}
+          <td style="padding: 30px 0 18px; border-bottom: 1px solid black;">
+            <table cellpadding="0" cellspacing="0" style="width: 100%; font-size: 14px; line-height: 1.15">
+              <tr>
+                {% if shipping_information %}
+                  <td style="width: 50%; font-weight: bold;">{{ 'Shipping Information'|t }}</td>
+                {% endif %}
+                {% if billing_information %}
+                  <td style="width: 50%; font-weight: bold;">{{ 'Billing Information'|t }}</td>
+                {% endif %}
+              </tr>
+              <tr>
+                {% if shipping_information %}
+                  <td>
+                    {% block shipping_information %}
+                      {{ shipping_address|raw }}
+                    {% endblock %}
+                  </td>
+                {% endif %}
+                {% if billing_information %}
+                  <td>
+                    {% block billing_information %}
+                      {{ billing_address|raw }}
+                    {% endblock %}
+                  </td>
+                {% endif %}
+              </tr>
+            </table>
+          </td>
+        {% endif %}
+      </tr>
+      <tr>
+        <td style="padding: 30px 0 0;">
+          <table cellpadding="0" cellspacing="0" style="width: 100%; font-size: 14px; line-height: 1.15">
+            <tr><td style="font-weight: bold;">{{ 'Order items'|t }}</td></tr>
+            {% block order_items %}
+              <tr>
+                <td>
+                  <table cellpadding="0" cellspacing="0" style="width: 100%; font-size: 14px; line-height: 1.5; padding-top: 16px;">
+                    <tbody style="text-align: left;">
+                      <tr>
+                        <td>
+                          <table cellpadding="0" cellspacing="0" style="width: 100%; border-collapse: collapse;">
+                            <tr>
+                              <th style="padding-bottom: 16px; border-bottom: 1px solid #dedede; text-align: left; font-size: 12px; font-weight: normal; line-height: 1.5; color: #9a9a9a; text-transform: uppercase">
+                                {{'Product'|t}}
+                              </th>
+                              <th style="padding-bottom: 16px; border-bottom: 1px solid #dedede; float: right; text-align: right; font-size: 12px; font-weight: normal; line-height: 1.5; color: #9a9a9a; text-transform: uppercase">
+                                {{'Price'|t}}
+                              </th>
+                              <th style="padding-bottom: 16px; border-bottom: 1px solid #dedede; float: right; text-align: right; font-size: 12px; font-weight: normal; line-height: 1.5; color: #9a9a9a; text-transform: uppercase">
+                                {{'Quantity'|t}}
+                              </th>
+                              <th style="padding-bottom: 16px; border-bottom: 1px solid #dedede; float: right; text-align: right; font-size: 12px; font-weight: normal; line-height: 1.5; color: #9a9a9a; text-transform: uppercase">
+                                {{'Total'|t}}
+                              </th>
+                            </tr>
+                            {% for order_item in order_entity.getItems %}
+                              <tr>
+                                <td style="font-weight: bold; padding: 16px 0; border-bottom: 1px solid #dedede;">
+                                  <span>{{ order_item.label }}</span>
+                                </td>
+                                <td style="text-align: right; padding: 16px 0; border-bottom: 1px solid #dedede;">
+                                  {{ order_item.getUnitPrice|commerce_price_format }}
+                                </td>
+                                <td style="text-align: right; padding: 16px 0; border-bottom: 1px solid #dedede;">
+                                  {{ order_item.getQuantity|number_format }}
+                                </td>
+                                <td style="font-weight: bold; text-align: right; padding: 16px 0; border-bottom: 1px solid #dedede;">
+                                  <span style="float: right;">{{ order_item.getTotalPrice|commerce_price_format }}</span>
+                                </td>
+                              </tr>
+                            {% endfor %}
+                          </table>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </td>
+              </tr>
+            {% endblock %}
+          </table>
+        </td>
+      </tr>
+      <tr>
+        <td style="padding: 24px 0 0;">
+          <table cellpadding="0" cellspacing="0" style="width: 100%; font-size: 14px; line-height: 2">
+            <tr>
+              <td>
+                <span>
+                  {{ 'Subtotal'|t }}
+                </span>
+              </td>
+              <td>
+                <span style="float: right; text-align: right">
+                  {{ totals.subtotal|commerce_price_format }}
+                </span>
+              </td>
+            </tr>
+            {% for adjustment in totals.adjustments %}
+            <tr>
+              <td>
+                <span>
+                  {{ adjustment.label }}
+                </span>
+              </td>
+              <td>
+                <span style="float: right; text-align: right">
+                  {{ adjustment.total|commerce_price_format }}
+                </span>
+              </td>
+            </tr>
+            {% endfor %}
+            <tr>
+              <td>
+                <span style="font-weight: bold">
+                  {{ 'Order Total'|t }}
+                </span>
+              </td>
+              <td>
+                <span style="float: right; text-align: right; font-weight: bold">
+                  {{ order_entity.getTotalPrice|commerce_price_format }}
+                </span>
+              </td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+    </tbody>
+  </table>

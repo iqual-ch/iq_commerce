@@ -2,7 +2,7 @@
 
 namespace Drupal\iq_commerce\Event;
 
-use Symfony\Component\EventDispatcher\Event;
+use Symfony\Contracts\EventDispatcher\Event;
 
 /**
  * Defines the after cart update item event.
@@ -13,27 +13,29 @@ class IqCommerceAfterCartUpdateItemEvent extends Event {
 
   /**
    * The response after the product item is updated from the cart.
+   *
+   * @var \Drupal\rest\ResourceResponseInterface
    */
   protected $response;
 
   /**
    * Constructs a new AfterCartUpdateEvent.
    *
-   * @param $response
+   * @param \Drupal\rest\ResourceResponseInterface $response
    *   The response after the order item is updated from the cart.
    */
   public function __construct($response) {
     $this->response = $response;
-    \Drupal::logger('iq_commerce')->notice('after cart updated created event');
   }
 
   /**
    * Gets the response.
    *
-   * @return array
+   * @return \Drupal\rest\ResourceResponseInterface
    *   The response from the cart api.
    */
   public function getResponse() {
     return $this->response;
   }
+
 }

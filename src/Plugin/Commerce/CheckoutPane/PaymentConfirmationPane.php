@@ -60,7 +60,7 @@ class PaymentConfirmationPane extends CheckoutPaneBase {
       'commerce_order' => $this->order,
     ]);
     $pane_form['message'] = [
-      '#markup' => $this->t($message)
+      '#markup' => $this->t($message),
     ];
     return $pane_form;
   }
@@ -71,7 +71,7 @@ class PaymentConfirmationPane extends CheckoutPaneBase {
   public function buildConfigurationSummary() {
     $additional_pane_text = "";
     if (!empty($this->configuration['header']['value'])) {
-      $additional_pane_text .= htmlspecialchars(substr($this->configuration['header']['value'],0,120)) . "...";
+      $additional_pane_text .= htmlspecialchars(substr($this->configuration['header']['value'], 0, 120)) . "...";
       return $additional_pane_text;
     }
     else {
@@ -128,6 +128,5 @@ class PaymentConfirmationPane extends CheckoutPaneBase {
       }
     }
   }
-
 
 }
