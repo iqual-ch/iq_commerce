@@ -58,10 +58,6 @@ function iq_commerce_theme($existing, $type, $theme, $path) {
       'template' => 'commerce/variation-add-to-cart-formatter',
       'base hook' => 'variation_add_to_cart_formatter',
     ],
-    'page__user__login' => [
-      'template' => 'layout/page--user--login',
-      'base hook' => 'page',
-    ],
     'page__user__orders__%' => [
       'template' => 'layout/page--user--orders--%',
       'base hook' => 'page',
@@ -69,22 +65,6 @@ function iq_commerce_theme($existing, $type, $theme, $path) {
     'page__user__orders' => [
       'template' => 'layout/page--user--orders',
       'base hook' => 'page',
-    ],
-    'page__user__password' => [
-      'template' => 'layout/page--user--password',
-      'base hook' => 'page',
-    ],
-    'page__user__register' => [
-      'template' => 'layout/page--user--register',
-      'base hook' => 'page',
-    ],
-    'menu__account' => [
-      'template' => 'navigation/menu--account',
-      'base hook' => 'menu',
-    ],
-    'user__full' => [
-      'template' => 'user/user--full',
-      'base hook' => 'user',
     ],
   ];
 }
