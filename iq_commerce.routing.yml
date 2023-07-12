@@ -43,3 +43,11 @@ iq_commerce.user_address_book:
     _title: 'User account settings'
   requirements:
     _user_is_logged_in: 'TRUE'
+
+iq_commerce.config:
+  path: '/admin/commerce/config/AdditionalFee'
+  defaults:
+    _form: '\Drupal\iq_commerce\Form\IqCommerceFeeSettingsForm'
+    _title: 'Order fee settings'
+  requirements:
+    _permission: 'administer site configuration'

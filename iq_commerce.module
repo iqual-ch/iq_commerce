@@ -17,6 +17,7 @@ use Drupal\views\ViewExecutable;
 use Drupal\address\Plugin\Field\FieldType\AddressItem;
 use Drupal\profile\Entity\Profile;
 use Drupal\commerce_order\Adjustment;
+use Drupal\Core\Entity\EntityInterface;
 
 /**
  * Implements hook_mail().
@@ -33,36 +34,38 @@ function iq_commerce_mail($key, &$message, $params) {
  */
 function iq_commerce_theme($existing, $type, $theme, $path) {
   return [
+    'commerce_checkout_form__with_sidebar' => [
+      'template' => 'commerce/commerce-checkout-form--with-sidebar',
+      'base hook' => 'commerce_checkout_form',
+    ],
+    'commerce_order__user' => [
+      'template' => 'commerce/commerce-order--user',
+      'base hook' => 'commerce_order',
+    ],
+    'commerce_order_receipt__entity_print' => [
+      'template' => 'commerce/commerce-order-receipt--entity-print',
+      'base hook' => 'commerce_order_receipt',
+    ],
     'commerce_order_receipt' => [
       'template' => 'commerce/iq-commerce-order-receipt',
       'base hook' => 'commerce_order_receipt',
     ],
     'commerce_product' => [
       'render element' => 'elements',
+      'template' => 'commerce/commerce-product',
+      'base hook' => 'commerce_product',
     ],
-    'page__user__login' => [
-      'template' => 'layout/page--user--login',
-      'base hook' => 'page',
+    'variation_add_to_cart_formatter' => [
+      'template' => 'commerce/variation-add-to-cart-formatter',
+      'base hook' => 'variation_add_to_cart_formatter',
     ],
     'page__user__orders__%' => [
       'template' => 'layout/page--user--orders--%',
       'base hook' => 'page',
     ],
-    'page__user__password' => [
-      'template' => 'layout/page--user--password',
+    'page__user__orders' => [
+      'template' => 'layout/page--user--orders',
       'base hook' => 'page',
-    ],
-    'page__user__register' => [
-      'template' => 'layout/page--user--register',
-      'base hook' => 'page',
-    ],
-    'menu__account' => [
-      'template' => 'navigation/menu--account',
-      'base hook' => 'menu',
-    ],
-    'user__full' => [
-      'template' => 'user/user--full',
-      'base hook' => 'user',
     ],
   ];
 }
@@ -255,7 +258,7 @@ function iq_commerce_commerce_order_presave($entity) {
     // // Rounds down 10.21 and 10.22 to 10.20, rounds up 10.23 and 10.24 to 10.25.
     $rounded_total = $rounder->round($order_total->divide(5))->multiply(5);
     $difference = $rounded_total->subtract($order_total);
-    if ($difference->getNumber() > 0) {
+    if (abs($difference->getNumber()) > 0) {
       $entity->addAdjustment(new Adjustment([
         'type' => 'rounding',
         'label' => t('Rounding'),
@@ -397,6 +400,28 @@ function iq_commerce_preprocess_commerce_order(&$variables) {
   $billing_address = $billing_profile->get('address')->first();
   $variables['billing_address'] = iq_commerce_get_address_string($billing_address, $billing_profile);
   $variables['language'] = \Drupal::languageManager()->getCurrentLanguage(LanguageInterface::TYPE_CONTENT)->getId();
+}
+
+/**
+ * Implements hook_ENTITY_TYPE_delete().
+ *
+ * Delete all cart assignment of the deleted product.
+ */
+function iq_commerce_commerce_product_variation_delete(EntityInterface $entity) {
+  /** @var Drupal\Core\Entity\EntityInterface[] $order_items */
+  $order_items = \Drupal::entityTypeManager()->getStorage('commerce_order_item')->loadByProperties([
+    'purchased_entity' => $entity->id(),
+  ]);
+  if (!empty($order_items)) {
+    foreach ($order_items as $order_item) {
+      if ($order_item &&
+          $order_item->getOrder() &&
+          $order_item->getOrder()->getState()->getLabel() != 'Completed'
+      ) {
+        $order_item->delete();
+      }
+    }
+  }
 }
 
 /**
