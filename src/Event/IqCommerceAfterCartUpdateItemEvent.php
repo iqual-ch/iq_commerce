@@ -2,6 +2,7 @@
 
 namespace Drupal\iq_commerce\Event;
 
+use Drupal\rest\ResourceResponseInterface;
 use Symfony\Contracts\EventDispatcher\Event;
 
 /**
@@ -24,7 +25,7 @@ class IqCommerceAfterCartUpdateItemEvent extends Event {
    * @param \Drupal\rest\ResourceResponseInterface $response
    *   The response after the order item is updated from the cart.
    */
-  public function __construct($response) {
+  public function __construct(ResourceResponseInterface $response) {
     $this->response = $response;
   }
 
