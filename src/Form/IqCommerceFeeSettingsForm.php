@@ -10,8 +10,7 @@ class IqCommerceFeeSettingsForm extends ConfigFormBase {
   /**
    * {@inheritdoc}
    */
-  protected function getEditableConfigNames(): array
-  {
+  protected function getEditableConfigNames(): array {
     return [
       'iq_commerce.settings'
     ];
@@ -20,8 +19,7 @@ class IqCommerceFeeSettingsForm extends ConfigFormBase {
   /**
    * {@inheritdoc}
    */
-  public function getFormId(): string
-  {
+  public function getFormId(): string {
     return 'iq_commerce_settings_form';
   }
 
