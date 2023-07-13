@@ -74,7 +74,8 @@ function iq_commerce_theme($existing, $type, $theme, $path) {
  * Implements hook_theme_registry_alter().
  */
 function iq_commerce_theme_registry_alter(&$theme_registry) {
-  // Replace the path to the registered template and use the one from custom module.
+  // Replace the path to the registered template and use the one from custom
+  // module.
   $theme_registry['commerce_order__user']['path'] = \Drupal::service('extension.list.module')->getPath('iq_commerce') . '/templates/commerce';
   $theme_registry['commerce_order_receipt']['path'] = \Drupal::service('extension.list.module')->getPath('iq_commerce') . '/templates/commerce';
   $theme_registry['commerce_checkout_form__with_sidebar']['path'] = \Drupal::service('extension.list.module')->getPath('iq_commerce') . '/templates/commerce';
@@ -255,7 +256,7 @@ function iq_commerce_commerce_order_presave($entity) {
     if ($order_total == NULL) {
       return;
     }
-    // // Rounds down 10.21 and 10.22 to 10.20, rounds up 10.23 and 10.24 to 10.25.
+    // Rounds down 10.21 and 10.22 to 10.20, rounds up 10.23 and 10.24 to 10.25.
     $rounded_total = $rounder->round($order_total->divide(5))->multiply(5);
     $difference = $rounded_total->subtract($order_total);
     if (abs($difference->getNumber()) > 0) {

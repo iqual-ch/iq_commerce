@@ -7,20 +7,20 @@ use Drupal\commerce_cart\Event\CartEvents;
 use Drupal\commerce_cart\Event\CartOrderItemRemoveEvent;
 use Drupal\commerce_cart\Event\CartOrderItemUpdateEvent;
 use Drupal\commerce_order\Adjustment;
-use Drupal\commerce_order\Entity\OrderItem;
 use Drupal\commerce_price\Price;
 use Drupal\commerce_repeat_order\Event\OrderCloneEvent;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Drupal\commerce_order\Entity\OrderInterface;
 
-class CartEventSubscriber implements EventSubscriberInterface
-{
+/**
+ * Cart Event Subscriber.
+ */
+class CartEventSubscriber implements EventSubscriberInterface {
 
   /**
    * {@inheritdoc}
    */
-  public static function getSubscribedEvents()
-  {
+  public static function getSubscribedEvents() {
     $events = [
       CartEvents::CART_ENTITY_ADD => ['onCartEntityAdd', -50],
       CartEvents::CART_ORDER_ITEM_REMOVE => ['onCartOrderItemRemove', -50],
@@ -31,7 +31,10 @@ class CartEventSubscriber implements EventSubscriberInterface
   }
 
   /**
-   * Resets the checkout flow status when an item is added to the cart and adds the cleaning price as an adjustment.
+   * On Cart Entity Add.
+   *
+   * Resets the checkout flow status when an item is added to the cart and adds
+   * the cleaning price as an adjustment.
    *
    * @param \Drupal\commerce_cart\Event\CartEntityAddEvent $event
    *   The cart event.
