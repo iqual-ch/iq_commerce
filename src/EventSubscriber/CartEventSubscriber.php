@@ -11,11 +11,32 @@ use Drupal\commerce_price\Price;
 use Drupal\commerce_repeat_order\Event\OrderCloneEvent;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Drupal\commerce_order\Entity\OrderInterface;
+use Drupal\Core\StringTranslation\StringTranslationTrait;
+use Drupal\Core\TempStore\PrivateTempStoreFactory;
 
 /**
  * Cart Event Subscriber.
  */
 class CartEventSubscriber implements EventSubscriberInterface {
+
+  use StringTranslationTrait;
+
+  /**
+   * The tempstore service.
+   *
+   * @var \Drupal\Core\TempStore\PrivateTempStore
+   */
+  protected $tempStore;
+
+  /**
+   * Constructs a new CartEventSubscriber.
+   *
+   * @param \Drupal\Core\TempStore\PrivateTempStoreFactory $temp_store_factory
+   *   The tempstore service.
+   */
+  public function __construct(PrivateTempStoreFactory $temp_store_factory) {
+    $this->tempStore = $temp_store_factory->get('top_events_commerce');
+  }
 
   /**
    * {@inheritdoc}
@@ -100,7 +121,7 @@ class CartEventSubscriber implements EventSubscriberInterface {
     if ($cart->getTotalPrice()->getNumber() < \Drupal::config('iq_commerce.settings')->get('minimum-treshold')) {
       $cart->addAdjustment(new Adjustment([
         'type' => 'min_order_fee',
-        'label' => t('Min. fee'),
+        'label' => $this->t('Min. fee'),
         'amount' => new Price(\Drupal::config('iq_commerce.settings')->get('additional-cost-amount'), 'CHF'),
         'included' => FALSE,
         'locked' => TRUE,
@@ -123,10 +144,8 @@ class CartEventSubscriber implements EventSubscriberInterface {
       $variation = $order_item->getPurchasedEntity();
       $product = $variation ? $variation->getProduct() : NULL;
       if ($product == NULL || !$product->isPublished()) {
-        $message = t("Some products weren't copied to the cart as they aren't currently available.");
-        $tempstore = \Drupal::service('tempstore.private');
-        $store = $tempstore->get('top_events_commerce');
-        $store->set('unavailable_products', $message);
+        $message = $this->t("Some products weren't copied to the cart as they aren't currently available.");
+        $this->tempStore->set('unavailable_products', $message);
       }
     }
   }
