@@ -5,6 +5,9 @@ namespace Drupal\iq_commerce\Form;
 use Drupal\Core\Form\ConfigFormBase;
 use Drupal\Core\Form\FormStateInterface;
 
+/**
+ * Class Iq Commerce Fee Settings Form.
+ */
 class IqCommerceFeeSettingsForm extends ConfigFormBase {
 
   /**
@@ -12,7 +15,7 @@ class IqCommerceFeeSettingsForm extends ConfigFormBase {
    */
   protected function getEditableConfigNames(): array {
     return [
-      'iq_commerce.settings'
+      'iq_commerce.settings',
     ];
   }
 
@@ -30,31 +33,28 @@ class IqCommerceFeeSettingsForm extends ConfigFormBase {
     $form = parent::buildForm($form, $form_state);
     $config = $this->config('iq_commerce.settings');
 
-    $form['minimum-treshold'] = array(
+    $form['minimum-treshold'] = [
       '#type' => 'number',
       '#title' => $this->t('Minimum amount for additional costs'),
       '#default_value' => $config->get('minimum-treshold') ?? 0,
       '#description' => $this->t('If the cart value is below this value additional costs apply.'),
       '#required' => TRUE,
-    );
+    ];
 
-    $form['additional-cost-amount'] = array(
+    $form['additional-cost-amount'] = [
       '#type' => 'number',
       '#title' => $this->t('Additional cost amount'),
       '#default_value' => $config->get('additional-cost-amount') ?? 0,
       '#description' => $this->t('When the cart is below minimum amount above this amount will be added to total costs'),
       '#required' => TRUE,
-    );
+    ];
 
     return $form;
   }
 
   /**
-
    * {@inheritdoc}
-
    */
-
   public function submitForm(array &$form, FormStateInterface $form_state) {
 
     $config = $this->config('iq_commerce.settings');
@@ -62,7 +62,6 @@ class IqCommerceFeeSettingsForm extends ConfigFormBase {
     $config->set('threshold', $form_state->getValue('threshold'));
     $config->set('minimum-treshold', $form_state->getValue('minimum-treshold'));
     $config->set('additional-cost-amount', $form_state->getValue('additional-cost-amount'));
-
 
     $config->save();
 

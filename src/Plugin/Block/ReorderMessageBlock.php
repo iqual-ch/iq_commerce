@@ -35,7 +35,7 @@ class ReorderMessageBlock extends BlockBase {
   }
 
   /**
-   *
+   * Get Cache Max Age.
    */
   public function getCacheMaxAge() {
     return 0;

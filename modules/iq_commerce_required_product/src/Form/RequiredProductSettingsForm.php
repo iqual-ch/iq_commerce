@@ -10,7 +10,7 @@ use Drupal\Core\Form\FormStateInterface;
 use Symfony\Component\Yaml\Yaml as YamlParser;
 
 /**
- * Class RequiredProductSettingsForm.
+ * Class Required Product Settings Form.
  *
  * @package Drupal\iq_commerce\Form
  */

@@ -117,7 +117,7 @@ class IqCommerceCartAddResource extends CartAddResource {
    * @throws \Exception
    */
   public function post(array $data, Request $request) {
-    if (empty($data )) {
+    if (empty($data)) {
       return new InvalidArgumentException(sprintf('No data provided.'));
     }
     // Do an initial validation of the payload before any processing.

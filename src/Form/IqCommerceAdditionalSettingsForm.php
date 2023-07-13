@@ -6,7 +6,7 @@ use Drupal\Core\Form\ConfigFormBase;
 use Drupal\Core\Form\FormStateInterface;
 
 /**
- * Class IqCommerceAdditionalSettingsForm.
+ * Class Iq Commerce Additional Settings Form.
  *
  * @package Drupal\iq_commerce\Form
  */

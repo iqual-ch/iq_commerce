@@ -41,7 +41,6 @@ class CartEventSubscriber implements EventSubscriberInterface {
    */
   public function onCartEntityAdd(CartEntityAddEvent $event) {
     $cart = $event->getCart();
-    $added_entity = $event->getEntity();
     $this->checkForMinimalAmountFee($cart);
 
     if ($cart->hasField('checkout_flow')) {
@@ -49,6 +48,12 @@ class CartEventSubscriber implements EventSubscriberInterface {
     }
   }
 
+  /**
+   * On Cart Order Item Remove.
+   *
+   * @param \Drupal\commerce_cart\Event\CartOrderItemRemoveEvent $event
+   *   The event parameter.
+   */
   public function onCartOrderItemRemove(CartOrderItemRemoveEvent $event) {
     $cart = $event->getCart();
 
@@ -59,6 +64,12 @@ class CartEventSubscriber implements EventSubscriberInterface {
     $this->checkForMinimalAmountFee($cart);
   }
 
+  /**
+   * On Cart Order Item Update Event.
+   *
+   * @param \Drupal\commerce_cart\Event\CartOrderItemUpdateEvent $event
+   *   The event parameter.
+   */
   public function onCartItemUpdate(CartOrderItemUpdateEvent $event) {
     $cart = $event->getCart();
     $this->checkForMinimalAmountFee($cart);
