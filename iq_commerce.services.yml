@@ -18,6 +18,6 @@ services:
 
   iq_commerce.cart_update_subscriber:
     class: Drupal\iq_commerce\EventSubscriber\CartEventSubscriber
-    arguments: ['@entity_type.manager']
+    arguments: ['@tempstore.private']
     tags:
       - { name: event_subscriber }
