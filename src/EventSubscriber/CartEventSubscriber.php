@@ -7,12 +7,12 @@ use Drupal\commerce_cart\Event\CartEvents;
 use Drupal\commerce_cart\Event\CartOrderItemRemoveEvent;
 use Drupal\commerce_cart\Event\CartOrderItemUpdateEvent;
 use Drupal\commerce_order\Adjustment;
+use Drupal\commerce_order\Entity\OrderInterface;
 use Drupal\commerce_price\Price;
 use Drupal\commerce_repeat_order\Event\OrderCloneEvent;
-use Symfony\Component\EventDispatcher\EventSubscriberInterface;
-use Drupal\commerce_order\Entity\OrderInterface;
 use Drupal\Core\StringTranslation\StringTranslationTrait;
 use Drupal\Core\TempStore\PrivateTempStoreFactory;
+use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
 /**
  * Cart Event Subscriber.
