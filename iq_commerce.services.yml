@@ -6,7 +6,7 @@ services:
 
   commerce_cart_api.normalizer.entity_references:
     class: Drupal\iq_commerce\Normalizer\EntityReferenceNormalizer
-    arguments: ['@entity.repository', '@current_route_match', '%commerce_cart_api%']
+    arguments: ['@entity.repository', '@current_route_match', '@file_url_generator', '%commerce_cart_api%']
     tags:
       - { name: normalizer, priority: 9 }
 
