@@ -2,7 +2,7 @@ name: iQual Commerce Extension
 description: Provides additional functionality for the Commerce for iQual.
 package: Custom
 type: module
-core_version_requirement: ^8.8 || ^9
+core_version_requirement: ^9.5 || ^10
 dependencies:
   - commerce:commerce_tax (price,order)
   - commerce:commerce_checkout
