@@ -13,8 +13,8 @@ use Drupal\iq_commerce\Event\IqCommerceBeforeCartUpdateItemEvent;
 use Drupal\iq_commerce\Event\IqCommerceCartEvents;
 use Psr\Log\LoggerInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
-use Symfony\Component\HttpKernel\Exception\UnprocessableEntityHttpException;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
+use Symfony\Component\HttpKernel\Exception\UnprocessableEntityHttpException;
 use Symfony\Component\Serializer\SerializerInterface;
 
 /**

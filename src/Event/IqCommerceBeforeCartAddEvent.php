@@ -12,30 +12,14 @@ use Symfony\Contracts\EventDispatcher\Event;
 class IqCommerceBeforeCartAddEvent extends Event {
 
   /**
-   * The body with json data which is sent to the cart api.
-   *
-   * @var array
-   */
-  protected $body;
-
-  /**
-   * The additional data that was added (usually required products).
-   *
-   * @var array
-   */
-  protected $additionalData;
-
-  /**
    * Constructs a new BeforeCartAddEvent.
    *
    * @param array $body
    *   The json data of the request to add order item(s) sent to the cart api.
-   * @param array $additional_data
+   * @param array $additionalData
    *   The additional data to be added.
    */
-  public function __construct($body, $additional_data = []) {
-    $this->body = $body;
-    $this->additionalData = $additional_data;
+  public function __construct(protected $body, protected $additionalData = []) {
   }
 
   /**

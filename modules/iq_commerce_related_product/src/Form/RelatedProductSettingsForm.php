@@ -52,7 +52,7 @@ class RelatedProductSettingsForm extends ConfigFormBase {
     try {
       Yaml::encode($form_state->getValue('related_product_fields'));
     }
-    catch (InvalidDataTypeException $e) {
+    catch (InvalidDataTypeException) {
       $form_state->setErrorByName(
         'related_product_fields',
         $this->t('The provided configuration is not a valid yaml text.')

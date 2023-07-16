@@ -2,11 +2,11 @@
 
 namespace Drupal\iq_commerce_related_product\Plugin\Block;
 
+use Drupal\Component\Serialization\Yaml;
+use Drupal\Component\Serialization\Yaml as YamlSerializer;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\iq_progressive_decoupler\Plugin\Block\DecoupledBlockBase;
-use Drupal\Component\Serialization\Yaml;
 use Symfony\Component\Yaml\Yaml as YamlParser;
-use Drupal\Component\Serialization\Yaml as YamlSerializer;
 
 /**
  * Related product block.

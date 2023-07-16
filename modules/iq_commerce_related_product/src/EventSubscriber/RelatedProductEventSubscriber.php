@@ -6,10 +6,10 @@ use Drupal\commerce_product\Entity\Product;
 use Drupal\commerce_product\Entity\ProductVariation;
 use Drupal\Core\Entity\EntityRepositoryInterface;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
+use Drupal\iq_commerce\Event\IqCommerceAfterCartAddEvent;
 use Drupal\iq_commerce\Event\IqCommerceCartEvents;
 use Drupal\iq_commerce_related_product\Form\RelatedProductSettingsForm;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
-use Drupal\iq_commerce\Event\IqCommerceAfterCartAddEvent;
 
 /**
  * Handles related products on adding products to cart.

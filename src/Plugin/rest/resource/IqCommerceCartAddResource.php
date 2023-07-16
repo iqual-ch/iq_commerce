@@ -14,7 +14,6 @@ use Drupal\Core\Session\AccountInterface;
 use Drupal\iq_commerce\Event\IqCommerceAfterCartAddEvent;
 use Drupal\iq_commerce\Event\IqCommerceBeforeCartAddEvent;
 use Drupal\iq_commerce\Event\IqCommerceCartEvents;
-use InvalidArgumentException;
 use Psr\Log\LoggerInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
@@ -77,7 +76,6 @@ class IqCommerceCartAddResource extends CartAddResource {
    * @throws \Drupal\Component\Plugin\Exception\PluginNotFoundException
    */
   public function __construct(array $configuration, $plugin_id, $plugin_definition, array $serializer_formats, LoggerInterface $logger, CartProviderInterface $cart_provider, CartManagerInterface $cart_manager, EntityTypeManagerInterface $entity_type_manager, ChainOrderTypeResolverInterface $chain_order_type_resolver, CurrentStoreInterface $current_store, ChainPriceResolverInterface $chain_price_resolver, AccountInterface $current_user, EntityRepositoryInterface $entity_repository, EventDispatcherInterface $event_dispatcher) {
-    parent::__construct($configuration, $plugin_id, $plugin_definition, $serializer_formats, $logger, $cart_provider, $cart_manager, $entity_type_manager, $chain_order_type_resolver, $current_store, $chain_price_resolver, $current_user, $entity_repository);
     $this->eventDispatcher = $event_dispatcher;
   }
 
@@ -117,8 +115,8 @@ class IqCommerceCartAddResource extends CartAddResource {
    * @throws \Exception
    */
   public function post(array $data, Request $request) {
-    if (empty($data )) {
-      return new InvalidArgumentException(sprintf('No data provided.'));
+    if (empty($data)) {
+      return new \InvalidArgumentException(sprintf('No data provided.'));
     }
     // Do an initial validation of the payload before any processing.
     foreach ($data as $key => $order_item_data) {
@@ -138,7 +136,7 @@ class IqCommerceCartAddResource extends CartAddResource {
     $first_item = reset($data);
     if (!empty($first_item['form_data'])) {
       foreach ($first_item['form_data'] as $field_name => $field_value) {
-        $field_name = explode('[', $field_name)[0];
+        $field_name = explode('[', (string) $field_name)[0];
         if (!empty($order_item_fields[$field_name])) {
           if (!is_array($order_item_fields[$field_name])) {
             $order_item_fields[$field_name] = [$order_item_fields[$field_name]];
@@ -156,7 +154,7 @@ class IqCommerceCartAddResource extends CartAddResource {
     $this->eventDispatcher->dispatch($before_event, IqCommerceCartEvents::BEFORE_CART_ENTITY_ADD);
     $data = $before_event->getBody();
     // Create the order item through the commerce API.
-    $response = parent::post($data, $request);
+    $response = NULL;
     // Go through the response, it should be only 1 order item.
     $responseData = $response->getResponseData();
     /** @var OrderItem $order_item */

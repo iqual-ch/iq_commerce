@@ -52,7 +52,7 @@ class IqCommerceProductSettingsForm extends ConfigFormBase {
     try {
       Yaml::encode($form_state->getValue('general'));
     }
-    catch (InvalidDataTypeException $e) {
+    catch (InvalidDataTypeException) {
       $form_state->setErrorByName(
         'general',
         $this->t('The provided configuration is not a valid yaml text.')

@@ -2,9 +2,9 @@
 
 namespace Drupal\iq_commerce\Normalizer;
 
-use Drupal\Core\Routing\RouteMatchInterface;
-use Drupal\Core\Entity\EntityRepositoryInterface;
 use Drupal\commerce_cart_api\Normalizer\EntityReferenceNormalizer as EntityReferenceNormalizerBase;
+use Drupal\Core\Entity\EntityRepositoryInterface;
+use Drupal\Core\Routing\RouteMatchInterface;
 use Drupal\iq_commerce\Form\IqCommerceProductSettingsForm;
 
 /**
