@@ -355,7 +355,7 @@ function iq_commerce_preprocess_commerce_order_receipt(&$variables) {
   // Path to logo.
   $activeTheme = \Drupal::theme()->getActiveTheme()->getName();
   $logoPath = \Drupal::config($activeTheme . '.settings')->get('logo.path');
-  if ($wrapper = \Drupal::service('stream_wrapper_manager')->getViaUri($logoPath)) {
+  if ($logoPath && $wrapper = \Drupal::service('stream_wrapper_manager')->getViaUri($logoPath)) {
     $variables['path_to_logo'] = $wrapper->getExternalUrl();
   }
 }
