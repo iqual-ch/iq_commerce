@@ -30,7 +30,7 @@
     "drupal/entity_print": "2.x",
     "drupal/commerce_repeat_order": "^2.2",
     "drupal/commerce_payrexx_integration": "^1.0@beta",
-    "iqual/iq_bef_extensions": "^2.0",
+    "iqual/iq_bef_extensions": "dev-issue/US-1592_d10-upgrade",
     "iqual/iq_user_base": "misc/rework-dev"
   },
   "extra": {}
