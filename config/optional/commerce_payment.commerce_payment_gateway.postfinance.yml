@@ -1,5 +1,5 @@
 langcode: en
-status: true
+status: false
 dependencies:
   module:
     - commerce_postfinance
@@ -8,16 +8,16 @@ label: Postfinance
 weight: null
 plugin: postfinance_redirect_checkout
 configuration:
+  display_label: Postfinance
+  mode: test
+  payment_method_types:
+    - credit_card
+  collect_billing_information: true
   psp_id: iqualgmbhTEST
   sha_in: 1e5dead4c64eb076e533c6115b50890c
   sha_out: 3017cfd746408f61502db6b2148b978f
   charset: utf-8
   hash_algorithm: sha512
   node_catalog: null
-  display_label: Postfinance
-  mode: test
-  payment_method_types:
-    - credit_card
-  collect_billing_information: true
 conditions: {  }
 conditionOperator: AND

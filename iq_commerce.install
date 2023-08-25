@@ -1,0 +1,27 @@
+<?php
+
+/**
+ * @file
+ * Install, update and uninstall functions for the iq_commerce module.
+ */
+
+/**
+ * Apply changes to configuration / environment on installation.
+ */
+function iq_commerce_install() {
+  // Changing redirect to the front page when iq_commerce module is installed.
+  $moduleHandler = \Drupal::service('module_handler');
+  if (!$moduleHandler->moduleExists('redirect_after_login') || !$moduleHandler->moduleExists('iq_commerce')) {
+    return;
+  }
+  $config_factory = \Drupal::configFactory();
+  $config = $config_factory->getEditable('redirect_after_login.settings');
+  $config_setting = $config->get('login_redirection');
+
+  foreach ($config_setting as $key => $setting) {
+    $config_setting[$key] = '/';
+  }
+
+  $config->set('login_redirection', $config_setting);
+  $config->save();
+}

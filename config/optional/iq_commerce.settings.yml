@@ -1,0 +1,10 @@
+_core:
+  default_config_hash: oV7O_YbpMJEwhGN7iakY_-Qr7JHKBIzzqTZSmvGtUr8
+langcode: en
+header:
+  value: ''
+  format: pagedesigner
+footer:
+  value: ''
+  format: pagedesigner
+cart_header: "<h1><strong>Warenkorb</strong></h1>\r\n\r\n<p>Das is Ihr Warenkorb</p>\r\n"

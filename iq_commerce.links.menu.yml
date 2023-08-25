@@ -22,3 +22,10 @@ iq_commerce.product_settings:
   route_name: iq_commerce.product_settings
   parent: iq_commerce.main
   weight: 20
+
+iq_commerce.fee_settings:
+  title: 'Order fee config'
+  route_name: iq_commerce.config
+  description: 'IQ commerce order fee config'
+  parent: iq_commerce.main
+  weight: 40

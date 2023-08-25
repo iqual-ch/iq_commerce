@@ -1,835 +1,711 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<!-- saved from url=(0036)https://ma.iqual.ch/email/preview/91 -->
-<html xmlns="http://www.w3.org/1999/xhtml" style="" class=" js flexbox flexboxlegacy canvas canvastext webgl no-touch geolocation postmessage websqldatabase indexeddb hashchange history draganddrop websockets rgba hsla multiplebgs backgroundsize borderimage borderradius boxshadow textshadow opacity cssanimations csscolumns cssgradients cssreflections csstransforms csstransforms3d csstransitions fontface generatedcontent video audio localstorage sessionstorage webworkers applicationcache svg inlinesvg smil svgclippaths js csstransforms csstransforms3d csstransitions responsejs "><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+{#
+/**
+ * @file
+ * Template for the order receipt.
+ *
+ * Available variables:
+ * - order_entity: The order entity.
+ * - billing_information: The billing information.
+ * - shipping_information: The shipping information.
+ * - payment_method: The payment method.
+ * - totals: An array of order totals values with the following keys:
+ *   - subtotal: The order subtotal price.
+ *   - adjustments: An array of adjustment totals:
+ *     - type: The adjustment type.
+ *     - label: The adjustment label.
+ *     - total: The adjustment total price.
+ *     - weight: The adjustment weight, taken from the adjustment type.
+ *   - total: The order total price.
+ *
+ * @ingroup themeable
+ */
+#}
 
-<head>
-  <title> </title>
-  <!--[if !mso]><!-- -->
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <!--<![endif]-->
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <style type="text/css">
-    #outlook a {
-      padding: 0;
-    }
-
-    body {
-      margin: 0;
-      padding: 0;
-      -webkit-text-size-adjust: 100%;
-      -ms-text-size-adjust: 100%;
-    }
-
-    table,
-    td {
-      border-collapse: collapse;
-      mso-table-lspace: 0pt;
-      mso-table-rspace: 0pt;
-    }
-
-    img {
-      border: 0;
-      height: auto;
-      line-height: 100%;
-      outline: none;
-      text-decoration: none;
-      -ms-interpolation-mode: bicubic;
-    }
-
-    p {
-      display: block;
-      margin: 13px 0;
-    }
-  </style>
-  <!--[if mso]>
-        <xml>
-        <o:OfficeDocumentSettings>
-          <o:AllowPNG/>
-          <o:PixelsPerInch>96</o:PixelsPerInch>
-        </o:OfficeDocumentSettings>
-        </xml>
-        <![endif]-->
-  <!--[if lte mso 11]>
-        <style type="text/css">
-          .mj-outlook-group-fix { width:100% !important; }
-        </style>
-        <![endif]-->
-  <!--[if !mso]><!-->
-  <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet" type="text/css">
-  <style type="text/css">
-    @import url(https://fonts.googleapis.com/css?family=Open+Sans);
-  </style>
-  <!--<![endif]-->
-  <style type="text/css">
-    @media only screen and (min-width:480px) {
-      .mj-column-per-100 {
-        width: 100% !important;
-        max-width: 100%;
-      }
-      .mj-column-per-50 {
-        width: 50% !important;
-        max-width: 50%;
-      }
-      .mj-column-per-5 {
-        width: 5% !important;
-        max-width: 5%;
-      }
-      .mj-column-per-75 {
-        width: 75% !important;
-        max-width: 75%;
-      }
-      .mj-column-per-20 {
-        width: 20% !important;
-        max-width: 20%;
-      }
-      .mj-column-per-80 {
-        width: 80% !important;
-        max-width: 80%;
-      }
-    }
-  </style>
-  <style type="text/css">
-  </style>
-</head>
-
-<body>
-  <div style="">
-    <!--[if mso | IE]>
-      <table
-         align="center" border="0" cellpadding="0" cellspacing="0" class="" style="width:600px;" width="600"
-      >
+<div style="">
+  <!-- Logo section -->
+  <!--[if mso | IE]><table align="center" border="0" cellpadding="0" cellspacing="0" class="" style="width:600px;" width="600" ><tr><td style="line-height:0px;font-size:0px;mso-line-height-rule:exactly;"><![endif]-->
+  <div style="margin:0px auto;max-width:600px;">
+    <table align="center" border="0" cellpadding="0" cellspacing="0" role="presentation" style="width:100%;">
+      <tbody>
         <tr>
-          <td style="line-height:0px;font-size:0px;mso-line-height-rule:exactly;">
-      <![endif]-->
-    <div style="margin:0px auto;max-width:600px;">
-      <table align="center" border="0" cellpadding="0" cellspacing="0" role="presentation" style="width:100%;">
-        <tbody>
-          <tr>
-            <td style="direction:ltr;font-size:0px;padding:20px 0;text-align:center;">
-              <!--[if mso | IE]>
-                  <table role="presentation" border="0" cellpadding="0" cellspacing="0">
-
-        <tr>
-
-            <td
-               class="" style="vertical-align:top;width:600px;"
-            >
-          <![endif]-->
-              <div class="mj-column-per-100 mj-outlook-group-fix" style="font-size:0px;text-align:left;direction:ltr;display:inline-block;vertical-align:top;width:100%;">
-                <table border="0" cellpadding="0" cellspacing="0" role="presentation" style="vertical-align:top;" width="100%">
+          <td style="direction:ltr;font-size:0px;padding:20px 0;text-align:center;">
+            <!--[if mso | IE]><table role="presentation" border="0" cellpadding="0" cellspacing="0"><tr><td class="" style="vertical-align:top;width:600px;" ><![endif]-->
+            <div class="mj-column-per-100 mj-outlook-group-fix" style="font-size:0px;text-align:left;direction:ltr;display:inline-block;vertical-align:top;width:100%;">
+              <table border="0" cellpadding="0" cellspacing="0" role="presentation" style="vertical-align:top;" width="100%">
+                <tbody>
+                  <!-- Image -->
                   <tr>
-                    <td align="left" style="font-size:0px;padding:10px 25px;word-break:break-word;">
-                      <div style="font-family:'Open Sans', Helvetica, Arial, sans-serif;font-size:13px;line-height:1;text-align:left;color:#000000;">{{ iq_commerce_header|raw }}</div>
+                    <td align="left" style="font-size:0px;padding:0;word-break:break-word;">
+                      <table border="0" cellpadding="0" cellspacing="0" role="presentation" style="border-collapse:collapse;border-spacing:0px;">
+                        <tbody>
+                          <tr>
+                            <td style="width:150px;">
+                              <a href="{{ iq_commerce_homepage }}" title="{{ 'Homepage'|t }}" target="_blank">
+                                <img height="auto" src="{{ path_to_logo }}" style="border:0;display:block;outline:none;text-decoration:none;height:auto;width:100%;font-size:13px;" width="150" />
+                              </a>
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
                     </td>
                   </tr>
-                </table>
-              </div>
-              <!--[if mso | IE]>
-            </td>
-
-        </tr>
-
-                  </table>
-                <![endif]-->
-            </td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-    <!--[if mso | IE]>
+                </tbody>
+              </table>
+            </div>
+            <!--[if mso | IE]></td></tr></table><![endif]-->
           </td>
         </tr>
-      </table>
-
-      <table
-         align="center" border="0" cellpadding="0" cellspacing="0" class="" style="width:600px;" width="600"
-      >
-        <tr>
-          <td style="line-height:0px;font-size:0px;mso-line-height-rule:exactly;">
-      <![endif]-->
-    <div style="margin:0px auto;max-width:600px;">
-      <table align="center" border="0" cellpadding="0" cellspacing="0" role="presentation" style="width:100%;">
-        <tbody>
-          <tr>
-            <td style="direction:ltr;font-size:0px;padding:20px 0;text-align:center;">
-              <!--[if mso | IE]>
-                  <table role="presentation" border="0" cellpadding="0" cellspacing="0">
-
-        <tr>
-
-            <td
-               class="" style="vertical-align:top;width:600px;"
-            >
-          <![endif]-->
-              <div class="mj-column-per-100 mj-outlook-group-fix" style="font-size:0px;text-align:left;direction:ltr;display:inline-block;vertical-align:top;width:100%;">
-                <table border="0" cellpadding="0" cellspacing="0" role="presentation" style="vertical-align:top;" width="100%">
-                  <tr>
-                    <td style="font-size:0px;padding:10px 25px;word-break:break-word;">
-                      <p style="border-top:solid 1px #dedede;font-size:1px;margin:0px auto;width:100%;"> </p>
-                      <!--[if mso | IE]>
-        <table
-           align="center" border="0" cellpadding="0" cellspacing="0" style="border-top:solid 1px #dedede;font-size:1px;margin:0px auto;width:550px;" role="presentation" width="550px"
-        >
-          <tr>
-            <td style="height:0;line-height:0;">
-              &nbsp;
-            </td>
-          </tr>
-        </table>
-      <![endif]-->
-                    </td>
-                  </tr>
-                  <tr>
-                    <td align="left" style="font-size:0px;padding:10px 25px;word-break:break-word;">
-                      <div style="font-family:'Open Sans', Helvetica, Arial, sans-serif;font-size:20px;line-height:1;text-align:left;color:#000000;">Bestellbestätigung</div>
-                    </td>
-                  </tr>
-                </table>
-              </div>
-              <!--[if mso | IE]>
-            </td>
-
-        </tr>
-
-                  </table>
-                <![endif]-->
-            </td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-    <!--[if mso | IE]>
-          </td>
-        </tr>
-      </table>
-      <![endif]-->
-    <!-- Billing and Shipping addresses -->
-    <!--[if mso | IE]>
-      <table
-         align="center" border="0" cellpadding="0" cellspacing="0" class="" style="width:600px;" width="600"
-      >
-        <tr>
-          <td style="line-height:0px;font-size:0px;mso-line-height-rule:exactly;">
-      <![endif]-->
-    <div style="margin:0px auto;max-width:600px;">
-      <table align="center" border="0" cellpadding="0" cellspacing="0" role="presentation" style="width:100%;">
-        <tbody>
-          <tr>
-            <td style="direction:ltr;font-size:0px;padding:20px 0;text-align:center;">
-              <!--[if mso | IE]>
-                  <table role="presentation" border="0" cellpadding="0" cellspacing="0">
-
-        <tr>
-      <![endif]-->
-              {% if (billing_information or shipping_information or order_entity.field_iq_commerce_comment.value) %}
-              {% if billing_information %}
-              <!--[if mso | IE]>
-            <td
-               class="" style="vertical-align:top;width:300px;"
-            >
-          <![endif]-->
-              <div class="mj-column-per-50 mj-outlook-group-fix" style="font-size:0px;text-align:left;direction:ltr;display:inline-block;vertical-align:top;width:100%;">
-                <table border="0" cellpadding="0" cellspacing="0" role="presentation" style="vertical-align:top;" width="100%">
-                  <tr>
-                    <td align="left" style="font-size:0px;padding:10px 25px;word-break:break-word;">
-                      <div style="font-family:'Open Sans', Helvetica, Arial, sans-serif;font-size:16px;line-height:1.2;text-align:left;color:#000000;">
-                        <p><strong>{{ 'Billing Information'|t }}</strong></p> {% block billing_information %} {{ billing_information }} {% endblock %}</div>
-                    </td>
-                  </tr>
-                </table>
-              </div>
-              <!--[if mso | IE]>
-            </td>
-          <![endif]-->
-              {% endif %}
-              {% if shipping_information %}
-              <!--[if mso | IE]>
-            <td
-               class="" style="vertical-align:top;width:300px;"
-            >
-          <![endif]-->
-              <div class="mj-column-per-50 mj-outlook-group-fix" style="font-size:0px;text-align:left;direction:ltr;display:inline-block;vertical-align:top;width:100%;">
-                <table border="0" cellpadding="0" cellspacing="0" role="presentation" style="vertical-align:top;" width="100%">
-                  <tr>
-                    <td align="left" style="font-size:0px;padding:10px 25px;word-break:break-word;">
-                      <div style="font-family:'Open Sans', Helvetica, Arial, sans-serif;font-size:16px;line-height:1.2;text-align:left;color:#000000;">
-                        <p><strong>{{ 'Shipping Information'|t }}</strong></p> {% block shipping_information %} {{ shipping_information }} {% endblock %}</div>
-                    </td>
-                  </tr>
-                </table>
-              </div>
-              <!--[if mso | IE]>
-            </td>
-          <![endif]-->
-              {% endif %}
-              {% if order_entity.field_iq_commerce_comment.value %}
-                <!--[if mso | IE]>
-                <td
-                    class="" style="vertical-align:top;width:300px;"
-                >
-                <![endif]-->
-                <div class="mj-column-per-50 mj-outlook-group-fix" style="font-size:0px;text-align:left;direction:ltr;display:inline-block;vertical-align:top;width:100%;">
-                  <table border="0" cellpadding="0" cellspacing="0" role="presentation" style="vertical-align:top;" width="100%">
-                    <tr>
-                      <td align="left" style="font-size:0px;padding:10px 25px;word-break:break-word;">
-                        <div style="font-family:'Open Sans', Helvetica, Arial, sans-serif;font-size:16px;line-height:1.2;text-align:left;color:#000000;">
-                          <p><strong>{{ 'Notes'|t }}</strong></p> {% if order_entity.field_iq_commerce_comment.value %} {{ order_entity.field_iq_commerce_comment.value }} {% endif %}</div>
-                      </td>
-                    </tr>
-                  </table>
-                </div>
-                <!--[if mso | IE]>
-                </td>
-                <![endif]-->
-              {% endif %}
-              {% endif %}
-              <!--[if mso | IE]>
-        </tr>
-
-                  </table>
-                <![endif]-->
-            </td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-    <!--[if mso | IE]>
-          </td>
-        </tr>
-      </table>
-      <![endif]-->
-    {% if payment_method %}
-    <!--[if mso | IE]>
-      <table
-         align="center" border="0" cellpadding="0" cellspacing="0" class="" style="width:600px;" width="600"
-      >
-        <tr>
-          <td style="line-height:0px;font-size:0px;mso-line-height-rule:exactly;">
-      <![endif]-->
-    <div style="margin:0px auto;max-width:600px;">
-      <table align="center" border="0" cellpadding="0" cellspacing="0" role="presentation" style="width:100%;">
-        <tbody>
-          <tr>
-            <td style="direction:ltr;font-size:0px;padding:20px 0;text-align:center;">
-              <!--[if mso | IE]>
-                  <table role="presentation" border="0" cellpadding="0" cellspacing="0">
-
-        <tr>
-
-            <td
-               class="" style="vertical-align:top;width:300px;"
-            >
-          <![endif]-->
-              <div class="mj-column-per-50 mj-outlook-group-fix" style="font-size:0px;text-align:left;direction:ltr;display:inline-block;vertical-align:top;width:100%;">
-                <table border="0" cellpadding="0" cellspacing="0" role="presentation" style="vertical-align:top;" width="100%">
-                  <tr>
-                    <td align="left" style="font-size:0px;padding:10px 25px;word-break:break-word;">
-                      <div style="font-family:'Open Sans', Helvetica, Arial, sans-serif;font-size:16px;line-height:1.2;text-align:left;color:#000000;">
-                        <p><strong>{{ 'Payment'|t }}</strong></p> {% block payment_method %} {{ payment_method }} {% endblock %}</div>
-                    </td>
-                  </tr>
-                </table>
-              </div>
-              <!--[if mso | IE]>
-            </td>
-
-            <td
-               class="" style="vertical-align:top;width:300px;"
-            >
-          <![endif]-->
-              <div class="mj-column-per-50 mj-outlook-group-fix" style="font-size:0px;text-align:left;direction:ltr;display:inline-block;vertical-align:top;width:100%;">
-                <table border="0" cellpadding="0" cellspacing="0" role="presentation" style="vertical-align:top;" width="100%"> </table>
-              </div>
-              <!--[if mso | IE]>
-            </td>
-
-        </tr>
-
-                  </table>
-                <![endif]-->
-            </td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-    <!--[if mso | IE]>
-          </td>
-        </tr>
-      </table>
-      <![endif]-->
-    {% endif %}
-    <!--[if mso | IE]>
-      <table
-         align="center" border="0" cellpadding="0" cellspacing="0" class="" style="width:600px;" width="600"
-      >
-        <tr>
-          <td style="line-height:0px;font-size:0px;mso-line-height-rule:exactly;">
-      <![endif]-->
-    <div style="margin:0px auto;max-width:600px;">
-      <table align="center" border="0" cellpadding="0" cellspacing="0" role="presentation" style="width:100%;">
-        <tbody>
-          <tr>
-            <td style="direction:ltr;font-size:0px;padding:20px 0;text-align:center;">
-              <!--[if mso | IE]>
-                  <table role="presentation" border="0" cellpadding="0" cellspacing="0">
-
-        <tr>
-
-            <td
-               class="" style="vertical-align:top;width:600px;"
-            >
-          <![endif]-->
-              <div class="mj-column-per-100 mj-outlook-group-fix" style="font-size:0px;text-align:left;direction:ltr;display:inline-block;vertical-align:top;width:100%;">
-                <table border="0" cellpadding="0" cellspacing="0" role="presentation" style="vertical-align:top;" width="100%">
-                  <tr>
-                    <td style="font-size:0px;padding:10px 25px;word-break:break-word;">
-                      <p style="border-top:solid 1px #dedede;font-size:1px;margin:0px auto;width:100%;"> </p>
-                      <!--[if mso | IE]>
-        <table
-           align="center" border="0" cellpadding="0" cellspacing="0" style="border-top:solid 1px #dedede;font-size:1px;margin:0px auto;width:550px;" role="presentation" width="550px"
-        >
-          <tr>
-            <td style="height:0;line-height:0;">
-              &nbsp;
-            </td>
-          </tr>
-        </table>
-      <![endif]-->
-                    </td>
-                  </tr>
-                </table>
-              </div>
-              <!--[if mso | IE]>
-            </td>
-
-        </tr>
-
-                  </table>
-                <![endif]-->
-            </td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-    <!--[if mso | IE]>
-          </td>
-        </tr>
-      </table>
-      <![endif]-->
-    <!-- Products -->
-    <!-- loop -->
-    {% block order_items %}
-    {% for order_item in order_entity.getItems %}
-    <!--[if mso | IE]>
-      <table
-         align="center" border="0" cellpadding="0" cellspacing="0" class="" style="width:600px;" width="600"
-      >
-        <tr>
-          <td style="line-height:0px;font-size:0px;mso-line-height-rule:exactly;">
-      <![endif]-->
-    <div style="margin:0px auto;max-width:600px;">
-      <table align="center" border="0" cellpadding="0" cellspacing="0" role="presentation" style="width:100%;">
-        <tbody>
-          <tr>
-            <td style="direction:ltr;font-size:0px;text-align:center;">
-              <!--[if mso | IE]>
-                  <table role="presentation" border="0" cellpadding="0" cellspacing="0">
-
-        <tr>
-
-            <td
-               class="" style="width:600px;"
-            >
-          <![endif]-->
-              <div class="mj-column-per-100 mj-outlook-group-fix" style="font-size:0;line-height:0;text-align:left;display:inline-block;width:100%;direction:ltr;">
-                <!--[if mso | IE]>
-        <table
-           border="0" cellpadding="0" cellspacing="0" role="presentation"
-        >
-          <tr>
-
-              <td
-                 style="vertical-align:top;width:30px;"
-              >
-              <![endif]-->
-                <div class="mj-column-per-5 mj-outlook-group-fix" style="font-size:0px;text-align:left;direction:ltr;display:inline-block;vertical-align:top;width:5%;">
-                  <table border="0" cellpadding="0" cellspacing="0" role="presentation" style="vertical-align:top;" width="100%">
-                    <tr>
-                      <td align="left" style="font-size:0px;padding:10px 25px;word-break:break-word;">
-                        <div style="font-family:'Open Sans', Helvetica, Arial, sans-serif;font-size:13px;line-height:1;text-align:left;color:#000000;white-space: nowrap;">{{ order_item.getQuantity|number_format }}&nbsp;x</div>
-                      </td>
-                    </tr>
-                  </table>
-                </div>
-                <!--[if mso | IE]>
-              </td>
-
-              <td
-                 style="vertical-align:top;width:450px;"
-              >
-              <![endif]-->
-                <div class="mj-column-per-75 mj-outlook-group-fix" style="font-size:0px;text-align:left;direction:ltr;display:inline-block;vertical-align:top;width:75%;">
-                  <table border="0" cellpadding="0" cellspacing="0" role="presentation" style="vertical-align:top;" width="100%">
-                    <tr>
-                      <td align="left" style="font-size:0px;padding:10px 25px;word-break:break-word;">
-                        <div style="font-family:'Open Sans', Helvetica, Arial, sans-serif;font-size:13px;line-height:1;text-align:left;color:#000000;">{{ order_item.label }}</div>
-                      </td>
-                    </tr>
-                  </table>
-                </div>
-                <!--[if mso | IE]>
-              </td>
-
-              <td
-                 style="vertical-align:top;width:120px;"
-              >
-              <![endif]-->
-                <div class="mj-column-per-20 mj-outlook-group-fix" style="font-size:0px;text-align:left;direction:ltr;display:inline-block;vertical-align:top;width:20%;">
-                  <table border="0" cellpadding="0" cellspacing="0" role="presentation" style="vertical-align:top;" width="100%">
-                    <tr>
-                      <td align="right" style="font-size:0px;padding:10px 25px;word-break:break-word;">
-                        <div style="font-family:'Open Sans', Helvetica, Arial, sans-serif;font-size:13px;line-height:1;text-align:right;color:#000000;white-space: nowrap">{{ order_item.getTotalPrice|commerce_price_format }}</div>
-                      </td>
-                    </tr>
-                  </table>
-                </div>
-                <!--[if mso | IE]>
-              </td>
-
-          </tr>
-          </table>
-        <![endif]-->
-              </div>
-              <!--[if mso | IE]>
-            </td>
-
-        </tr>
-
-                  </table>
-                <![endif]-->
-            </td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-    <!--[if mso | IE]>
-          </td>
-        </tr>
-      </table>
-      <![endif]-->
-    {% endfor %}
-    {% endblock %}
-    <!-- endloop -->
-    <!-- Total -->
-    <!--[if mso | IE]>
-      <table
-         align="center" border="0" cellpadding="0" cellspacing="0" class="" style="width:600px;" width="600"
-      >
-        <tr>
-          <td style="line-height:0px;font-size:0px;mso-line-height-rule:exactly;">
-      <![endif]-->
-    <div style="margin:0px auto;max-width:600px;">
-      <table align="center" border="0" cellpadding="0" cellspacing="0" role="presentation" style="width:100%;">
-        <tbody>
-          <tr>
-            <td style="direction:ltr;font-size:0px;padding-top:40px;text-align:center;">
-              <!--[if mso | IE]>
-                  <table role="presentation" border="0" cellpadding="0" cellspacing="0">
-
-        <tr>
-
-            <td
-               class="" style="width:600px;"
-            >
-          <![endif]-->
-              <div class="mj-column-per-100 mj-outlook-group-fix" style="font-size:0;line-height:0;text-align:left;display:inline-block;width:100%;direction:ltr;">
-                <!--[if mso | IE]>
-        <table
-           border="0" cellpadding="0" cellspacing="0" role="presentation"
-        >
-          <tr>
-
-              <td
-                 style="vertical-align:top;width:480px;"
-              >
-              <![endif]-->
-                <div class="mj-column-per-80 mj-outlook-group-fix" style="font-size:0px;text-align:left;direction:ltr;display:inline-block;vertical-align:top;width:80%;">
-                  <table border="0" cellpadding="0" cellspacing="0" role="presentation" style="vertical-align:top;" width="100%">
-                    <tr>
-                      <td align="right" style="font-size:0px;padding:10px 25px;word-break:break-word;">
-                        <div style="font-family:'Open Sans', Helvetica, Arial, sans-serif;font-size:13px;line-height:1;text-align:right;color:#000000;">{{ 'Subtotal'|t }}</div>
-                      </td>
-                    </tr>
-                  </table>
-                </div>
-                <!--[if mso | IE]>
-              </td>
-
-              <td
-                 style="vertical-align:top;width:120px;"
-              >
-              <![endif]-->
-                <div class="mj-column-per-20 mj-outlook-group-fix" style="font-size:0px;text-align:left;direction:ltr;display:inline-block;vertical-align:top;width:20%;">
-                  <table border="0" cellpadding="0" cellspacing="0" role="presentation" style="vertical-align:top;" width="100%">
-                    <tr>
-                      <td align="right" style="font-size:0px;padding:10px 25px;word-break:break-word;">
-                        <div style="font-family:'Open Sans', Helvetica, Arial, sans-serif;font-size:13px;line-height:1;text-align:right;color:#000000;white-space: nowrap">{{ totals.subtotal|commerce_price_format }}</div>
-                      </td>
-                    </tr>
-                  </table>
-                </div>
-                <!--[if mso | IE]>
-              </td>
-
-          </tr>
-          </table>
-        <![endif]-->
-              </div>
-              <!--[if mso | IE]>
-            </td>
-
-        </tr>
-
-                  </table>
-                <![endif]-->
-            </td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-    <!--[if mso | IE]>
-          </td>
-        </tr>
-      </table>
-      <![endif]-->
-    {% for adjustment in totals.adjustments %}
-    <!--[if mso | IE]>
-      <table
-         align="center" border="0" cellpadding="0" cellspacing="0" class="" style="width:600px;" width="600"
-      >
-        <tr>
-          <td style="line-height:0px;font-size:0px;mso-line-height-rule:exactly;">
-      <![endif]-->
-    <div style="margin:0px auto;max-width:600px;">
-      <table align="center" border="0" cellpadding="0" cellspacing="0" role="presentation" style="width:100%;">
-        <tbody>
-          <tr>
-            <td style="direction:ltr;font-size:0px;text-align:center;">
-              <!--[if mso | IE]>
-                  <table role="presentation" border="0" cellpadding="0" cellspacing="0">
-
-        <tr>
-
-            <td
-               class="" style="width:600px;"
-            >
-          <![endif]-->
-              <div class="mj-column-per-100 mj-outlook-group-fix" style="font-size:0;line-height:0;text-align:left;display:inline-block;width:100%;direction:ltr;">
-                <!--[if mso | IE]>
-        <table
-           border="0" cellpadding="0" cellspacing="0" role="presentation"
-        >
-          <tr>
-
-              <td
-                 style="vertical-align:top;width:480px;"
-              >
-              <![endif]-->
-                <div class="mj-column-per-80 mj-outlook-group-fix" style="font-size:0px;text-align:left;direction:ltr;display:inline-block;vertical-align:top;width:80%;">
-                  <table border="0" cellpadding="0" cellspacing="0" role="presentation" style="vertical-align:top;" width="100%">
-                    <tr>
-                      <td align="right" style="font-size:0px;padding:10px 25px;word-break:break-word;">
-                        <div style="font-family:'Open Sans', Helvetica, Arial, sans-serif;font-size:13px;line-height:1;text-align:right;color:#000000;">{{ adjustment.label|t }}</div>
-                      </td>
-                    </tr>
-                  </table>
-                </div>
-                <!--[if mso | IE]>
-              </td>
-
-              <td
-                 style="vertical-align:top;width:120px;"
-              >
-              <![endif]-->
-                <div class="mj-column-per-20 mj-outlook-group-fix" style="font-size:0px;text-align:left;direction:ltr;display:inline-block;vertical-align:top;width:20%;">
-                  <table border="0" cellpadding="0" cellspacing="0" role="presentation" style="vertical-align:top;" width="100%">
-                    <tr>
-                      <td align="right" style="font-size:0px;padding:10px 25px;word-break:break-word;">
-                        <div style="font-family:'Open Sans', Helvetica, Arial, sans-serif;font-size:13px;line-height:1;text-align:right;color:#000000;white-space: nowrap">{{ adjustment.total|commerce_price_format }}</div>
-                      </td>
-                    </tr>
-                  </table>
-                </div>
-                <!--[if mso | IE]>
-              </td>
-
-          </tr>
-          </table>
-        <![endif]-->
-              </div>
-              <!--[if mso | IE]>
-            </td>
-
-        </tr>
-
-                  </table>
-                <![endif]-->
-            </td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-    <!--[if mso | IE]>
-          </td>
-        </tr>
-      </table>
-      <![endif]-->
-    {% endfor %}
-    <!--[if mso | IE]>
-      <table
-         align="center" border="0" cellpadding="0" cellspacing="0" class="" style="width:600px;" width="600"
-      >
-        <tr>
-          <td style="line-height:0px;font-size:0px;mso-line-height-rule:exactly;">
-      <![endif]-->
-    <div style="margin:0px auto;max-width:600px;">
-      <table align="center" border="0" cellpadding="0" cellspacing="0" role="presentation" style="width:100%;">
-        <tbody>
-          <tr>
-            <td style="direction:ltr;font-size:0px;text-align:center;">
-              <!--[if mso | IE]>
-                  <table role="presentation" border="0" cellpadding="0" cellspacing="0">
-
-        <tr>
-
-            <td
-               class="" style="width:600px;"
-            >
-          <![endif]-->
-              <div class="mj-column-per-100 mj-outlook-group-fix" style="font-size:0;line-height:0;text-align:left;display:inline-block;width:100%;direction:ltr;">
-                <!--[if mso | IE]>
-        <table
-           border="0" cellpadding="0" cellspacing="0" role="presentation"
-        >
-          <tr>
-
-              <td
-                 style="vertical-align:top;width:480px;"
-              >
-              <![endif]-->
-                <div class="mj-column-per-80 mj-outlook-group-fix" style="font-size:0px;text-align:left;direction:ltr;display:inline-block;vertical-align:top;width:80%;">
-                  <table border="0" cellpadding="0" cellspacing="0" role="presentation" style="vertical-align:top;" width="100%">
-                    <tr>
-                      <td align="right" style="font-size:0px;padding:10px 25px;word-break:break-word;">
-                        <div style="font-family:'Open Sans', Helvetica, Arial, sans-serif;font-size:13px;line-height:1;text-align:right;color:#000000;">{{ 'Order Total'|t }}</div>
-                      </td>
-                    </tr>
-                  </table>
-                </div>
-                <!--[if mso | IE]>
-              </td>
-
-              <td
-                 style="vertical-align:top;width:120px;"
-              >
-              <![endif]-->
-                <div class="mj-column-per-20 mj-outlook-group-fix" style="font-size:0px;text-align:left;direction:ltr;display:inline-block;vertical-align:top;width:20%;">
-                  <table border="0" cellpadding="0" cellspacing="0" role="presentation" style="vertical-align:top;" width="100%">
-                    <tr>
-                      <td align="right" style="font-size:0px;padding:10px 25px;word-break:break-word;">
-                        <div style="font-family:'Open Sans', Helvetica, Arial, sans-serif;font-size:13px;line-height:1;text-align:right;color:#000000;white-space: nowrap">{{ order_entity.getTotalPrice|commerce_price_format }}</div>
-                      </td>
-                    </tr>
-                  </table>
-                </div>
-                <!--[if mso | IE]>
-              </td>
-
-          </tr>
-          </table>
-        <![endif]-->
-              </div>
-              <!--[if mso | IE]>
-            </td>
-
-        </tr>
-
-                  </table>
-                <![endif]-->
-            </td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-    <!--[if mso | IE]>
-          </td>
-        </tr>
-      </table>
-
-      <table
-         align="center" border="0" cellpadding="0" cellspacing="0" class="" style="width:600px;" width="600"
-      >
-        <tr>
-          <td style="line-height:0px;font-size:0px;mso-line-height-rule:exactly;">
-      <![endif]-->
-    <div style="margin:0px auto;max-width:600px;">
-      <table align="center" border="0" cellpadding="0" cellspacing="0" role="presentation" style="width:100%;">
-        <tbody>
-          <tr>
-            <td style="direction:ltr;font-size:0px;padding:20px 0;text-align:center;">
-              <!--[if mso | IE]>
-                  <table role="presentation" border="0" cellpadding="0" cellspacing="0">
-
-        <tr>
-
-            <td
-               class="" style="vertical-align:top;width:600px;"
-            >
-          <![endif]-->
-              <div class="mj-column-per-100 mj-outlook-group-fix" style="font-size:0px;text-align:left;direction:ltr;display:inline-block;vertical-align:top;width:100%;">
-                <table border="0" cellpadding="0" cellspacing="0" role="presentation" style="vertical-align:top;" width="100%">
-                  <tr>
-                    <td style="font-size:0px;padding:10px 25px;word-break:break-word;">
-                      <p style="border-top:solid 1px #dedede;font-size:1px;margin:0px auto;width:100%;"> </p>
-                      <!--[if mso | IE]>
-        <table
-           align="center" border="0" cellpadding="0" cellspacing="0" style="border-top:solid 1px #dedede;font-size:1px;margin:0px auto;width:550px;" role="presentation" width="550px"
-        >
-          <tr>
-            <td style="height:0;line-height:0;">
-              &nbsp;
-            </td>
-          </tr>
-        </table>
-      <![endif]-->
-                    </td>
-                  </tr>
-                  <tr>
-                    <td align="left" style="font-size:0px;padding:10px 25px;word-break:break-word;">
-                      <div style="font-family:'Open Sans', Helvetica, Arial, sans-serif;font-size:13px;line-height:1;text-align:left;color:#000000;">{{iq_commerce_footer|raw}}</div>
-                    </td>
-                  </tr>
-                </table>
-              </div>
-              <!--[if mso | IE]>
-            </td>
-
-        </tr>
-
-                  </table>
-                <![endif]-->
-            </td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-    <!--[if mso | IE]>
-          </td>
-        </tr>
-      </table>
-      <![endif]-->
+      </tbody>
+    </table>
   </div>
-</body>
-
-</html>
+  <!--[if mso | IE]></td></tr></table><![endif]-->
+  <!-- Intro text section -->
+  <!--[if mso | IE]><table align="center" border="0" cellpadding="0" cellspacing="0" class="" style="width:600px;" width="600" ><tr><td style="line-height:0px;font-size:0px;mso-line-height-rule:exactly;"><![endif]-->
+  <div style="margin:0px auto;max-width:600px;">
+    <table align="center" border="0" cellpadding="0" cellspacing="0" role="presentation" style="width:100%;">
+      <tbody>
+        <tr>
+          <td style="direction:ltr;font-size:0px;padding:20px 0 7px;text-align:center;">
+            <!--[if mso | IE]><table role="presentation" border="0" cellpadding="0" cellspacing="0"><tr><td class="" style="vertical-align:top;width:600px;" ><![endif]-->
+            <div class="mj-column-per-100 mj-outlook-group-fix" style="font-size:0px;text-align:left;direction:ltr;display:inline-block;vertical-align:top;width:100%;">
+              <table border="0" cellpadding="0" cellspacing="0" role="presentation" style="vertical-align:top;" width="100%">
+                <tbody>
+                  <!-- Title -->
+                  <tr>
+                    <td align="left" style="font-size:0px;padding:10px 25px;word-break:break-word;">
+                      <div style="font-family:helvetica;font-size:24px;font-weight:bold;line-height:1;text-align:left;text-transform:uppercase;color:#333333;">{{ 'Order confirmation'|t }}</div>
+                    </td>
+                  </tr>
+                  <!-- Content -->
+                  <tr>
+                    <td align="left" style="font-size:0px;padding:10px 25px;word-break:break-word;">
+                      <div style="font-family:helvetica;font-size:16px;line-height:1;text-align:left;color:#333333;">{{ 'Thank you for your order'|t }}, {{ full_name }}!</div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td align="left" style="font-size:0px;padding:10px 25px;word-break:break-word;">
+                      <div style="font-family:helvetica;font-size:16px;line-height:1;text-align:left;color:#333333;">{{ iq_commerce_header|raw }}</div>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <!--[if mso | IE]></td></tr></table><![endif]-->
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <!--[if mso | IE]></td></tr></table><![endif]-->
+  <!-- Divider -->
+  <!--[if mso | IE]><table align="center" border="0" cellpadding="0" cellspacing="0" class="" style="width:600px;" width="600" ><tr><td style="line-height:0px;font-size:0px;mso-line-height-rule:exactly;"><![endif]-->
+  <div style="margin:0px auto;max-width:600px;">
+    <table align="center" border="0" cellpadding="0" cellspacing="0" role="presentation" style="width:100%;">
+      <tbody>
+        <tr>
+          <td style="direction:ltr;font-size:0px;padding:20px 0;padding-bottom:0;padding-top:0;text-align:center;">
+            <!--[if mso | IE]><table role="presentation" border="0" cellpadding="0" cellspacing="0"><tr><td class="" style="vertical-align:top;width:600px;" ><![endif]-->
+            <div class="mj-column-per-100 mj-outlook-group-fix" style="font-size:0px;text-align:left;direction:ltr;display:inline-block;vertical-align:top;width:100%;">
+              <table border="0" cellpadding="0" cellspacing="0" role="presentation" style="vertical-align:top;" width="100%">
+                <tbody>
+                  <tr>
+                    <td align="center" style="font-size:0px;padding:10px 25px;word-break:break-word;">
+                      <p style="border-top:solid 1px #000000;font-size:1px;margin:0px auto;width:100%;">
+                      </p>
+                      <!--[if mso | IE]><table align="center" border="0" cellpadding="0" cellspacing="0" style="border-top:solid 1px #000000;font-size:1px;margin:0px auto;width:550px;" role="presentation" width="550px" ><tr><td style="height:0;line-height:0;"> &nbsp;</td></tr></table><![endif]-->
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <!--[if mso | IE]></td></tr></table><![endif]-->
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <!--[if mso | IE]></td></tr></table><![endif]-->
+  <!-- Order summary title section - one column -->
+  <!--[if mso | IE]><table align="center" border="0" cellpadding="0" cellspacing="0" class="" style="width:600px;" width="600" ><tr><td style="line-height:0px;font-size:0px;mso-line-height-rule:exactly;"><![endif]-->
+  <div style="margin:0px auto;max-width:600px;">
+    <table align="center" border="0" cellpadding="0" cellspacing="0" role="presentation" style="width:100%;">
+      <tbody>
+        <tr>
+          <td style="direction:ltr;font-size:0px;padding:20px 0;padding-bottom:0;text-align:center;">
+            <!--[if mso | IE]><table role="presentation" border="0" cellpadding="0" cellspacing="0"><tr><td class="" style="vertical-align:top;width:600px;" ><![endif]-->
+            <div class="mj-column-per-100 mj-outlook-group-fix" style="font-size:0px;text-align:left;direction:ltr;display:inline-block;vertical-align:top;width:100%;">
+              <table border="0" cellpadding="0" cellspacing="0" role="presentation" style="vertical-align:top;" width="100%">
+                <tbody>
+                  <!-- Title -->
+                  <tr>
+                    <td align="left" style="font-size:0px;padding:10px 25px;word-break:break-word;">
+                      <div style="font-family:helvetica;font-size:24px;font-weight:bold;line-height:1;text-align:left;text-transform:uppercase;color:#333333;">{{ 'Order summary'|t }}</div>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <!--[if mso | IE]></td></tr></table><![endif]-->
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <!--[if mso | IE]></td></tr></table><![endif]-->
+  <!-- Order summary content section - two columns -->
+  <!--[if mso | IE]><table align="center" border="0" cellpadding="0" cellspacing="0" class="" style="width:600px;" width="600" ><tr><td style="line-height:0px;font-size:0px;mso-line-height-rule:exactly;"><![endif]-->
+  <div style="margin:0px auto;max-width:600px;">
+    <table align="center" border="0" cellpadding="0" cellspacing="0" role="presentation" style="width:100%;">
+      <tbody>
+        <tr>
+          <td style="direction:ltr;font-size:0px;padding:20px 0;padding-top:0;text-align:center;">
+            <!--[if mso | IE]><table role="presentation" border="0" cellpadding="0" cellspacing="0"><tr><td class="" style="vertical-align:top;width:300px;" ><![endif]-->
+            <div class="mj-column-per-50 mj-outlook-group-fix" style="font-size:0px;text-align:left;direction:ltr;display:inline-block;vertical-align:top;width:100%;">
+              <table border="0" cellpadding="0" cellspacing="0" role="presentation" style="vertical-align:top;" width="100%">
+                <tbody>
+                  <!-- Order number label -->
+                  <tr>
+                    <td align="left" style="font-size:0px;padding:10px 25px;word-break:break-word;">
+                      <div style="font-family:helvetica;font-size:16px;font-weight:bold;line-height:1;text-align:left;color:#333333;">{{ 'Order number'|t }}:</div>
+                    </td>
+                  </tr>
+                  <!-- Order number value -->
+                  <tr>
+                    <td align="left" style="font-size:0px;padding:10px 25px;word-break:break-word;">
+                      <div style="font-family:helvetica;font-size:16px;line-height:1;text-align:left;color:#333333;">{{ order_entity.getOrderNumber }}</div>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <!--[if mso | IE]></td><td class="" style="vertical-align:top;width:300px;" ><![endif]-->
+            <div class="mj-column-per-50 mj-outlook-group-fix" style="font-size:0px;text-align:left;direction:ltr;display:inline-block;vertical-align:top;width:100%;">
+              <table border="0" cellpadding="0" cellspacing="0" role="presentation" style="vertical-align:top;" width="100%">
+                <tbody>
+                  <!-- Order date label -->
+                  <tr>
+                    <td align="left" style="font-size:0px;padding:10px 25px;word-break:break-word;">
+                      <div style="font-family:helvetica;font-size:16px;font-weight:bold;line-height:1;text-align:left;color:#333333;">{{ 'Order date'|t }}:</div>
+                    </td>
+                  </tr>
+                  <!-- Order date value -->
+                  <tr>
+                    <td align="left" style="font-size:0px;padding:10px 25px;word-break:break-word;">
+                      <div style="font-family:helvetica;font-size:16px;line-height:1;text-align:left;color:#333333;">{{ order_entity.created.value|date('F j, Y, G:i') }}</div>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <!--[if mso | IE]></td></tr></table><![endif]-->
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <!--[if mso | IE]></td></tr></table><![endif]-->
+  <!-- Divider -->
+  <!--[if mso | IE]><table align="center" border="0" cellpadding="0" cellspacing="0" class="" style="width:600px;" width="600" ><tr><td style="line-height:0px;font-size:0px;mso-line-height-rule:exactly;"><![endif]-->
+  <div style="margin:0px auto;max-width:600px;">
+    <table align="center" border="0" cellpadding="0" cellspacing="0" role="presentation" style="width:100%;">
+      <tbody>
+        <tr>
+          <td style="direction:ltr;font-size:0px;padding:20px 0;padding-bottom:0;padding-top:0;text-align:center;">
+            <!--[if mso | IE]><table role="presentation" border="0" cellpadding="0" cellspacing="0"><tr><td class="" style="vertical-align:top;width:600px;" ><![endif]-->
+            <div class="mj-column-per-100 mj-outlook-group-fix" style="font-size:0px;text-align:left;direction:ltr;display:inline-block;vertical-align:top;width:100%;">
+              <table border="0" cellpadding="0" cellspacing="0" role="presentation" style="vertical-align:top;" width="100%">
+                <tbody>
+                  <tr>
+                    <td align="center" style="font-size:0px;padding:10px 25px;word-break:break-word;">
+                      <p style="border-top:solid 1px #000000;font-size:1px;margin:0px auto;width:100%;">
+                      </p>
+                      <!--[if mso | IE]><table align="center" border="0" cellpadding="0" cellspacing="0" style="border-top:solid 1px #000000;font-size:1px;margin:0px auto;width:550px;" role="presentation" width="550px" ><tr><td style="height:0;line-height:0;"> &nbsp;</td></tr></table><![endif]-->
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <!--[if mso | IE]></td></tr></table><![endif]-->
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <!--[if mso | IE]></td></tr></table><![endif]-->
+  <!-- Billing and shipping title section - one column -->
+  <!--[if mso | IE]><table align="center" border="0" cellpadding="0" cellspacing="0" class="" style="width:600px;" width="600" ><tr><td style="line-height:0px;font-size:0px;mso-line-height-rule:exactly;"><![endif]-->
+  <div style="margin:0px auto;max-width:600px;">
+    <table align="center" border="0" cellpadding="0" cellspacing="0" role="presentation" style="width:100%;">
+      <tbody>
+        <tr>
+          <td style="direction:ltr;font-size:0px;padding:20px 0;padding-bottom:0;text-align:center;">
+            <!--[if mso | IE]><table role="presentation" border="0" cellpadding="0" cellspacing="0"><tr><td class="" style="vertical-align:top;width:600px;" ><![endif]-->
+            <div class="mj-column-per-100 mj-outlook-group-fix" style="font-size:0px;text-align:left;direction:ltr;display:inline-block;vertical-align:top;width:100%;">
+              <table border="0" cellpadding="0" cellspacing="0" role="presentation" style="vertical-align:top;" width="100%">
+                <tbody>
+                  <!-- Title -->
+                  <tr>
+                    <td align="left" style="font-size:0px;padding:10px 25px;word-break:break-word;">
+                      <div style="font-family:helvetica;font-size:24px;font-weight:bold;line-height:1;text-align:left;text-transform:uppercase;color:#333333;">{{ 'Billing and Shipping'|t }}</div>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <!--[if mso | IE]></td></tr></table><![endif]-->
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <!--[if mso | IE]></td></tr></table><![endif]-->
+  <!-- Billing and shipping content section - two columns -->
+  <!--[if mso | IE]><table align="center" border="0" cellpadding="0" cellspacing="0" class="" style="width:600px;" width="600" ><tr><td style="line-height:0px;font-size:0px;mso-line-height-rule:exactly;"><![endif]-->
+  <div style="margin:0px auto;max-width:600px;">
+    <table align="center" border="0" cellpadding="0" cellspacing="0" role="presentation" style="width:100%;">
+      <tbody>
+        <tr>
+          <td style="direction:ltr;font-size:0px;padding:20px 0;padding-bottom:0;padding-top:0;text-align:center;">
+            <!--[if mso | IE]><table role="presentation" border="0" cellpadding="0" cellspacing="0"><tr><td class="" style="vertical-align:top;width:300px;" ><![endif]-->
+            <div class="mj-column-per-50 mj-outlook-group-fix" style="font-size:0px;text-align:left;direction:ltr;display:inline-block;vertical-align:top;width:100%;">
+              <table border="0" cellpadding="0" cellspacing="0" role="presentation" style="vertical-align:top;" width="100%">
+                <tbody>
+                  <!-- Billing information title - first column -->
+                  <tr>
+                    <td align="left" style="font-size:0px;padding:10px 25px;word-break:break-word;">
+                      <div style="font-family:helvetica;font-size:16px;font-weight:bold;line-height:1;text-align:left;color:#333333;">{{ 'Billing information'|t }}</div>
+                    </td>
+                  </tr>
+                  <!-- Billing information content - first column -->
+                  <tr>
+                    <td align="left" style="font-size:0px;padding:10px 25px;padding-bottom:0;word-break:break-word;">
+                      <div style="font-family:helvetica;font-size:16px;line-height:1;text-align:left;color:#333333;">
+                        {% block billing_information %}
+                          {{ billing_address|raw }}
+                        {% endblock %}
+                      </div>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <!--[if mso | IE]></td><td class="" style="vertical-align:top;width:300px;" ><![endif]-->
+            <div class="mj-column-per-50 mj-outlook-group-fix" style="font-size:0px;text-align:left;direction:ltr;display:inline-block;vertical-align:top;width:100%;">
+              <table border="0" cellpadding="0" cellspacing="0" role="presentation" style="vertical-align:top;" width="100%">
+                <tbody>
+                  <!-- Shipping information title - second column -->
+                  <tr>
+                    <td align="left" style="font-size:0px;padding:10px 25px;word-break:break-word;">
+                      <div style="font-family:helvetica;font-size:16px;font-weight:bold;line-height:1;text-align:left;color:#333333;">{{ 'Shipping information'|t }}</div>
+                    </td>
+                  </tr>
+                  <!-- Shipping information content - second column -->
+                  <tr>
+                    <td align="left" style="font-size:0px;padding:10px 25px;padding-bottom:0;word-break:break-word;">
+                      <div style="font-family:helvetica;font-size:16px;line-height:1;text-align:left;color:#333333;">
+                        {% block shipping_information %}
+                          {{ shipping_address|raw }}
+                        {% endblock %}
+                      </div>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <!--[if mso | IE]></td></tr></table><![endif]-->
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <!--[if mso | IE]></td></tr></table><![endif]-->
+  <!-- Payment method/Shipping method section - two columns -->
+  <!--[if mso | IE]><table align="center" border="0" cellpadding="0" cellspacing="0" class="" style="width:600px;" width="600" ><tr><td style="line-height:0px;font-size:0px;mso-line-height-rule:exactly;"><![endif]-->
+  <div style="margin:0px auto;max-width:600px;">
+    <table align="center" border="0" cellpadding="0" cellspacing="0" role="presentation" style="width:100%;">
+      <tbody>
+        <tr>
+          <td style="direction:ltr;font-size:0px;padding:20px 0;padding-top:0;text-align:center;">
+            <!--[if mso | IE]><table role="presentation" border="0" cellpadding="0" cellspacing="0"><tr><td class="" style="vertical-align:top;width:300px;" ><![endif]-->
+            <div class="mj-column-per-50 mj-outlook-group-fix" style="font-size:0px;text-align:left;direction:ltr;display:inline-block;vertical-align:top;width:100%;">
+              <table border="0" cellpadding="0" cellspacing="0" role="presentation" style="vertical-align:top;" width="100%">
+                <tbody>
+                  {% if payment_method %}
+                  <!-- Payment method label - first column -->
+                  <tr>
+                    <td align="left" style="font-size:0px;padding:10px 25px;word-break:break-word;">
+                      <div style="font-family:helvetica;font-size:16px;font-weight:bold;line-height:1;text-align:left;color:#333333;">{{ 'Payment method'|t }}</div>
+                    </td>
+                  </tr>
+                  <!-- Payment method value - first column -->
+                  <tr>
+                    <td align="left" style="font-size:0px;padding:10px 25px;word-break:break-word;">
+                      <div style="font-family:helvetica;font-size:16px;line-height:1;text-align:left;color:#333333;">{{ payment_method }}</div>
+                    </td>
+                  </tr>
+                  {% endif %}
+                  <!-- Shipping method section - second column -->
+                </tbody>
+              </table>
+            </div>
+            <!--[if mso | IE]></td><td class="" style="vertical-align:top;width:300px;" ><![endif]-->
+            <div class="mj-column-per-50 mj-outlook-group-fix" style="font-size:0px;text-align:left;direction:ltr;display:inline-block;vertical-align:top;width:100%;">
+              <table border="0" cellpadding="0" cellspacing="0" role="presentation" style="vertical-align:top;" width="100%">
+                <tbody>
+                  {% if shipping_method %}
+                  <!-- Shipping method label - second column -->
+                  <tr>
+                    <td align="left" style="font-size:0px;padding:10px 25px;word-break:break-word;">
+                      <div style="font-family:helvetica;font-size:16px;font-weight:bold;line-height:1;text-align:left;color:#333333;">{{ 'Shipping method'|t }}</div>
+                    </td>
+                  </tr>
+                  <!-- Shipping method value - second column -->
+                  <tr>
+                    <td align="left" style="font-size:0px;padding:10px 25px;word-break:break-word;">
+                      <div style="font-family:helvetica;font-size:16px;line-height:1;text-align:left;color:#333333;">{{ shipping_method }}</div>
+                    </td>
+                  </tr>
+                  {% endif %}
+                </tbody>
+              </table>
+            </div>
+            <!--[if mso | IE]></td></tr></table><![endif]-->
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <!--[if mso | IE]></td></tr></table><![endif]-->
+  <!-- Divider -->
+  <!--[if mso | IE]><table align="center" border="0" cellpadding="0" cellspacing="0" class="" style="width:600px;" width="600" ><tr><td style="line-height:0px;font-size:0px;mso-line-height-rule:exactly;"><![endif]-->
+  <div style="margin:0px auto;max-width:600px;">
+    <table align="center" border="0" cellpadding="0" cellspacing="0" role="presentation" style="width:100%;">
+      <tbody>
+        <tr>
+          <td style="direction:ltr;font-size:0px;padding:20px 0;padding-bottom:0;padding-top:0;text-align:center;">
+            <!--[if mso | IE]><table role="presentation" border="0" cellpadding="0" cellspacing="0"><tr><td class="" style="vertical-align:top;width:600px;" ><![endif]-->
+            <div class="mj-column-per-100 mj-outlook-group-fix" style="font-size:0px;text-align:left;direction:ltr;display:inline-block;vertical-align:top;width:100%;">
+              <table border="0" cellpadding="0" cellspacing="0" role="presentation" style="vertical-align:top;" width="100%">
+                <tbody>
+                  <tr>
+                    <td align="center" style="font-size:0px;padding:10px 25px;word-break:break-word;">
+                      <p style="border-top:solid 1px #000000;font-size:1px;margin:0px auto;width:100%;">
+                      </p>
+                      <!--[if mso | IE]><table align="center" border="0" cellpadding="0" cellspacing="0" style="border-top:solid 1px #000000;font-size:1px;margin:0px auto;width:550px;" role="presentation" width="550px" ><tr><td style="height:0;line-height:0;"> &nbsp;</td></tr></table><![endif]-->
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <!--[if mso | IE]></td></tr></table><![endif]-->
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <!--[if mso | IE]></td></tr></table><![endif]-->
+  <!-- Order items title section -->
+  <!--[if mso | IE]><table align="center" border="0" cellpadding="0" cellspacing="0" class="" style="width:600px;" width="600" ><tr><td style="line-height:0px;font-size:0px;mso-line-height-rule:exactly;"><![endif]-->
+  <div style="margin:0px auto;max-width:600px;">
+    <table align="center" border="0" cellpadding="0" cellspacing="0" role="presentation" style="width:100%;">
+      <tbody>
+        <tr>
+          <td style="direction:ltr;font-size:0px;padding:20px 0;padding-bottom:0;text-align:center;">
+            <!--[if mso | IE]><table role="presentation" border="0" cellpadding="0" cellspacing="0"><tr><td class="" style="vertical-align:top;width:600px;" ><![endif]-->
+            <div class="mj-column-per-100 mj-outlook-group-fix" style="font-size:0px;text-align:left;direction:ltr;display:inline-block;vertical-align:top;width:100%;">
+              <table border="0" cellpadding="0" cellspacing="0" role="presentation" style="vertical-align:top;" width="100%">
+                <tbody>
+                  <!-- Order items title -->
+                  <tr>
+                    <td align="left" style="font-size:0px;padding:10px 25px;word-break:break-word;">
+                      <div style="font-family:helvetica;font-size:24px;font-weight:bold;line-height:1;text-align:left;text-transform:uppercase;color:#333333;">{{ 'Order items'|t }}</div>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <!--[if mso | IE]></td></tr></table><![endif]-->
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <!--[if mso | IE]></td></tr></table><![endif]-->
+  <!-- Order items content section -->
+  <!--[if mso | IE]><table align="center" border="0" cellpadding="0" cellspacing="0" class="" style="width:600px;" width="600" ><tr><td style="line-height:0px;font-size:0px;mso-line-height-rule:exactly;"><![endif]-->
+  <div style="margin:0px auto;max-width:600px;">
+    <table align="center" border="0" cellpadding="0" cellspacing="0" role="presentation" style="width:100%;">
+      <tbody>
+        <tr>
+          <td style="direction:ltr;font-size:0px;padding:0 0 7px;text-align:center;">
+            <!--[if mso | IE]><table role="presentation" border="0" cellpadding="0" cellspacing="0"><tr><td class="" style="vertical-align:top;width:600px;" ><![endif]-->
+            <div class="mj-column-per-100 mj-outlook-group-fix" style="font-size:0px;text-align:left;direction:ltr;display:inline-block;vertical-align:top;width:100%;">
+              <table border="0" cellpadding="0" cellspacing="0" role="presentation" style="vertical-align:top;" width="100%">
+                <tbody>
+                  <!-- Order items content -->
+                  <tr>
+                    <td align="left" style="font-size:0px;padding:10px 25px;word-break:break-word;">
+                      <div style="font-family:helvetica;font-size:16px;line-height:1;text-align:left;color:#333333;">
+                        {% block order_items %}
+                        {% for order_item in order_entity.getItems %}
+                        <!--[if mso | IE]>
+                        <table align="center" border="0" cellpadding="0" cellspacing="0" class="" style="width:600px;" width="600"><tr><td style="line-height:0px;font-size:0px;mso-line-height-rule:exactly;"><![endif]-->
+                        <div style="margin:0px auto;max-width:600px;">
+                          <table align="center" border="0" cellpadding="0" cellspacing="0" role="presentation" style="width:100%;">
+                            <tbody>
+                              <tr>
+                                <td style="direction:ltr;font-size:0px;text-align:center;">
+                                  <!--[if mso | IE]><table role="presentation" border="0" cellpadding="0" cellspacing="0"><tr><td class="" style="width:600px;"><![endif]-->
+                                  <div class="mj-column-per-100 mj-outlook-group-fix" style="font-size:0;line-height:0;text-align:left;display:inline-block;width:100%;direction:ltr;">
+                                  <!--[if mso | IE]><table border="0" cellpadding="0" cellspacing="0" role="presentation"><tr><td style="vertical-align:top;width:60px;"><![endif]-->
+                                    <div class="mj-column-per-10 mj-outlook-group-fix" style="font-size:0px;text-align:left;direction:ltr;display:inline-block;vertical-align:top;width:10%;">
+                                      <table border="0" cellpadding="0" cellspacing="0" role="presentation" style="vertical-align:top;" width="100%">
+                                        <tr>
+                                          <td align="left" style="font-size:0px;padding:0;word-break:break-word;">
+                                            <p style="font-family:helvetica;font-size:16px;line-height:1;text-align:left;color:#333333;">{{ order_item.getQuantity|number_format }}x</p>
+                                          </td>
+                                        </tr>
+                                      </table>
+                                    </div>
+                                    <!--[if mso | IE]></td><td style="vertical-align:top;width:420px;"><![endif]-->
+                                    <div class="mj-column-per-70 mj-outlook-group-fix" style="font-size:0px;text-align:left;direction:ltr;display:inline-block;vertical-align:top;width:70%;">
+                                      <table border="0" cellpadding="0" cellspacing="0" role="presentation" style="vertical-align:top;" width="100%">
+                                        <tr>
+                                          <td align="left" style="font-size:0px;padding:0;word-break:break-word;">
+                                            <p style="font-family:helvetica;font-size:16px;line-height:1;text-align:left;color:#333333;">{{ order_item.label }}</p>
+                                          </td>
+                                        </tr>
+                                      </table>
+                                    </div>
+                                    <!--[if mso | IE]></td><td style="vertical-align:top;width:120px;"><![endif]-->
+                                    <div class="mj-column-per-20 mj-outlook-group-fix" style="font-size:0px;text-align:left;direction:ltr;display:inline-block;vertical-align:top;width:20%;">
+                                      <table border="0" cellpadding="0" cellspacing="0" role="presentation" style="vertical-align:top;" width="100%">
+                                        <tr>
+                                          <td align="right" style="font-size:0px;padding:0;word-break:break-word;">
+                                            <p style="font-family:helvetica;font-size:16px;line-height:1;text-align:right;color:#333333;">{{ order_item.getTotalPrice|commerce_price_format }}</p>
+                                          </td>
+                                        </tr>
+                                      </table>
+                                    </div>
+                                    <!--[if mso | IE]></td></tr></table><![endif]-->
+                                  </div>
+                                  <!--[if mso | IE]></td></tr></table><![endif]-->
+                                </td>
+                              </tr>
+                            </tbody>
+                          </table>
+                        </div>
+                        <!--[if mso | IE]></td></tr></table><![endif]-->
+                        {% endfor %}
+                        {% endblock %}
+                      </div>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <!--[if mso | IE]></td></tr></table><![endif]-->
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <!--[if mso | IE]></td></tr></table><![endif]-->
+  <!-- Divider -->
+  <!--[if mso | IE]><table align="center" border="0" cellpadding="0" cellspacing="0" class="" style="width:600px;" width="600" ><tr><td style="line-height:0px;font-size:0px;mso-line-height-rule:exactly;"><![endif]-->
+  <div style="margin:0px auto;max-width:600px;">
+    <table align="center" border="0" cellpadding="0" cellspacing="0" role="presentation" style="width:100%;">
+      <tbody>
+        <tr>
+          <td style="direction:ltr;font-size:0px;padding:20px 0;padding-bottom:0;padding-top:0;text-align:center;">
+            <!--[if mso | IE]><table role="presentation" border="0" cellpadding="0" cellspacing="0"><tr><td class="" style="vertical-align:top;width:600px;" ><![endif]-->
+            <div class="mj-column-per-100 mj-outlook-group-fix" style="font-size:0px;text-align:left;direction:ltr;display:inline-block;vertical-align:top;width:100%;">
+              <table border="0" cellpadding="0" cellspacing="0" role="presentation" style="vertical-align:top;" width="100%">
+                <tbody>
+                  <tr>
+                    <td align="center" style="font-size:0px;padding:10px 25px;word-break:break-word;">
+                      <p style="border-top:solid 1px #000000;font-size:1px;margin:0px auto;width:100%;">
+                      </p>
+                      <!--[if mso | IE]><table align="center" border="0" cellpadding="0" cellspacing="0" style="border-top:solid 1px #000000;font-size:1px;margin:0px auto;width:550px;" role="presentation" width="550px" ><tr><td style="height:0;line-height:0;"> &nbsp;</td></tr></table><![endif]-->
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <!--[if mso | IE]></td></tr></table><![endif]-->
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <!--[if mso | IE]></td></tr></table><![endif]-->
+  <!--[if mso | IE]><table align="center" border="0" cellpadding="0" cellspacing="0" class="" style="width:600px;" width="600"><tr><td style="line-height:0px;font-size:0px;mso-line-height-rule:exactly;"><![endif]-->
+  <!-- Order total -->
+  <div style="margin:0px auto;max-width:600px;">
+    <table align="center" border="0" cellpadding="0" cellspacing="0" role="presentation" style="width:100%;">
+      <tbody>
+        <tr>
+          <td style="direction:ltr;font-size:0px;padding-top:30px;text-align:center;"><!--[if mso | IE]><table role="presentation" border="0" cellpadding="0" cellspacing="0"><tr><td style="width:600px;"><![endif]-->
+            <div class="mj-column-per-100 mj-outlook-group-fix" style="font-size:0;line-height:0;text-align:left;display:inline-block;width:100%;direction:ltr;"><!--[if mso | IE]><table border="0" cellpadding="0" cellspacing="0" role="presentation"><tr><td style="vertical-align:top;width:450px;"><![endif]-->
+              <div class="mj-column-per-75 mj-outlook-group-fix" style="font-size:0px;text-align:left;direction:ltr;display:inline-block;vertical-align:top;width:75%;">
+                <table border="0" cellpadding="0" cellspacing="0" role="presentation" style="vertical-align:top;" width="100%">
+                  <tr>
+                    <td align="right" style="font-size:0px;padding:0 25px;word-break:break-word;">
+                      <p style="font-family:helvetica;font-size:16px;line-height:1;text-align:right;color:#333333;">{{ 'Subtotal'|t }}</p>
+                    </td>
+                  </tr>
+                </table>
+              </div>
+              <!--[if mso | IE]></td><td style="vertical-align:top;width:150px;"><![endif]-->
+              <div class="mj-column-per-25 mj-outlook-group-fix" style="font-size:0px;text-align:left;direction:ltr;display:inline-block;vertical-align:top;width:25%;">
+                <table border="0" cellpadding="0" cellspacing="0" role="presentation" style="vertical-align:top;" width="100%">
+                  <tr>
+                    <td align="right" style="font-size:0px;padding:0 25px;word-break:break-word;">
+                      <p style="font-family:helvetica;font-size:16px;line-height:1;text-align:right;color:#333333;">{{ totals.subtotal|commerce_price_format }}</p>
+                    </td>
+                  </tr>
+                </table>
+              </div>
+              <!--[if mso | IE]></td></tr></table><![endif]-->
+            </div>
+            <!--[if mso | IE]></td></tr></table><![endif]-->
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <!--[if mso | IE]></td></tr></table><![endif]-->
+  {% for adjustment in totals.adjustments %}
+  <!--[if mso | IE]><table align="center" border="0" cellpadding="0" cellspacing="0" class="" style="width:600px;" width="600"><tr><td style="line-height:0px;font-size:0px;mso-line-height-rule:exactly;"><![endif]-->
+  <div style="margin:0px auto;max-width:600px;">
+    <table align="center" border="0" cellpadding="0" cellspacing="0" role="presentation" style="width:100%;">
+      <tbody>
+        <tr>
+          <td style="direction:ltr;font-size:0px;text-align:center;">
+            <!--[if mso | IE]><table role="presentation" border="0" cellpadding="0" cellspacing="0"><tr><td class="" style="width:600px;"><![endif]-->
+            <div class="mj-column-per-100 mj-outlook-group-fix" style="font-size:0;line-height:0;text-align:left;display:inline-block;width:100%;direction:ltr;">
+              <!--[if mso | IE]><table border="0" cellpadding="0" cellspacing="0" role="presentation"><tr><td style="vertical-align:top;width:450px;"><![endif]-->
+              <div class="mj-column-per-75 mj-outlook-group-fix" style="font-size:0px;text-align:left;direction:ltr;display:inline-block;vertical-align:top;width:75%;">
+                <table border="0" cellpadding="0" cellspacing="0" role="presentation" style="vertical-align:top;" width="100%">
+                  <tr>
+                    <td align="right" style="font-size:0px;padding:0 25px;word-break:break-word;">
+                      <p style="font-family:helvetica;font-size:16px;line-height:1;text-align:right;color:#333333;">{{ adjustment.label|t }}</p>
+                    </td>
+                  </tr>
+                </table>
+              </div>
+              <!--[if mso | IE]></td><td style="vertical-align:top;width:150px;"><![endif]-->
+              <div class="mj-column-per-25 mj-outlook-group-fix" style="font-size:0px;text-align:left;direction:ltr;display:inline-block;vertical-align:top;width:25%;">
+                <table border="0" cellpadding="0" cellspacing="0" role="presentation" style="vertical-align:top;" width="100%">
+                  <tr>
+                    <td align="right" style="font-size:0px;padding:0 25px;word-break:break-word;">
+                      <p style="font-family:helvetica;font-size:16px;line-height:1;text-align:right;color:#333333;">{{ adjustment.total|commerce_price_format }}</p>
+                    </td>
+                  </tr>
+                </table>
+              </div>
+              <!--[if mso | IE]></td></tr></table><![endif]-->
+            </div>
+            <!--[if mso | IE]></td></tr></table><![endif]-->
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <!--[if mso | IE]></td></tr></table><![endif]-->
+  {% endfor %}
+  <!--[if mso | IE]><table align="center" border="0" cellpadding="0" cellspacing="0" class="" style="width:600px;" width="600"><tr><td style="line-height:0px;font-size:0px;mso-line-height-rule:exactly;"><![endif]-->
+  <div style="margin:0px auto;max-width:600px;">
+    <table align="center" border="0" cellpadding="0" cellspacing="0" role="presentation" style="width:100%;">
+      <tbody>
+        <tr>
+          <td style="direction:ltr;font-size:0px;text-align:center;padding-bottom:17px;">
+            <!--[if mso | IE]><table role="presentation" border="0" cellpadding="0" cellspacing="0"><tr><td class="" style="width:600px;"><![endif]-->
+            <div class="mj-column-per-100 mj-outlook-group-fix" style="font-size:0;line-height:0;text-align:left;display:inline-block;width:100%;direction:ltr;">
+              <!--[if mso | IE]><table border="0" cellpadding="0" cellspacing="0" role="presentation"><tr><td
+                style="vertical-align:top;width:450px;"><![endif]-->
+              <div class="mj-column-per-75 mj-outlook-group-fix" style="font-size:0px;text-align:left;direction:ltr;display:inline-block;vertical-align:top;width:75%;">
+                <table border="0" cellpadding="0" cellspacing="0" role="presentation" style="vertical-align:top;" width="100%">
+                  <tr>
+                    <td align="right" style="font-size:0px;padding:0 25px;word-break:break-word;">
+                      <p style="font-family:helvetica;font-size:16px;line-height:1;text-align:right;color:#333333;font-weight:bold;">{{ 'Total'|t }}</p>
+                    </td>
+                  </tr>
+                </table>
+              </div>
+              <!--[if mso | IE]></td><td style="vertical-align:top;width:150px;"><![endif]-->
+              <div class="mj-column-per-25 mj-outlook-group-fix" style="font-size:0px;text-align:left;direction:ltr;display:inline-block;vertical-align:top;width:25%;">
+                <table border="0" cellpadding="0" cellspacing="0" role="presentation" style="vertical-align:top;" width="100%">
+                  <tr>
+                    <td align="right" style="font-size:0px;padding:0 25px;word-break:break-word;">
+                      <p style="font-family:helvetica;font-size:16px;line-height:1;text-align:right;color:#333333;font-weight:bold;">{{ order_entity.getTotalPrice|commerce_price_format }}</p>
+                    </td>
+                  </tr>
+                </table>
+              </div>
+              <!--[if mso | IE]></td></tr></table><![endif]-->
+            </div>
+            <!--[if mso | IE]></td></tr></table><![endif]-->
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <!--[if mso | IE]></td></tr></table><![endif]-->
+  <!-- End of Order total -->
+  <!-- Divider -->
+  <!--[if mso | IE]><table align="center" border="0" cellpadding="0" cellspacing="0" class="" style="width:600px;" width="600" ><tr><td style="line-height:0px;font-size:0px;mso-line-height-rule:exactly;"><![endif]-->
+  <div style="margin:0px auto;max-width:600px;">
+    <table align="center" border="0" cellpadding="0" cellspacing="0" role="presentation" style="width:100%;">
+      <tbody>
+        <tr>
+          <td style="direction:ltr;font-size:0px;padding:20px 0;padding-bottom:0;padding-top:0;text-align:center;">
+            <!--[if mso | IE]><table role="presentation" border="0" cellpadding="0" cellspacing="0"><tr><td class="" style="vertical-align:top;width:600px;" ><![endif]-->
+            <div class="mj-column-per-100 mj-outlook-group-fix" style="font-size:0px;text-align:left;direction:ltr;display:inline-block;vertical-align:top;width:100%;">
+              <table border="0" cellpadding="0" cellspacing="0" role="presentation" style="vertical-align:top;" width="100%">
+                <tbody>
+                  <tr>
+                    <td align="center" style="font-size:0px;padding:10px 25px;word-break:break-word;">
+                      <p style="border-top:solid 1px #000000;font-size:1px;margin:0px auto;width:100%;">
+                      </p>
+                      <!--[if mso | IE]><table align="center" border="0" cellpadding="0" cellspacing="0" style="border-top:solid 1px #000000;font-size:1px;margin:0px auto;width:550px;" role="presentation" width="550px" ><tr><td style="height:0;line-height:0;"> &nbsp;</td></tr></table><![endif]-->
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <!--[if mso | IE]></td></tr></table><![endif]-->
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <!--[if mso | IE]></td></tr></table><![endif]-->
+  <!-- Footer section -->
+  <!--[if mso | IE]><table align="center" border="0" cellpadding="0" cellspacing="0" class="" style="width:600px;" width="600" ><tr><td style="line-height:0px;font-size:0px;mso-line-height-rule:exactly;"><![endif]-->
+  <div style="margin:0px auto;max-width:600px;">
+    <table align="center" border="0" cellpadding="0" cellspacing="0" role="presentation" style="width:100%;">
+      <tbody>
+        <tr>
+          <td style="direction:ltr;font-size:0px;padding:30px 0 50px;text-align:center;">
+            <!--[if mso | IE]><table role="presentation" border="0" cellpadding="0" cellspacing="0"><tr><td class="" style="vertical-align:top;width:600px;" ><![endif]-->
+            <div class="mj-column-per-100 mj-outlook-group-fix" style="font-size:0px;text-align:left;direction:ltr;display:inline-block;vertical-align:top;width:100%;">
+              <table border="0" cellpadding="0" cellspacing="0" role="presentation" style="vertical-align:top;" width="100%">
+                <tbody>
+                  <!-- Footer content -->
+                  <tr>
+                    <td align="left" style="font-size:0px;padding:0 25px;word-break:break-word;">
+                      <div style="font-family:helvetica;font-size:16px;line-height:1;text-align:left;color:#333333;">{{ iq_commerce_footer|raw }}</div>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <!--[if mso | IE]></td></tr></table><![endif]-->
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <!--[if mso | IE]></td></tr></table><![endif]-->
+</div>

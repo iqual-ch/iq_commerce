@@ -1,11 +1,8 @@
 @import 'definitions';
 
-// catalog
-.iq-catalog{
-  &.iq-row{
+// Row overrides
+.container-fluid .iq-row {
+  &.iq-catalog {
     padding: 0;
-  }
-  > .view-content.row{
-    width: 100%;
   }
 }

@@ -18,8 +18,8 @@ plugin: 'adaptable_views_block:product_catalog-adaptable_block_3'
 settings:
   id: 'adaptable_views_block:product_catalog-adaptable_block_3'
   label: ''
-  provider: pagedesigner_block_adaptable
   label_display: '0'
+  provider: pagedesigner_block_adaptable
   views_label: ''
   items_per_page: none
 visibility:
@@ -28,15 +28,12 @@ visibility:
     menu_position:
       '': ''
     negate: null
-    context_mapping: {  }
   advanced_menu_position_not:
     id: advanced_menu_position_not
     not_menu_position:
       '': ''
     negate: null
-    context_mapping: {  }
   pagedesigner_condition:
     id: pagedesigner_condition
     pagedesigner_condition: 0
     negate: null
-    context_mapping: {  }

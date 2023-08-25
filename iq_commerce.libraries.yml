@@ -24,12 +24,16 @@ checkout:
   js:
     resources/js/checkout.js: {}
 
-customer:
+order:
   css:
     theme:
-      resources/css/customer.css: {}
-      resources/css/user-forms.css: {}
-      resources/css/user-profile.css: {}
-      resources/css/account-nav.css: {}
+      resources/css/order.css: {}
+
+cart:
+  css:
+    theme:
+      resources/css/cart.css: {}
+
+variation_add_to_cart_form:
   js:
-    resources/js/account-nav.js: {}
+    resources/js/variation_add_to_cart_form.js: {}

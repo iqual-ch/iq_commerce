@@ -33,7 +33,7 @@ class IqCommerceBeforeCartAddEvent extends Event {
    * @param array $additional_data
    *   The additional data to be added.
    */
-  public function __construct($body, $additional_data = []) {
+  public function __construct(array $body, array $additional_data = []) {
     $this->body = $body;
     $this->additionalData = $additional_data;
   }
@@ -44,17 +44,17 @@ class IqCommerceBeforeCartAddEvent extends Event {
    * @param array $body
    *   The json data of the request to add order item(s) sent to the cart api.
    */
-  public function setBody($body) {
+  public function setBody(array $body) {
     return $this->body = $body;
   }
 
   /**
    * Sets the additional data.
    *
-   * @param array $additional_data
+   * @param array $data
    *   The additional data to be added.
    */
-  public function setAdditionalData($data) {
+  public function setAdditionalData(array $data) {
     $this->additionalData = $data;
   }
 

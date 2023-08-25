@@ -84,7 +84,8 @@ class RelatedProductEventSubscriber implements EventSubscriberInterface {
 
         if (!empty($related_products)) {
           foreach ($related_products as $related_product) {
-            // If the reference is of type product, then load all variations for each product and suggest them.
+            // If the reference is of type product, then load all variations
+            // for each product and suggest them.
             if ($related_products_reference_type == 'commerce_product') {
               /** @var \Drupal\commerce_product\Entity\Product $related_product */
               $related_product = Product::load($related_product['target_id']);

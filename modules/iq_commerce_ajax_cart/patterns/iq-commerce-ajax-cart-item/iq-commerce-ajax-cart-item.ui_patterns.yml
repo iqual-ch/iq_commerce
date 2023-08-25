@@ -47,5 +47,8 @@ iq-commerce-ajax-cart-item:
     - ajax-cart-item:
         js:
           ajax-cart-item.js: {}
+        css:
+          component:
+            ajax-cart-item.css: {}
       dependencies:
         - core/drupal

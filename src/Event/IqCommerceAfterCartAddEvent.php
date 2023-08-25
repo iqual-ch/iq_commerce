@@ -69,7 +69,7 @@ class IqCommerceAfterCartAddEvent extends Event {
    * @param array $data
    *   The additional data to be added.
    */
-  public function addAdditionalData($data) {
+  public function addAdditionalData(array $data) {
     $this->additionalData = array_merge($this->additionalData, $data);
   }
 
