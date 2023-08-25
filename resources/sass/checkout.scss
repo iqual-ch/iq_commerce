@@ -619,11 +619,11 @@
       display: flex;
       flex-direction: column;
 
-      #edit-payment-information-payment-method--wrapper {
+      [data-drupal-selector="edit-payment-information-payment-method"] {
         order: 1;
       }
 
-      #edit-payment-information-billing-information {
+      [data-drupal-selector="edit-payment-information-billing-information"] {
         order: 0;
       }
     }
