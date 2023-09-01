@@ -9,6 +9,7 @@ use Drupal\commerce_cart\Event\CartOrderItemRemoveEvent;
 use Drupal\commerce_cart\Event\CartOrderItemUpdateEvent;
 use Drupal\commerce_product\Entity\Product;
 use Drupal\commerce_product\Entity\ProductVariation;
+use Drupal\commerce_product\Entity\ProductVariationInterface;
 use Drupal\Core\Entity\EntityRepositoryInterface;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\iq_commerce\Event\IqCommerceAfterCartAddEvent;
@@ -86,11 +87,13 @@ class RequiredProductEventSubscriber implements EventSubscriberInterface {
       $storage = $this->entityTypeManager->getStorage($order_item_data['purchased_entity_type']);
 
       $purchased_entity = $storage->load($order_item_data['purchased_entity_id']);
+      $purchased_entity = $this->entityRepository->getTranslationFromContext($purchased_entity);
       if (!$purchased_entity || !$purchased_entity instanceof PurchasableEntityInterface) {
         continue;
       }
-      /** @var \Drupal\commerce_product\Entity\Product $purchased_entity */
-      $purchased_entity = $this->entityRepository->getTranslationFromContext($purchased_entity);
+      if ($purchased_entity instanceof ProductVariationInterface) {
+        $purchased_entity = $purchased_entity->getProduct();
+      }
 
       // Get all required field references in the product from the settings.
       $iqCommerceProductSettingsConfig = RequiredProductSettingsForm::getSettings();
@@ -99,10 +102,6 @@ class RequiredProductEventSubscriber implements EventSubscriberInterface {
       // If the required product is not in the cart, add it to the body.
       foreach ($required_field_names as $required_field_name => $field_settings) {
         if ($purchased_entity->hasField($required_field_name)) {
-          $required_products = $purchased_entity->get($required_field_name)->getValue();
-          $required_products_reference_type = $purchased_entity->get($required_field_name)->getFieldDefinition()->getTargetEntityTypeId();
-        }
-        elseif ($purchased_entity->hasField($required_field_name)) {
           $required_products = $purchased_entity->get($required_field_name)->getValue();
           $required_products_reference_type = $purchased_entity->get($required_field_name)->getFieldDefinition()->getTargetEntityTypeId();
         }
