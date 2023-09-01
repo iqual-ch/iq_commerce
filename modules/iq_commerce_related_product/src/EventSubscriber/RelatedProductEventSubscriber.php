@@ -4,12 +4,13 @@ namespace Drupal\iq_commerce_related_product\EventSubscriber;
 
 use Drupal\commerce_product\Entity\Product;
 use Drupal\commerce_product\Entity\ProductVariation;
+use Drupal\commerce_product\Entity\ProductVariationInterface;
 use Drupal\Core\Entity\EntityRepositoryInterface;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
+use Drupal\iq_commerce\Event\IqCommerceAfterCartAddEvent;
 use Drupal\iq_commerce\Event\IqCommerceCartEvents;
 use Drupal\iq_commerce_related_product\Form\RelatedProductSettingsForm;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
-use Drupal\iq_commerce\Event\IqCommerceAfterCartAddEvent;
 
 /**
  * Handles related products on adding products to cart.
@@ -67,21 +68,20 @@ class RelatedProductEventSubscriber implements EventSubscriberInterface {
     // Get all related field references in the product from the settings.
     $iqCommerceProductSettingsConfig = RelatedProductSettingsForm::getSettings();
     $related_field_names = $iqCommerceProductSettingsConfig['related_product_fields'];
-
     /** @var \Drupal\commerce_order\Entity\OrderItem $order_item */
     foreach ($order_items as $order_item) {
-      /** @var \Drupal\commerce_product\Entity\ProductVariation $purchased_entity */
       $purchased_entity = $order_item->getPurchasedEntity();
+      if (!$purchased_entity) {
+        continue;
+      }
+      if ($purchased_entity instanceof ProductVariationInterface) {
+        $purchased_entity = $purchased_entity->getProduct();
+      }
       foreach ($related_field_names as $related_field_name => $field_settings) {
         if ($purchased_entity->hasField($related_field_name)) {
           $related_products = $purchased_entity->get($related_field_name)->getValue();
           $related_products_reference_type = $purchased_entity->get($related_field_name)->getFieldDefinition()->getTargetEntityTypeId();
         }
-        elseif ($purchased_entity->getProduct()->hasField($related_field_name)) {
-          $related_products = $purchased_entity->getProduct()->get($related_field_name)->getValue();
-          $related_products_reference_type = $purchased_entity->getProduct()->get($related_field_name)->getFieldDefinition()->getTargetEntityTypeId();
-        }
-
         if (!empty($related_products)) {
           foreach ($related_products as $related_product) {
             // If the reference is of type product, then load all variations for each product and suggest them.
