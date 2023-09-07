@@ -1,5 +1,4 @@
 @import "definitions";
-@import "variables";
 
 // order overview
 .view-commerce-user-orders {
@@ -68,8 +67,8 @@
             right: 0;
             top: 50%;
             transform: translateY(-50%) rotate(45deg);
-            border-top: 2px solid $red;
-            border-right: 2px solid $red;
+            border-top: 2px solid $color-primary;
+            border-right: 2px solid $color-primary;
           }
         }
       }
