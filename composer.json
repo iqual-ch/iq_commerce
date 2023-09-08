@@ -32,7 +32,7 @@
     "drupal/commerce_payrexx_integration": "^1.0@beta",
     "iqual/iq_bef_extensions": "dev-issue/US-1592_d10-upgrade",
     "iqual/iq_user_base": "misc/rework-dev",
-    "iqual/iq_barrio": "dev-misc/rework-scss-structure-for-commerce as 3.6"
+    "iqual/iq_barrio": "dev-misc/rework-scss-structure-for-commerce as 3.7.1"
   },
   "extra": {}
 }
