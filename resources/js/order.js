@@ -13,10 +13,7 @@
   });
 
   $trigger.on('click', function () {
-    console.log('ok?')
-
     window.history.go(-1);
-
     setTimeout(function () {
       if (!hasHistory) {
         window.location.href = fallback;
