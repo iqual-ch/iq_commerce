@@ -2,9 +2,10 @@
 
 namespace Drupal\iq_commerce\Normalizer;
 
-use Drupal\Core\Routing\RouteMatchInterface;
-use Drupal\Core\Entity\EntityRepositoryInterface;
 use Drupal\commerce_cart_api\Normalizer\EntityReferenceNormalizer as EntityReferenceNormalizerBase;
+use Drupal\Core\Entity\EntityRepositoryInterface;
+use Drupal\Core\File\FileUrlGeneratorInterface;
+use Drupal\Core\Routing\RouteMatchInterface;
 use Drupal\iq_commerce\Form\IqCommerceProductSettingsForm;
 
 /**
@@ -18,9 +19,16 @@ use Drupal\iq_commerce\Form\IqCommerceProductSettingsForm;
 class EntityReferenceNormalizer extends EntityReferenceNormalizerBase {
 
   /**
+   * The file URL generator.
+   *
+   * @var \Drupal\Core\File\FileUrlGeneratorInterface
+   */
+  protected $fileUrlGenerator;
+
+  /**
    * {@inheritdoc}
    */
-  public function __construct(EntityRepositoryInterface $entity_repository, RouteMatchInterface $route_match, array $commerce_cart_api) {
+  public function __construct(EntityRepositoryInterface $entity_repository, RouteMatchInterface $route_match, FileUrlGeneratorInterface $file_url_generator, array $commerce_cart_api) {
     $config = IqCommerceProductSettingsForm::getIqCommerceProductSettings();
     if (!empty($config['normalize_fields'])) {
       foreach ($config['normalize_fields'] as $field) {
@@ -28,6 +36,7 @@ class EntityReferenceNormalizer extends EntityReferenceNormalizerBase {
       }
     }
     parent::__construct($entity_repository, $route_match, $commerce_cart_api);
+    $this->fileUrlGenerator = $file_url_generator;
   }
 
   /**
@@ -40,7 +49,7 @@ class EntityReferenceNormalizer extends EntityReferenceNormalizerBase {
       unset($normalized['product_id']);
     }
     if (!empty($normalized['uri'])) {
-      $normalized['url'] = \Drupal::service('file_url_generator')->generateAbsoluteString($normalized['uri']);
+      $normalized['url'] = $this->fileUrlGenerator->generateAbsoluteString($normalized['uri']);
     }
     return $normalized;
   }

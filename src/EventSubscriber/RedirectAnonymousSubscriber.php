@@ -31,7 +31,7 @@ class RedirectAnonymousSubscriber implements EventSubscriberInterface {
   }
 
   /**
-   *
+   * Check Auth Status.
    */
   public function checkAuthStatus(RequestEvent $event) {
     if ($this->account->isAnonymous() && \Drupal::routeMatch()->getRouteName() == 'iq_commerce.user_orders') {
@@ -43,7 +43,7 @@ class RedirectAnonymousSubscriber implements EventSubscriberInterface {
   }
 
   /**
-   *
+   * Get Subscribed Events.
    */
   public static function getSubscribedEvents() {
     $events = [];

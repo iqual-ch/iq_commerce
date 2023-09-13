@@ -18,16 +18,21 @@
     "drupal/commerce_postfinance": "^3.0",
     "drupal/pagedesigner_block_adaptable": "^2.0",
     "iqual/iq_progressive_decoupler": "^2.0",
-    "drupal/term_reference_tree": "*",
+    "drupal/term_reference_tree": "^2.0",
     "drupal/twig_tweak": "^2.0",
     "drupal/swiftmailer": "^2.0",
     "drupal/commerce_cart_api": "^1.0",
-    "iqual/iq_entity_browsers": "^2.0",
+    "iqual/iq_entity_browsers": "dev-misc/allow-inline-entity-form.10",
     "drupal/commerce_combine_carts": "^1.0",
     "drupal/login_emailusername": "^2.0",
     "drupal/redirect_after_login": "^2.0",
     "drupal/single_datetime": "^1.0",
     "drupal/entity_print": "2.x",
-    "drupal/commerce_repeat_order": "^2.2"
-  }
+    "drupal/commerce_repeat_order": "^2.2",
+    "drupal/commerce_payrexx_integration": "^1.0@beta",
+    "iqual/iq_bef_extensions": "dev-issue/US-1592_d10-upgrade",
+    "iqual/iq_user_base": "misc/rework-dev",
+    "iqual/iq_barrio": "dev-misc/rework-scss-structure-for-commerce as 3.7.1"
+  },
+  "extra": {}
 }

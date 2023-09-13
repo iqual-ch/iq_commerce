@@ -2,6 +2,8 @@
 
 namespace Drupal\iq_commerce\Event;
 
+use Drupal\commerce_order\Entity\OrderInterface;
+use Drupal\commerce_order\Entity\OrderItemInterface;
 use Symfony\Contracts\EventDispatcher\Event;
 
 /**
@@ -33,7 +35,7 @@ class IqCommerceBeforeCartRemoveItemEvent extends Event {
    * @param \Drupal\commerce_order\Entity\OrderItemInterface $commerce_order_item
    *   The order item that is being removed.
    */
-  public function __construct($commerce_order, $commerce_order_item) {
+  public function __construct(OrderInterface $commerce_order, OrderItemInterface $commerce_order_item) {
     $this->commerceOrder = $commerce_order;
     $this->commerceOrderItem = $commerce_order_item;
 

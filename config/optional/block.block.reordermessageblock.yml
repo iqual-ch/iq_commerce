@@ -1,0 +1,35 @@
+langcode: en
+status: true
+dependencies:
+  module:
+    - advanced_menu_condition
+    - iq_commerce
+    - pagedesigner_block
+  theme:
+    - iq_custom
+id: reordermessageblock
+theme: iq_custom
+region: content
+weight: 0
+provider: null
+plugin: reorder_message_block
+settings:
+  id: reorder_message_block
+  label: 'Reorder message block'
+  label_display: '0'
+  provider: iq_commerce
+visibility:
+  advanced_menu_position:
+    id: advanced_menu_position
+    menu_position:
+      '': ''
+    negate: null
+  advanced_menu_position_not:
+    id: advanced_menu_position_not
+    not_menu_position:
+      '': ''
+    negate: null
+  pagedesigner_condition:
+    id: pagedesigner_condition
+    pagedesigner_condition: 0
+    negate: null

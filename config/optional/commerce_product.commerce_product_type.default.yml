@@ -1,0 +1,20 @@
+langcode: en
+status: true
+dependencies:
+  module:
+    - iq_commerce
+third_party_settings:
+  iq_commerce:
+    tax_rate: standard
+_core:
+  default_config_hash: hwJoqnxqBS0fPM3s6FccZ2bWaq9LneRYLzFk-wlJWjs
+id: default
+label: Default
+traits: {  }
+locked: false
+description: ''
+variationType: default
+variationTypes:
+  - default
+multipleVariations: true
+injectVariationFields: true

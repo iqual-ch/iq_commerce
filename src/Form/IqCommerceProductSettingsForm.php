@@ -10,7 +10,7 @@ use Drupal\Core\Form\FormStateInterface;
 use Symfony\Component\Yaml\Yaml as YamlParser;
 
 /**
- * Class IqCommerceProductSettingsForm.
+ * Class Iq Commerce Product Settings Form.
  *
  * @package Drupal\iq_commerce\Form
  */
@@ -31,8 +31,8 @@ class IqCommerceProductSettingsForm extends ConfigFormBase {
     $form['general'] = [
       '#type' => 'textarea',
       '#title' => $this->t('IQ Commerce Product settings'),
-      '#description' => $this->t('This text field should be written in yml syntax (main keys are "required" and "related" products).'),
-      '#default_value' => Yaml::decode($iqCommerceProductSettingsConfig->get('general')),
+      '#description' => $this->t('This text field should be written in YAML syntax.'),
+      '#default_value' => $iqCommerceProductSettingsConfig->get('general') ? Yaml::decode($iqCommerceProductSettingsConfig->get('general')) : '',
     ];
 
     $form['actions']['#type'] = 'actions';
@@ -55,7 +55,7 @@ class IqCommerceProductSettingsForm extends ConfigFormBase {
     catch (InvalidDataTypeException $e) {
       $form_state->setErrorByName(
         'general',
-        $this->t('The provided configuration is not a valid yaml text.')
+        $this->t('This text field should be written in YAML syntax.')
       );
     }
   }

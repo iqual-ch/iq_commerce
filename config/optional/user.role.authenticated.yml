@@ -1,0 +1,33 @@
+langcode: en
+status: true
+dependencies:
+  module:
+    - commerce_checkout
+    - commerce_order
+    - commerce_payment
+    - commerce_product
+    - commerce_variation_add_to_cart
+    - entity_print
+    - media
+    - profile
+    - system
+_core:
+  default_config_hash: dJ0L2DNSj5q6XVZAGsuVDpJTh5UeYkIPwKrUOOpr8YI
+id: authenticated
+label: 'Authenticated user'
+weight: 1
+is_admin: false
+permissions:
+  - 'access checkout'
+  - 'access content'
+  - 'access variation add to cart'
+  - 'bypass entity print access'
+  - 'create customer profile'
+  - 'delete own customer profile'
+  - 'manage own commerce_payment_method'
+  - 'update own customer profile'
+  - 'view commerce_product'
+  - 'view media'
+  - 'view own commerce_order'
+  - 'view own customer profile'
+  - 'view own profile'

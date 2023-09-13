@@ -6,7 +6,7 @@ services:
 
   commerce_cart_api.normalizer.entity_references:
     class: Drupal\iq_commerce\Normalizer\EntityReferenceNormalizer
-    arguments: ['@entity.repository', '@current_route_match', '%commerce_cart_api%']
+    arguments: ['@entity.repository', '@current_route_match', '@file_url_generator', '%commerce_cart_api%']
     tags:
       - { name: normalizer, priority: 9 }
 
@@ -15,3 +15,9 @@ services:
     arguments: ['@current_user']
     tags:
       - {name: event_subscriber}
+
+  iq_commerce.cart_update_subscriber:
+    class: Drupal\iq_commerce\EventSubscriber\CartEventSubscriber
+    arguments: ['@tempstore.private']
+    tags:
+      - { name: event_subscriber }

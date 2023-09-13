@@ -6,3 +6,5 @@ label: 'Swiss tax'
 plugin: swiss_vat
 configuration:
   display_inclusive: true
+conditions: {  }
+conditionOperator: AND

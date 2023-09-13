@@ -1,0 +1,22 @@
+langcode: en
+status: true
+dependencies:
+  module:
+    - commerce_payrexx_integration
+id: payrexx
+label: Payrexx
+weight: null
+plugin: payrexx_redirect_checkout
+configuration:
+  display_label: Payrexx
+  mode: test
+  payment_method_types:
+    - credit_card
+  collect_billing_information: true
+  instance_name: iqual
+  secret: YbPRqsCvF6dBiODhFnLZ3oEhqNUh1N
+  vat: '7.7'
+  fee: '0'
+  send_basket: 1
+conditions: {  }
+conditionOperator: AND

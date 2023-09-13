@@ -1,11 +1,4 @@
 (function ($, Drupal) {
-/* User login menu dropdown (MyAccount) */
-  $('.nav-holder').hover(function () {
-    const dropdownMenu = $(this).children('.nav-holder > .nav');
-    if (dropdownMenu.is(':visible')) {
-      dropdownMenu.toggleClass('expanded');
-    }
-  });
 
   /**
    * Back button on order detail pages with fallback
@@ -20,10 +13,7 @@
   });
 
   $trigger.on('click', function () {
-    console.log('ok?')
-
     window.history.go(-1);
-
     setTimeout(function () {
       if (!hasHistory) {
         window.location.href = fallback;

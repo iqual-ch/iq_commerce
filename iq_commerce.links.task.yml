@@ -13,3 +13,8 @@ iq_commerce.product_settings:
   title: 'Product Settings'
   weight: 100
   base_route: iq_commerce.email_settings
+
+iq_commerce.config:
+  route_name: iq_commerce.config
+  title: 'Iq commerce settings'
+  base_route: iq_commerce.config
