@@ -121,7 +121,7 @@ class CartEventSubscriber implements EventSubscriberInterface {
     if ($cart->getTotalPrice()->getNumber() < \Drupal::config('iq_commerce.settings')->get('minimum-treshold')) {
       $cart->addAdjustment(new Adjustment([
         'type' => 'min_order_fee',
-        'label' => $this->t('Min. fee'),
+        'label' => $this->t('Min. fee', [], ['context' => 'iq_commerce']),
         'amount' => new Price(\Drupal::config('iq_commerce.settings')->get('additional-cost-amount'), 'CHF'),
         'included' => FALSE,
         'locked' => TRUE,

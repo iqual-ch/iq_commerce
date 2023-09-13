@@ -31,7 +31,7 @@ class IqCommerceProductSettingsForm extends ConfigFormBase {
     $form['general'] = [
       '#type' => 'textarea',
       '#title' => $this->t('IQ Commerce Product settings'),
-      '#description' => $this->t('This text field should be written in yml syntax (main keys are "required" and "related" products).'),
+      '#description' => $this->t('This text field should be written in YAML syntax.'),
       '#default_value' => $iqCommerceProductSettingsConfig->get('general') ? Yaml::decode($iqCommerceProductSettingsConfig->get('general')) : '',
     ];
 
@@ -55,7 +55,7 @@ class IqCommerceProductSettingsForm extends ConfigFormBase {
     catch (InvalidDataTypeException $e) {
       $form_state->setErrorByName(
         'general',
-        $this->t('The provided configuration is not a valid yaml text.')
+        $this->t('This text field should be written in YAML syntax.')
       );
     }
   }

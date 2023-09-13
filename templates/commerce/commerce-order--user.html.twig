@@ -23,7 +23,7 @@
   <div class="row iq-row fullwidth iq-order-detail">
     <div class="col iq-column">
 
-      <h1 class="page-title">{{ "Order"|t }} &num;{{ order.order_number.0 }}</h1>
+      <h1 class="page-title">{{ "Order"|t({}, {'context' : 'Commerce'}) }} &num;{{ order.order_number.0 }}</h1>
 
       {% block order_print_icon %}
         <div class="fieldset-wrapper order-print">
@@ -45,12 +45,12 @@
       {% block order_status %}
         <div class="fieldset-wrapper order-status">
 
-          <h2 class="section-title">{{ "Order status"|t }}</h2>
+          <h2 class="section-title">{{ "Order status"|t({}, {'context' : 'iq_commerce'}) }}</h2>
 
           <div class="fieldset-wrapper__inner">
 
             <div class="field order-status__placed">
-              <div class="field__label">{{ "Order placed"|t }}</div>
+              <div class="field__label">{{ "Order placed"|t({}, {'context' : 'iq_commerce'}) }}</div>
               <div class="field__item">{{ order.placed.0 }}</div>
             </div>
 
@@ -60,7 +60,7 @@
             </div>
 
             <div class="field order-status__state">
-              <div class="field__label">{{ "Order state"|t }}</div>
+              <div class="field__label">{{ "Order status"|t({}, {'context' : 'iq_commerce'}) }}</div>
               <div class="field__item">{{ order.state.0 }}</div>
             </div>
 
@@ -77,7 +77,7 @@
       {% block customer_information %}
         <div class="fieldset-wrapper customer-information">
 
-          <h2 class="section-title">{{ "Your information"|t }}</h2>
+          <h2 class="section-title">{{ "Your information"|t({}, {'context' : 'iq_commerce'}) }}</h2>
 
           <div class="fieldset-wrapper__inner">
 
@@ -108,7 +108,7 @@
       {% block order_information %}
         <div class="fieldset-wrapper order-information">
 
-          <h2 class="section-title">{{ "Order items"|t }}</h2>
+          <h2 class="section-title">{{ "Order items"|t({}, {'context' : 'iq_commerce'}) }}</h2>
 
           <div class="fieldset-wrapper__inner">
             {{ order.order_items }}

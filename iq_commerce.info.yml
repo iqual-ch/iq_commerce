@@ -3,6 +3,10 @@ description: Provides additional functionality for the Commerce for iQual.
 package: Custom
 type: module
 core_version_requirement: ^8.8 || ^9
+
+'interface translation project': iq_commerce
+'interface translation server pattern': modules/custom/iq_commerce/translations/iq_commerce-%language.po
+
 dependencies:
   - commerce:commerce_tax (price,order)
   - commerce:commerce_checkout

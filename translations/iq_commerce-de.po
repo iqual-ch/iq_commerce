@@ -135,11 +135,151 @@ msgstr "Zurück zum Warenkorb"
 msgid "Collection Date"
 msgstr "Abholdatum"
 
-msgid "Collection date"
-msgstr "Abholdatum"
-
 msgid "Payment Confirmation"
 msgstr "Zahlungsbestätigung"
 
 msgid "Cart Header"
 msgstr "Warenkorb - Überschrift und Zusatztext"
+
+# Order confirmation - E-Mail
+# /templates/commerce/commerce-order-receipt.html.twig
+
+msgid "Order confirmation"
+msgstr "Bestellbestätigung"
+
+msgid "Thank you for your order"
+msgstr "Vielen Dank für Ihre Bestellung"
+
+msgid "Order summary"
+msgstr "Bestellübersicht"
+
+msgid "Order number"
+msgstr "Bestellnummer"
+
+msgid "Order date"
+msgstr "Bestelldatum"
+
+msgid "Billing and Shipping"
+msgstr "Rechnung und Versand"
+
+msgid "Billing information"
+msgstr "Rechnungsadresse"
+
+msgid "Shipping information"
+msgstr "Versandadresse"
+
+msgid "Payment method"
+msgstr "Zahlungsmethode"
+
+msgid "Shipping method"
+msgstr "Versandart"
+
+msgid "Order items"
+msgstr "Bestellte Artikel"
+
+msgid "Subtotal"
+msgstr "Zwischensumme"
+
+msgid "Total"
+msgstr "Total"
+
+
+# Order detail page
+# /templates/commerce/commerce-order--user.html.twig
+
+msgctxt "iq_commerce"
+msgid "Order status"
+msgstr "Bestellstatus"
+
+msgctxt "iq_commerce"
+msgid "Order placed"
+msgstr "Auftrag erteilt"
+
+msgctxt "iq_commerce"
+msgid "Your information"
+msgstr "Ihre Informationen"
+
+msgctxt "iq_commerce"
+msgid "Order items"
+msgstr "Bestellte Artikel"
+
+
+# Order PDF
+# /templates/commerce/commerce-order-receipt--entity-print.html.twig
+
+msgid "We have received your order and will process it immediately."
+msgstr "Wir haben Ihre Bestellung erhalten und werden sie umgehend bearbeiten."
+
+msgctxt "iq_commerce"
+msgid "Shipping Information"
+msgstr "Informationen zum Versand"
+
+msgctxt "iq_commerce"
+msgid "Billing Information"
+msgstr "Informationen zur Rechnungsstellung"
+
+
+# CartEventSubscriber
+# /src/EventSubscriber/CartEventSubscriber.php
+
+msgctxt "iq_commerce"
+msgid "Min. fee"
+msgstr "Kleinmengenzuschlag"
+
+msgid "Some products weren't copied to the cart as they aren't currently available."
+msgstr "Einige Produkte wurden nicht in den Warenkorb kopiert, da sie derzeit nicht verfügbar sind."
+
+# Forms (Backend)
+# /src/Form/IqCommerceAdditionalSettingsForm.php
+
+msgid "Cart Header"
+msgstr "Header Warenkorb"
+
+msgid "Add a header for the cart view, leave empty so it will NOT be shown."
+msgstr "Fügen Sie eine Kopfzeile für die Warenkorbansicht hinzu, lassen Sie diese leer, damit sie NICHT angezeigt wird."
+
+
+# /src/Form/IqCommerceFeeSettingsForm.php
+
+msgid "Minimum amount for additional costs"
+msgstr "Kleinmengenzuschlag - Grenze"
+
+msgid "If the cart value is below this value additional costs apply."
+msgstr "Liegt der Warenkorbwert unter diesem Wert, wird der Kleinmengenzuschlag addiert."
+
+msgid "Additional cost amount"
+msgstr "Kleinmengenzuschlag - Wert"
+
+msgid "When the cart is below minimum amount above this amount will be added to total costs."
+msgstr "Wenn der Warenkorb unter dem Mindestbetrag liegt, wird dieser Betrag zu den Gesamtkosten hinzugefügt."
+
+# /src/Form/IqCommerceProductSettingsForm.php
+
+msgid "IQ Commerce Product settings"
+msgstr "IQ Commerce Produkt Einstellungen"
+
+msgid "This text field should be written in YAML syntax."
+msgstr "Dieses Textfeld sollte in YAML-Syntax geschrieben"
+
+# /src/Form/IqCommerceSettingsForm.php
+
+msgid "Header"
+msgstr "Kopfzeile"
+
+msgid "Add a header message for the receipt."
+msgstr "Fügen Sie eine Kopfzeile für die E-Mail-Benachrichtigung hinzu."
+
+msgid "Footer"
+msgstr "Fusszeile"
+
+msgid "Add a footer message for the receipt."
+msgstr "Fügen Sie eine Fusszeile für die E-Mail-Benachrichtigung hinzu."
+
+msgid "Commerce Store"
+msgstr "Commerce Store"
+
+# Plugins
+# /src/Plugin/Commerce/CheckoutPane/AgeConfirmationPane.php
+
+msgid "I confirm that I am over 18 years old."
+msgstr "Ich bestätige, dass ich über 18 Jahre alt bin."

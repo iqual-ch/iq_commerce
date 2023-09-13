@@ -24,6 +24,7 @@
 <div style="">
   <!-- Logo section -->
   <!--[if mso | IE]><table align="center" border="0" cellpadding="0" cellspacing="0" class="" style="width:600px;" width="600" ><tr><td style="line-height:0px;font-size:0px;mso-line-height-rule:exactly;"><![endif]-->
+  {% if path_to_logo is not empty %}
   <div style="margin:0px auto;max-width:600px;">
     <table align="center" border="0" cellpadding="0" cellspacing="0" role="presentation" style="width:100%;">
       <tbody>
@@ -58,6 +59,7 @@
       </tbody>
     </table>
   </div>
+  {% endif %}
   <!--[if mso | IE]></td></tr></table><![endif]-->
   <!-- Intro text section -->
   <!--[if mso | IE]><table align="center" border="0" cellpadding="0" cellspacing="0" class="" style="width:600px;" width="600" ><tr><td style="line-height:0px;font-size:0px;mso-line-height-rule:exactly;"><![endif]-->
@@ -191,7 +193,7 @@
                   <!-- Order date value -->
                   <tr>
                     <td align="left" style="font-size:0px;padding:10px 25px;word-break:break-word;">
-                      <div style="font-family:helvetica;font-size:16px;line-height:1;text-align:left;color:#333333;">{{ order_entity.created.value|date('F j, Y, G:i') }}</div>
+                      <div style="font-family:helvetica;font-size:16px;line-height:1;text-align:left;color:#333333;">{{ order_entity.created.value|date('j.n.Y, G:i') }}</div>
                     </td>
                   </tr>
                 </tbody>

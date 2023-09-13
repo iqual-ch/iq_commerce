@@ -39,7 +39,7 @@
             <tr>
               <td style="padding-bottom: 12px;">
                 <span style="font-size: 14px; line-height: 1.5;">
-                  {{'Dear'|t}} {{ full_name }},
+                  {{'Dear @user,'|t({'user' : full_name})}}
                 </span>
               </td>
             </tr>
@@ -79,10 +79,10 @@
             <table cellpadding="0" cellspacing="0" style="width: 100%; font-size: 14px; line-height: 1.15">
               <tr>
                 {% if shipping_information %}
-                  <td style="width: 50%; font-weight: bold;">{{ 'Shipping Information'|t }}</td>
+                  <td style="width: 50%; font-weight: bold;">{{ 'Shipping Information'|t({}, {'context' : 'iq_commerce'}) }}</td>
                 {% endif %}
                 {% if billing_information %}
-                  <td style="width: 50%; font-weight: bold;">{{ 'Billing Information'|t }}</td>
+                  <td style="width: 50%; font-weight: bold;">{{ 'Billing Information'|t({}, {'context' : 'iq_commerce'}) }}</td>
                 {% endif %}
               </tr>
               <tr>

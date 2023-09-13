@@ -45,7 +45,7 @@ class IqCommerceFeeSettingsForm extends ConfigFormBase {
       '#type' => 'number',
       '#title' => $this->t('Additional cost amount'),
       '#default_value' => $config->get('additional-cost-amount') ?? 0,
-      '#description' => $this->t('When the cart is below minimum amount above this amount will be added to total costs'),
+      '#description' => $this->t('When the cart is below minimum amount above this amount will be added to total costs.'),
       '#required' => TRUE,
     ];
 
