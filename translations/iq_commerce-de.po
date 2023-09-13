@@ -283,3 +283,26 @@ msgstr "Commerce Store"
 
 msgid "I confirm that I am over 18 years old."
 msgstr "Ich bestätige, dass ich über 18 Jahre alt bin."
+
+# Workflow states
+
+msgctxt "workflow state"
+msgid "Draft"
+msgstr "Entwurf"
+
+msgctxt "workflow state"
+msgid "Validation"
+msgstr "Überprüfung"
+
+msgctxt "workflow state"
+msgid "Fulfillment"
+msgstr "Überprüfung"
+
+msgctxt "workflow state"
+msgid "Abwicklung"
+msgstr "Überprüfung"
+
+
+msgctxt "workflow state"
+msgid "Canceled"
+msgstr "Abgebrochen"
