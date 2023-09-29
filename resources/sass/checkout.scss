@@ -362,6 +362,14 @@
         }
       }
 
+      [data-drupal-selector="edit-payment-information-payment-method"] {
+        order: 1;
+      }
+
+      [data-drupal-selector="edit-payment-information-billing-information"] {
+        order: 0;
+      }
+
       // Review
       &.checkout-pane-review {
 
