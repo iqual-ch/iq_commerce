@@ -8,6 +8,7 @@ ajax-cart:
     resources/js/init.js: {}
   dependencies:
     - core/jquery
+    - core/once
     - core/drupal
     - core/drupal.ajax
     - ui_patterns/button.button
