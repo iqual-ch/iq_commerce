@@ -7,7 +7,6 @@ dependencies:
   - commerce:commerce_tax (price,order)
   - commerce:commerce_checkout
   - commerce:commerce_payment
-  - commerce_postfinance:commerce_postfinance
   - commerce_shipping:commerce_shipping
   - commerce_variation_cart_form:commerce_variation_cart_form
   - commerce_variation_add_to_cart:commerce_variation_add_to_cart
