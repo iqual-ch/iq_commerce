@@ -25,7 +25,7 @@
     "iqual/iq_entity_browsers": "^2.0",
     "drupal/commerce_combine_carts": "^1.0",
     "drupal/login_emailusername": "^2.0",
-    "drupal/redirect_after_login": "^2.0",
+    "drupal/redirect_after_login": "^3.0",
     "drupal/single_datetime": "^1.0",
     "drupal/entity_print": "2.x",
     "drupal/commerce_repeat_order": "^2.2"
