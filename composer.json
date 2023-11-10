@@ -10,7 +10,7 @@
   ],
   "require": {
     "drupal/commerce": "^2.0",
-    "drupal/hierarchical_taxonomy_menu": "^1.0",
+    "drupal/hierarchical_taxonomy_menu": "^2.0@beta",
     "drupal/media_entity_browser": "^2.0",
     "drupal/commerce_variation_add_to_cart": "^1.0",
     "drupal/commerce_variation_cart_form": "^1.0",
