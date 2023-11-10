@@ -25,7 +25,7 @@
     "drupal/commerce_combine_carts": "^1.0@RC",
     "drupal/login_emailusername": "^2.0",
     "drupal/redirect_after_login": "^3.0",
-    "drupal/single_datetime": "^1.0",
+    "drupal/single_datetime": "^2.0@beta",
     "drupal/entity_print": "2.x",
     "drupal/commerce_repeat_order": "^2.2"
   }
