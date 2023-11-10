@@ -21,7 +21,7 @@
     "drupal/twig_tweak": "^3.2",
     "drupal/swiftmailer": "^2.0",
     "drupal/commerce_cart_api": "^1.0",
-    "iqual/iq_entity_browsers": "^2.0",
+    "iqual/iq_entity_browsers": "^3.0",
     "drupal/commerce_combine_carts": "^1.0@RC",
     "drupal/login_emailusername": "^2.0",
     "drupal/redirect_after_login": "^3.0",
