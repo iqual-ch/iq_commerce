@@ -33,7 +33,7 @@ class EntityReferenceNormalizer extends EntityReferenceNormalizerBase {
   /**
    * {@inheritdoc}
    */
-  public function normalize($field_item, $format = NULL, array $context = []) {
+  public function normalize($field_item, $format = NULL, array $context = []): float|array|\ArrayObject|bool|int|string|null {
     $normalized = parent::normalize($field_item, $format, $context);
     if (!empty($normalized['product_id']) && !empty($normalized['product_id']['product_id'])) {
       $normalized['product_entity'] = $normalized['product_id'];
