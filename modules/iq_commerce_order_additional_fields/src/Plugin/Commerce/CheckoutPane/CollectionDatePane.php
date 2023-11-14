@@ -51,8 +51,8 @@ class CollectionDatePane extends CheckoutPaneBase implements CheckoutPaneInterfa
         '#date_time_element' => NULL,
         '#first_day' => \Drupal::config('system.date')->get('first_day'),
         '#allowed_hours' => Json::encode(range(0, 23)),
-
-        // '#disable_days' => ["1","2","3"],
+        '#disable_days' => [],
+        '#start_date' => \Drupal::service('date.formatter')->format(time(), 'custom', 'd.m.Y'),
       ];
     }
     return $pane_form;
