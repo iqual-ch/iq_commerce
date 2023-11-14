@@ -85,7 +85,7 @@
           Drupal.behaviors.iq_commerce_ajax_cart.addToCart(csrfToken, 'commerce_product_variation', parseInt(orderProductData['variation_id']), parseInt(orderProductData['quantity']), trigger, formData);
         });
       });
-    });
+    }));
   });
 
   $(document).on("iq-commerce-cart-add-before", function (e, orderData) {
