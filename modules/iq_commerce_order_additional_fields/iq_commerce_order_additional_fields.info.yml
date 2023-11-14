@@ -2,7 +2,7 @@ name: iqual Commerce Order additional fields
 description: Provides additional fields to the order, such as pick up date.
 package: Custom
 type: module
-core_version_requirement: ^8 || ^9
+core_version_requirement: ^9.5 || ^10
 dependencies:
   - iq_commerce:iq_commerce
   - drupal:datetime
