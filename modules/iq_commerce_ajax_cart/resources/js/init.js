@@ -4,7 +4,7 @@
     attach: function (context, settings) {
 
       // bind cart update to forms - product
-      $(once('form.commerce-order-item-add-to-cart-form', 'add-to-cart-form-init', context)).each(function () {
+      $(once('add-to-cart-form-init', 'form.commerce-order-item-add-to-cart-form', context)).each(function () {
         $(this).on('click', '.form-submit', function (e) {
           $(this).parents('form').data('button-clicked', 'cart');
         });
@@ -64,7 +64,7 @@
     });
 
     // bind cart update to forms
-    $(once('add-to-cart-form-init', 'form.commerce-variation-add-to-cart-form', 'html').each(function () {
+    $(once('add-to-cart-form-init', 'form.commerce-variation-add-to-cart-form', document)).each(function () {
       $(this).on('click', '.form-submit', function (e) {
         $(this).parents('form').data('button-clicked', 'cart');
       });
@@ -85,7 +85,7 @@
           Drupal.behaviors.iq_commerce_ajax_cart.addToCart(csrfToken, 'commerce_product_variation', parseInt(orderProductData['variation_id']), parseInt(orderProductData['quantity']), trigger, formData);
         });
       });
-    }));
+    });
   });
 
   $(document).on("iq-commerce-cart-add-before", function (e, orderData) {
