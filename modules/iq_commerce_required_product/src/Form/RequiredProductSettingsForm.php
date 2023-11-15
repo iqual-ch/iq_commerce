@@ -10,7 +10,7 @@ use Drupal\Core\Form\FormStateInterface;
 use Symfony\Component\Yaml\Yaml as YamlParser;
 
 /**
- * Class RequiredProductSettingsForm.
+ * Required Product Settings Form class.
  *
  * @package Drupal\iq_commerce\Form
  */
@@ -32,7 +32,7 @@ class RequiredProductSettingsForm extends ConfigFormBase {
       '#type' => 'textarea',
       '#title' => $this->t('Required products settings (list of fields)'),
       '#description' => $this->t('This text field should be written in yml syntax (main key is "required").'),
-      '#default_value' => Yaml::decode($config->get('required_product_fields')),
+      '#default_value' => Yaml::decode($config->get('required_product_fields') ?? ''),
     ];
 
     $form['actions']['#type'] = 'actions';
