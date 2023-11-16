@@ -76,6 +76,7 @@ class IqCommerceCartAddResource extends CartAddResource {
    * @throws \Drupal\Component\Plugin\Exception\PluginNotFoundException
    */
   public function __construct(array $configuration, $plugin_id, $plugin_definition, array $serializer_formats, LoggerInterface $logger, CartProviderInterface $cart_provider, CartManagerInterface $cart_manager, EntityTypeManagerInterface $entity_type_manager, ChainOrderTypeResolverInterface $chain_order_type_resolver, CurrentStoreInterface $current_store, ChainPriceResolverInterface $chain_price_resolver, AccountInterface $current_user, EntityRepositoryInterface $entity_repository, EventDispatcherInterface $event_dispatcher) {
+    parent::__construct($configuration, $plugin_id, $plugin_definition, $serializer_formats, $logger, $cart_provider, $cart_manager, $entity_type_manager, $chain_order_type_resolver, $current_store, $chain_price_resolver, $current_user, $entity_repository);
     $this->eventDispatcher = $event_dispatcher;
   }
 
@@ -154,7 +155,7 @@ class IqCommerceCartAddResource extends CartAddResource {
     $this->eventDispatcher->dispatch($before_event, IqCommerceCartEvents::BEFORE_CART_ENTITY_ADD);
     $data = $before_event->getBody();
     // Create the order item through the commerce API.
-    $response = NULL;
+    $response = parent::post($data, $request);
     // Go through the response, it should be only 1 order item.
     $responseData = $response->getResponseData();
     /** @var OrderItem $order_item */
