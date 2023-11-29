@@ -21,7 +21,7 @@ function iq_commerce_mail($key, &$message, $params) {
   $message['headers']['Content-Type'] = 'text/html; charset=UTF-8; format=flowed';
   \Drupal::logger('iq_commerce')->notice($key);
   mb_internal_encoding("UTF-8");
-  $message['subject'] = mb_encode_mimeheader($message['subject'], 'UTF-8', 'Q');
+  $message['subject'] = mb_encode_mimeheader((string) $message['subject'], 'UTF-8', 'Q');
 }
 
 /**
@@ -55,10 +55,10 @@ function iq_commerce_views_data_alter(array &$data) {
  */
 function iq_commerce_form_alter(&$form, FormStateInterface $form_state, $form_id = '') {
   // If it is a commerce product variation edit form.
-  if (substr((string) $form_id, 0, strlen('commerce_product_variation')) == 'commerce_product_variation' && substr((string) $form_id, 0 - (strlen('_edit_form')), strlen('_edit_form')) == '_edit_form') {
+  if (str_starts_with((string) $form_id, 'commerce_product_variation') && substr((string) $form_id, 0 - (strlen('_edit_form')), strlen('_edit_form')) == '_edit_form') {
     foreach (array_keys($form) as $form_array_key) {
       // If there is an attribute field, sort the options by the weight.
-      if (substr($form_array_key, 0, strlen('attribute_')) == 'attribute_') {
+      if (str_starts_with($form_array_key, 'attribute_')) {
         uasort($form[$form_array_key]['widget']['#options'], function ($a, $b) use ($form_array_key) {
           $attribute_id = substr($form_array_key, strlen('attribute_'));
           if (!is_string($a)) {
@@ -90,7 +90,7 @@ function iq_commerce_form_alter(&$form, FormStateInterface $form_state, $form_id
     }
   }
   // Override the cart view.
-  if (substr((string) $form_id, 0, strlen('views_form_commerce_cart_form_default')) == 'views_form_commerce_cart_form_default') {
+  if (str_starts_with((string) $form_id, 'views_form_commerce_cart_form_default')) {
     $iq_commerce_additional_settings = IqCommerceAdditionalSettingsForm::getIqCommerceAdditionalSettings();
     // Check for the additional settings (cart header and size).
     if (!empty($iq_commerce_additional_settings['cart_header'])) {

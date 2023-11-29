@@ -17,9 +17,9 @@
     "drupal/commerce_variation_add_to_cart": "^1.0",
     "drupal/commerce_variation_cart_form": "^1.0",
     "drupal/commerce_shipping": "^2.0",
-    "drupal/pagedesigner_block_adaptable": "^3.0",
-    "iqual/iq_progressive_decoupler": "^2.0",
-    "drupal/term_reference_tree": "*",
+    "drupal/pagedesigner_block_adaptable": "^3.1",
+    "iqual/iq_progressive_decoupler": "^3.0",
+    "drupal/term_reference_tree": "^2.0",
     "drupal/twig_tweak": "^3.0",
     "drupal/swiftmailer": "^2.0",
     "drupal/commerce_cart_api": "^1.0",
@@ -30,5 +30,18 @@
     "drupal/single_datetime": "^2.0",
     "drupal/entity_print": "^2.0",
     "drupal/commerce_repeat_order": "^2.2"
+  },
+  "extra": {
+    "patches": {
+      "drupal/commerce_variation_add_to_cart": {
+        "[https://dgo.to/3352609]: Drupal 10 ready": "https://www.drupal.org/files/issues/2023-06-07/drupal-10-ready-3352609-4.patch"
+      },
+      "drupal/commerce_repeat_order": {
+        "[https://dgo.to/3367273]: Drupal 10 compatibility": "https://www.drupal.org/files/issues/2023-09-13/d10_compatibility-3367273-7.patch"
+      },
+      "drupal/commerce_cart_api": {
+        "[https://dgo.to/3332548]: Drupal 10 update": "https://git.drupalcode.org/project/commerce_cart_api/-/merge_requests/3/diffs.diff?diff_id=598551"
+      }
+    }
   }
 }

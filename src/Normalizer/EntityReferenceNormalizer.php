@@ -2,9 +2,9 @@
 
 namespace Drupal\iq_commerce\Normalizer;
 
-use Drupal\Core\Routing\RouteMatchInterface;
-use Drupal\Core\Entity\EntityRepositoryInterface;
 use Drupal\commerce_cart_api\Normalizer\EntityReferenceNormalizer as EntityReferenceNormalizerBase;
+use Drupal\Core\Entity\EntityRepositoryInterface;
+use Drupal\Core\Routing\RouteMatchInterface;
 use Drupal\iq_commerce\Form\IqCommerceProductSettingsForm;
 
 /**
@@ -33,7 +33,7 @@ class EntityReferenceNormalizer extends EntityReferenceNormalizerBase {
   /**
    * {@inheritdoc}
    */
-  public function normalize($field_item, $format = NULL, array $context = []) {
+  public function normalize($field_item, $format = NULL, array $context = []): float|array|\ArrayObject|bool|int|string|null {
     $normalized = parent::normalize($field_item, $format, $context);
     if (!empty($normalized['product_id']) && !empty($normalized['product_id']['product_id'])) {
       $normalized['product_entity'] = $normalized['product_id'];

@@ -12,20 +12,12 @@ use Symfony\Contracts\EventDispatcher\Event;
 class IqCommerceAfterCartUpdateItemEvent extends Event {
 
   /**
-   * The response after the product item is updated from the cart.
-   *
-   * @var \Drupal\rest\ResourceResponseInterface
-   */
-  protected $response;
-
-  /**
    * Constructs a new AfterCartUpdateEvent.
    *
    * @param \Drupal\rest\ResourceResponseInterface $response
    *   The response after the order item is updated from the cart.
    */
-  public function __construct($response) {
-    $this->response = $response;
+  public function __construct(protected $response) {
   }
 
   /**

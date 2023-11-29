@@ -2,8 +2,8 @@
 
 namespace Drupal\iq_commerce\Resolver;
 
-use Drupal\commerce\PurchasableEntityInterface;
 use Drupal\commerce\Context;
+use Drupal\commerce\PurchasableEntityInterface;
 use Drupal\commerce_price\Price;
 use Drupal\commerce_price\Resolver\PriceResolverInterface;
 

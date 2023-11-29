@@ -8,7 +8,7 @@ In order to install the single_datetime module, follow these next steps:
 
   3. Install the library datetimepicker manually or follow guide. (https://github.com/Vallic/single_datetime/blob/8.x-1.x/README.md)
 
-  4. Copy the previous library zip and extract it in a folder public/libraries/datetimepicker
+  4. Copy the previous library zip and extract it in a folder public/libraries/jquery-datetimepicker
 
   5. Execute the command: drush en single_datetime
 

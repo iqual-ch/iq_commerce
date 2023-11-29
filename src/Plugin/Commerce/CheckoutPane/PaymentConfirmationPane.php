@@ -71,7 +71,7 @@ class PaymentConfirmationPane extends CheckoutPaneBase {
   public function buildConfigurationSummary() {
     $additional_pane_text = "";
     if (!empty($this->configuration['header']['value'])) {
-      $additional_pane_text .= htmlspecialchars(substr($this->configuration['header']['value'], 0, 120)) . "...";
+      $additional_pane_text .= htmlspecialchars(substr((string) $this->configuration['header']['value'], 0, 120)) . "...";
       return $additional_pane_text;
     }
     else {
@@ -83,7 +83,7 @@ class PaymentConfirmationPane extends CheckoutPaneBase {
    * {@inheritdoc}
    */
   public function buildConfigurationForm(array $form, FormStateInterface $form_state) {
-    $form = parent::buildConfigurationForm($form, $form_state);
+    $form = NULL;
 
     $default_message = $this->t("<h1>Thank you for your order.</h1>The order number is : [commerce_order:order_number]<br/>");
     if (\Drupal::currentUser()->isAuthenticated()) {
@@ -114,8 +114,6 @@ class PaymentConfirmationPane extends CheckoutPaneBase {
    * {@inheritdoc}
    */
   public function submitConfigurationForm(array &$form, FormStateInterface $form_state) {
-    parent::submitConfigurationForm($form, $form_state);
-
     if (!$form_state->getErrors()) {
       $values = $form_state->getValue($form['#parents']);
       $this->configuration['header'] = NULL;

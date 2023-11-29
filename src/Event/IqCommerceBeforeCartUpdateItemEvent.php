@@ -10,13 +10,6 @@ namespace Drupal\iq_commerce\Event;
 class IqCommerceBeforeCartUpdateItemEvent extends IqCommerceBeforeCartRemoveItemEvent {
 
   /**
-   * The unserialized data from the request body.
-   *
-   * @var mixed
-   */
-  protected $unserialized;
-
-  /**
    * Constructs a new BeforeCartUpdateItemEvent.
    *
    * @param \Drupal\commerce_order\Entity\OrderInterface $commerce_order
@@ -26,9 +19,8 @@ class IqCommerceBeforeCartUpdateItemEvent extends IqCommerceBeforeCartRemoveItem
    * @param mixed $unserialized
    *   The unserialized data from the request body.
    */
-  public function __construct($commerce_order, $commerce_order_item, $unserialized) {
+  public function __construct($commerce_order, $commerce_order_item, protected $unserialized) {
     parent::__construct($commerce_order, $commerce_order_item);
-    $this->unserialized = $unserialized;
 
   }
 

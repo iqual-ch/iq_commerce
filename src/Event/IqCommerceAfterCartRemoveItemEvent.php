@@ -12,18 +12,15 @@ use Symfony\Contracts\EventDispatcher\Event;
 class IqCommerceAfterCartRemoveItemEvent extends Event {
 
   /**
-   * The response after the product item is removed from the cart.
-   */
-  protected $response;
-
-  /**
    * Constructs a new AfterCartRemoveEvent.
    *
    * @param $response
    *   The response after the order item is removed from the cart.
    */
-  public function __construct($response) {
-    $this->response = $response;
+  public function __construct(/**
+                               * The response after the product item is removed from the cart.
+                               */
+  protected $response) {
     \Drupal::logger('iq_commerce')->notice('after cart removed created event');
   }
 

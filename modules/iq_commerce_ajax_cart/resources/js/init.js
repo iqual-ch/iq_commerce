@@ -4,7 +4,7 @@
     attach: function (context, settings) {
 
       // bind cart update to forms - product
-      $('form.commerce-order-item-add-to-cart-form, context').once('add-to-cart-form-init').each(function () {
+      $(once('add-to-cart-form-init', 'form.commerce-order-item-add-to-cart-form', context)).each(function () {
         $(this).on('click', '.form-submit', function (e) {
           $(this).parents('form').data('button-clicked', 'cart');
         });
@@ -64,7 +64,7 @@
     });
 
     // bind cart update to forms
-    $('form.commerce-variation-add-to-cart-form').once('add-to-cart-form-init').each(function () {
+    $(once('add-to-cart-form-init', 'form.commerce-variation-add-to-cart-form', document)).each(function () {
       $(this).on('click', '.form-submit', function (e) {
         $(this).parents('form').data('button-clicked', 'cart');
       });

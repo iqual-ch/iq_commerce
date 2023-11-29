@@ -14,7 +14,7 @@ use Drupal\commerce_product\Entity\ProductVariation;
 function iq_commerce_scheduler_cron() {
   $now = date("Y-m-d", time());
   $products_to_be_published = ProductVariation::loadMultiple();
-  foreach ($products_to_be_published as $key => $product) {
+  foreach ($products_to_be_published as $product) {
     if ($product->hasField('field_iq_commerce_unpublish_on')) {
       $unpublish_date = $product->field_iq_commerce_unpublish_on->value;
     }
@@ -59,10 +59,10 @@ function iq_commerce_scheduler_cron() {
   // Check all products that should be unpublished, i.e. those that reference
   // all unpublished variations.
   $products_to_be_unpublished = Product::loadMultiple();
-  foreach ($products_to_be_unpublished as $key => $product) {
+  foreach ($products_to_be_unpublished as $product) {
     $variations = $product->getVariations();
     $has_published_variation = FALSE;
-    foreach ($variations as $array_key => $variation) {
+    foreach ($variations as $variation) {
       if ($variation->status->value == 1) {
         $has_published_variation = TRUE;
         break;
