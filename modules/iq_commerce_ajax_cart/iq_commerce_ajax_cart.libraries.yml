@@ -1,5 +1,4 @@
 ajax-cart:
-  version: VERSION
   css:
     theme:
       resources/css/ajax-cart.css: {}

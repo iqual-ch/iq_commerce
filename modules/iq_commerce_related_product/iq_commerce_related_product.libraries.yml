@@ -1,5 +1,4 @@
 related-product:
-  version: VERSION
   js:
     resources/js/init.js:  {}
   css:
