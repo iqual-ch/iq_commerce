@@ -21,13 +21,13 @@ function iq_commerce_update_10001() {
 
   // Disable Swiftmailer module.
   if ($moduleList->exists('mailsystem')) {
-    $moduleInstaller->install(['mailsystem']);
+    $moduleInstaller->uninstall(['mailsystem']);
     echo "Disabled mailsystem \n";
   }
 
   // Disable Mailsystem module.
   if ($moduleList->exists('swiftmailer')) {
-    $moduleInstaller->install(['swiftmailer']);
+    $moduleInstaller->uninstall(['swiftmailer']);
     echo "Disabled swiftmailer \n";
   }
 
