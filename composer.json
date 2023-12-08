@@ -23,7 +23,7 @@
     "drupal/twig_tweak": "^3.0",
     "drupal/swiftmailer": "^2.0",
     "drupal/symfony_mailer": "^1.4",
-    "drupal/commerce_cart_api": "^1.0",
+    "drupal/commerce_cart_api": "^1.7",
     "iqual/iq_entity_browsers": "^3.0",
     "drupal/commerce_combine_carts": "^1.0",
     "drupal/login_emailusername": "^2.0",
