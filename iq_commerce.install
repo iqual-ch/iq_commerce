@@ -1,0 +1,35 @@
+<?php
+
+/**
+ * @file
+ * Install, update and uninstall functions for the iqual module.
+ */
+
+/**
+ * Resolve compatibility issue with swifmailer.
+ */
+function iqual_update_10001() {
+
+  $moduleList = \Drupal::service('extension.list.module');
+  $moduleInstaller = \Drupal::service('module_installer');
+
+  // Enable Symfony Mailer module
+  if ($moduleList->exists('symfony_mailer')) {
+    $moduleInstaller->install(['symfony_mailer']);
+    echo "Enabled symfony_mailer \n";
+  }
+
+  // Disable Swiftmailer module
+  if ($moduleList->exists('mailsystem')) {
+    $moduleInstaller->install(['mailsystem']);
+    echo "Disabled mailsystem \n";
+  }
+
+  // Disable Mailsystem module
+  if ($moduleList->exists('swiftmailer')) {
+    $moduleInstaller->install(['swiftmailer']);
+    echo "Disabled swiftmailer \n";
+  }
+
+
+}
