@@ -21,7 +21,6 @@
     "iqual/iq_progressive_decoupler": "^3.0",
     "drupal/term_reference_tree": "^2.0",
     "drupal/twig_tweak": "^3.0",
-    "drupal/swiftmailer": "^2.0",
     "drupal/symfony_mailer": "^1.4",
     "drupal/commerce_cart_api": "^1.0",
     "iqual/iq_entity_browsers": "^3.0",
