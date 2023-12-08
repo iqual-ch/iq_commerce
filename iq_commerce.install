@@ -31,5 +31,4 @@ function iq_commerce_update_10001() {
     echo "Disabled swiftmailer \n";
   }
 
-
 }
