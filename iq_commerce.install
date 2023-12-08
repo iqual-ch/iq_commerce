@@ -2,13 +2,13 @@
 
 /**
  * @file
- * Install, update and uninstall functions for the iqual module.
+ * Install, update and uninstall functions for the iq_commerce module.
  */
 
 /**
  * Resolve compatibility issue with swifmailer.
  */
-function iqual_update_10001() {
+function iq_commerce_update_10001() {
 
   $moduleList = \Drupal::service('extension.list.module');
   $moduleInstaller = \Drupal::service('module_installer');
