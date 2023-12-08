@@ -39,6 +39,9 @@
       },
       "drupal/commerce_repeat_order": {
         "[https://dgo.to/3367273]: Drupal 10 compatibility": "https://www.drupal.org/files/issues/2023-09-13/d10_compatibility-3367273-7.patch"
+      },
+      "drupal/commerce_cart_api": {
+        "[https://dgo.to/3332548]: Drupal 10 update": "https://git.drupalcode.org/project/commerce_cart_api/-/merge_requests/3/diffs.diff?diff_id=598551"
       }
     }
   }
