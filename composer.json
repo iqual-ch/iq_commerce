@@ -17,7 +17,7 @@
     "drupal/commerce_variation_add_to_cart": "^2.0",
     "drupal/commerce_variation_cart_form": "^1.0",
     "drupal/commerce_shipping": "^2.0",
-    "drupal/pagedesigner_block_adaptable": "^3.1",
+    "drupal/pagedesigner_block_adaptable": "^3.1 || ^4.0",
     "iqual/iq_progressive_decoupler": "^3.0",
     "drupal/term_reference_tree": "^2.0",
     "drupal/twig_tweak": "^3.0",
