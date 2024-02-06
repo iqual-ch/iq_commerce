@@ -1,0 +1,33 @@
+<?php
+
+
+/**
+ * @file
+ * Iq_commerce_shipments module file.
+ */
+
+/**
+ * Implements hook_preprocess_HOOK().
+ */
+function iq_commerce_shipments_preprocess_commerce_order_receipt(&$variables) {
+
+  /** @var Drupal\commerce_order\Entity\OrderInterface $order */
+  $order = $variables['order_entity'];
+  $shipments = $order->shipments->referencedEntities();
+  /** @var \Drupal\commerce_shipping\Entity\Shipment $shipment */
+  $shipment = reset($shipments);
+  /** @var \Drupal\address\Plugin\Field\FieldType\AddressItem $address */
+  $address = $shipment->getShippingProfile()->get('address')->first();
+  if (!empty($address)) {
+    $variables['full_name'] = $address->getGivenName() . ' ' . $address->getFamilyName();
+    $countries = CountryManager::getStandardList();
+    $full_country_name = $countries[$address->getCountryCode()]->__toString();
+    $variables['shipping_address'] = $address->getGivenName() . ' ' . $address->getFamilyName() . '<br />' . $address->getAddressLine1() . '<br />' . $address->getPostalCode() . ' ' . $address->getLocality() . '<br/>' . $full_country_name;
+  }
+  
+  if (!empty($shipment->get('shipping_method')->entity)) {
+    $variables['shipping_method'] = $shipment->get('shipping_method')->entity->getName();
+  }
+
+  // https://drupal.stackexchange.com/questions/263652/how-to-get-the-customer-name-in-commerce-order-confirmation-e-mail
+}
