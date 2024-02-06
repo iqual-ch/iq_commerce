@@ -183,6 +183,7 @@ function iq_commerce_preprocess_commerce_order_receipt(&$variables) {
   $order = $variables['order_entity'];
   $billing_profile = $order->getBillingProfile();
   $billing_address = $billing_profile->address->first();
+  $countries = CountryManager::getStandardList();
   $full_country_name = $countries[$billing_address->getCountryCode()]->__toString();
   $variables['billing_address'] = $billing_address->getGivenName() . ' ' . $billing_address->getFamilyName() . '<br />' . $billing_address->getAddressLine1() . '<br />' . $billing_address->getPostalCode() . ' ' . $billing_address->getLocality() . '<br/>' . $full_country_name;
 
