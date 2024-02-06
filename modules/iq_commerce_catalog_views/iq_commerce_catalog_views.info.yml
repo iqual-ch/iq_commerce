@@ -1,0 +1,20 @@
+name: Product and Variant Catalog views for iq_commerce
+description: Catalog views
+package: Custom
+type: module
+core_version_requirement: ^9.5 || ^10
+dependencies:
+  - advanced_menu_condition:advanced_menu_condition
+  - commerce:commerce_price
+  - commerce:commerce_product
+  - commerce_variation_add_to_cart:commerce_variation_add_to_cart
+  - image
+  - media
+  - pagedesigner:pagedesigner_block
+  - pagedesigner_block_adaptable:pagedesigner_block_adaptable
+  - iq_commerce:iq_commerce
+  - taxonomy
+  - text
+  - ui_patterns:ui_patterns_views
+  - user
+  - views
