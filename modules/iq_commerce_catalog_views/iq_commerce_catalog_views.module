@@ -1,0 +1,44 @@
+<?php
+
+/**
+ * @file
+ * Iq_commerce_catalog_views module file.
+ */
+
+ /**
+ * Implements hook_views_pre_render().
+ */
+function iq_commerce_catalog_views_views_pre_render(ViewExecutable $view) {
+  if ($view->id() == 'variant_catalog') {
+
+    // Array of nodes to prevent duplicates.
+    $variation_ids = [];
+    // Manipulated results.
+    $resultNoDoubleNodes = [];
+    $i = 0;
+    // Check each node of the result array on it's nid.
+    foreach ($view->result as $row) {
+
+      $variation_id = $row->commerce_product_variation_field_data_commerce_product__vari_1;
+      // If this node isn't a duplicate.
+      if (!in_array($variation_id, $variation_ids)) {
+        $row->index = $i;
+        $i++;
+        // Add it to the manipulated results.
+        $resultNoDoubleNodes[] = $row;
+        // Mark this nid as in results to prevent duplicates from now on.
+        $variation_ids[] = $variation_id;
+      }
+    }
+    // Replace the old results with the results without duplicates.
+    $view->result = $resultNoDoubleNodes;
+  }
+}
+
+
+/**
+ * Implements hook_page_attachments().
+ */
+function iq_commerce_catalog_views_page_attachments(array &$attachments) {
+  $attachments['#attached']['library'][] = 'iq_commerce_catalog_views/catalog';
+}
