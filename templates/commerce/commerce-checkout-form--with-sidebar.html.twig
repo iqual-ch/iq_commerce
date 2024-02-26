@@ -11,10 +11,10 @@
 #}
 <div class="layout-checkout-form">
   <div class="row">
-    <div class="col-sm-6">
+    <div class="col-sm-6 commerce-checkout-main-content">
       {{ form|without('sidebar', 'actions') }}
     </div>
-    <div class="col-sm-6">
+    <div class="col-sm-6 commerce-checkout-sidebar">
       <h3>{% trans %} Order Summary {% endtrans %}</h3>
       {{ form.sidebar }}
     </div>
