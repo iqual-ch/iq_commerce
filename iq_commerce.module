@@ -33,10 +33,6 @@ function iq_commerce_theme($existing, $type, $theme, $path) {
       'template' => 'commerce/commerce-order-receipt',
       'base hook' => 'commerce_order_receipt',
     ],
-    'commerce_product' => [
-      'template' => 'commerce/commerce-product',
-      'base hook' => 'commerce_product',
-    ],
   ];
 }
 
