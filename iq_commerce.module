@@ -25,7 +25,20 @@ function iq_commerce_mail($key, &$message, $params) {
 }
 
 /**
+ * Implements hook_theme_registry_alter().
+ *
+ * Override paths if bootstrap_barrio is used.
+ */
+function iq_commerce_theme_registry_alter(&$theme_registry) {
+  if (str_contains($theme_registry['commerce_checkout_form__with_sidebar']['path'], 'bootstrap_barrio')) {
+    $theme_registry['commerce_checkout_form__with_sidebar']['path'] = \Drupal::service('extension.list.module')->getPath('iq_commerce') . '/templates/commerce/';
+  }
+}
+
+/**
  * Implements hook_theme().
+ *
+ * Add additional templates.
  */
 function iq_commerce_theme($existing, $type, $theme, $path) {
   return [
