@@ -255,9 +255,11 @@ function iq_commerce_page_attachments(array &$attachments) {
  *
  * Adjust style of buttons in coupon inline form to btn-secondary.
  */
-function iq_commerce_promotion_commerce_inline_form_coupon_redemption_alter(array &$inline_form, FormStateInterface $form_state, array &$complete_form) {
+function iq_commerce_commerce_inline_form_coupon_redemption_alter(array &$inline_form, FormStateInterface $form_state, array &$complete_form) {
   $inline_form['apply']['#attributes']['class'][] = 'btn-secondary';
-  foreach ($inline_form['coupons'] as &$line) {
-    $line['remove_button']['#attributes']['class'][] = 'btn-secondary';
+  if (!empty($inline_form['coupons'])) {
+    foreach ($inline_form['coupons'] as &$line) {
+      $line['remove_button']['#attributes']['class'][] = 'btn-secondary';
+    }
   }
 }
