@@ -22,7 +22,7 @@ class OrderComment extends CheckoutPaneBase implements CheckoutPaneInterface {
    * {@inheritdoc}
    */
   public function buildPaneForm(array $pane_form, FormStateInterface $form_state, array &$complete_form) {
-    if ($this->order->hasField('field_iq_commerce_comment ')) {
+    if ($this->order->hasField('field_iq_commerce_comment')) {
       $pane_form['customer_comments'] = [
         '#type' => 'textarea',
         '#title' => $this->t('Order notes'),
