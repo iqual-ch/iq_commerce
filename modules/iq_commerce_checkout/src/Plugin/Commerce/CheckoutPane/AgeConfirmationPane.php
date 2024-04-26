@@ -1,6 +1,6 @@
 <?php
 
-namespace Drupal\iq_commerce\Plugin\Commerce\CheckoutPane;
+namespace Drupal\iq_commerce_checkout\Plugin\Commerce\CheckoutPane;
 
 use Drupal\commerce_checkout\Plugin\Commerce\CheckoutPane\CheckoutPaneBase;
 use Drupal\Core\Form\FormStateInterface;
