@@ -1,0 +1,34 @@
+<?php
+
+/**
+ * @file
+ * Iq_commerce_checkout module file.
+ */
+
+use Drupal\Core\Form\FormStateInterface;
+use Drupal\Core\Url;
+
+ /**
+ * Implements hook_form_alter().
+ */
+function iq_commerce_checkout_form_commerce_checkout_flow_multistep_default_alter(&$form, FormStateInterface $form_state, $form_id) {
+
+  $url = Url::fromRoute('<current>');
+
+  if ($form_id == 'commerce_checkout_flow_multistep_default' && substr_count($url->getInternalPath(), 'order_information') > 0) {
+    // Unset the "Go back" link and create a custom one.
+    unset($form['actions']['next']['#suffix']);
+    $cartUrl = Url::fromRoute('commerce_cart.page');
+    $form['back_to_cart'] = [
+      '#type' => 'markup',
+      '#markup' => '<a class="iqbm-button iqbm-text btn btn-cta" href="'. $cartUrl->toString() . '">' . t('Back to Cart') . '</a>',
+    ];
+  }
+}
+
+/**
+ * Implements hook_page_attachments().
+ */
+function iq_commerce_checkout_page_attachments(array &$attachments) {
+  $attachments['#attached']['library'][] = 'iq_commerce_checkout/checkout';
+}

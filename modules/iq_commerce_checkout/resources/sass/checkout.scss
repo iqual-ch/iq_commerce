@@ -1,4 +1,4 @@
-@import 'definitions';
+@import '../../../../resources/sass/definitions';
 
 // cart
 .cart-empty-page {
@@ -106,7 +106,6 @@
 
               button {
                 background: $color-grey5;
-                border: 1px solid $color-grey4;
                 width: 35px;
                 padding: 0;
                 text-align: center;
