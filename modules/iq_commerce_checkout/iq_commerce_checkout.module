@@ -30,5 +30,5 @@ function iq_commerce_checkout_form_commerce_checkout_flow_multistep_default_alte
  * Implements hook_page_attachments().
  */
 function iq_commerce_checkout_page_attachments(array &$attachments) {
-  $attachments['#attached']['library'][] = 'iq_commerce_checkout/checkout';
+  $attachments['#attached']['library'][] = 'iq_commerce/checkout';
 }
