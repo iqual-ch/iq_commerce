@@ -15,3 +15,9 @@ services:
     arguments: ['@current_user']
     tags:
       - {name: event_subscriber}
+
+  iq_commerce.checkout_login_subscriber:
+    class: Drupal\iq_commerce\EventSubscriber\CheckoutLoginSubscriber
+    arguments: ['@current_route_match']
+    tags:
+      - {name: event_subscriber}
