@@ -35,6 +35,9 @@
     "patches": {
       "drupal/commerce_repeat_order": {
         "[https://dgo.to/3367273]: Drupal 10 compatibility": "https://www.drupal.org/files/issues/2023-09-13/d10_compatibility-3367273-7.patch"
+      },
+      "drupal/redirect_after_login" : {
+        "[https://dgo.to/3201520]: Allow other modules to prevent redirection": "https://git.drupalcode.org/project/redirect_after_login/-/merge_requests/16.diff"
       }
     }
   }
