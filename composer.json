@@ -29,7 +29,7 @@
     "drupal/redirect_after_login": "^3.0",
     "drupal/single_datetime": "^2.0",
     "drupal/entity_print": "^2.0",
-    "drupal/commerce_repeat_order": "^2.2"
+    "drupal/commerce_repeat_order": "2.2.0"
   },
   "extra": {
     "patches": {
