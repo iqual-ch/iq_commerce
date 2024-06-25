@@ -25,7 +25,20 @@ function iq_commerce_mail($key, &$message, $params) {
 }
 
 /**
+ * Implements hook_theme_registry_alter().
+ *
+ * Override paths if bootstrap_barrio is used.
+ */
+function iq_commerce_theme_registry_alter(&$theme_registry) {
+  if (str_contains($theme_registry['commerce_checkout_form__with_sidebar']['path'], 'bootstrap_barrio')) {
+    $theme_registry['commerce_checkout_form__with_sidebar']['path'] = \Drupal::service('extension.list.module')->getPath('iq_commerce') . '/templates/commerce/';
+  }
+}
+
+/**
  * Implements hook_theme().
+ *
+ * Add additional templates.
  */
 function iq_commerce_theme($existing, $type, $theme, $path) {
   return [
@@ -235,4 +248,18 @@ function iq_commerce_page_attachments(array &$attachments) {
   $attachments['#attached']['library'][] = 'iq_commerce/categories';
   $attachments['#attached']['library'][] = 'iq_commerce/checkout';
   $attachments['#attached']['library'][] = 'iq_commerce/customer';
+}
+
+/**
+ * Implements hook_commerce_inline_form_PLUGIN_ID_alter().
+ *
+ * Adjust style of buttons in coupon inline form to btn-secondary.
+ */
+function iq_commerce_commerce_inline_form_coupon_redemption_alter(array &$inline_form, FormStateInterface $form_state, array &$complete_form) {
+  $inline_form['apply']['#attributes']['class'][] = 'btn-secondary';
+  if (!empty($inline_form['coupons'])) {
+    foreach ($inline_form['coupons'] as &$line) {
+      $line['remove_button']['#attributes']['class'][] = 'btn-secondary';
+    }
+  }
 }
