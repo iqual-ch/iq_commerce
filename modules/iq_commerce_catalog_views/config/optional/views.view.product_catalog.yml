@@ -1674,7 +1674,7 @@ display:
           exclude: false
           alter:
             alter_text: true
-            text: /de/catalog
+            text: /catalog
             make_link: false
             path: ''
             absolute: false

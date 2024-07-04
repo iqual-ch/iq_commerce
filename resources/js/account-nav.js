@@ -12,7 +12,7 @@
    */
   const $window = $(window);
   const $trigger = $('.order-detail-back-button-container > p');
-  const fallback = 'https://commerce-drpl.docker-dev.iqual.ch/de/user/orders';
+  const fallback = '/user/orders';
   let hasHistory = false;
 
   $window.on('beforeunload', function () {

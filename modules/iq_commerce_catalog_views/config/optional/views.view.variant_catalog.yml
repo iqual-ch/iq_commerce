@@ -702,7 +702,7 @@ display:
           exclude: false
           alter:
             alter_text: true
-            text: /de/variant_catalog
+            text: /variant_catalog
             make_link: false
             path: ''
             absolute: false
@@ -2124,7 +2124,7 @@ display:
           exclude: false
           alter:
             alter_text: true
-            text: /de/catalog
+            text: /catalog
             make_link: false
             path: ''
             absolute: false
