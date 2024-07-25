@@ -21,21 +21,27 @@
         form_data: formData
       };
       $(document).trigger("iq-commerce-cart-add-before", [orderData]);
-      $.ajax({
-        url: Drupal.url('cart/add?_format=json'),
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'X-CSRF-Token': csrfToken
-        },
-        data: JSON.stringify([orderData]),
-        success: function (orderData) {
-          if (trigger) {
-            orderData.trigger = trigger
+
+      // Validate cart.
+      Drupal.behaviors.iq_commerce_ajax_cart.validateCartItem(orderData);
+
+      if (orderData.valid) {
+        $.ajax({
+          url: Drupal.url('cart/add?_format=json'),
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'X-CSRF-Token': csrfToken
+          },
+          data: JSON.stringify([orderData]),
+          success: function (orderData) {
+            if (trigger) {
+              orderData.trigger = trigger
+            }
+            $(document).trigger("iq-commerce-cart-add-after", [orderData]);
           }
-          $(document).trigger("iq-commerce-cart-add-after", [orderData]);
-        }
-      });
+        });
+      }
     },
 
     updateItem: function (csrfToken, orderID, itemID, quantity) {
@@ -43,18 +49,38 @@
         quantity: quantity
       };
       $(document).trigger("iq-commerce-cart-update-before", [orderData]);
-      $.ajax({
-        url: Drupal.url('cart/' + orderID + '/items/' + itemID + '?_format=json'),
-        method: 'PATCH',
-        headers: {
-          'Content-Type': 'application/json',
-          'X-CSRF-Token': csrfToken
-        },
-        data: JSON.stringify(orderData),
-        success: function (orderData) {
-          $(document).trigger("iq-commerce-cart-update-after", [orderData]);
-        }
-      });
+
+      // Validate cart.
+      Drupal.behaviors.iq_commerce_ajax_cart.validateCartItem(orderData);
+
+      if (orderData.valid) {
+        $.ajax({
+          url: Drupal.url('cart/' + orderID + '/items/' + itemID + '?_format=json'),
+          method: 'PATCH',
+          headers: {
+            'Content-Type': 'application/json',
+            'X-CSRF-Token': csrfToken
+          },
+          data: JSON.stringify(orderData),
+          success: function (orderData) {
+            $(document).trigger("iq-commerce-cart-update-after", [orderData]);
+          }
+        });
+      }
+    },
+
+    validateCartItem: function (orderData) {
+      orderData.valid = true;
+      orderData.error = false;
+      $(document).trigger("iq-commerce-cart-validate", [orderData]);
+      const $form = $('form.commerce-order-item-add-to-cart-form');
+      // add error message before the form-actions element
+      if (orderData.error) {
+        $form.find('.form-actions').before('<div class="error-messages js-form-wrapper form-group">' + orderData.error + '</div>');
+      }
+      else {
+        $form.find('.error-messages').remove();
+      }
     },
 
     removeFromCart: function (csrfToken, orderID, itemID) {
@@ -146,8 +172,3 @@
   };
 
 })(jQuery);
-
-
-
-
-
