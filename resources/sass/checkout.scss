@@ -292,7 +292,8 @@
 
     .checkout-pane-order-summary {
       position: sticky;
-      top: 30px;
+      top: 0px;
+      align-self: flex-start;
 
       .order-total-line {
         padding-right: 0;
@@ -302,6 +303,7 @@
         }
       }
     }
+
 
     .fieldset-legend {
       display: block;
@@ -333,7 +335,7 @@
       margin: 15px 0;
     }
 
-    .table {
+    table, .table {
       font-size: $font-size-standard;
 
       tr {
