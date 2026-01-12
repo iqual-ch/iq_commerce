@@ -1,24 +1,23 @@
-iq_commerce.main:
-  title: 'Iq Commerce Config'
-  route_name: iq_commerce.email_settings
-  description: 'Max Urech Config'
-  parent: system.admin_config
-  weight: 0
+iq_commerce.configuration:
+  title: 'Iqual Custom Commerce settings'
+  route_name: iq_commerce.configuration
+  parent: commerce.configuration
+  weight: -20
 
 iq_commerce.email_settings:
   title: 'E-Mail settings'
   route_name: iq_commerce.email_settings
-  parent: iq_commerce.main
+  parent: iq_commerce.configuration
   weight: 10
-
-iq_commerce.additional_settings:
-  title: 'Additional settings'
-  route_name: iq_commerce.additional_settings
-  parent: iq_commerce.main
-  weight: 30
 
 iq_commerce.product_settings:
   title: 'Product settings'
   route_name: iq_commerce.product_settings
-  parent: iq_commerce.main
+  parent: iq_commerce.configuration
   weight: 20
+
+iq_commerce.additional_settings:
+  title: 'Additional settings'
+  route_name: iq_commerce.additional_settings
+  parent: iq_commerce.configuration
+  weight: 30
