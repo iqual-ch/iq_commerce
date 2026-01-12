@@ -30,12 +30,5 @@
     "iqual/commerce_variation_add_to_cart": "3.x-dev",
     "iqual/iq_entity_browsers": "^3.1",
     "iqual/iq_progressive_decoupler": "^3.1"
-  },
-  "extra": {
-    "patches": {
-      "drupal/redirect_after_login" : {
-        "[https://dgo.to/3201520]: Allow other modules to prevent redirection": "https://git.drupalcode.org/project/redirect_after_login/-/merge_requests/16.diff"
-      }
-    }
   }
 }
