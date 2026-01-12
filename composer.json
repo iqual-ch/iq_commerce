@@ -2,7 +2,7 @@
   "name": "iqual/iq_commerce",
   "description": "Provides additional functionality for the Drupal Commerce",
   "type": "drupal-custom-module",
-  "repositories": [
+  "repositories": [ 
     {
       "type": "composer",
       "url": "https://github.com/iqual-ch/iq_commerce"
@@ -12,23 +12,25 @@
     "php": "^8.1",
     "drupal/core": "^10 || ^11",
     "drupal/commerce": "^3.2",
-    "drupal/hierarchical_taxonomy_menu": "^3.0@alpha",
-    "drupal/media_entity_browser": "^3.0",
-    "drupal/commerce_variation_cart_form": "^1.5",
-    "drupal/commerce_shipping": "^2.15",
-    "drupal/pagedesigner_block_adaptable": "^4.1",
-    "iqual/iq_progressive_decoupler": "^3.0",
-    "drupal/term_reference_tree": "^2.0",
-    "drupal/twig_tweak": "^3.4",
-    "drupal/symfony_mailer": "^1.6",
     "drupal/commerce_cart_api": "^1.9",
-    "iqual/iq_entity_browsers": "^3.1",
     "drupal/commerce_combine_carts": "^1.1",
+    "drupal/commerce_repeat_order": "^2.4",
+    "drupal/commerce_shipping": "^2.15",
+    "drupal/commerce_variation_add_to_cart": "^2.0",
+    "drupal/commerce_variation_cart_form": "^1.5",
+    "drupal/entity_print": "^2.18",
+    "drupal/hierarchical_taxonomy_menu": "^3.0@alpha",
     "drupal/login_emailusername": "^3.0",
+    "drupal/media_entity_browser": "^3.0",
+    "drupal/pagedesigner_block_adaptable": "^4.1",
     "drupal/redirect_after_login": "^3.0",
     "drupal/single_datetime": "^2.0@beta",
-    "drupal/entity_print": "^2.18",
-    "drupal/commerce_repeat_order": "^2.4"
+    "drupal/symfony_mailer": "^1.6",
+    "drupal/term_reference_tree": "^2.0",
+    "drupal/twig_tweak": "^3.4",
+    "iqual/commerce_variation_add_to_cart": "^3.0",
+    "iqual/iq_entity_browsers": "^3.1",
+    "iqual/iq_progressive_decoupler": "^3.0"
   },
   "extra": {
     "patches": {
