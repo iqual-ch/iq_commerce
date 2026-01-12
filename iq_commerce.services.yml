@@ -9,9 +9,3 @@ services:
     arguments: ['@entity.repository', '@current_route_match', '%commerce_cart_api%', '@file_url_generator']
     tags:
       - { name: normalizer, priority: 9 }
-
-  iq_commerce.checkout_login_subscriber:
-    class: Drupal\iq_commerce\EventSubscriber\CheckoutLoginSubscriber
-    arguments: ['@current_route_match']
-    tags:
-      - {name: event_subscriber}
