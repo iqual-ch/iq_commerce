@@ -16,7 +16,6 @@
     "drupal/commerce_combine_carts": "^1.1",
     "drupal/commerce_repeat_order": "^2.4",
     "drupal/commerce_shipping": "^2.15",
-    "drupal/commerce_variation_add_to_cart": "^2.0",
     "drupal/commerce_variation_cart_form": "^1.5",
     "drupal/entity_print": "^2.18",
     "drupal/hierarchical_taxonomy_menu": "^3.0@alpha",
@@ -28,7 +27,7 @@
     "drupal/symfony_mailer": "^1.6",
     "drupal/term_reference_tree": "^2.0",
     "drupal/twig_tweak": "^3.4",
-    "iqual/commerce_variation_add_to_cart": "^3.0",
+    "iqual/commerce_variation_add_to_cart": "dev-3.x",
     "iqual/iq_entity_browsers": "^3.1",
     "iqual/iq_progressive_decoupler": "^3.0"
   },
