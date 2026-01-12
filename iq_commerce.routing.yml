@@ -15,6 +15,14 @@ iq_commerce.user_orders_redirect:
   requirements:
     _access: 'TRUE'
 
+iq_commerce.user_settings:
+  path: '/user/edit'
+  defaults:
+    _controller: '\Drupal\iq_commerce\Controller\UserController:userEditRedirect'
+    _title: 'User account settings'
+  requirements:
+     _access: 'TRUE'
+
 iq_commerce.email_settings:
   path: '/admin/commerce/config/iq-commerce/email-settings'
   defaults:
