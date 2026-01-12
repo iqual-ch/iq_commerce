@@ -37,7 +37,7 @@
         "[https://dgo.to/3201520]: Allow other modules to prevent redirection": "https://git.drupalcode.org/project/redirect_after_login/-/merge_requests/16.diff"
       },
       "drupal:/commerce_variation_add_to_cart" : {
-        "[https://dgo.to/3429417]: Drupal 11 Compatibility": "https://git.drupalcode.org/project/commerce_variation_add_to_cart/-/merge_requests/2/diffs.diff?diff_id=812363"
+        "[https://dgo.to/3429417]: Drupal 11 Compatibility": "https://git.drupalcode.org/project/commerce_variation_add_to_cart/-/merge_requests/3/diffs.diff?diff_id=1909057"
       }
     }
   }
