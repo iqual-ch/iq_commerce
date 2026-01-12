@@ -10,12 +10,6 @@ services:
     tags:
       - { name: normalizer, priority: 9 }
 
-  iq_commerce.event_subscriber:
-    class: Drupal\iq_commerce\EventSubscriber\RedirectAnonymousSubscriber
-    arguments: ['@current_user', '@current_route_match']
-    tags:
-      - {name: event_subscriber}
-
   iq_commerce.checkout_login_subscriber:
     class: Drupal\iq_commerce\EventSubscriber\CheckoutLoginSubscriber
     arguments: ['@current_route_match']

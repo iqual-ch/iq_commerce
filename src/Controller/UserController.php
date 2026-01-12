@@ -3,10 +3,7 @@
 namespace Drupal\iq_commerce\Controller;
 
 use Drupal\Core\Controller\ControllerBase;
-use Drupal\Core\Extension\ModuleHandlerInterface;
-use Drupal\Core\Session\AccountProxyInterface;
 use Drupal\Core\Url;
-use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 
 /**
@@ -15,16 +12,20 @@ use Symfony\Component\HttpFoundation\RedirectResponse;
 class UserController extends ControllerBase {
 
   /**
-   * Redirect to user edit page if IQ Group module is not enabled.
+   * Redirect to current user's orders page.
    */
-  public function userEditPage() {
-    // If the IQ Group is not enabled, handle the redirect.
-    if (!$this->moduleHandler->moduleExists('iq_group')) {
-      $user_id = $this->currentUser->id();
-      $response = new RedirectResponse(Url::fromUserInput('/user/' . $user_id . '/edit')->toString(), 302);
+  public function userOrdersRedirect() {
+    $user_id = $this->currentUser()->id();
+
+    // If user is not logged in, redirect to login page.
+    if ($user_id == 0) {
+      $response = new RedirectResponse(Url::fromRoute('user.login')->toString(), 302);
       return $response;
     }
-    return [];
+
+    // Redirect to the user's orders page.
+    $response = new RedirectResponse(Url::fromUserInput('/user/' . $user_id . '/orders')->toString(), 302);
+    return $response;
   }
 
 }

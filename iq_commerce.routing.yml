@@ -7,6 +7,14 @@ iq_commerce.configuration:
   requirements:
     _permission: 'access commerce administration pages'
 
+iq_commerce.user_orders_redirect:
+  path: '/user/orders'
+  defaults:
+    _controller: '\Drupal\iq_commerce\Controller\UserController::userOrdersRedirect'
+    _title: 'My Orders'
+  requirements:
+    _access: 'TRUE'
+
 iq_commerce.email_settings:
   path: '/admin/commerce/config/iq-commerce/email-settings'
   defaults:
