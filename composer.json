@@ -11,7 +11,7 @@
   "require": {
     "php": "^8.1",
     "drupal/core": "^10 || ^11",
-    "drupal/commerce": "^3.2",
+    "drupal/commerce": "3.2.0",
     "drupal/hierarchical_taxonomy_menu": "^3.0@alpha",
     "drupal/media_entity_browser": "^3.0",
     "drupal/commerce_variation_add_to_cart": "^2.0",
