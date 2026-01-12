@@ -14,7 +14,7 @@
     "drupal/commerce": "^3.2",
     "drupal/hierarchical_taxonomy_menu": "^3.0@alpha",
     "drupal/media_entity_browser": "^3.0",
-    //"drupal/commerce_variation_add_to_cart": "^2.0",
+    "drupal/commerce_variation_add_to_cart": "^2.0",
     "drupal/commerce_variation_cart_form": "^1.5",
     "drupal/commerce_shipping": "^2.15",
     "drupal/pagedesigner_block_adaptable": "^4.1",
@@ -35,10 +35,10 @@
     "patches": {
       "drupal/redirect_after_login" : {
         "[https://dgo.to/3201520]: Allow other modules to prevent redirection": "https://git.drupalcode.org/project/redirect_after_login/-/merge_requests/16.diff"
-      }/*,
-       "drupal:/commerce_variation_add_to_cart" : {
+      },
+      "drupal:/commerce_variation_add_to_cart" : {
         "[https://dgo.to/3429417]: Drupal 11 Compatibility": "https://git.drupalcode.org/project/commerce_variation_add_to_cart/-/merge_requests/3/diffs.diff?diff_id=1909057"
-      } */
+      }
     }
   }
 }
