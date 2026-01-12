@@ -15,30 +15,6 @@ use Symfony\Component\HttpFoundation\RedirectResponse;
 class UserController extends ControllerBase {
 
   /**
-   * Constructs a new UserController instance.
-   *
-   * @param \Drupal\Core\Extension\ModuleHandlerInterface $moduleHandler
-   *   The module handler.
-   * @param \Drupal\Core\Session\AccountProxyInterface $currentUser
-   *   The current user.
-   */
-  public function __construct(
-    protected ModuleHandlerInterface $moduleHandler,
-    protected AccountProxyInterface $currentUser,
-  ) {
-  }
-
-  /**
-   * {@inheritdoc}
-   */
-  public static function create(ContainerInterface $container) {
-    return new static(
-      $container->get('module_handler'),
-      $container->get('current_user')
-    );
-  }
-
-  /**
    * Redirect to user edit page if IQ Group module is not enabled.
    */
   public function userEditPage() {
