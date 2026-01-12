@@ -10,7 +10,7 @@ use Drupal\Core\Form\FormStateInterface;
 use Symfony\Component\Yaml\Yaml as YamlParser;
 
 /**
- * Class IqCommerceProductSettingsForm.
+ * Configure IQ Commerce product settings for this site.
  *
  * @package Drupal\iq_commerce\Form
  */
@@ -27,7 +27,7 @@ class IqCommerceProductSettingsForm extends ConfigFormBase {
    * {@inheritdoc}
    */
   public function buildForm(array $form, FormStateInterface $form_state) {
-    $iqCommerceProductSettingsConfig = \Drupal::config('iq_commerce.product.settings');
+    $iqCommerceProductSettingsConfig = $this->config('iq_commerce.product.settings');
     $form['general'] = [
       '#type' => 'textarea',
       '#title' => $this->t('IQ Commerce Product settings'),

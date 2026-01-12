@@ -10,7 +10,7 @@ use Drupal\Core\Form\FormStateInterface;
 use Symfony\Component\Yaml\Yaml as YamlParser;
 
 /**
- * Class RelatedProductSettingsForm.
+ * Configure IQ Commerce related product settings for this site.
  *
  * @package Drupal\iq_commerce\Form
  */
@@ -27,7 +27,7 @@ class RelatedProductSettingsForm extends ConfigFormBase {
    * {@inheritdoc}
    */
   public function buildForm(array $form, FormStateInterface $form_state) {
-    $config = \Drupal::config('iq_commerce_related_product.settings');
+    $config = $this->config('iq_commerce_related_product.settings');
     $form['related_product_fields'] = [
       '#type' => 'textarea',
       '#title' => $this->t('Related products settings (list of fields)'),

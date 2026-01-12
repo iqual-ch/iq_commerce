@@ -8,19 +8,19 @@ use Drupal\user\Entity\User;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 
 /**
- *
+ * @todo probably not used.
  */
 class IqCommerceUserOrdersForm extends FormBase {
 
   /**
-   *
+   * {@inheritdoc}
    */
   public function getFormId() {
-    // @todo Implement getFormId() method.
+    return 'iq_commerce_user_orders_form';
   }
 
   /**
-   *
+   * {@inheritdoc}
    */
   public function buildForm(array $form, FormStateInterface $form_state) {
     /** @var \Drupal\user\Entity\User $user */
@@ -41,7 +41,7 @@ class IqCommerceUserOrdersForm extends FormBase {
   }
 
   /**
-   *
+   * {@inheritdoc}
    */
   public function submitForm(array &$form, FormStateInterface $form_state) {
     // @todo Implement submitForm() method.

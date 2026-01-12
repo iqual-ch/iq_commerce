@@ -5,7 +5,7 @@
  * Iq_commerce_catalog_views module file.
  */
 
- /**
+/**
  * Implements hook_views_pre_render().
  */
 function iq_commerce_catalog_views_views_pre_render(ViewExecutable $view) {
@@ -34,7 +34,6 @@ function iq_commerce_catalog_views_views_pre_render(ViewExecutable $view) {
     $view->result = $resultNoDoubleNodes;
   }
 }
-
 
 /**
  * Implements hook_page_attachments().

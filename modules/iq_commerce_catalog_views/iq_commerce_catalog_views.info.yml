@@ -8,13 +8,13 @@ dependencies:
   - commerce:commerce_price
   - commerce:commerce_product
   - commerce_variation_add_to_cart:commerce_variation_add_to_cart
-  - image
-  - media
+  - drupal:image
+  - drupal:media
   - pagedesigner:pagedesigner_block
   - pagedesigner_block_adaptable:pagedesigner_block_adaptable
   - iq_commerce:iq_commerce
-  - taxonomy
-  - text
+  - drupal:taxonomy
+  - drupal:text
   - ui_patterns:ui_patterns_views
-  - user
-  - views
+  - drupal:user
+  - drupal:views

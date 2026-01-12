@@ -14,13 +14,10 @@ class IqCommerceAfterCartRemoveItemEvent extends Event {
   /**
    * Constructs a new AfterCartRemoveEvent.
    *
-   * @param $response
+   * @param array $response
    *   The response after the order item is removed from the cart.
    */
-  public function __construct(/**
-                               * The response after the product item is removed from the cart.
-                               */
-  protected $response) {
+  public function __construct(protected array $response) {
     \Drupal::logger('iq_commerce')->notice('after cart removed created event');
   }
 
@@ -30,7 +27,7 @@ class IqCommerceAfterCartRemoveItemEvent extends Event {
    * @return array
    *   The response from the cart api.
    */
-  public function getResponse() {
+  public function getResponse(): array {
     return $this->response;
   }
 

@@ -27,7 +27,7 @@ class RequiredProductSettingsForm extends ConfigFormBase {
    * {@inheritdoc}
    */
   public function buildForm(array $form, FormStateInterface $form_state) {
-    $config = \Drupal::config('iq_commerce_required_product.settings');
+    $config = $this->config('iq_commerce_required_product.settings');
     $form['required_product_fields'] = [
       '#type' => 'textarea',
       '#title' => $this->t('Required products settings (list of fields)'),

@@ -35,7 +35,7 @@ class IqCommerceBeforeCartAddEvent extends Event {
   /**
    * Sets the additional data.
    *
-   * @param array $additional_data
+   * @param array $data
    *   The additional data to be added.
    */
   public function setAdditionalData($data) {
@@ -48,7 +48,7 @@ class IqCommerceBeforeCartAddEvent extends Event {
    * @return array
    *   The additional data.
    */
-  public function getAdditionalData() {
+  public function getAdditionalData(): array {
     return $this->additionalData;
   }
 
@@ -58,7 +58,7 @@ class IqCommerceBeforeCartAddEvent extends Event {
    * @return array
    *   The body.
    */
-  public function getBody() {
+  public function getBody(): array {
     return $this->body;
   }
 

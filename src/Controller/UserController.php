@@ -3,7 +3,10 @@
 namespace Drupal\iq_commerce\Controller;
 
 use Drupal\Core\Controller\ControllerBase;
+use Drupal\Core\Extension\ModuleHandlerInterface;
+use Drupal\Core\Session\AccountProxyInterface;
 use Drupal\Core\Url;
+use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 
 /**
@@ -12,13 +15,36 @@ use Symfony\Component\HttpFoundation\RedirectResponse;
 class UserController extends ControllerBase {
 
   /**
+   * Constructs a new UserController instance.
    *
+   * @param \Drupal\Core\Extension\ModuleHandlerInterface $moduleHandler
+   *   The module handler.
+   * @param \Drupal\Core\Session\AccountProxyInterface $currentUser
+   *   The current user.
+   */
+  public function __construct(
+    protected ModuleHandlerInterface $moduleHandler,
+    protected AccountProxyInterface $currentUser,
+  ) {
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public static function create(ContainerInterface $container) {
+    return new static(
+      $container->get('module_handler'),
+      $container->get('current_user')
+    );
+  }
+
+  /**
+   * Redirect to user edit page if IQ Group module is not enabled.
    */
   public function userEditPage() {
-    $moduleHandler = \Drupal::service('module_handler');
     // If the IQ Group is not enabled, handle the redirect.
-    if (!$moduleHandler->moduleExists('iq_group')) {
-      $user_id = \Drupal::currentUser()->id();
+    if (!$this->moduleHandler->moduleExists('iq_group')) {
+      $user_id = $this->currentUser->id();
       $response = new RedirectResponse(Url::fromUserInput('/user/' . $user_id . '/edit')->toString(), 302);
       return $response;
     }
