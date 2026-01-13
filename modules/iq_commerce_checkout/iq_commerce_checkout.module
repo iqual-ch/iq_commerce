@@ -32,3 +32,14 @@ function iq_commerce_checkout_form_commerce_checkout_flow_multistep_default_alte
 function iq_commerce_checkout_page_attachments(array &$attachments) {
   $attachments['#attached']['library'][] = 'iq_commerce/checkout';
 }
+
+/**
+ * Implements hook_theme_registry_alter().
+ *
+ * Override paths if bootstrap_barrio is used.
+ */
+function iq_commerce_checkout_theme_registry_alter(&$theme_registry) {
+  if (str_contains($theme_registry['commerce_checkout_form__with_sidebar']['path'], 'bootstrap_barrio')) {
+    $theme_registry['commerce_checkout_form__with_sidebar']['path'] = \Drupal::service('extension.list.module')->getPath('iq_commerce_checkout') . '/templates/commerce/';
+  }
+}
