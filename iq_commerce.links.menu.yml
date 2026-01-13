@@ -2,7 +2,7 @@ iq_commerce.configuration:
   title: 'Iqual Custom Commerce settings'
   route_name: iq_commerce.configuration
   parent: commerce.configuration
-  weight: -20
+  weight: 100
 
 iq_commerce.email_settings:
   title: 'E-Mail settings'
