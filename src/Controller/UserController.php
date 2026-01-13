@@ -53,7 +53,7 @@ class UserController extends ControllerBase {
 
     // Redirect to the user's orders page.
     $user_id = $this->currentUser()->id();
-    $response = new RedirectResponse(Url::fromRoute('user.orders', ['user' => $user_id])->toString(), 302);
+    $response = new RedirectResponse(Url::fromRoute('iq_commerce.user_orders_redirect', ['user' => $user_id])->toString(), 302);
     return $response;
   }
 
