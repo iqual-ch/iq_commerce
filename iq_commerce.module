@@ -106,6 +106,7 @@ function iq_commerce_form_alter(&$form, FormStateInterface $form_state, $form_id
         '#weight' => -1,
       ];
     }
+    $form['#attached']['library'][] = 'iq_commerce/cart';
   }
   // Add the tax rate for each product type.
   if ($form_id == 'commerce_product_type_edit_form') {
