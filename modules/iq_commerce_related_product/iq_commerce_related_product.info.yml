@@ -1,7 +1,0 @@
-name: iqual Commerce Related Product
-description: Provides additional functionality for the related products on Commerce for iQual.
-package: Custom
-type: module
-core_version_requirement: ^10 || ^11
-dependencies:
-  - iq_commerce:iq_commerce

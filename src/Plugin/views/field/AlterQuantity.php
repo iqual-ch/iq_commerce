@@ -105,9 +105,9 @@ class AlterQuantity extends EditQuantity {
           ];
           $form['edit_quantity'][$row_index]['quantity-edit'] = $input;
         }
-
-        $form['actions']['submit']['#show_update_message'] = FALSE;
       }
+      $form['#attached']['library'][] = 'iq_commerce/alter_quantity';
+      $form['actions']['submit']['#show_update_message'] = FALSE;
     }
   }
 

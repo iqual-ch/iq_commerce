@@ -7,17 +7,17 @@ product:
     resources/js/product.js:  {}
     //cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js: { minified: true, type: external }
 
-categories:
+cart:
   css:
     theme:
-      resources/css/categories.css: {}
+      resources/css/cart.css: {}
 
-checkout:
+alter_quantity:
   css:
     theme:
-      resources/css/checkout.css: {}
+      resources/css/alter_quantity.css: {}
   js:
-    resources/js/checkout.js: {}
+    resources/js/alter_quantity.js: {}
 
 customer:
   css:

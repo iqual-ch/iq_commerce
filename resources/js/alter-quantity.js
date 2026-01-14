@@ -5,7 +5,7 @@
   /**
    * Behaviors.
    */
-  Drupal.behaviors.iq_commerce_checkout_cart = {
+  Drupal.behaviors.iq_commerce_cart_alter_quantity = {
     attach: function (context, settings) {
       $('[data-alter-quantity] input[type="number"]').attr('min', 1);
       $('[data-alter-quantity] [data-increase-item-quantity]').click(function (e) {
@@ -17,24 +17,6 @@
           $target.closest('form').submit();
         }, 600);
 
-      });
-
-    }
-  };
-
-  Drupal.behaviors.paymentProviders = {
-    attach: function (context, settings) {
-
-      $(document).ready(function () {
-
-        // Checkout Payment providers input check on image click
-        const paymentProviders = $('#edit-commerce-payrexx-integration-commerce-pane-payment-method-selection-payment-methods > div:not(:first-of-type) > .js-form-item');
-        paymentProviders.each(function (e) {
-          let input = $(this).find('input');
-          $(this).on('click', function () {
-            input.prop("checked", true);
-          })
-        });
       });
 
     }
