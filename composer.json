@@ -22,7 +22,6 @@
     "drupal/login_emailusername": "^3.0",
     "drupal/media_entity_browser": "^3.0",
     "drupal/redirect_after_login": "^3.0",
-    "drupal/single_datetime": "^2.0@beta",
     "drupal/symfony_mailer": "^1.6",
     "drupal/term_reference_tree": "^2.0",
     "drupal/twig_tweak": "^3.4",
