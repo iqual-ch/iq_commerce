@@ -11,7 +11,7 @@
   "require": {
     "php": "^8.1",
     "drupal/core": "^10 || ^11",
-    "drupal/commerce": "^2.40 || ^3.2",
+    "drupal/commerce": "^3.2",
     "drupal/commerce_cart_api": "^1.9",
     "drupal/commerce_combine_carts": "^1.1",
     "drupal/commerce_repeat_order": "^2.4",
@@ -25,7 +25,7 @@
     "drupal/symfony_mailer": "^1.6",
     "drupal/term_reference_tree": "^2.0",
     "drupal/twig_tweak": "^3.4",
-    "drupal/ui_patterns": "^1.0 || ^1.13",
+    "drupal/ui_patterns": "1.13.0",
     "iqual/commerce_variation_add_to_cart": "3.x-dev"
   }
 }
