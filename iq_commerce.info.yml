@@ -19,3 +19,4 @@ dependencies:
   - login_emailusername:login_emailusername
   - entity_print:entity_print
   - symfony_mailer:symfony_mailer
+  - ui_patterns:ui_patterns
