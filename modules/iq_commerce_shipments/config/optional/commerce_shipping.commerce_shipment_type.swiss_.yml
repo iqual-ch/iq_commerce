@@ -1,0 +1,7 @@
+langcode: en
+status: true
+dependencies: {  }
+id: swiss_
+label: 'Swiss Post Standard'
+profileType: customer
+traits: {  }
