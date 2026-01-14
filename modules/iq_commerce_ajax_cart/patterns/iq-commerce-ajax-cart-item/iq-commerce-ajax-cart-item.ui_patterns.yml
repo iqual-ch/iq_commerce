@@ -1,7 +1,6 @@
 iq-commerce-ajax-cart-item:
   label: iq_commerce Ajax Cart item
   description: Ajax Cart item
-  pagedesigner: 0
   fields:
     title:
       type: text

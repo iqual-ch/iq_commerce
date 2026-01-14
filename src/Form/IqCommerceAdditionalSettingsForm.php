@@ -26,7 +26,7 @@ class IqCommerceAdditionalSettingsForm extends ConfigFormBase {
     $iqCommerceSettings = static::getIqCommerceAdditionalSettings();
     $form['cart_header'] = [
       '#type'       => 'text_format',
-      '#format' => 'pagedesigner',
+      '#format' => 'full_html',
       '#title' => $this->t('Cart Header'),
       '#description' => $this->t('Add a header for the cart view, leave empty so it will NOT be shown.'),
       '#default_value' => !empty($iqCommerceSettings['cart_header']) ? $iqCommerceSettings['cart_header'] : "",

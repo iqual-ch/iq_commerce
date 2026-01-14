@@ -3,7 +3,6 @@ iq-commerce-catalog-item:
   description: Single product item inside catalog
   category: Shop
   icon: fas fa-anchor
-  pagedesigner: 0
   type: component
   styles: 1
   fields:

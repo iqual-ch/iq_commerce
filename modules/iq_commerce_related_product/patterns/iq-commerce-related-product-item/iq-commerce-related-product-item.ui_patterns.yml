@@ -1,7 +1,6 @@
 iq-commerce-related-product-item:
   label: iq_commerce Related products item
   description: Related products item
-  pagedesigner: 0
   fields:
     title:
       type: text

@@ -3,7 +3,6 @@ iq-commerce-product-teaser:
   description: Teaser for a product
   category: Shop
   icon: fas fa-anchor
-  pagedesigner: 0
   type: component
   styles: 1
   fields:
