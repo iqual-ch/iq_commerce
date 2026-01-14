@@ -13,11 +13,8 @@ cart:
       resources/css/cart.css: {}
 
 alter_quantity:
-  css:
-    theme:
-      resources/css/alter_quantity.css: {}
   js:
-    resources/js/alter_quantity.js: {}
+    resources/js/alter-quantity.js: {}
 
 customer:
   css:
