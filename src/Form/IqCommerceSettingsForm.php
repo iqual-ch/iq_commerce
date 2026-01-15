@@ -88,8 +88,8 @@ class IqCommerceSettingsForm extends ConfigFormBase {
     $current_language = $language_manager->getCurrentLanguage()->getId();
     $iqCommerceSettingsConfig = $language_manager->getLanguageConfigOverride($current_language, 'iq_commerce.settings');
     return [
-      'header' => $iqCommerceSettingsConfig->get('header') != NULL ? $iqCommerceSettingsConfig->get('header') : ['value' => '<b>' . t("Commerce Store.") . '</b>', 'format' => 'pagedesigner'],
-      'footer' => $iqCommerceSettingsConfig->get('footer') != NULL ? $iqCommerceSettingsConfig->get('footer') : ['value' => t("Thank you for your order. You will receive the item(s) in 3 - 7 days."), 'format' => 'pagedesigner'],
+      'header' => $iqCommerceSettingsConfig->get('header') != NULL ? $iqCommerceSettingsConfig->get('header') : ['value' => '<b>' . t("Commerce Store.") . '</b>', 'format' => 'full_html'],
+      'footer' => $iqCommerceSettingsConfig->get('footer') != NULL ? $iqCommerceSettingsConfig->get('footer') : ['value' => t("Thank you for your order. You will receive the item(s) in 3 - 7 days."), 'format' => 'full_html'],
     ];
   }
 

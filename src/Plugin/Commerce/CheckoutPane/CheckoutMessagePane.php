@@ -95,7 +95,7 @@ class CheckoutMessagePane extends CheckoutPaneBase {
 
     $form['header'] = [
       '#type'       => 'text_format',
-      '#format' => 'pagedesigner',
+      '#format' => 'full_html',
       '#title' => $this->t('Header'),
       '#description' => $this->t('Add a header message for the receipt.'),
       '#default_value' => !empty($this->configuration['header']['value']) ? $this->configuration['header']['value'] : $default_message,
