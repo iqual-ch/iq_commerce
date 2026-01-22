@@ -12,7 +12,6 @@
     "php": "^8.1",
     "drupal/core": "^10 || ^11",
     "drupal/commerce": "^3.2",
-    "drupal/commerce_cart_api": "^1.9",
     "drupal/commerce_combine_carts": "^1.1",
     "drupal/commerce_repeat_order": "^2.4",
     "drupal/commerce_shipping": "^2.15",
@@ -26,6 +25,6 @@
     "drupal/term_reference_tree": "^2.0",
     "drupal/twig_tweak": "^3.4",
     "drupal/ui_patterns": "1.13.0",
-    "iqual/commerce_variation_add_to_cart": "3.x-dev"
+    "iqual/commerce_variation_add_to_cart": "^3.0"
   }
 }
