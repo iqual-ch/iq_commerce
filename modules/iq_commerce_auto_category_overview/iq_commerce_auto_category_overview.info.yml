@@ -1,7 +1,0 @@
-name: Auto Category Overview Page for iq_commerce
-description: Auto Category Overview Page through a context filter
-package: Custom
-type: module
-core_version_requirement: ^10 || ^11
-dependencies:
-  - iq_commerce:iq_commerce

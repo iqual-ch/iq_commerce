@@ -27,10 +27,10 @@ function iq_commerce_checkout_form_commerce_checkout_flow_multistep_default_alte
 }
 
 /**
- * Implements hook_page_attachments().
+ * Implements hook_form_FORM_ID_alter().
  */
-function iq_commerce_checkout_page_attachments(array &$attachments) {
-  $attachments['#attached']['library'][] = 'iq_commerce/checkout';
+function iq_commerce_checkout_form_commerce_checkout_flow_alter(&$form, FormStateInterface $form_state, $form_id) {
+  $form['#attached']['library'][] = 'iq_commerce_checkout/checkout';
 }
 
 /**

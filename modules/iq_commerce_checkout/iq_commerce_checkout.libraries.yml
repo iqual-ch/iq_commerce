@@ -1,0 +1,4 @@
+checkout:
+  css:
+    theme:
+      resources/css/checkout.css: {}

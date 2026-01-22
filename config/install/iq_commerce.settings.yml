@@ -1,7 +1,7 @@
 # Default settings
 header:
   value: ''
-  format: 'pagedesigner'
+  format: ''
 footer:
   value: ''
-  format: 'pagedesigner'
+  format: ''

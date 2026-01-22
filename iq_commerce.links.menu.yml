@@ -10,12 +10,6 @@ iq_commerce.email_settings:
   parent: iq_commerce.configuration
   weight: 10
 
-iq_commerce.product_settings:
-  title: 'Product settings'
-  route_name: iq_commerce.product_settings
-  parent: iq_commerce.configuration
-  weight: 20
-
 iq_commerce.additional_settings:
   title: 'Additional settings'
   route_name: iq_commerce.additional_settings
