@@ -1,5 +1,30 @@
+iq_commerce.configuration:
+  path: '/admin/commerce/config'
+  defaults:
+    _controller: '\Drupal\system\Controller\SystemController::overview'
+    link_id: 'iq_commerce.configuration'
+    _title: 'Configuration'
+  requirements:
+    _permission: 'access commerce administration pages'
+
+iq_commerce.user_orders_redirect:
+  path: '/user/orders'
+  defaults:
+    _controller: '\Drupal\iq_commerce\Controller\UserController::userOrdersRedirect'
+    _title: 'My Orders'
+  requirements:
+    _access: 'TRUE'
+
+iq_commerce.user_settings:
+  path: '/user/edit'
+  defaults:
+    _controller: '\Drupal\iq_commerce\Controller\UserController:userEditRedirect'
+    _title: 'User account settings'
+  requirements:
+     _access: 'TRUE'
+
 iq_commerce.email_settings:
-  path: '/admin/config/system/iq-commerce/email-settings'
+  path: '/admin/commerce/config/iq-commerce/email-settings'
   defaults:
     _form: '\Drupal\iq_commerce\Form\IqCommerceSettingsForm'
     _title: 'Iq Commerce E-Mail Settings'
@@ -8,18 +33,8 @@ iq_commerce.email_settings:
   options:
     _admin_route: TRUE
 
-iq_commerce.product_settings:
-  path: '/admin/config/system/iq-commerce/product-settings'
-  defaults:
-    _form: '\Drupal\iq_commerce\Form\IqCommerceProductSettingsForm'
-    _title: 'Iq Commerce Product Settings'
-  requirements:
-    _permission: 'administer iq_commerce settings'
-  options:
-    _admin_route: TRUE
-
 iq_commerce.additional_settings:
-  path: '/admin/config/system/iq-commerce/additional_settings'
+  path: '/admin/commerce/config/iq-commerce/additional_settings'
   defaults:
     _form: '\Drupal\iq_commerce\Form\IqCommerceAdditionalSettingsForm'
     _title: 'Iq Commerce Settings'
@@ -28,18 +43,3 @@ iq_commerce.additional_settings:
   options:
     _admin_route: TRUE
 
-iq_commerce.user_orders:
-  path: '/user/orders'
-  defaults:
-    _form: '\Drupal\iq_commerce\Form\IqCommerceUserOrdersForm'
-    _title: 'Orders'
-  requirements:
-    _access: 'TRUE'
-
-iq_commerce.user_settings:
-  path: '/user/edit'
-  defaults:
-    _controller: '\Drupal\iq_commerce\Controller\UserController:userEditPage'
-    _title: 'User account settings'
-  requirements:
-    _role: 'authenticated'

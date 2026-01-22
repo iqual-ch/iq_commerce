@@ -3,15 +3,3 @@ services:
     class: Drupal\iq_commerce\Resolver\ProductTaxResolver
     tags:
       - { name: commerce_tax.tax_rate_resolver, priority: 100 }
-
-  commerce_cart_api.normalizer.entity_references:
-    class: Drupal\iq_commerce\Normalizer\EntityReferenceNormalizer
-    arguments: ['@entity.repository', '@current_route_match', '%commerce_cart_api%']
-    tags:
-      - { name: normalizer, priority: 9 }
-
-  iq_commerce.event_subscriber:
-    class: Drupal\iq_commerce\EventSubscriber\RedirectAnonymousSubscriber
-    arguments: ['@current_user']
-    tags:
-      - {name: event_subscriber}

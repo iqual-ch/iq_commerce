@@ -1,8 +1,3 @@
-catalog:
-  css:
-    theme:
-      resources/css/catalog.css: {}
-
 product:
   css:
     theme:
@@ -12,17 +7,14 @@ product:
     resources/js/product.js:  {}
     //cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js: { minified: true, type: external }
 
-categories:
+cart:
   css:
     theme:
-      resources/css/categories.css: {}
+      resources/css/cart.css: {}
 
-checkout:
-  css:
-    theme:
-      resources/css/checkout.css: {}
+alter_quantity:
   js:
-    resources/js/checkout.js: {}
+    resources/js/alter-quantity.js: {}
 
 customer:
   css:
