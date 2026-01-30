@@ -193,7 +193,10 @@ function iq_commerce_preprocess_commerce_order_receipt(&$variables) {
  * Implements hook_page_attachments().
  */
 function iq_commerce_page_attachments(array &$attachments) {
-  $attachments['#attached']['library'][] = 'iq_commerce/customer';
+  // Only attach on frontend, not in admin pages/theme.
+  if (!\Drupal::service('router.admin_context')->isAdminRoute()) {
+    $attachments['#attached']['library'][] = 'iq_commerce/customer';
+  }
 }
 
 /**
